@@ -6,6 +6,7 @@ import { EmployeeComponent } from '../@component/employee/employee.component';
 import { BasicsalaryComponent } from '../@component/payroll/basicsalary/basicsalary.component';
 import { PayrollComponent } from '../@component/payroll/payroll/payroll.component';
 import { ReportsalaryComponent } from '../@component/payroll/reportsalary/reportsalary.component';
+import { AssetsComponent } from '../@component/assets/assets.component';
 ///employee payroll-reports
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'basic-salary', component: BasicsalaryComponent },
       { path: 'payroll', component: PayrollComponent },
       { path: 'payroll-reports', component: ReportsalaryComponent },
+      { path: 'assets', component:AssetsComponent },
     ]
   }
 ];

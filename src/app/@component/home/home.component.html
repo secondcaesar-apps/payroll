@@ -43,6 +43,12 @@
                         </mdb-accordion-item-head>
                         <mdb-accordion-item-body></mdb-accordion-item-body>
                       </mdb-accordion-item>
+                      <mdb-accordion-item class="no-collase">
+                        <mdb-accordion-item-head routerLink="assets" routerLinkActive="active" mdbWavesEffect><i
+                          class="far fa-hand-pointer"></i>Assets
+                        </mdb-accordion-item-head>
+                        <mdb-accordion-item-body></mdb-accordion-item-body>
+                      </mdb-accordion-item>
 
         <!-- Collapsible link -->
         <mdb-accordion-item>
@@ -95,13 +101,13 @@
       <!--/. Sidebar navigation -->
       <!-- Navbar -->
      <!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark  lighten-1" [containerInside]="true">
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark  lighten-1" [containerInside]="false">
 
     <div class="">
     
       </div>
     <mdb-navbar-brand class="float-right">
-            <a (click)="sidenav.toggle()" data-activates="slide-out" class="button-collapse mr-5"><i class="fas fa-bars"></i></a>
+          
         <a class="navbar-brand" href="#">PagePayRoll</a></mdb-navbar-brand>
   
     <!-- Collapsible content -->
