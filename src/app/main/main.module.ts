@@ -10,10 +10,11 @@ import { PayrollComponent } from '../@component/payroll/payroll/payroll.componen
 import { BasicsalaryComponent } from '../@component/payroll/basicsalary/basicsalary.component';
 import { ManagesalaryComponent } from '../@component/payroll/managesalary/managesalary.component';
 import { ReportsalaryComponent } from '../@component/payroll/reportsalary/reportsalary.component';
+import { AssetsComponent } from '../@component/assets/assets.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent],
+  declarations: [HomeComponent, DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
