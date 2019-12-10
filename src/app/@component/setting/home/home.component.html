@@ -1,0 +1,11 @@
+<div class="row m-1">
+        <div class="col-2">
+            <div mdbScrollSpy="scrollspy3" id="list-example" class="list-group">
+                <a mdbScrollSpyLink="list-item-1" *ngFor="let item of list" class="list-group-item list-group-item-action" [routerLink]="item.route" routerLinkActive="active" >{{item.name}}</a>
+              
+            </div>
+        </div>
+        <div class="col-10">
+                <router-outlet></router-outlet>
+        </div>
+      </div>
