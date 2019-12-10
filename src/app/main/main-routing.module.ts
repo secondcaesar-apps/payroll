@@ -21,10 +21,16 @@ const routes: Routes = [
       { path: 'payroll-reports', component: ReportsalaryComponent },
       { path: 'assets', component:AssetsComponent },
       { path: 'assets', component:AssetsComponent },
-      { path: 'create-employer', component: CreateEmployerComponent
+      { path: 'create-employer', component: CreateEmployerComponent,
+    },
+    {
+      path: 'settings', 
+      loadChildren: () => import('../setting/setting.module').then(m => m.SettingModule)
     },
     ]
   }
+,
+  { path: 'settings', redirectTo: 'settings/company', pathMatch: 'full' },
 ];
 
 @NgModule({
