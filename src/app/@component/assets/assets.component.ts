@@ -21,6 +21,7 @@ export class AssetsComponent implements OnInit {
   previous: string;
 
   maxVisibleItems: number = 8;
+  show: boolean;
 
   constructor(private cdRef: ChangeDetectorRef,private modalService: MDBModalService) {}
 
@@ -117,7 +118,7 @@ export class AssetsComponent implements OnInit {
       keyboard: true,
       show: false,
       ignoreBackdropClick: false,
-      class: 'modal-dialog-top modal-fluid',
+      class: 'modal-dialog-top modal-lg',
       containerClass: 'center',
       animated: true,
       data: {
@@ -125,6 +126,10 @@ export class AssetsComponent implements OnInit {
           content: { heading: 'Content heading', description: 'Content description'}
       }
   });
+  }
+
+  view(){
+    this.show = !this.show ;
   }
 
 }

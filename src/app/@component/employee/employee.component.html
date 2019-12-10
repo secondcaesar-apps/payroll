@@ -41,7 +41,9 @@
                     </a>
                   
                     <div class="dropdown-menu dropdown-primary">
-                      <a class="dropdown-item" (click)="view()">Show details</a>
+                      <a class="dropdown-item" (click)="view()" *ngIf="!show">Show details</a>
+                      <a class="dropdown-item" (click)="view()" *ngIf="show">Hide details</a>
+                     
                       <a class="dropdown-item" href="#">Refresh</a>
                     </div>
                   </div>
