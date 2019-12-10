@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, HostListener, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MdbTableDirective, MdbTablePaginationComponent } from 'ng-uikit-pro-standard';
-
+import { MDBModalRef, MDBModalService } from 'ng-uikit-pro-standard';
+import { AddassetsComponent } from 'src/app/@modal/addassets/addassets.component';
 @Component({
   selector: 'app-assets',
   templateUrl: './assets.component.html',
@@ -14,13 +15,14 @@ export class AssetsComponent implements OnInit {
 
   elements: any = [];
   headElements = ['','id', 'first', 'last', 'handle'];
+  public modalRef: MDBModalRef
 
   searchText: string = '';
   previous: string;
 
   maxVisibleItems: number = 8;
 
-  constructor(private cdRef: ChangeDetectorRef) {}
+  constructor(private cdRef: ChangeDetectorRef,private modalService: MDBModalService) {}
 
   @HostListener('input') oninput() {
     this.mdbTablePagination.searchText = this.searchText;
@@ -107,6 +109,22 @@ export class AssetsComponent implements OnInit {
       this.mdbTablePagination.calculateFirstItemIndex();
       this.mdbTablePagination.calculateLastItemIndex();
     });
+  }
+
+  openModal() {
+    this.modalRef = this.modalService.show(AddassetsComponent, {
+      backdrop: true,
+      keyboard: true,
+      show: false,
+      ignoreBackdropClick: false,
+      class: 'modal-dialog-top modal-fluid',
+      containerClass: 'center',
+      animated: true,
+      data: {
+          heading: 'Modal heading',
+          content: { heading: 'Content heading', description: 'Content description'}
+      }
+  });
   }
 
 }
