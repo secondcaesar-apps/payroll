@@ -1,51 +1,93 @@
 
 
 
+<div>
+  <div class="header"> 
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+              <button mdbBtn type="button" color="success" mdbWavesEffect>
+                <mdb-icon fas icon="envelope" class="mr-1"></mdb-icon>Invite
+              </button>
+              <button mdbBtn type="button" (click)="openModal()" color="default" mdbWavesEffect>
+                <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
+              </button>
+            </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="row float-right">
+            <div class="col-sm-5">
+                <div class="md-form">
+                <input mdbInput class="mr-1" type="text" placeholder="Search" aria-label="Search"> 
+              </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="dropdown" mdbDropdown>
 
-      <div class="container-fluid">
-            <mdb-breadcrumb>
-                    <mdb-breadcrumb-item class="active"><button (click)="openModal()">open</button></mdb-breadcrumb-item>
-                  </mdb-breadcrumb>
-
-                  <div class="row">
-                        <div class="col-8">
-                              <div class="row">
-                                      <div class="col-md-6 mx-auto">
-                                        <div class="md-form">
-                                          <input type="text" class="form-control" [(ngModel)]="searchText" (keyup)="searchItems()" id="search-input"
-                                                 mdbInput>
-                                          <label for="search-input">Search</label>
-                                        </div>
-                                      </div>
-                                      <table mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true" class="z-depth-1">
-                                        <thead class="sticky-top">
-                                        <tr>
-                                          <th *ngFor="let head of headElements; let i = index" [mdbTableSort]="elements" [sortBy]="headElements[i]"
-                                              scope="col">{{head | titlecase}} <mdb-icon fas icon="sort"></mdb-icon>
-                                          </th>
-                                        </tr>
-                                        </thead>
-                                        <tbody #row>
-                                        <tr mdbTableCol (rowCreated)="onRowCreate($event)" (rowRemoved)="onRowRemove($event)" *ngFor="let el of elements; let i = index">
-                                            <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" scope="row">{{el.id}}</th>
-                                          <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="red-text">{{el.first}}</td>
-                                          <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.last}}</td>
-                                          <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.handle}}</td>
-                                        </tr>
-                                        </tbody>
-                                        <tfoot class="grey lighten-5 w-100">
-                                        <tr>
-                                          <td colspan="4">
-                                            <mdb-table-pagination [tableEl]="tableEl" paginationAlign="" [searchDataSource]="elements"></mdb-table-pagination>
-                                          </td>
-                                        </tr>
-                                        </tfoot>
-                                      </table>
-                                    </div>
-                        </div>
-                        <div class="col-4 line">
+                    <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
+                      mdbWavesEffect>
+                      Status
+                    </button>
                   
-                          </div>
+                    <div class="dropdown-menu dropdown-primary">
+                      <button class="dropdown-item" href="#">All</button>
+                      <button class="dropdown-item" href="#">Active</button>
+                      <button class="dropdown-item" href="#">Inactive</button>
                     </div>
+                    
+              </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="btn-group" mdbDropdown>
+                    <a mdbDropdownToggle mdbBtn  floating="true" size="sm" gradient="blue"  class="dropdown-toggle waves-light" mdbWavesEffect>
+                        <mdb-icon fas icon="ellipsis-v"></mdb-icon>
+                    </a>
+                  
+                    <div class="dropdown-menu dropdown-primary">
+                      <a class="dropdown-item" (click)="view()" *ngIf="!show">Show details</a>
+                      <a class="dropdown-item" (click)="view()" *ngIf="show">Hide details</a>
+                     
+                      <a class="dropdown-item" href="#">Refresh</a>
+                    </div>
+                  </div>
+            </div>
+          </div>    
       </div>
+    </div>
+  </div>
+  <div class="body">
+      <div class="row">
+        <div class="col">
+            <table id="tableSortExample" mdbTable class="z-depth-1">
+                <thead>
+                  <tr>
+                      <th aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[0]">{{headElements[0] | titlecase}}<mdb-icon fas icon="sort"></mdb-icon></th>
+                      <th>{{headElements[1]}}</th>
+                      <th>{{headElements[2]}}</th>
+                      <th>{{headElements[3]}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let el of elements; let i = index">
+                    <th scope="row" (click)="openDetails()">{{el.id}}</th>
+                    <td>{{el.first}}</td>
+                    <td>{{el.last}}</td>
+                    <td>{{el.handle}}</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-4 line" *ngIf="show">
+             <div class="pre-body">
+               <p>Select a row to view it's details here</p>
+             </div>
+             <div class="body">
+                <div class="row">
+
+                </div>
+             </div>     
+        </div>
+      </div> 
+  </div>
+</div>
  
