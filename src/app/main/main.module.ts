@@ -11,15 +11,16 @@ import { BasicsalaryComponent } from '../@component/payroll/basicsalary/basicsal
 import { ManagesalaryComponent } from '../@component/payroll/managesalary/managesalary.component';
 import { ReportsalaryComponent } from '../@component/payroll/reportsalary/reportsalary.component';
 import { AssetsComponent } from '../@component/assets/assets.component';
-import { CreateEmployerComponent } from '../@component/create-employer/create-employer.component';
+import { AddassetsComponent } from '../@modal/addassets/addassets.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent],
+  declarations: [HomeComponent, DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, AddassetsComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
     SharedModule
-  ]
+  ],
+  entryComponents: [AddassetsComponent]
 })
 export class MainModule { }
