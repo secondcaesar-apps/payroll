@@ -1,1 +1,47 @@
-<p>department works!</p>
+
+ <div class="form-group">
+      
+        <button mdbBtn (click)="frame.show()" type="button" color="default" mdbWavesEffect>
+          <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
+        </button>
+      </div>
+<ul class="list-group">
+        <li class="list-group-item list-group-item-success text-black">   <strong>Name</strong></li>
+        <li class="list-group-item ">Cras sit amet nibh libero</li>
+        <li class="list-group-item">Porta ac consectetur ac</li>
+        <li class="list-group-item ">Vestibulum at eros</li>
+      </ul>
+      <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+      aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header light-blue darken-3 text-center text-white">
+         <h4 class="modal-title w-100 font-weight-bold">Manage Departments</h4>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body mx-3">
+         <div class="md-form mb-5">
+           <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+           <input type="text" id="form34" class="form-control" mdbInput mdbValidate>
+           <label for="form34">Department Name </label>
+           
+         </div>
+ 
+        
+ 
+ 
+ 
+       </div>
+       <div class="modal-footer d-flex justify-content-right">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                    
+                    <button mdbBtn type="button" color="info" class="waves-light mr-2" mdbWavesEffect>Create</button>
+                    <button mdbBtn type="button" color="danger"  (click)="frame.hide()" class="waves-light" mdbWavesEffect>Cancle</button>
+                </div>
+       </div>
+     </div>
+   </div>
+ </div>
+ 

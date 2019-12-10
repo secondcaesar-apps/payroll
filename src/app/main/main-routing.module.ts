@@ -10,6 +10,8 @@ import { AssetsComponent } from '../@component/assets/assets.component';
 import { CreateEmployerComponent } from '../@component/create-employer/create-employer.component';
 
 const routes: Routes = [
+
+ 
   {
     path: '', 
     component:HomeComponent,
@@ -27,10 +29,11 @@ const routes: Routes = [
       path: 'settings', 
       loadChildren: () => import('../setting/setting.module').then(m => m.SettingModule)
     },
+    { path: 'settings', redirectTo: 'settings/company', pathMatch: 'full' },
     ]
   }
 ,
-  { path: 'settings', redirectTo: 'settings/company', pathMatch: 'full' },
+ 
 ];
 
 @NgModule({
