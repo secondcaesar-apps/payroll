@@ -19,7 +19,10 @@ export class EmployeeComponent implements OnInit {
   view(){
     this.show = !this.show ;
   }
-  openDetails(){
+  newemployee(){
     this.router.navigate(['/main/create-employer'])
+  }
+  reademployee(){
+    this.router.navigate(['/main/read-employer'])
   }
 }

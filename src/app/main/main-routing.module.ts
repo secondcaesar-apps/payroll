@@ -8,7 +8,7 @@ import { PayrollComponent } from '../@component/payroll/payroll/payroll.componen
 import { ReportsalaryComponent } from '../@component/payroll/reportsalary/reportsalary.component';
 import { AssetsComponent } from '../@component/assets/assets.component';
 import { CreateEmployerComponent } from '../@component/create-employer/create-employer.component';
-
+import { ReadOneEmployeeComponent } from '../@component/read-one-employee/read-one-employee.component'
 const routes: Routes = [
 
  
@@ -23,8 +23,8 @@ const routes: Routes = [
       { path: 'payroll-reports', component: ReportsalaryComponent },
       { path: 'assets', component:AssetsComponent },
       { path: 'assets', component:AssetsComponent },
-      { path: 'create-employer', component: CreateEmployerComponent,
-    },
+      { path: 'create-employer', component: CreateEmployerComponent},
+      { path: 'read-employer', component: ReadOneEmployeeComponent},
     {
       path: 'settings', 
       loadChildren: () => import('../setting/setting.module').then(m => m.SettingModule)

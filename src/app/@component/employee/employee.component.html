@@ -6,7 +6,7 @@
               <button mdbBtn type="button" color="success" mdbWavesEffect>
                 <mdb-icon fas icon="envelope" class="mr-1"></mdb-icon>Invite
               </button>
-              <button mdbBtn type="button" (click)="openDetails()" color="default" mdbWavesEffect>
+              <button mdbBtn type="button" (click)="newemployee()" color="default" mdbWavesEffect>
                 <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
               </button>
             </div>
@@ -66,8 +66,8 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let el of elements; let i = index">
-                    <th scope="row">{{el.id}}</th>
-                    <td>{{el.first}}</td>
+                    <th scope="row" (click)="reademployee()">{{el.id}}</th>
+                    <td (click)="reademployee()">{{el.first}}</td>
                     <td>{{el.last}}</td>
                     <td>{{el.handle}}</td>
                   </tr>
