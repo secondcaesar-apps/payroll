@@ -33,39 +33,39 @@
       <mdb-accordion [multiple]="false" aria-multiselectable="false">
 
             <mdb-accordion-item class="no-collase">
-                    <mdb-accordion-item-head routerLink="dashboard" routerLinkActive="active" mdbWavesEffect><i class="fas fa-home"></i>Dashboard
+                    <mdb-accordion-item-head routerLink="dashboard" routerLinkActive="actives" mdbWavesEffect><i class="fas fa-home"></i>Dashboard
                     </mdb-accordion-item-head>
                     <mdb-accordion-item-body></mdb-accordion-item-body>
                   </mdb-accordion-item>
                   <mdb-accordion-item class="no-collase">
-                        <mdb-accordion-item-head routerLink="employee" routerLinkActive="active" mdbWavesEffect><mdb-icon fas icon="user-alt"></mdb-icon>Employee
+                        <mdb-accordion-item-head routerLink="employee" routerLinkActive="actives" mdbWavesEffect><mdb-icon fas icon="user-alt"></mdb-icon>Employee
                         </mdb-accordion-item-head>
                         <mdb-accordion-item-body></mdb-accordion-item-body>
                       </mdb-accordion-item>
                       <mdb-accordion-item class="no-collase">
-                        <mdb-accordion-item-head routerLink="assets" routerLinkActive="active" mdbWavesEffect><mdb-icon fas icon="box-open"></mdb-icon>Assets
+                        <mdb-accordion-item-head routerLink="assets" routerLinkActive="actives" mdbWavesEffect><mdb-icon fas icon="box-open"></mdb-icon>Assets
                         </mdb-accordion-item-head>
                         <mdb-accordion-item-body></mdb-accordion-item-body>
                       </mdb-accordion-item>
 
         <!-- Collapsible link settings -->
         <mdb-accordion-item>
-          <mdb-accordion-item-head mdbWavesEffect><mdb-icon fas icon="money-bill"></mdb-icon> Payroll
+          <mdb-accordion-item-head routerLinkActive="actives" mdbWavesEffect><mdb-icon fas icon="money-bill"></mdb-icon> Payroll
           </mdb-accordion-item-head>
           <mdb-accordion-item-body>
             <ul>
-              <li><a routerLink="basic-salary" routerLinkActive="active" 
+              <li><a routerLink="basic-salary" 
                      mdbWavesEffect>Basic Salary</a></li>
-              <li><a routerLink="payroll" routerLinkActive="active" 
+              <li><a routerLink="payroll"
                      mdbWavesEffect>Manage</a></li>
-                     <li><a routerLink="payroll-reports" routerLinkActive="active" 
+                     <li><a routerLink="payroll-reports"
                         mdbWavesEffect>Report</a></li>
             </ul>
           </mdb-accordion-item-body>
         </mdb-accordion-item>
 
         <mdb-accordion-item class="no-collase">
-            <mdb-accordion-item-head routerLink="settings/company" routerLinkActive="active" mdbWavesEffect><mdb-icon fas icon="cog"></mdb-icon>Settings
+            <mdb-accordion-item-head routerLink="settings/company" routerLinkActive="actives" mdbWavesEffect><mdb-icon fas icon="cog"></mdb-icon>Settings
             </mdb-accordion-item-head>
             <mdb-accordion-item-body></mdb-accordion-item-body>
           </mdb-accordion-item>
@@ -80,7 +80,7 @@
       <!--/. Sidebar navigation -->
       <!-- Navbar -->
      <!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark  lighten-1" [containerInside]="false">
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar xxxxxxx`lighten-1" [containerInside]="false">
 
     <div class="">
     
@@ -89,7 +89,7 @@
           
         <a class="navbar-brand" href="#">PagePayRoll</a></mdb-navbar-brand>
   
-    <!-- Collapsible content -->
+    <!-- Collapsible content -->  
     <links>
   
       <!-- Links -->
@@ -102,7 +102,7 @@
         </li>
         <li class="nav-item avatar dropdown" dropdown>
           <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-            <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" alt="" class="img-fluid rounded-circle z-depth-0"></a>
+            <img src="../../../assets/profile_image.jpg" alt="" class="img-fluid rounded-circle z-depth-0"></a>
           <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
             <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
             <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
