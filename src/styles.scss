@@ -1,1 +1,67 @@
 /* You can add global styles to this file, and also import other style files */
+
+.navbar.scrolling-navbar {
+    transition: background .20s ease-in-out,padding .20s ease-in-out;
+    padding-top: 27px;
+    padding-bottom: 27px !important;
+}
+.black-skin .side-nav .sidenav-bg:after, .black-skin .side-nav .sidenav-bg.mask-strong:after {
+    background: rgba(255, 255, 255, 0.8);
+    color: rgb(243, 159, 4);
+}
+.black-skin .navbar {
+    background-color:rgba(255, 255, 255, 0.8);
+    color: rgb(243, 159, 4);
+}
+.black-skin .side-nav .collapsible .card.active .card.hover .card-header a h5 {
+    background-color:black;
+}
+.navbar-brand {
+    font-size: 1.25rem;
+    font-family: oxygen;
+    color: black;
+}
+// .side-nav .search-form input[type=text] {
+//     font-family: oxygen;
+// }
+// .side-nav .collapsible .card.active .card-header a h5 {
+//     font-family: oxygen;
+// }
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: .85rem;
+    font-weight: 700;
+}
+.navbar.scrolling-navbar .navbar-brand{
+    color: rgba(67, 69, 75, 0.596) !important;
+    margin-left: 270px;
+}
+.black-skin .btn-primary.dropdown-toggle {
+    background-color: orange!important;
+}
+.side-nav .search-form input[type=text]::placeholder {
+    color: rgba(67, 69, 75, 0.596) !important;
+}
+mdb-accordion-item-head *.actives{
+    background-color: orange!important;
+    color: rgba(67, 69, 75, 0.596);
+  }
+  mdb-accordion-item-head *:hover{
+    background-color: orange!important;
+    color: rgba(67, 69, 75, 0.596);
+  }
+  mdb-accordion-item-head *:hover{
+    background-color: orange!important;
+    color: rgba(67, 69, 75, 0.596);
+  }
+mdb-accordion-item-head *:hover{ 
+      
+    background-color: orange!important;
+
+  }
+  mdb-accordion-item-head *{
+      color: rgba(67, 69, 75, 0.596);
+  }
+  .black-skin .side-nav .collapsible .card.active .card-header.active {
+    background-color: orange!important;
+  }
