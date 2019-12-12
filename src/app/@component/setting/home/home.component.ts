@@ -8,15 +8,17 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   list:any;
-
+//expense-setup
 
   constructor() { }
 
   ngOnInit() {
     this.list =[
-      {name:'Company',route:'company'},
-      {name:'Department',route:'department'},
-      {name:'Salary-group',route:'salary-group'},
+      {name:'Company',route:'company',icon:'fa fa-home fa-2x'},
+      {name:'Department',route:'department',icon:'fa fa-laptop fa-2x'},
+      {name:'Salary-group',route:'salary-group',icon:'fa fa-list fa-2x'},
+      {name:'Expense-setup',route:'expense-setup',icon:'fa fa-list fa-2x'},
+      {name:'Leave-setup',route:'leave-setup',icon:'fa fa-laptop fa-2x'},
   
   ]
   }

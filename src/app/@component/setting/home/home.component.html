@@ -1,11 +1,28 @@
-<div class="row m-1">
-        <div class="col-2">
-            <div mdbScrollSpy="scrollspy3" id="list-example" class="list-group">
-                <a mdbScrollSpyLink="list-item-1" *ngFor="let item of list" class="list-group-item list-group-item-action" [routerLink]="item.route" routerLinkActive="active" >{{item.name}}</a>
-              
-            </div>
+<div class="row m-3 mt-5">
+        <div class="col-2 ">
+            <!-- <nav id="navbar-example3" class="navbar navbar-light bg-light flex-column mt-4">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <nav mdbScrollSpy="scrollspy2" class="nav nav-pills flex-column">
+                    <a mdbScrollSpyLink="item-1"  *ngFor="let item of list" class="nav-link my-1">{{item.name}}</a>
+                
+                </nav>
+            </nav> -->
+            <nav class="main-menu border-right">
+                <ul>
+                    <li *ngFor="let item of list">
+                        <a [routerLink]="item.route" routerLinkActive="active">
+                            <i [class]="item.icon"></i>
+                            <span class="nav-text border-right" data-toggle="tooltip" data-placement="right" >
+                                {{item.name}}
+                            </span>
+                        </a>
+                      
+                    </li>
+                   
+                </ul>
+    </nav>
         </div>
-        <div class="col-10">
+        <div class="col-10 ">
                 <router-outlet></router-outlet>
         </div>
       </div>
