@@ -11,10 +11,12 @@ import { SalarySetupComponent } from '../@component/setting/salary-setup/salary-
 import { ExpenseComponent } from '../@component/setting/expense/expense.component';
 import { LeaveComponent } from '../@component/setting/leave/leave.component';
 import { SalarycreateComponent } from '../@component/setting/salarycreate/salarycreate.component';
+import { RoleComponent } from '../@component/setting/role/role.component';
+import { RolecreateComponent } from '../@component/setting/rolecreate/rolecreate.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent],
+  declarations: [HomeComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent],
   imports: [
     CommonModule,
     SettingRoutingModule,

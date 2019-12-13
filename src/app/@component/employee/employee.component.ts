@@ -1,6 +1,9 @@
 import { Component, OnInit,  ViewChild, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import { MdbTableDirective } from 'angular-bootstrap-md';
+import { MdbTableDirective } from 'ng-uikit-pro-standard';
+
+
+
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',

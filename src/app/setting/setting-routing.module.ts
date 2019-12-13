@@ -8,6 +8,8 @@ import { ExpenseComponent } from '../@component/setting/expense/expense.componen
 import { LeaveComponent } from '../@component/setting/leave/leave.component';
 import { SalarySetupComponent } from '../@component/setting/salary-setup/salary-setup.component';
 import { SalarycreateComponent } from '../@component/setting/salarycreate/salarycreate.component';
+import { RoleComponent } from '../@component/setting/role/role.component';
+import { RolecreateComponent } from '../@component/setting/rolecreate/rolecreate.component';
 
 
 const routes: Routes = [
@@ -19,6 +21,8 @@ const routes: Routes = [
      { path: 'expense-setup', component:ExpenseComponent },
      { path: 'leave-setup', component:LeaveComponent },
      { path: 'salary-create', component:SalarycreateComponent },
+     { path: 'roles', component:RoleComponent },
+     { path: 'roles-create', component: RolecreateComponent},
   ] },
  
   
