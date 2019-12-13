@@ -10,6 +10,7 @@ import { SalarySetupComponent } from '../@component/setting/salary-setup/salary-
 import { SalarycreateComponent } from '../@component/setting/salarycreate/salarycreate.component';
 import { RoleComponent } from '../@component/setting/role/role.component';
 import { RolecreateComponent } from '../@component/setting/rolecreate/rolecreate.component';
+import { LocationComponent } from '../@component/setting/location/location.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
      { path: 'salary-create', component:SalarycreateComponent },
      { path: 'roles', component:RoleComponent },
      { path: 'roles-create', component: RolecreateComponent},
+     { path: 'location', component: LocationComponent},
   ] },
  
   

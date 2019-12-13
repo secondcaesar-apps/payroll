@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   list:any;
-//expense-setup roles
+//expense-setup roles location
 
   constructor() { }
 
@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
       {name:'Expense-setup',route:'expense-setup',icon:'fa fa-list fa-2x'},
       {name:'Leave-setup',route:'leave-setup',icon:'fa fa-laptop fa-2x'},
       {name:'Roles',route:'roles',icon:'fa fa-bus fa-2x'},
+      {name:'Location',route:'location',icon:'fa fa-map fa-2x'},
   
   ]
   }
