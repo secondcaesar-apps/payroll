@@ -65,3 +65,17 @@ mdb-accordion-item-head *:hover{
   .black-skin .side-nav .collapsible .card.active .card-header.active {
     background-color: orange!important;
   }
+
+  .main-menu{
+  /* position: absolute; */
+  top: 0px !important;
+  bottom: 0;
+  height: 70%;
+  left: 0;
+ margin-left: 10px!important;
+  width: 350px;
+  overflow: visible;
+  transition: width 0.05s linear;
+  -webkit-transform: translateZ(0) scale(1, 1);
+  z-index: 1000;
+}

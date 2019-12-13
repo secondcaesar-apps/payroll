@@ -1,122 +1,82 @@
+
 <body class="black-skin">
 
     <!--Double navigation-->
     <header>
+        <!-- Sidebar navigation -->
+        <div id="sidenav">
+            <div class="wrapper">
+              <div class="logo">
+                <a >PageSnap</a>
+                <a class="nav-icon pull-right"><i class="fa fa-bars"></i></a>
+              </div>
+              <div class="menu">
+                <ul>
+                  <li  routerLink="dashboard" routerLinkActive="active"><a >Home</a></li>
+                  <li routerLink="employee" routerLinkActive="active"  ><a >Employee</a></li>
+                  <li   routerLink="assets" routerLinkActive="active"><a >Assets</a></li>
+                
+                  <!-- If login as admin -->
+                  <li  >
+                    <a>Payroll</a>
+                      <ul>
+                          <li><a   routerLink="basic-salary"   routerLinkActive="active"
+                           >Basic Salary</a></li>
+                     <li><a routerLink="payroll"  routerLinkActive="active" 
+                            mdbWavesEffect>Manage</a></li>
+                            <li><a routerLinkActive="active"  routerLink="payroll-reports"
+                            >Report</a></li>
+                     
+                      </ul>
+                  </li>
+                  <li   routerLink="settings/company" routerLinkActive="actives"><a >Settings</a></li>
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
 
-<mdb-side-nav #sidenav class="wide sn-bg-1 fixed" [fixed]="true">
-  <!-- Logo -->
-  <li>
-    <div class="logo-wrapper waves-light">
-      <a href="#"><img src="https://pagefinancials.com/static/img/logo.png" class="img-fluid flex-center"></a>
-    </div>
-  </li>
-  <!--/. Logo -->
-  <!--Social-->
-  <li>
-   
-  </li>
-  <!--/Social-->
-  <!--Search Form-->
-  <li>
-    <form class="search-form" role="search">
-      <div class="form-group md-form waves-light" mdbWavesEffect>
-        <input type="text" class="form-control" placeholder="Search">
-      </div>
-    </form>
-  </li>
-  <!--/.Search Form-->
-  <!-- Side navigation links -->
-  <li>
-    <ul class="collapsible collapsible-accordion">
-      <mdb-accordion [multiple]="false" aria-multiselectable="false">
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark black mb-0"  [containerInside]="false">
 
-            <mdb-accordion-item class="no-collase">
-                    <mdb-accordion-item-head routerLink="dashboard" routerLinkActive="actives" mdbWavesEffect><i class="fas fa-home"></i>Dashboard
-                    </mdb-accordion-item-head>
-                    <mdb-accordion-item-body></mdb-accordion-item-body>
-                  </mdb-accordion-item>
-                  <mdb-accordion-item class="no-collase">
-                        <mdb-accordion-item-head routerLink="employee" routerLinkActive="actives" mdbWavesEffect><mdb-icon fas icon="user-alt"></mdb-icon>Employee
-                        </mdb-accordion-item-head>
-                        <mdb-accordion-item-body></mdb-accordion-item-body>
-                      </mdb-accordion-item>
-                      <mdb-accordion-item class="no-collase">
-                        <mdb-accordion-item-head routerLink="assets" routerLinkActive="actives" mdbWavesEffect><mdb-icon fas icon="box-open"></mdb-icon>Assets
-                        </mdb-accordion-item-head>
-                        <mdb-accordion-item-body></mdb-accordion-item-body>
-                      </mdb-accordion-item>
+    <mdb-navbar-brand><a class="navbar-brand" href="#">Navbar</a></mdb-navbar-brand>
 
-        <!-- Collapsible link settings -->
-        <mdb-accordion-item>
-          <mdb-accordion-item-head routerLinkActive="actives" mdbWavesEffect><mdb-icon fas icon="money-bill"></mdb-icon> Payroll
-          </mdb-accordion-item-head>
-          <mdb-accordion-item-body>
-            <ul>
-              <li><a routerLink="basic-salary" 
-                     mdbWavesEffect>Basic Salary</a></li>
-              <li><a routerLink="payroll"
-                     mdbWavesEffect>Manage</a></li>
-                     <li><a routerLink="payroll-reports"
-                        mdbWavesEffect>Report</a></li>
-            </ul>
-          </mdb-accordion-item-body>
-        </mdb-accordion-item>
-
-        <mdb-accordion-item class="no-collase">
-            <mdb-accordion-item-head routerLink="settings/company" routerLinkActive="actives" mdbWavesEffect><mdb-icon fas icon="cog"></mdb-icon>Settings
-            </mdb-accordion-item-head>
-            <mdb-accordion-item-body></mdb-accordion-item-body>
-          </mdb-accordion-item>
-
-      </mdb-accordion>
-    </ul>
-  </li>
-  <!--/. Side navigation links -->
-  <div class="sidenav-bg mask-strong"></div>
-</mdb-side-nav>
-<!--/. Sidebar navigation -->
-      <!--/. Sidebar navigation -->
-      <!-- Navbar -->
-     <!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar xxxxxxx`lighten-1" [containerInside]="false">
-
-    <div class="">
-    
-      </div>
-    <mdb-navbar-brand class="float-right">
-          
-        <a class="navbar-brand" href="#">PagePayRoll</a></mdb-navbar-brand>
-  
-    <!-- Collapsible content -->  
+    <!-- Collapsible content -->
     <links>
   
       <!-- Links -->
-     
-      <!-- Links -->
-  
-      <ul class="navbar-nav ml-auto nav-flex-icons float-right">
-        <li class="nav-item">
-          <a class="nav-link">1 <mdb-icon fas icon="envelope"></mdb-icon></a>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="envelope"></mdb-icon> Contact<span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item avatar dropdown" dropdown>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="cog"></mdb-icon> Settings</a>
+        </li>
+  
+        <!-- Dropdown -->
+        <li class="nav-item dropdown" dropdown>
           <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-            <img src="../../../assets/profile_image.jpg" alt="" class="img-fluid rounded-circle z-depth-0"></a>
+            <mdb-icon fas icon="user"></mdb-icon> Profile<span class="caret"></span></a>
           <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
             <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
             <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
           </div>
         </li>
+  
       </ul>
+      <!-- Links -->
     </links>
     <!-- Collapsible content -->
-  
-  </mdb-navbar>
-  <!--/.Navbar-->
+
+</mdb-navbar>
+<!--/.Navbar-->
+
+
     </header>
     <!--/.Double navigation-->
 
     <!--Main layout-->
-    <main>
+    <main class="">
 
         <router-outlet></router-outlet>
 

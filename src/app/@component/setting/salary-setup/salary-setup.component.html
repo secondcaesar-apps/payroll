@@ -55,11 +55,11 @@
     <div class="body">
         <div class="row">
           <div class="col">
-              <table id="tableSortExample" mdbTable class="z-depth-1">
-                  <thead>
+              <table id="tableSortExample" mdbTable class="z-depth-1 auto">
+                  <thead class="black white-text">
                     <tr>
                         <th aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[0]">{{headElements[0] | titlecase}}<mdb-icon fas icon="sort"></mdb-icon></th>
-                        <th>{{headElements[1]}}</th>
+                        <th >{{headElements[1]}}</th>
                         <th>{{headElements[2]}}</th>
                         <th>{{headElements[3]}}</th>
                     </tr>
@@ -67,9 +67,9 @@
                   <tbody>
                     <tr *ngFor="let el of elements; let i = index">
                       <th scope="row">{{el.id}}</th>
-                      <td>{{el.first}}</td>
+                      <td >{{el.first}}</td>
                       <td>{{el.last}}</td>
-                      <td>{{el.handle}}</td>
+                   
                     </tr>
                   </tbody>
               </table>
