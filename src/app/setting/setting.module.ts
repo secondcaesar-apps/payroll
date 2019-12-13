@@ -14,10 +14,11 @@ import { SalarycreateComponent } from '../@component/setting/salarycreate/salary
 import { RoleComponent } from '../@component/setting/role/role.component';
 import { RolecreateComponent } from '../@component/setting/rolecreate/rolecreate.component';
 import { LocationComponent } from '../@component/setting/location/location.component';
+import { DesignationComponent } from '../@component/setting/designation/designation.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent],
+  declarations: [HomeComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent, DesignationComponent],
   imports: [
     CommonModule,
     SettingRoutingModule,
