@@ -1,0 +1,109 @@
+<div>
+    <div class="header row">
+        <div class="col-8"> 
+          <button mdbBtn type="button" (click)="back()"color="success" mdbWavesEffect>
+            <mdb-icon fas icon="arrow-left" class="mr-1"></mdb-icon>Back
+          </button>
+        </div>
+    </div>
+    <div class="body">
+      <div class="sectionA row">
+        <div class="col">     
+        <mdb-card>
+            <div class="alert alert-success" role="alert">
+              <mdb-icon fas icon="info-circle"></mdb-icon> Details
+              </div>
+            <mdb-card-body>
+            <form>
+                
+                <div class="form-row">
+                
+                  <div class="form-group col-md-12">
+                    <label for="inputEmail4">Group Name</label>
+                    <input mdbInput type="text" class="form-control" id="inputEmail4">
+                  </div>
+                
+                  <div class="form-group col-md-12">
+                    <label for="inputPassword4">Description</label>
+                    <textarea type="text" id="form107" class="md-textarea form-control" rows="5" mdbInput></textarea>
+                  </div>
+                </div>
+               
+              
+                
+               
+            
+            </form>
+            </mdb-card-body>
+        </mdb-card>
+        </div>
+       
+      </div>
+      <div class="sectionB row">
+          <div class="col-12"> 
+              <mdb-card>
+                  <div class="alert alert-primary" role="alert">
+                    <mdb-icon fas icon="dollar-sign"></mdb-icon> Salary Components
+                    <button mdbBtn class="float-right m-0 p-2" type="button" color="success" mdbWavesEffect>
+         add
+                          </button>
+                  </div>
+                  <mdb-card-body> 
+                        <table mdbTable>
+                                <caption>List of users</caption>
+                                <thead>
+                                  <tr>
+                                    <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr mdbTableCol *ngFor="let el of elements">
+                                    <th scope="row">{{el.id}}</th>
+                                    <td>{{el.first}}</td>
+                                    <td>{{el.last}}</td>
+                                    <td>{{el.handle}}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                  <form> 
+                  </form>
+                  </mdb-card-body>
+              </mdb-card>
+          </div>
+
+          <div class="col-12"> 
+                <mdb-card>
+                    <div class="alert alert-danger" role="alert">
+                      <mdb-icon fas icon="dollar-sign"></mdb-icon> Employees
+                    </div>
+                    <mdb-card-body> 
+                        
+                            <select class="browser-default custom-select">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                  </select>
+                    </mdb-card-body>
+                </mdb-card>
+            </div>
+      </div>
+    </div>
+    <div class='footer'>
+        <div class="row">
+            <div class="col-6">
+              <div class="float">
+                <button mdbBtn type="button" color="info" mdbWavesEffect>
+                  Create
+                </button>
+              </div>
+              </div>
+                <div class="col-6">
+                <button mdbBtn type="button" color="danger" mdbWavesEffect>
+                  Cancel
+                </button>       
+                </div>
+        </div>
+    </div>
+</div>
+

@@ -10,10 +10,11 @@ import { SharedModule } from '../@shared/shared/shared.module';
 import { SalarySetupComponent } from '../@component/setting/salary-setup/salary-setup.component';
 import { ExpenseComponent } from '../@component/setting/expense/expense.component';
 import { LeaveComponent } from '../@component/setting/leave/leave.component';
+import { SalarycreateComponent } from '../@component/setting/salarycreate/salarycreate.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent],
+  declarations: [HomeComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent],
   imports: [
     CommonModule,
     SettingRoutingModule,
