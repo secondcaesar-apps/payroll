@@ -1,1 +1,133 @@
-<p>company works!</p>
+<div class="padding">
+  <div class="header row">
+      <div class="col-8"> 
+        <button mdbBtn type="button" (click)="back()"color="success" mdbWavesEffect>
+          <mdb-icon fas icon="arrow-left" class="mr-1"></mdb-icon>Back
+        </button>
+      </div>
+  </div>
+  <div class="body">
+    <div class="sectionA row">
+      <div class="col">     
+      <mdb-card>
+          <div class="alert alert-primary" role="alert">
+            <mdb-icon fas icon="info-circle"></mdb-icon> General
+            </div>
+          <mdb-card-body>
+          <form>
+              
+              <div class="form-row">
+              
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Name</label>
+                  <input mdbInput type="email" class="form-control" id="inputEmail4">
+                </div>
+                <div class="col-1">
+                  <p>Logo</p>
+                  <input type="image" src="../../../assets/profile_image.jpg" width=50px height=50px >
+                  <input type="file" name="image">
+                    </div>
+              </div>
+              <div class="form-row">
+              
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Country</label>
+                  <mdb-select [options]="optionsSelect" placeholder="Choose your Gender"></mdb-select>
+              </div>
+                </div>   
+             <div class="form-row">
+              <div class="form-group col-md-6">
+                  <label for="inputAddress">Contact Email</label>
+                  <input mdbInput type="text" class="form-control" id="inputAddress">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputAddress">Contact Address </label>
+                <input mdbInput type="text" class="form-control" id="inputAddress">
+            </div>
+            </div>
+              
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputAddress">Contact Number</label>
+                    <input mdbInput type="text" class="form-control" id="inputAddress">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputAddress">Contact Person</label>
+                        <input mdbInput type="text" class="form-control" id="inputAddress">
+                    </div>
+              </div>
+          </form>
+          </mdb-card-body>
+      </mdb-card>
+      </div>
+    </div>
+    <!-- <div class="sectionB row">
+        <div class="col-12"> 
+            <mdb-card>
+                <div class="alert alert-danger" role="alert">
+                    <mdb-icon fas icon="university"></mdb-icon> Company Relations
+                </div>
+                <mdb-card-body>
+                <form>
+                    
+                    <div class="form-row">
+                    
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Department</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
+                        <mdb-select [options]="optionsSelect" placeholder="Select an option"></mdb-select>
+                      </div>
+                    
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Designation</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
+                        <mdb-select [options]="optionsSelect" placeholder="Select an option"></mdb-select>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                    
+                        <div class="form-group col-md-6">
+                          <label for="inputEmail4">Location</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
+                          <mdb-select [options]="optionsSelect" placeholder="Select an option"></mdb-select>
+                        </div>
+                      
+                        <div class="form-group col-md-6">
+                          <div class="row">
+                            <div class="col-7">
+                                <label for="inputEmail4">Reports to</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
+                                <mdb-select [options]="optionsSelect" placeholder="Select an option"></mdb-select>
+                            </div>
+                            <div class="col-5">
+                                    <label for="inputCity">Is Manager</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
+                                  <div class="switch">
+                                      <label>
+                                        No
+                                        <input type="checkbox" (click)="switch()">
+                                      <span class="lever"></span>Yes
+                                      </label>
+                                </div> 
+                            </div>
+                          </div>
+                        </div>
+                      </div>   
+                </form>
+                </mdb-card-body>
+            </mdb-card>
+        </div>
+    </div> -->
+  </div>
+  <div class='footer'>
+      <div class="row">
+          <div class="col-6">
+            <div class="float">
+              <button mdbBtn type="button" color="info" mdbWavesEffect>
+                Create
+              </button>
+            </div>
+            </div>
+              <div class="col-6">
+              <button mdbBtn type="button" color="danger" mdbWavesEffect>
+                Cancel
+              </button>       
+              </div>
+      </div>
+  </div>
+</div>
