@@ -14,9 +14,11 @@ import { AssetsComponent } from '../@component/assets/assets.component';
 import { CreateEmployerComponent } from '../@component/create-employer/create-employer.component';
 import { AddassetsComponent } from '../@modal/addassets/addassets.component';
 import { ReadOneEmployeeComponent } from '../@component/read-one-employee/read-one-employee.component';
+import { ContactComponent } from '../@component/contact/contact.component';
+import { CreatecontactComponent } from '../@component/createcontact/createcontact.component';
 
 @NgModule({
-  declarations: [HomeComponent, DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent],
+  declarations: [HomeComponent, DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent, ContactComponent, CreatecontactComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
