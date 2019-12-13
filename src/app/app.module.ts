@@ -11,11 +11,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { MDBSpinningPreloader, MDBBootstrapModulesPro, ToastModule } from 'ng-uikit-pro-standard';
 import { LoginComponent } from './@component/login/login.component';
 import { SharedModule } from './@shared/shared/shared.module';
+import { StrengthPipe } from './@pipe/strength.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    StrengthPipe
   ],
   imports: [
     BrowserModule,

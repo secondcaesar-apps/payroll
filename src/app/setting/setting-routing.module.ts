@@ -25,6 +25,7 @@ const routes: Routes = [
      { path: 'roles', component:RoleComponent },
      { path: 'roles-create', component: RolecreateComponent},
      { path: 'location', component: LocationComponent},
+     { path: 'expense', component: ExpenseComponent},
   ] },
  
   
