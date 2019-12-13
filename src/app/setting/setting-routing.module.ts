@@ -11,6 +11,7 @@ import { SalarycreateComponent } from '../@component/setting/salarycreate/salary
 import { RoleComponent } from '../@component/setting/role/role.component';
 import { RolecreateComponent } from '../@component/setting/rolecreate/rolecreate.component';
 import { LocationComponent } from '../@component/setting/location/location.component';
+import { DesignationComponent } from '../@component/setting/designation/designation.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
      { path: 'roles-create', component: RolecreateComponent},
      { path: 'location', component: LocationComponent},
      { path: 'expense', component: ExpenseComponent},
+     { path: 'designation', component: DesignationComponent},
   ] },
  
   
