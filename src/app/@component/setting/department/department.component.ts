@@ -39,6 +39,7 @@ success:any;
     },err=>{
       this.error=err.error.message;
       this.Dept.enable();
+      this.error='';
 
     },()=>{
       setTimeout(()=>{
