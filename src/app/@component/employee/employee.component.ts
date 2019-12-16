@@ -1,7 +1,7 @@
+import { ApiserviceService } from './../../@shared/apiservice.service';
 import { Component, OnInit,  ViewChild, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { MdbTableDirective } from 'ng-uikit-pro-standard';
-
 
 
 @Component({
@@ -16,7 +16,10 @@ export class EmployeeComponent implements OnInit {
   show: Boolean=false;
   searchText: string = '';
   previous: string;
-  constructor(private router: Router,) { }
+  constructor(
+    private router: Router,
+    private Service: ApiserviceService,
+    ) { }
 
   @HostListener('input') oninput() {
     this.searchItems();

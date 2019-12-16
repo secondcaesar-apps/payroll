@@ -5,11 +5,9 @@
           <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
         </button>
       </div>
-<ul class="list-group">
-        <li class="list-group-item list-group-item-success text-black">   <strong>Name</strong></li>
-        <li class="list-group-item ">Cras sit amet nibh libero</li>
-        <li class="list-group-item">Porta ac consectetur ac</li>
-        <li class="list-group-item ">Vestibulum at eros</li>
+      <strong>Name</strong>
+<ul class="list-group" *ngFor="let el of elements; let i = index">
+        <li class="list-group-item ">{{el.DepartmentName}}</li>
       </ul>
       <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
       aria-labelledby="myModalLabel" aria-hidden="true">

@@ -1,4 +1,4 @@
-<div>
+<div class="padding">
         <div class="header"> 
           <div class="row">
               <div class="col-sm-4">
@@ -53,20 +53,43 @@
           </div>
         </div>
         <div class="body">
-            <div class="row">
-              <div class="col">
-                  
-              </div>
-              <div class="col-4 line" *ngIf="show">
-                   <div class="pre-body">
-                     <p>Select a row to view it's details here</p>
-                   </div>
-                   <div class="body">
-                      <div class="row">
-      
-                      </div>
-                   </div>     
-              </div>
-            </div> 
-        </div>
+          <div class="row">
+            <div class="col">
+                <table id="tableSortExample" mdbTable class="z-depth-1">
+                    <thead>
+                      <tr>
+                          <th aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[0]">{{headElements[0] | titlecase}}<mdb-icon fas icon="sort"></mdb-icon></th>
+                          <th>{{headElements[1]}}</th>
+                          <th>{{headElements[2]}}</th>
+                          <th>{{headElements[3]}}</th>
+                          <th>{{headElements[4]}}</th>
+                          <th>{{headElements[5]}}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let el of elements; let i = index">
+                        <th scope="row">{{el.ContactID}}</th>
+                        <td>{{el.ContactName}}</td>
+                        <td>{{el.Description}}</td>
+                        <td>{{el.ContactNumber}}</td>
+                        <td>{{el.Email}}</td>
+                        <td>{{el.Service}}</td>
+                      </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="message" style="padding-left: 40%;"><p>{{messages}}</p></div>
+                <div *ngIf="loading"  class="item"><ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader></div>
+            </div>
+            <div class="col-4 line" *ngIf="show">
+                 <div class="pre-body">
+                   <p>Select a row to view it's details here</p>
+                 </div>
+                 <div class="body">
+                    <div class="row">
+    
+                    </div>
+                 </div>     
+            </div>
+          </div> 
+      </div>
       </div>
