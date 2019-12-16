@@ -25,7 +25,6 @@ export class LocationComponent implements OnInit {
     success:any;
   
     constructor(
-      private service:ApiserviceService,
       private _fb:FormBuilder,
       private Api:ApiserviceService
     ) { }
@@ -35,7 +34,7 @@ export class LocationComponent implements OnInit {
     }
   
     ngOnInit() {
-      this.service.Read(APIENUM.LOC)
+      this.Api.Read(APIENUM.LOC)
         .subscribe((res:any)=>{
           this.loading = false;
           this.elements=res.records;

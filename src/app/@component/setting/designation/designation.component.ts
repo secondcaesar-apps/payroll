@@ -25,7 +25,6 @@ export class DesignationComponent implements OnInit {
   success:any;
   
   constructor(
-    private service:ApiserviceService,
     private _fb:FormBuilder,
     private Api:ApiserviceService
   ) { }
@@ -35,7 +34,7 @@ export class DesignationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.Read(APIENUM.DES)
+    this.Api.Read(APIENUM.DES)
       .subscribe((res:any)=>{
         this.loading = false;
         this.elements=res.records;
@@ -65,7 +64,7 @@ export class DesignationComponent implements OnInit {
       this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
       this.mdbTable.setDataSource(prev);
     }
-
+  }
   createDesignation(){
     this.Designation.disable();
     let value = {Status:"Active",...this.Designation.value};

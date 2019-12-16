@@ -1,7 +1,6 @@
 import { ApiserviceService } from './../../../@shared/apiservice.service';
 import { Component, OnInit, ElementRef, HostListener, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MdbTableDirective, MdbTablePaginationComponent } from 'ng-uikit-pro-standard';
-import { MDBModalRef, MDBModalService } from 'ng-uikit-pro-standard';
 import { APIENUM } from 'src/app/@shared/enum';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 
@@ -25,7 +24,6 @@ export class DepartmentComponent implements OnInit {
   error:any;
   success:any;
   constructor(
-    private service:ApiserviceService,
     private _fb:FormBuilder,
     private Api:ApiserviceService
   ) { }
@@ -35,7 +33,7 @@ export class DepartmentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.Read(APIENUM.DEPT)
+    this.Api.Read(APIENUM.DEPT)
       .subscribe((res:any)=>{
         this.loading = false;
         this.elements=res.records;
@@ -74,6 +72,7 @@ export class DepartmentComponent implements OnInit {
         this.Dept.enable();
       },500)
     })
+  }
   searchItems() {
     const prev = this.mdbTable.getDataSource();
   
