@@ -16,6 +16,9 @@ import { AddassetsComponent } from '../@modal/addassets/addassets.component';
 import { ReadOneEmployeeComponent } from '../@component/read-one-employee/read-one-employee.component';
 import { ContactComponent } from '../@component/contact/contact.component';
 import { CreatecontactComponent } from '../@component/createcontact/createcontact.component';
+import { ApiserviceService } from '../@shared/apiservice.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { InterceptorServices } from '../@shared/intercept';
 
 @NgModule({
   declarations: [HomeComponent, DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent, ContactComponent, CreatecontactComponent],
@@ -24,6 +27,11 @@ import { CreatecontactComponent } from '../@component/createcontact/createcontac
     MainRoutingModule,
     SharedModule
   ],
-  entryComponents: [AddassetsComponent]
+  entryComponents: [AddassetsComponent],
+  providers:[ApiserviceService,{
+    provide:HTTP_INTERCEPTORS,
+    useClass:InterceptorServices,
+    multi:true
+  }]
 })
 export class MainModule { }

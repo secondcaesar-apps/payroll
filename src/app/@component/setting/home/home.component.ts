@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiserviceService } from 'src/app/@shared/apiservice.service';
+import { APIENUM } from 'src/app/@shared/enum';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +12,12 @@ export class HomeComponent implements OnInit {
   list:any;
 //expense-setup roles location expense designation
 
-  constructor() { }
+  constructor(private api:ApiserviceService) { }
 
   ngOnInit() {
+    this.api.Read(APIENUM.DEPT).subscribe((res)=>{
+      console.log(res);
+    })
     this.list =[
       {name:'Company',route:'company',icon:'fa fa-home fa-2x'},
       {name:'Department',route:'department',icon:'fa fa-laptop fa-2x'},

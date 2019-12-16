@@ -15,6 +15,9 @@ import { RoleComponent } from '../@component/setting/role/role.component';
 import { RolecreateComponent } from '../@component/setting/rolecreate/rolecreate.component';
 import { LocationComponent } from '../@component/setting/location/location.component';
 import { DesignationComponent } from '../@component/setting/designation/designation.component';
+import { ApiserviceService } from '../@shared/apiservice.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { InterceptorServices } from '../@shared/intercept';
 
 
 @NgModule({
@@ -23,6 +26,10 @@ import { DesignationComponent } from '../@component/setting/designation/designat
     CommonModule,
     SettingRoutingModule,
     SharedModule
-  ]
+  ],providers:[ApiserviceService,{
+    provide:HTTP_INTERCEPTORS,
+    useClass:InterceptorServices,
+    multi:true
+  }]
 })
 export class SettingModule { }
