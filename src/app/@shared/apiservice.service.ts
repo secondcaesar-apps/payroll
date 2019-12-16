@@ -9,9 +9,10 @@ import { environment } from 'src/environments/environment';
 })
 export class ApiserviceService {
 
-  apiUrl = environment ;
+  apiUrl = environment.url ;
+  list=[];
 
-  constructor(private _http:HttpClient) { }
+  constructor(private _http:HttpClient,) { }
 
 
 
@@ -19,20 +20,21 @@ export class ApiserviceService {
   Create(type:APIENUM,data:any){
 
 
-    return this._http.post(`${this.apiUrl}/ ${type}/create.php`,data);
+    return this._http.post(`${this.apiUrl}${type.toString()}/create.php`,data);
 
   }
 
   Update(type:APIENUM,data:any){
 
-    return this._http.post(`${this.apiUrl}/ ${type}/update.php`,data);
+    return this._http.post(`${this.apiUrl}${type.toString()}/update.php`,data);
 
   }
 
 
  Read(type:APIENUM){
 
-  return this._http.post(`${this.apiUrl}/ ${type}/read.php`,{});
+
+  return this._http.post(`${this.apiUrl}${type.toString()}/read.php`,{});
 
   }
 

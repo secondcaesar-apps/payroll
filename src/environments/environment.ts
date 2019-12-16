@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  url:'66.70.202.147:3306/'
+  url:'http://66.70.202.147/Payroll_server/',
+  token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9leGFtcGxlLm9yZyIsImF1ZCI6Imh0dHA6XC9cL2V4YW1wbGUuY29tIiwiaWF0IjoxNTc2NDkwNzgyLCJuYmYiOjE1NzY0OTA3ODIsImV4cCI6MTU3NjU3NzE4MiwiZGF0YSI6eyJVc2VybmFtZSI6Ik9sdXllbWkgQmFtaXJvIiwiUm9sZUlEIjoiMTgiLCJFbWFpbCI6Im9iYW1pcm9AcGFnZWZpbmFuY2lhbHMuY29tIn19.gH_K67H0W1j9FBylvzehwPuD60_uwLCHi7SQS0VtYfM"
 };
 
 /*
