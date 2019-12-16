@@ -26,7 +26,6 @@ export class ExpenseComponent implements OnInit {
     success:any;
   
     constructor(
-      private service:ApiserviceService,
       private _fb:FormBuilder,
       private Api:ApiserviceService
     ) { }
@@ -36,7 +35,7 @@ export class ExpenseComponent implements OnInit {
     }
   
     ngOnInit() {
-      this.service.Read(APIENUM.CAT)
+      this.Api.Read(APIENUM.CAT)
         .subscribe((res:any)=>{
           this.loading = false;
           this.elements=res.records;
@@ -96,4 +95,4 @@ export class ExpenseComponent implements OnInit {
   get CategoryDescription(){
     return this.Category.get('CategoryDescription');
   }
-  
+}
