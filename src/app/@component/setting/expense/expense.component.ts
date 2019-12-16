@@ -2,15 +2,15 @@ import { ApiserviceService } from './../../../@shared/apiservice.service';
 import { Component, OnInit, ElementRef, HostListener, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MdbTableDirective, MdbTablePaginationComponent } from 'ng-uikit-pro-standard';
 import { APIENUM } from 'src/app/@shared/enum';
-
+import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-expense',
   templateUrl: './expense.component.html',
   styleUrls: ['./expense.component.scss']
 })
-export class ExpenseComponent implements OnInit {
 
+export class ExpenseComponent implements OnInit {
     @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
     @ViewChild(MdbTablePaginationComponent, { static: true }) mdbTablePagination: MdbTablePaginationComponent;
     @ViewChild('row', { static: true }) row: ElementRef;
@@ -21,8 +21,14 @@ export class ExpenseComponent implements OnInit {
     loading:Boolean=true;
     messages: string;
     elements: any = [];
+    Category:FormGroup;
+    error:any;
+    success:any;
+  
     constructor(
-      private service:ApiserviceService
+      private service:ApiserviceService,
+      private _fb:FormBuilder,
+      private Api:ApiserviceService
     ) { }
   
     @HostListener('input') oninput() {
@@ -42,6 +48,11 @@ export class ExpenseComponent implements OnInit {
           this.messages = err.error.message;
           this.message = true;
         })
+          this.Category= this._fb.group({
+      CategoryName:['',[Validators.required]],
+      CategoryDescription:['',[Validators.required]],
+     
+    });
     }
     searchItems() {
       const prev = this.mdbTable.getDataSource();
@@ -56,6 +67,33 @@ export class ExpenseComponent implements OnInit {
         this.mdbTable.setDataSource(prev);
       }
     }
-  
+
+  createCategory(){
+    this.Category.disable();
+    let value = {Status:"Active",...this.Category.value};
+    this.Api.Create(APIENUM.CAT,value).subscribe((res:any)=>{
+      this.success=res.message
+
+   },err=>{
+     this.error=err.error.message;
+     this.Category.enable();
+     this.error='';
+
+   },()=>{
+     setTimeout(()=>{
+       this.success='';
+       this.error='';
+       this.Category.reset();
+       this.Category.enable();
+     },500)
+   })
+
+  }
+
+  get CategoryName(){
+    return this.Category.get('CategoryName');
+  }
+  get CategoryDescription(){
+    return this.Category.get('CategoryDescription');
   }
   

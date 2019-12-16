@@ -3,6 +3,8 @@ import { Component, OnInit, ElementRef, HostListener, AfterViewInit, ViewChild, 
 import { MdbTableDirective, MdbTablePaginationComponent } from 'ng-uikit-pro-standard';
 import { MDBModalRef, MDBModalService } from 'ng-uikit-pro-standard';
 import { APIENUM } from 'src/app/@shared/enum';
+import { FormGroup,FormBuilder, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-department',
   templateUrl: './department.component.html',
@@ -19,10 +21,15 @@ export class DepartmentComponent implements OnInit {
   loading:Boolean=true;
   messages: string;
   elements: any = [];
+  Dept:FormGroup;
+  error:any;
+  success:any;
   constructor(
-    private service:ApiserviceService
+    private service:ApiserviceService,
+    private _fb:FormBuilder,
+    private Api:ApiserviceService
   ) { }
-
+  
   @HostListener('input') oninput() {
     this.mdbTablePagination.searchText = this.searchText;
   }
@@ -40,7 +47,33 @@ export class DepartmentComponent implements OnInit {
         this.messages = err.error.message;
         this.message = true;
       })
+        this.Dept= this._fb.group({
+      DepartmentName:['',[Validators.required]]
+    });
   }
+  get DepartmentValue(){
+    return this.Dept.get('DepartmentName');
+  }
+  createDepartment(){
+   this.Dept.disable();
+    let value = {Status:"Active",...this.Dept.value};
+
+    this.Api.Create(APIENUM.DEPT,value).subscribe((res:any)=>{
+       this.success=res.message
+
+    },err=>{
+      this.error=err.error.message;
+      this.Dept.enable();
+      this.error='';
+
+    },()=>{
+      setTimeout(()=>{
+        this.success='';
+        this.error='';
+        this.Dept.reset();
+        this.Dept.enable();
+      },500)
+    })
   searchItems() {
     const prev = this.mdbTable.getDataSource();
   
@@ -53,6 +86,8 @@ export class DepartmentComponent implements OnInit {
       this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
       this.mdbTable.setDataSource(prev);
     }
+
+
   }
 
 }

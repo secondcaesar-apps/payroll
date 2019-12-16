@@ -1,6 +1,7 @@
 import { ApiserviceService } from './../../../@shared/apiservice.service';
 import { Component, OnInit, ElementRef, HostListener, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MdbTableDirective, MdbTablePaginationComponent } from 'ng-uikit-pro-standard';
+import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { APIENUM } from 'src/app/@shared/enum';
 
 @Component({
@@ -9,7 +10,6 @@ import { APIENUM } from 'src/app/@shared/enum';
   styleUrls: ['./designation.component.scss']
 })
 export class DesignationComponent implements OnInit {
-
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   @ViewChild(MdbTablePaginationComponent, { static: true }) mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild('row', { static: true }) row: ElementRef;
@@ -20,8 +20,14 @@ export class DesignationComponent implements OnInit {
   loading:Boolean=true;
   messages: string;
   elements: any = [];
+  Designation:FormGroup;
+  error:any;
+  success:any;
+  
   constructor(
-    private service:ApiserviceService
+    private service:ApiserviceService,
+    private _fb:FormBuilder,
+    private Api:ApiserviceService
   ) { }
 
   @HostListener('input') oninput() {
@@ -41,7 +47,12 @@ export class DesignationComponent implements OnInit {
         this.messages = err.error.message;
         this.message = true;
       })
+        this.Designation= this._fb.group({
+      DesignationName:['',[Validators.required]],
+     
+    });
   }
+  
   searchItems() {
     const prev = this.mdbTable.getDataSource();
   
@@ -54,6 +65,31 @@ export class DesignationComponent implements OnInit {
       this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
       this.mdbTable.setDataSource(prev);
     }
+
+  createDesignation(){
+    this.Designation.disable();
+    let value = {Status:"Active",...this.Designation.value};
+    this.Api.Create(APIENUM.DES,value).subscribe((res:any)=>{
+      this.success=res.message
+
+   },err=>{
+     this.error=err.error.message;
+     this.Designation.enable();
+     this.error='';
+
+   },()=>{
+     setTimeout(()=>{
+       this.success='';
+       this.error='';
+       this.Designation.reset();
+       this.Designation.enable();
+     },500)
+   })
+
+  }
+
+  get DesignationName(){
+    return this.Designation.get('DesignationName');
   }
 
 }
