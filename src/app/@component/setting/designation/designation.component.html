@@ -31,12 +31,19 @@
          </button>
        </div>
        <div class="modal-body mx-3">
-           
+        <div *ngIf="success" class="alert alert-success" role="alert">
+          {{success}}
+        </div>
+        <div *ngIf="error" class="alert alert-danger" role="alert">
+         {{error}}
+        </div>
          <div class="md-form mb-5">
            <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
-           <input type="text" id="form34" class="form-control" mdbInput mdbValidate>
+           <input [formControl]="DesignationName" type="text" id="form34" class="form-control" mdbInput mdbValidate>
            <label for="form34"> Designation Name </label>
-           
+           <mdb-error *ngIf="DesignationName.invalid && (DesignationName.dirty||DesignationName.touched)">
+            Invalid Value.
+          </mdb-error>
          </div>
        
         
@@ -47,7 +54,7 @@
        <div class="modal-footer d-flex justify-content-right">
             <div class="btn-group" role="group" aria-label="Basic example">
                     
-                    <button mdbBtn type="button" color="info" class="waves-light mr-2" mdbWavesEffect>Create</button>
+                    <button mdbBtn [disabled]='Designation.invalid' (click)="createDesignation()"  type="button" color="info" class="waves-light mr-2" mdbWavesEffect>Create</button>
                     <button mdbBtn type="button" color="danger"  (click)="frame.hide()" class="waves-light" mdbWavesEffect>Cancel</button>
                 </div>
        </div>
