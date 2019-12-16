@@ -1,6 +1,8 @@
+import { ApiserviceService } from './../../@shared/apiservice.service';
 import { Component, OnInit,  ViewChild, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { MdbTableDirective } from 'ng-uikit-pro-standard';
+import { APIENUM } from 'src/app/@shared/enum';
 
 
 @Component({
@@ -15,15 +17,27 @@ export class ContactComponent implements OnInit {
   show: Boolean=false;
   searchText: string = '';
   previous: string;
-  constructor(private router: Router,) { }
+  message: Boolean=false;
+  loading:Boolean=true;
+  messages: string;
+  constructor(
+    private router: Router,
+    private service: ApiserviceService
+    ) { }
 
   @HostListener('input') oninput() {
     this.searchItems();
   }
   ngOnInit() {
-    for (let i = 1; i <= 15; i++) {
-      this.elements.push({ id: i, first: 'User ' + i, last: 'Name ' + i, handle: 'Handle ' + i });
-    }
+    this.service.Read(APIENUM.CON)
+      .subscribe((res:any)=>{
+        this.loading = false;
+        this.elements=res.records;
+      },(err:any)=>{
+        this.loading= false;
+        this.messages = err.error.message;
+        this.message = true;
+      })
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
     this.previous = this.mdbTable.getDataSource();

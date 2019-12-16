@@ -26,6 +26,7 @@
     "easy-pie-chart": "2.1.x",
     "hammerjs": "^2.0.8",
     "ng-uikit-pro-standard": "file:ng-uikit-pro-standard-8.7.0.tgz",
+    "ngx-skeleton-loader": "^1.2.2",
     "rxjs": "~6.4.0",
     "screenfull": "3.3.x",
     "tslib": "^1.10.0",

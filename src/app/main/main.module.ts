@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 import { MainRoutingModule } from './main-routing.module';
 import { HomeComponent } from '../@component/home/home.component';
 import { DashboardComponent } from '../@component/dashboard/dashboard.component';
@@ -25,6 +26,7 @@ import { InterceptorServices } from '../@shared/intercept';
   imports: [
     CommonModule,
     MainRoutingModule,
+    NgxSkeletonLoaderModule,
     SharedModule
   ],
   entryComponents: [AddassetsComponent],

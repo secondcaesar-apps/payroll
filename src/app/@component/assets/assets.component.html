@@ -18,7 +18,7 @@
           <div class="row float-right">
             <div class="col-sm-5">
                 <div class="md-form">
-                <input mdbInput class="mr-1" type="text" placeholder="Search" aria-label="Search"> 
+                <input mdbInput class="mr-1 search-input" type="text" placeholder="Search" aria-label="Search" id="search" [(ngModel)]="searchText" > 
               </div>
             </div>
             <div class="col-sm-5">
@@ -69,13 +69,15 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let el of elements; let i = index">
-                    <th scope="row" (click)="openDetails()">{{el.id}}</th>
-                    <td>{{el.first}}</td>
-                    <td>{{el.last}}</td>
-                    <td>{{el.handle}}</td>
+                    <th scope="row" (click)="openDetails()">{{el.ID}}</th>
+                    <td>{{el.AssetName}}</td>
+                    <td>{{el.Description}}</td>
+                    <td>{{el.AssetType}}</td>
                   </tr>
                 </tbody>
             </table>
+            <div *ngIf="message" style="padding-left: 40%;"><p>{{messages}}</p></div>
+            <div *ngIf="loading"  class="item"><ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader></div>
         </div>
         <div class="col-4 line" *ngIf="show">
              <div class="pre-body">
