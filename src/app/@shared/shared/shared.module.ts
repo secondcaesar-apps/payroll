@@ -9,6 +9,7 @@ import { AgmCoreModule } from '@agm/core';
 
 import { MDBSpinningPreloader, MDBBootstrapModulesPro, ToastModule } from 'ng-uikit-pro-standard';
 import { CommonModule } from '@angular/common';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 
 
@@ -17,6 +18,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     MDBBootstrapModulesPro.forRoot(),
+    NgxSkeletonLoaderModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -33,6 +35,7 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxSkeletonLoaderModule
     //ToastModule
   ]
 })

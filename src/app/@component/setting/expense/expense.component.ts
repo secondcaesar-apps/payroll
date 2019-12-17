@@ -76,7 +76,7 @@ export class ExpenseComponent implements OnInit {
    },err=>{
      this.error=err.error.message;
      this.Category.enable();
-     this.error='';
+   
 
    },()=>{
      setTimeout(()=>{

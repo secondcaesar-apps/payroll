@@ -76,7 +76,7 @@ export class LocationComponent implements OnInit {
    },err=>{
      this.error=err.error.message;
      this.Location.enable();
-     this.error='';
+  
 
    },()=>{
      setTimeout(()=>{
