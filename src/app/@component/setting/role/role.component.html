@@ -4,7 +4,7 @@
       <div id="demo">
             <div class="form-group">
       
-                    <button mdbBtn (click)="NavCreateRole()" type="button" color="default" mdbWavesEffect>
+                    <button mdbBtn (click)="frame.show()" type="button" color="default" mdbWavesEffect>
                       <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
                     </button>
                   </div>
@@ -44,3 +44,61 @@
             </div>
             
           </div>
+
+
+
+          <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+          aria-labelledby="myModalLabel" aria-hidden="true">
+       <div class="modal-dialog" role="document">
+         <div class="modal-content">
+           <div class="modal-header light-blue darken-3 text-center text-white">
+             
+             <h4 class="modal-title w-100 font-weight-bold">Manage Role</h4>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+               <span aria-hidden="true">&times;</span>
+             </button>
+           </div>
+           <div class="modal-body mx-3">
+            <div *ngIf="success" class="alert alert-success" role="alert">
+              {{success}}
+            </div>
+            <div *ngIf="error" class="alert alert-danger" role="alert">
+             {{error}}
+            </div>
+             <div class="md-form mb-5">
+               <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+               <input [formControl]="RoleName" type="text" id="form34" class="form-control" mdbInput mdbValidate>
+               <label for="form34">Role Name </label>
+    
+               <mdb-error *ngIf="RoleName.invalid && (RoleName.dirty||RoleName.touched)">
+                 Invalid Input.
+               </mdb-error>
+               
+             </div>
+             <div class="md-form mb-5">
+               <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+               <input [formControl]="Description" type="text" id="form34" class="form-control" mdbInput mdbValidate>
+               <label for="form34">Description </label>
+    
+               <mdb-error *ngIf="Description.invalid && (Description.dirty||Description.touched)">
+                 Invalid Input.
+               </mdb-error>
+               
+             </div>
+     
+            
+     
+     
+     
+           </div>
+           <div class="modal-footer d-flex justify-content-right">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                        
+                        <button mdbBtn type="button" color="info" [disabled]='Role.invalid' (click)="createRole()" class="waves-light mr-2" mdbWavesEffect>Create</button>
+                        <button mdbBtn type="button" color="danger"  (click)="frame.hide()" class="waves-light" mdbWavesEffect>Cancel</button>
+                    </div>
+           </div>
+         </div>
+       </div>
+     </div>
+     
