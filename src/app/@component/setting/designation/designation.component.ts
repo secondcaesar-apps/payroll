@@ -74,7 +74,7 @@ export class DesignationComponent implements OnInit {
    },err=>{
      this.error=err.error.message;
      this.Designation.enable();
-     this.error='';
+   
 
    },()=>{
      setTimeout(()=>{
