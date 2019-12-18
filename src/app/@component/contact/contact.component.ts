@@ -12,12 +12,13 @@ import { APIENUM } from 'src/app/@shared/enum';
 })
 export class ContactComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
-  elements: any = [];zz6x    
+  elements = [];    
   headElements = ['id', 'first', 'last', 'handle'];
   show: Boolean=false;
   searchText: string = '';
   previous: string;
   message: Boolean=false;
+  maxVisibleItems: number = 8;
   loading:Boolean=true;
   messages: string;
   constructor(

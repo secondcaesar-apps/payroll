@@ -2,6 +2,7 @@ import { ApiserviceService } from './../../@shared/apiservice.service';
 import { Component, OnInit,  ViewChild, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { MdbTableDirective } from 'ng-uikit-pro-standard';
+import { APIENUM } from 'src/app/@shared/enum';
 
 
 @Component({
@@ -11,26 +12,32 @@ import { MdbTableDirective } from 'ng-uikit-pro-standard';
 })
 export class EmployeeComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
-  elements: any = [];zz6x    
-  headElements = ['id', 'first', 'last', 'handle'];
-  show: Boolean=false;
+  elements = []    
+  headElements = ['ID', 'Firstname', 'Lastname', 'Email', 'Deparment'];
   searchText: string = '';
   previous: string;
+  message: Boolean=false;
+  loading:Boolean=true;
+  messages: string;
+  maxVisibleItems: number = 8;
+  show: boolean; 
   constructor(
     private router: Router,
-    private Service: ApiserviceService,
+    private Api: ApiserviceService,
     ) { }
 
   @HostListener('input') oninput() {
     this.searchItems();
   }
   ngOnInit() {
-    for (let i = 1; i <= 15; i++) {
-      this.elements.push({ id: i, first: 'User ' + i, last: 'Name ' + i, handle: 'Handle ' + i });
-    }
-    this.mdbTable.setDataSource(this.elements);
-    this.elements = this.mdbTable.getDataSource();
-    this.previous = this.mdbTable.getDataSource();
+    this.Api.Read(APIENUM.EMP)
+    .subscribe((res:any)=>{
+      this.loading = false;
+      this.elements=res.records;
+      this.mdbTable.setDataSource(this.elements);
+      this.elements = this.mdbTable.getDataSource();
+      this.previous = this.mdbTable.getDataSource();
+    })
   }
   searchItems() {
     const prev = this.mdbTable.getDataSource();

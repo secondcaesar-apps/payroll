@@ -13,6 +13,7 @@ export enum APIENUM{
     MENUG='menugroup',
     ROLE='role',
     EXP='expense',
-    LOG='login'
+    LOG='login',
+    EMP='employee',
     
 }
