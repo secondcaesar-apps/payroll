@@ -62,22 +62,85 @@
                       <th>{{headElements[1]}}</th>
                       <th>{{headElements[2]}}</th>
                       <th>{{headElements[3]}}</th>
+                      <th>{{headElements[4]}}</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let el of elements; let i = index">
-                    <th scope="row" (click)="reademployee()">{{el.id}}</th>
-                    <td (click)="reademployee()">{{el.first}}</td>
-                    <td>{{el.last}}</td>
-                    <td>{{el.handle}}</td>
+                    <th scope="row" (click)="reademployee()">{{el.EmployeeID}}</th>
+                    <td (click)="reademployee()">{{el.FirstName}}</td>
+                    <td>{{el.LastName}}</td>
+                    <td>{{el.Email}}</td>
+                    <td>{{el.Department}}</td>
                   </tr>
                 </tbody>
             </table>
+            <div *ngIf="message" style="padding-left: 40%;"><p>{{messages}}</p></div>
+            <div *ngIf="loading"  class="item"><ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader></div>
         </div>
         <div class="col-4 line" *ngIf="show">
              <div class="pre-body">
                <p>Select a row to view it's details here</p>
+               <!-- <input type="image" src="../../../assets/profile_image.jpg" width=200px height=200px > -->
              </div>
+             <!-- <ul class="list-group">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Full Name
+                <p>Adejana Adeogio</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Employee ID
+                <p>EMP001</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                Email Address
+                <p>Adejana@gmail.com</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                  Full Name
+                  <p>Adejana Adeogio</p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  Employee ID
+                  <p>EMP001</p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  Email Address
+                  <p>Adejana@gmail.com</p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Full Name
+                    <p>Adejana Adeogio</p>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Employee ID
+                    <p>EMP001</p>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Email Address
+                    <p>Adejana@gmail.com</p>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                     Gender
+                      <p>Adejana Adeogio</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      Birthday
+                      <p>EMP001</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                     Martial Status
+                      <p>Adejana@gmail.com</p>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                       Status
+                         <p>Adejana@gmail.com</p>
+                       </li>
+                       <li class="list-group-item d-flex justify-content-between align-items-center">
+                          Probation
+                            <p>Adejana@gmail.com</p>
+                          </li>
+            </ul> -->
              <div class="body">
                 <div class="row">
 

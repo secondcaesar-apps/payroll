@@ -15,7 +15,7 @@ export class AssetsComponent implements OnInit {
   @ViewChild(MdbTablePaginationComponent, { static: true }) mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild('row', { static: true }) row: ElementRef;
 
-  elements: any = [];
+  elements = [];
   headElements = ['','id', 'first', 'last', 'handle'];
   public modalRef: MDBModalRef
   searchText: string = '';
@@ -48,14 +48,6 @@ export class AssetsComponent implements OnInit {
         this.messages = err.error.message;
         this.message = true;
       })
-  }
-
-  ngAfterViewInit() {
-    this.mdbTablePagination.setMaxVisibleItemsNumberTo(this.maxVisibleItems);
-
-    this.mdbTablePagination.calculateFirstItemIndex();
-    this.mdbTablePagination.calculateLastItemIndex();
-    this.cdRef.detectChanges();
   }
 
   addNewRow() {
