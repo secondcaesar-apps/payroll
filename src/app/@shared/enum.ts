@@ -15,5 +15,6 @@ export enum APIENUM{
     EXP='expense',
     LOG='login',
     EMP='employee',
+    SAG='salarygroup'
     
 }
