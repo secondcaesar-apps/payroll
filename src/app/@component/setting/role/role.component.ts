@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  ViewChild, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import { MdbTableDirective } from 'ng-uikit-pro-standard';
 import { APIENUM } from 'src/app/@shared/enum';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
@@ -10,7 +11,14 @@ import { ApiserviceService } from 'src/app/@shared/apiservice.service';
   styleUrls: ['./role.component.scss']
 })
 export class RoleComponent implements OnInit {
-
+  @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
+  elements = [];
+  searchText: string = '';
+  previous: string;
+  message: Boolean=false;
+  loading:Boolean=true;
+  messages: string;
+  maxVisibleItems: number = 8;
   Role:FormGroup;
   error:any;
   success:any;
@@ -18,13 +26,35 @@ export class RoleComponent implements OnInit {
     private _fb:FormBuilder,
     private Api:ApiserviceService
   ) { }
-
+  @HostListener('input') oninput() {
+    this.searchItems();
+}
   ngOnInit() {
-
+    this.Api.Read(APIENUM.ROLE)
+    .subscribe((res:any)=>{
+      this.loading = false;
+      this.elements=res.records;
+      this.mdbTable.setDataSource(this.elements);
+      this.elements = this.mdbTable.getDataSource();
+      this.previous = this.mdbTable.getDataSource();
+    })
     this.Role= this._fb.group({
       RoleName:['',[Validators.required]],
       Description:['',[Validators.required]]
     });
+  }
+  searchItems() {
+    const prev = this.mdbTable.getDataSource();
+
+    if (!this.searchText) {
+      this.mdbTable.setDataSource(this.previous);
+      this.elements = this.mdbTable.getDataSource();
+    }
+
+    if (this.searchText) {
+      this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
+      this.mdbTable.setDataSource(prev);
+    }
   }
   createRole(){
     this.Role.disable();

@@ -14,22 +14,21 @@
             <table id="table" class="table table-hover table-mc-light-blue">
                 <thead>
                   <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Link</th>
+                    <th>Role ID</th>
+                    <th>Role Name</th>
+                    <th>Description</th>
                     <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td data-title="ID">1</td>
-                    <td data-title="Name">Material Design Color Palette</td>
-                    <td data-title="Link">
-                      <a href="https://github.com/zavoloklom/material-design-color-palette" target="_blank">GitHub</a>
+                  <tr *ngFor="let el of elements; let i = index">
+                    <td data-title="ID">{{el.RoleID}}</td>
+                    <td data-title="Name">{{el.RoleName}}</td>
+                    <td data-title="Link">{{el.Description}}
                     </td>
-                    <td data-title="Status">Completed</td>
+                    <td data-title="Status">{{el.Status}}</td>
                   </tr>
-                  <tr>
+                  <!-- <tr>
                     <td data-title="ID">2</td>
                     <td data-title="Name">Material Design Iconic Font</td>
                     <td data-title="Link">
@@ -37,10 +36,12 @@
                       <a href="https://github.com/zavoloklom/material-design-iconic-font" target="_blank">GitHub</a>
                     </td>
                     <td data-title="Status">Completed</td>
-                  </tr>
+                  </tr> -->
                  
                 </tbody>
               </table>
+              <div *ngIf="message" style="padding-left: 40%;"><p>{{messages}}</p></div>
+              <div *ngIf="loading"  class="item"><ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader></div>
             </div>
             
           </div>
