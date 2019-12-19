@@ -15,8 +15,6 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 export class AssetsComponent implements OnInit {
 
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
-  @ViewChild(MdbTablePaginationComponent, { static: true }) mdbTablePagination: MdbTablePaginationComponent;
-  @ViewChild('row', { static: true }) row: ElementRef;
   Asset: FormGroup;
   location:any;
   error: any;
@@ -36,10 +34,10 @@ export class AssetsComponent implements OnInit {
     private modalService: MDBModalService,
     private service: ApiserviceService,
     private _fb: FormBuilder,
-  ) { }
-
-  @HostListener('input') oninput() {
-    this.mdbTablePagination.searchText = this.searchText;
+    ) {}
+    
+    @HostListener('input') oninput() {
+      this.searchItems();
   }
 
   ngOnInit() {
@@ -74,6 +72,14 @@ export class AssetsComponent implements OnInit {
         this.messages = err.error.message;
         this.message = true;
       })
+  }
+  searchItems() {
+    const prev = this.mdbTable.getDataSource();
+    
+    if (this.searchText) {
+      this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
+      this.mdbTable.setDataSource(prev);
+    }
   }
   get AssetName() {
     return this.Asset.get('AssetName');
@@ -124,7 +130,6 @@ export class AssetsComponent implements OnInit {
       }, 500)
     })
   }
-
   addNewRow() {
     this.mdbTable.addRow({
       id: this.elements.length.toString(),
@@ -165,28 +170,6 @@ export class AssetsComponent implements OnInit {
   emitDataSourceChange() {
     this.mdbTable.dataSourceChange().subscribe((data: any) => {
       console.log(data);
-    });
-  }
-
-  searchItems() {
-    const prev = this.mdbTable.getDataSource();
-
-    if (!this.searchText) {
-      this.mdbTable.setDataSource(this.previous);
-      this.elements = this.mdbTable.getDataSource();
-    }
-
-    if (this.searchText) {
-      this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
-      this.mdbTable.setDataSource(prev);
-    }
-
-    this.mdbTablePagination.calculateFirstItemIndex();
-    this.mdbTablePagination.calculateLastItemIndex();
-
-    this.mdbTable.searchDataObservable(this.searchText).subscribe(() => {
-      this.mdbTablePagination.calculateFirstItemIndex();
-      this.mdbTablePagination.calculateLastItemIndex();
     });
   }
 
