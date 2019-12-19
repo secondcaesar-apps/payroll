@@ -29,6 +29,7 @@
     "ngx-skeleton-loader": "^1.2.2",
     "rxjs": "~6.4.0",
     "screenfull": "3.3.x",
+    "sweetalert2": "^9.5.3",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
