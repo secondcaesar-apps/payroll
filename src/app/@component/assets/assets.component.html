@@ -1,95 +1,204 @@
-
-
-
 <div class="padding">
-  <div class="header"> 
+  <div class="header">
     <div class="row">
-        <div class="col-sm-4">
-            <div class="form-group">
-              <button mdbBtn type="button" color="success" mdbWavesEffect>
-                <mdb-icon fas icon="envelope" class="mr-1"></mdb-icon>Invite
-              </button>
-              <button mdbBtn type="button" (click)="openModal()" color="default" mdbWavesEffect>
-                <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
-              </button>
-            </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <button mdbBtn type="button" color="success" mdbWavesEffect>
+            <mdb-icon fas icon="envelope" class="mr-1"></mdb-icon>Invite
+          </button>
+          <button mdbBtn type="button" (click)="frame.show()" color="default" mdbWavesEffect>
+            <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
+          </button>
         </div>
-        <div class="col-sm-8">
-          <div class="row float-right">
-            <div class="col-sm-5">
-                <div class="md-form">
-                <input mdbInput class="mr-1 search-input" type="text" placeholder="Search" aria-label="Search" id="search" [(ngModel)]="searchText" > 
-              </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="row float-right">
+          <div class="col-sm-5">
+            <div class="md-form">
+              <input mdbInput class="mr-1 search-input" type="text" placeholder="Search" aria-label="Search" id="search"
+                [(ngModel)]="searchText">
             </div>
-            <div class="col-sm-5">
-                <div class="dropdown" mdbDropdown>
+          </div>
+          <div class="col-sm-5">
+            <div class="dropdown" mdbDropdown>
 
-                    <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
-                      mdbWavesEffect>
-                      Status
-                    </button>
-                  
-                    <div class="dropdown-menu dropdown-primary">
-                      <button class="dropdown-item" href="#">All</button>
-                      <button class="dropdown-item" href="#">Active</button>
-                      <button class="dropdown-item" href="#">Inactive</button>
-                    </div>
-                    
+              <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
+                mdbWavesEffect>
+                Status
+              </button>
+
+              <div class="dropdown-menu dropdown-primary">
+                <button class="dropdown-item" href="#">All</button>
+                <button class="dropdown-item" href="#">Active</button>
+                <button class="dropdown-item" href="#">Inactive</button>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="btn-group" mdbDropdown>
+              <a mdbDropdownToggle mdbBtn floating="true" size="sm" gradient="blue" class="dropdown-toggle waves-light"
+                mdbWavesEffect>
+                <mdb-icon fas icon="ellipsis-v"></mdb-icon>
+              </a>
+
+              <div class="dropdown-menu dropdown-primary">
+                <a class="dropdown-item" (click)="view()" *ngIf="!show">Show details</a>
+                <a class="dropdown-item" (click)="view()" *ngIf="show">Hide details</a>
+
+                <a class="dropdown-item" href="#">Refresh</a>
               </div>
             </div>
-            <div class="col-sm-2">
-                <div class="btn-group" mdbDropdown>
-                    <a mdbDropdownToggle mdbBtn  floating="true" size="sm" gradient="blue"  class="dropdown-toggle waves-light" mdbWavesEffect>
-                        <mdb-icon fas icon="ellipsis-v"></mdb-icon>
-                    </a>
-                  
-                    <div class="dropdown-menu dropdown-primary">
-                      <a class="dropdown-item" (click)="view()" *ngIf="!show">Show details</a>
-                      <a class="dropdown-item" (click)="view()" *ngIf="show">Hide details</a>
-                     
-                      <a class="dropdown-item" href="#">Refresh</a>
-                    </div>
-                  </div>
-            </div>
-          </div>    
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div class="body">
-      <div class="row">
-        <div class="col">
-            <table id="tableSortExample" mdbTable class="z-depth-1">
-                <thead>
-                  <tr>
-                      <th aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[0]">{{headElements[0] | titlecase}}<mdb-icon fas icon="sort"></mdb-icon></th>
-                      <th>{{headElements[1]}}</th>
-                      <th>{{headElements[2]}}</th>
-                      <th>{{headElements[3]}}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let el of elements; let i = index">
-                    <th scope="row" (click)="openDetails()">{{el.ID}}</th>
-                    <td>{{el.AssetName}}</td>
-                    <td>{{el.Description}}</td>
-                    <td>{{el.AssetType}}</td>
-                  </tr>
-                </tbody>
-            </table>
-            <div *ngIf="message" style="padding-left: 40%;"><p>{{messages}}</p></div>
-            <div *ngIf="loading"  class="item"><ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader></div>
+    <div class="row">
+      <div class="col">
+        <table id="tableSortExample" mdbTable class="z-depth-1">
+          <thead>
+            <tr>
+              <th aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[0]">
+                {{headElements[0] | titlecase}}<mdb-icon fas icon="sort"></mdb-icon>
+              </th>
+              <th>{{headElements[1]}}</th>
+              <th>{{headElements[2]}}</th>
+              <th>{{headElements[3]}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let el of elements; let i = index">
+              <th scope="row" (click)="openDetails()">{{el.ID}}</th>
+              <td>{{el.AssetName}}</td>
+              <td>{{el.Description}}</td>
+              <td>{{el.AssetType}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="message" style="padding-left: 40%;">
+          <p>{{messages}}</p>
         </div>
-        <div class="col-4 line" *ngIf="show">
-             <div class="pre-body">
-               <p>Select a row to view it's details here</p>
-             </div>
-             <div class="body">
-                <div class="row">
+        <div *ngIf="loading" class="item">
+          <ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="col-4 line" *ngIf="show">
+        <div class="pre-body">
+          <p>Select a row to view it's details here</p>
+        </div>
+        <div class="body">
+          <div class="row">
 
-                </div>
-             </div>     
+          </div>
         </div>
-      </div> 
+      </div>
+    </div>
   </div>
 </div>
- 
+
+
+
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header light-blue darken-3 text-center text-white">
+
+        <h4 class="modal-title w-100 font-weight-bold">Manage Role</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div *ngIf="success" class="alert alert-success" role="alert">
+          {{success}}
+        </div>
+        <div *ngIf="error" class="alert alert-danger" role="alert">
+          {{error}}
+        </div>
+
+
+        <!-- Grid row -->
+        <div class="form-row mt-5">
+          <!-- Default input -->
+          <div class="form-group col-md-4">
+            <label for="inputEmail4">Asset Name</label>
+            <input  (change)="OnPrimaryToggled($event,'d')"  [formControl]="AssetName" mdbInput type="text" class="form-control" id="inputEmail4">
+            <mdb-error *ngIf="AssetName.invalid && (AssetName.dirty||AssetName.touched)">
+              Invalid Input.
+            </mdb-error>
+
+          </div>
+          <!-- Default input -->
+          <div class="form-group col-md-4">
+            <label for="inputPassword4">Asset Type</label>
+            <input [formControl]="AssetType" mdbInput type="text" class="form-control" id="inputPassword4">
+            <mdb-error *ngIf="AssetType.invalid && (AssetType.dirty||AssetType.touched)">
+              Invalid Input.
+            </mdb-error>
+
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputPassword4">Serial Number</label>
+            <input  [formControl]="SerailNumber" mdbInput type="text" class="form-control" id="inputPassword4">
+            <mdb-error *ngIf="SerailNumber.invalid && (SerailNumber.dirty||SerailNumber.touched)">
+              Invalid Input.
+            </mdb-error>
+
+          </div>
+        </div>
+        <div class="form-row mt-1">
+          <div class="form-group col">
+            <label for="inputPassword4">Description</label>
+            <textarea [formControl]="Description" type="text" id="form107" class="md-textarea form-control" rows="5" mdbInput></textarea>
+            <mdb-error *ngIf="Description.invalid && (Description.dirty||Description.touched)">
+              Invalid Input.
+            </mdb-error>
+          </div>
+        </div>
+        <div class="form-row mt-4 mb-4 ">
+          <div class="col-md-6">
+            <!-- <mdb-select [options]="location"  label="Location"></mdb-select> -->
+
+            <select  [formControl]="Location" class="browser-default custom-select">
+              <option selected disabled>Select Location</option>
+              <option *ngFor="let item of location" [ngValue]="item.LocationsID">{{item.LocationsName}}</option>
+            
+            </select>
+          </div>
+          <div class="col-md-6">
+          
+            <div class="form-check">
+              <input type="radio" class="form-check-input" id="materialUnchecked2" [value]="false"
+              [formControl]="checked" name="reactiveRadio">
+              <label class="form-check-label" for="materialUnchecked2">Non Functional</label>
+            </div>
+          
+            <div class="form-check">
+              <input type="radio" class="form-check-input" id="materialChecked2" [value]="true"
+              [formControl]="checked" name="reactiveRadio">
+              <label class="form-check-label" for="materialChecked2">Functional</label>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer d-flex justify-content-right">
+        <div class="btn-group" role="group" aria-label="Basic example">
+
+          <button mdbBtn type="button" color="info" [disabled]='Asset.invalid' (click)="createAsset()"
+            class="waves-light mr-2" mdbWavesEffect>Create</button>
+          <button mdbBtn type="button" color="danger" (click)="frame.hide()" class="waves-light"
+            mdbWavesEffect>Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+{{Asset.value | json}}
