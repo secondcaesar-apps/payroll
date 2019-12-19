@@ -97,5 +97,14 @@ break;
   return this._http.post(`${this.apiUrl}/ ${type}/delete.php`,{value:id});
 }
 
+ImageUpload(F){
+
+  console.log(F);
+  const formData = new FormData();  
+  formData.append('upfile', F);  
+
+  return this._http.post(this.apiUrl+APIENUM.FILE,formData);
+}
+
 
 }
