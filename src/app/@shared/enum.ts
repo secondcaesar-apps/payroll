@@ -15,6 +15,7 @@ export enum APIENUM{
     EXP='expense',
     LOG='login',
     EMP='employee',
-    SAG='salarygroup'
+    SAG='salarygroup',
+    FILE='Fileuploads/fileupload.php'
     
 }
