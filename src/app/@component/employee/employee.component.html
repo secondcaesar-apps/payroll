@@ -67,8 +67,8 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let el of elements; let i = index">
-                    <th scope="row" (click)="reademployee()">{{el.EmployeeID}}</th>
-                    <td (click)="reademployee()">{{el.FirstName}}</td>
+                    <th scope="row" (click)="reademployee(el)">{{el.EmployeeID}}</th>
+                    <td (click)="reademployee(el)">{{el.FirstName}}</td>
                     <td>{{el.LastName}}</td>
                     <td>{{el.Email}}</td>
                     <td>{{el.Department}}</td>
@@ -80,7 +80,7 @@
         </div>
         <div class="col-4 line" *ngIf="show">
           <p *ngIf="!displaySide" >Select a row to view it's details here</p>
-          <form>
+          <form [formGroup]="employee">
              <div class="pre-body" *ngIf="displaySide">
                <input style="padding-left: 70px; padding-right: 30px;"type="image" src="../../../assets/profile_image.jpg" width=400px height=300px >
              <!-- <ul class="list-group">
@@ -163,7 +163,7 @@
                             <input type="text"  formControlName="Gender" mdbInput>
                           </li>
                           <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                          DOB
+                          Date of Birth
                             <input type="text"  formControlName="DOB" mdbInput>
                           </li>
                       </ul>
@@ -190,14 +190,14 @@
                             Reports To
                             <input type="text"  formControlName="ReportsTo" mdbInput>
                           </li>
-                          <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                          <!-- <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                              Joining date
                             <input type="text"  formControlName= mdbInput>
                           </li>
                           <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                               Work Duration
                              <input type="text"  formControlName= mdbInput>
-                           </li>
+                           </li> -->
                       </ul>
                 </mdb-accordion-item-body>
               </mdb-accordion-item>
@@ -208,24 +208,27 @@
                     <ul class="list-group">
                         <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                           Mobile Phone
-                          <input type="text"  formControlName= mdbInput>
+                          <input type="text"  formControlName="ContactNumber" mdbInput>
                         </li>
                         <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                             Emergency Contact Number
-                          <input type="text"  formControlName= mdbInput>
+                          <input type="text"  formControlName="EmergencyContactNumber" mdbInput>
                         </li>
                         <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                            Emergency Contact Person
-                          <input type="text"  formControlName= mdbInput>
+                          <input type="text"  formControlName="EmergencyContactPerson" mdbInput>
                         </li>
                         <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                             Address
-                            <input type="text"  formControlName= mdbInput>
+                            <input type="text"  formControlName="Address" mdbInput>
                           </li>
                       </ul>
                 </mdb-accordion-item-body>
               </mdb-accordion-item>
             </mdb-accordion>
+            <button mdbBtn type="button" size="lg" color="success" mdbWavesEffect (click)="createemployee()">
+              <mdb-icon fas icon="pencil-alt"></mdb-icon>Edit
+            </button>
           </div>
         </form>
              <div class="body">
