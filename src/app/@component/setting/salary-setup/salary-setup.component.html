@@ -6,7 +6,7 @@
                 <button mdbBtn type="button" color="success" mdbWavesEffect>
                   <mdb-icon fas icon="envelope" class="mr-1"></mdb-icon>Invite
                 </button>
-                <button mdbBtn type="button" (click)="openDetails()" color="default" mdbWavesEffect>
+                <button mdbBtn type="button"  (click)="frame.show()"  color="default" mdbWavesEffect>
                   <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
                 </button>
               </div>
@@ -90,4 +90,122 @@
         </div> 
     </div>
   </div>
+  <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog  modal-lg" role="document"  [formGroup]="Salary">
+ <div class="modal-content">
+   <div class="modal-header black darken-3 text-center text-white">
+     <h4 class="modal-title w-100 font-weight-bold">Manage Salary</h4>
+     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+       <span aria-hidden="true">&times;</span>
+     </button>
+   </div>
+   <div class="modal-body mx-3">
+    <div *ngIf="success" class="alert alert-success" role="alert">
+      {{success}}
+    </div>
+    <div *ngIf="error" class="alert alert-danger" role="alert">
+     {{error}}
+    </div>
    
+    <div>
+      <div class="header row">
+      </div>
+      <div class="body">
+        <div class="sectionA row">
+          <div class="col">     
+          <mdb-card>
+              <div class="alert alert-success" role="alert">
+                <mdb-icon fas icon="info-circle"></mdb-icon> Details
+                </div>
+              <mdb-card-body>
+              <form>
+                  
+                  <div class="form-row">
+                  
+                    <div class="form-group col-md-12">
+                      <label for="inputEmail4">Group Name</label>
+                      <input  [formControl]="SalaryGroupName" mdbInput type="text" class="form-control" id="inputEmail4">
+                   
+                      <mdb-error *ngIf="SalaryGroupName.invalid && (SalaryGroupName.dirty||SalaryGroupName.touched)">
+                        Invalid Value.
+                      </mdb-error>
+                    </div>
+                  
+                    <div class="form-group col-md-12">
+                      <label for="inputPassword4">Description</label>
+                      <textarea  [formControl]="Description" type="text" id="form107" class="md-textarea form-control" rows="5" mdbInput></textarea>
+                       
+                      <mdb-error *ngIf="Description.invalid && (Description.dirty||Description.touched)">
+                        Invalid Value.
+                      </mdb-error>
+                   
+                    </div>
+                  </div>
+                 
+                
+                  
+                 
+              
+              </form>
+              </mdb-card-body>
+          </mdb-card>
+          </div>
+         
+        </div>
+        <div class="sectionB row">
+            <div class="col-12"> 
+                <mdb-card>
+                    <div class="alert alert-primary" role="alert">
+                      <mdb-icon fas icon="dollar-sign"></mdb-icon> Salary Components
+                      <button (click)="addItem()" mdbBtn class="float-right m-0 p-2" type="button" color="success" mdbWavesEffect>
+           add
+                            </button>
+                    </div>
+                    <mdb-card-body> 
+                          <table mdbTable>
+                                  <caption>List of users</caption>
+                                  <thead>
+                                    <tr>
+                                      <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+                                    </tr>
+                                  </thead>
+                                  <tbody formArrayName="SalaryComponent"  >
+                                    <tr mdbTableCol  *ngFor="let item of Salary.get('SalaryComponent').controls; let i = index;" [formGroupName]="i">
+                                      <th> <input formControlName="Name" nbInput name="quantity" type="text" class="mt-3"  ></th>
+                                      <th> <input formControlName="Amount" nbInput name="quantity" type="number" class="mt-3"   ></th>
+                                      <th> <input formControlName="Type" nbInput name="quantity"  type="text" class="mt-3"   ></th>
+                                      <th><button (click)="removeItems(i)" mdbBtn type="button" color="red" mdbWavesEffect>
+                                        <mdb-icon fas icon="trash" class="mr-1"></mdb-icon>
+                                      </button></th>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                    <form> 
+                    </form>
+                    </mdb-card-body>
+                </mdb-card>
+            </div>
+  
+           
+        </div>
+      </div>
+      <div class='footer mt-3'>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                      <button mdbBtn type="button" (click) ="createSalar()"color="primary" class="waves-light mr-1" mdbWavesEffect>Create</button>
+                      <button mdbBtn type="button" (click)="frame.hide()" color="danger" class="waves-light" mdbWavesEffect>Cancel</button>
+                      
+                  </div>
+      </div>
+  </div>
+  
+  
+    
+
+
+
+   </div>
+   
+ </div>
+</div>
+</div>
