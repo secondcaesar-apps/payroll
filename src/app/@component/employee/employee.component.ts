@@ -5,6 +5,7 @@ import { MdbTableDirective } from 'ng-uikit-pro-standard';
 import { APIENUM } from 'src/app/@shared/enum';
 
 
+
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -20,7 +21,8 @@ export class EmployeeComponent implements OnInit {
   loading:Boolean=true;
   messages: string;
   maxVisibleItems: number = 8;
-  show: boolean; 
+  show: Boolean; 
+  displaySide: Boolean = false;
   constructor(
     private router: Router,
     private Api: ApiserviceService,
@@ -59,6 +61,7 @@ export class EmployeeComponent implements OnInit {
     this.router.navigate(['/main/create-employer'])
   }
   reademployee(){
-    this.router.navigate(['/main/read-employer'])
+    // this.router.navigate(['/main/read-employer'])
+    this.displaySide = true;
   }
 }
