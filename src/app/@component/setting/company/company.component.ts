@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './company.component.html',
   styleUrls: ['./company.component.scss']
 })
-export class CompanyComponent implements OnInit {
+export class CompanyComponent  implements OnInit {
   optionsSelect: Array<any>;
   show: Boolean = false;
   uploadedFiles: any;
@@ -122,21 +122,7 @@ export class CompanyComponent implements OnInit {
     });
   }
 
-  onFileAdd(file) {
-
-    const formData = new FormData();
-    formData.append('file', file);
-
-    // var reader = new FileReader();
-    // this.imagePath = file;
-    // reader.readAsDataURL(file[0]);
-
-    // this.file = file;
-    // console.info(this.file);
-    // this.service.ImageUpload(this.imagePath[0]).subscribe((res)=>{
-    //   console.log(res);
-    // });
-  }
+ 
 
 
   onClick() {

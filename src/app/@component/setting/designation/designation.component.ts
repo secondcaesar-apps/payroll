@@ -34,18 +34,7 @@ export class DesignationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.Api.Read(APIENUM.DES)
-      .subscribe((res:any)=>{
-        this.loading = false;
-        this.elements=res.records;
-        this.mdbTable.setDataSource(this.elements);
-        this.elements = this.mdbTable.getDataSource();
-        this.previous = this.mdbTable.getDataSource();
-      },(err:any)=>{
-        this.loading= false;
-        this.messages = err.error.message;
-        this.message = true;
-      })
+    this.reload()
         this.Designation= this._fb.group({
       DesignationName:['',[Validators.required]],
      
@@ -83,12 +72,29 @@ export class DesignationComponent implements OnInit {
        this.Designation.reset();
        this.Designation.enable();
      },500)
-   })
 
+ 
+   })
+   this.reload();
   }
 
   get DesignationName(){
     return this.Designation.get('DesignationName');
+  }
+
+  reload(){
+    this.Api.Read(APIENUM.DES)
+    .subscribe((res:any)=>{
+      this.loading = false;
+      this.elements=res.records;
+      this.mdbTable.setDataSource(this.elements);
+      this.elements = this.mdbTable.getDataSource();
+      this.previous = this.mdbTable.getDataSource();
+    },(err:any)=>{
+      this.loading= false;
+      this.messages = err.error.message;
+      this.message = true;
+    })
   }
 
 }

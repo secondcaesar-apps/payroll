@@ -74,8 +74,8 @@
                       </div>
                     <mdb-card-body>
                         <div class="col-1">
-                        <input type="image" src="../../../assets/profile_image.jpg" width=250px height=250px >
-                        <input type="file" name="image">
+                        <input (click)="onClick()" type="image" [src]="image" width=250px height=250px >
+                        <input type="file"  #fileUpload id="fileUpload" name="fileUpload"  accept="image/*" style="display:none;" />
                           </div>
                     </mdb-card-body>
                 </mdb-card>
