@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { APIENUM } from 'src/app/@shared/enum';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-create-employer',
@@ -16,10 +17,16 @@ export class CreateEmployerComponent implements OnInit {
   error: any;
   success: any;
   Employee: FormGroup;
+  location:any;
+  role:any;
+  department:any;
+  employee:any;
+  designation:any;
   @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef; files = [];
-  constructor(private _location: Location,    private _fb: FormBuilder, private service: ApiserviceService) { }
+  salarygroup: any;
+  gender: string[];
+  constructor(private _location: Location,    private _fb: FormBuilder, private service: ApiserviceService) {
 
-  ngOnInit() {
     this.Employee = this._fb.group({
       FirstName: ['', [Validators.required]],
       LastName: ['', [Validators.required]],
@@ -34,10 +41,18 @@ export class CreateEmployerComponent implements OnInit {
       Email: ['', [Validators.email,Validators.required]],
     });
 
-    this.optionsSelect = [
-      { value: '1', label: 'Male' },
-      { value: '2', label: 'Female' },
-      ];
+   }
+
+  ngOnInit() {
+
+    
+    
+    // this.optionsSelect = [
+    //   { value: '1', label: '' },
+    //   { value: '2', label: 'Female' },
+    //   ];
+    this.loadEvent()
+      this.gender = ['Male','Female']
     }
 
   back () {
@@ -83,7 +98,44 @@ export class CreateEmployerComponent implements OnInit {
 
 loadEvent(){
 
-  let event = [this.service.Read(APIENUM.LOC),this.service.Read(APIENUM.DEPT),this.service.Read(APIENUM.EMP),this.service.Read(APIENUM.SAG)]
+  let event = [this.service.Read(APIENUM.LOC),this.service.Read(APIENUM.DEPT),this.service.Read(APIENUM.EMP),this.service.Read(APIENUM.SAG),this.service.Read(APIENUM.DES),this.service.Read(APIENUM.ROLE)]
+
+  forkJoin(event).subscribe((res:any)=>{
+    console.log(res);
+
+    this.location= res[0].records;
+    this.optionsSelect = [
+      { value: '1', label:'Male' },
+      { value: '2', label: 'Female' },
+      ];
+    this.department = res[1].records;
+    this.employee=res[2].records;
+     this.salarygroup=res[3].records;
+     this.designation=res[4].records;
+     this.role=res[5].records;
+  })
+}
+
+createEmployee(){
+  this.Employee.disable();
+    let value = {Status:"Active",...this.Employee.value};
+
+    this.service.Create(APIENUM.EMP,value).subscribe((res:any)=>{
+       this.success=res.message
+
+    },err=>{
+      this.error=err.error.message;
+      this.Employee.enable();
+
+
+    },()=>{
+      setTimeout(()=>{
+        this.success='';
+        this.error='';
+        this.Employee.reset();
+        this.Employee.enable();
+      },800)
+    })
 }
 
 }
