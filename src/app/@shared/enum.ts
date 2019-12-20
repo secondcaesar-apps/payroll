@@ -11,6 +11,7 @@ export enum APIENUM{
     LEAVETYPE='leavetype',
     INCR='incrementpromotion',
     MENU='menu',
+    LEAVE='leave',
     MENUG='menugroup',
     ROLE='role',
     EXP='expense',
