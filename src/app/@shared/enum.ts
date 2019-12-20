@@ -18,6 +18,8 @@ export enum APIENUM{
     LOG='login',
     EMP='employee',
     SAG='salarygroup',
-    FILE='Fileuploads/fileupload.php'
+    FILE='Fileuploads/fileupload.php',
+    REPORT='leave/reporttoreaad.php',
+    LEAVEAPPROVE='leave/approve.php'
     
 }

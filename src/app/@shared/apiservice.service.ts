@@ -16,6 +16,13 @@ export class ApiserviceService {
 
 
 
+  Approve(type:APIENUM,data:any){
+
+
+    return this._http.post(this.apiUrl+'leave/approve.php',data);
+
+  }
+
 
   Create(type:APIENUM,data:any){
 
@@ -105,6 +112,9 @@ ImageUpload(F){
 
   return this._http.post(this.apiUrl+APIENUM.FILE,formData);
 }
+
+
+
 
 
 }
