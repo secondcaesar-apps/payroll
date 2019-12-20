@@ -47,7 +47,7 @@ export class AssetsComponent implements OnInit {
       AssetType: ['', [Validators.required]],
       SerailNumber: ['', [Validators.required]],
       Location: ['', [Validators.required]],
-      checked: [true, [Validators.required]],
+      Status: [true, [Validators.required]],
 
     });
  this.service.Read(APIENUM.LOC).subscribe((res:any)=>{
@@ -111,7 +111,7 @@ export class AssetsComponent implements OnInit {
   createAsset() {
     console.info(this.Asset.value);
     this.Asset.disable();
-    let value = { Status:  this.Asset.controls['checked'].value? 'NonFunctional' : "Functional", ...this.Asset.value };
+    let value = { Status:  this.Asset.controls['Status'].value? 'NonFunctional' : "Functional", ...this.Asset.value };
 
     this.service.Create(APIENUM.ASS, value).subscribe((res: any) => {
       this.success = res.message
