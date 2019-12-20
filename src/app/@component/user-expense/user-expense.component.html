@@ -1,1 +1,123 @@
-<p>user-expense works!</p>
+<div class="padding">
+  <div class="header"> 
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+              <button mdbBtn type="button" color="success" mdbWavesEffect>
+                  <mdb-icon fab icon="magic" class="space"></mdb-icon>New
+              </button>
+              <!-- <button mdbBtn type="button" (click)="newemployee()" color="default" mdbWavesEffect>
+                <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
+              </button> -->
+            </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="row float-right">
+            <div class="col-sm-5">
+                <div class="md-form">
+                <input mdbInput class="mr-1" type="text" placeholder="Search" aria-label="Search"> 
+              </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="dropdown" mdbDropdown>
+
+                    <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
+                      mdbWavesEffect>
+                      Status
+                    </button>
+                  
+                    <div class="dropdown-menu dropdown-primary">
+                      <button class="dropdown-item" href="#">All</button>
+                      <button class="dropdown-item" href="#">Active</button>
+                      <button class="dropdown-item" href="#">Inactive</button>
+                    </div>
+                    
+              </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="btn-group" mdbDropdown>
+                    <a mdbDropdownToggle mdbBtn  floating="true" size="sm" gradient="blue"  class="dropdown-toggle waves-light" mdbWavesEffect>
+                        <mdb-icon fas icon="ellipsis-v"></mdb-icon>
+                    </a>
+                  
+                    <div class="dropdown-menu dropdown-primary">
+                      <a class="dropdown-item" (click)="view()" *ngIf="!show">Show details</a>
+                      <a class="dropdown-item" (click)="view()" *ngIf="show">Hide details</a>
+                     
+                      <a class="dropdown-item" href="#">Refresh</a>
+                    </div>
+                  </div>
+            </div>
+          </div>    
+      </div>
+    </div>
+  </div>
+  <div class="body">
+      <div class="row">
+        <div class="col">
+            <table id="tableSortExample" mdbTable class="z-depth-1">
+                <thead>
+                  <tr>
+                      <th aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[0]">{{headElements[0] | titlecase}}<mdb-icon fas icon="sort"></mdb-icon></th>
+                      <th>{{headElements[1]}}</th>
+                      <th>{{headElements[2]}}</th>
+                      <th>{{headElements[3]}}</th>
+                      <th>{{headElements[4]}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let el of elements; let i = index">
+                    <th scope="row" (click)="readExpense(el)">{{el.ExpenseID}}</th>
+                    <td (click)="readExpense(el)">{{el.Category}}</td>
+                    <td>{{el.Amount}}</td>
+                    <td>{{el.BillDate}}</td>
+                    <td>{{el.Status}}</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-4 line" *ngIf="show">
+  
+               <p *ngIf="!displaySide">Select a row to view it's details here</p>
+             <div class="pre-body" *ngIf="displaySide">
+              <p style="font-size: large;">Expense Info</p>
+              <button mdbBtn type="button" color="primary" mdbWavesEffect>
+                <mdb-icon fas icon="magic" class="mr-1"></mdb-icon>{{statusValue}}
+              </button>
+              <ul class="list-group">
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  Title:
+                  {{Title}}
+                </li>
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  Description:
+                  {{Description}}
+                </li>
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  Merchant:
+                  {{Merchant}}
+                </li>
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  Amount:
+                  {{Amount}}
+                </li>
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  BillDate:
+                {{BillDate}}
+                  </li>
+                  <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                    Category:
+                    {{Category}}
+                  </li>
+              </ul>
+         </div>
+             <div class="body">
+                <div class="row">
+
+                </div>
+             </div>     
+        </div>
+      </div> 
+  </div>
+</div>
+ 
