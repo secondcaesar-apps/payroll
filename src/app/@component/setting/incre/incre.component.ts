@@ -13,6 +13,12 @@ export class IncreComponent implements OnInit {
   Increment:FormGroup;
   error:any;
   success:any;
+  elements = [];
+  searchText: string = '';
+  previous: string;
+  message: Boolean=false;
+  loading:Boolean=true;
+  messages: string;
   emp;
   sg;
   constructor(
@@ -33,6 +39,15 @@ export class IncreComponent implements OnInit {
       CurrentDsg:['',[Validators.required]],
       IncrementPromotionDate:['',[Validators.required]],
     });
+    this.Api.Read(APIENUM.INCR)
+    .subscribe((res:any)=>{
+      this.loading = false;
+      this.elements=res.records;
+    }, (err: any) => {
+      this.loading = false;
+      this.messages = err.error.message;
+      this.message = true;
+    })
   }
 
   get EmployeeID(){

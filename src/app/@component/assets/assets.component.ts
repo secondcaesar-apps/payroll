@@ -1,11 +1,12 @@
 import { ApiserviceService } from './../../@shared/apiservice.service';
-import { Component, OnInit, ElementRef, HostListener, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { MdbTableDirective, MdbTablePaginationComponent } from 'ng-uikit-pro-standard';
+import { Component, OnInit, Input, ElementRef, HostListener, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { MdbTableDirective } from 'ng-uikit-pro-standard';
 import { MDBModalRef, MDBModalService } from 'ng-uikit-pro-standard';
 import { AddassetsComponent } from 'src/app/@modal/addassets/addassets.component';
 import { APIENUM } from 'src/app/@shared/enum';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-
+import { Router } from '@angular/router';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-assets',
@@ -20,7 +21,7 @@ export class AssetsComponent implements OnInit {
   error: any;
   success: any;
   elements = [];
-  headElements = ['', 'id', 'first', 'last', 'handle'];
+  headElements = ['AssetID', 'AssetName', 'Description', 'AssetType', 'SerailNumber','Location', 'Status'];
   public modalRef: MDBModalRef
   searchText: string = '';
   previous: string;
@@ -28,18 +29,22 @@ export class AssetsComponent implements OnInit {
   loading: Boolean = true;
   messages: string;
   maxVisibleItems: number = 8;
-  show: boolean;
+  show: Boolean; 
+  displaySide: Boolean = false;
+  statusValue: string  = '';
   constructor(
     private cdRef: ChangeDetectorRef,
     private modalService: MDBModalService,
     private service: ApiserviceService,
     private _fb: FormBuilder,
+    private router: Router,
     ) {}
     
     @HostListener('input') oninput() {
       this.searchItems();
   }
-
+  @Input() title: string;
+  asset: FormGroup;
   ngOnInit() {
     this.Asset = this._fb.group({
       AssetName: ['', [Validators.required]],
@@ -192,5 +197,53 @@ export class AssetsComponent implements OnInit {
   view() {
     this.show = !this.show;
   }
+openDetails(el){
+  if(this.show){
+    this.displaySide = true;
+  } 
+  this.statusValue = el.Status;
+  this.asset = this._fb.group({
+    AssetID :[el.AssetID],
+    AssetName :[el.AssetName, Validators.required],
+    Description:[el.Description,Validators.required],
+    AssetType :[el.AssetType, Validators.required],
+    SerailNumber:[el.SerailNumber,Validators.required],
+    Location:[el.Location, Validators.required],
+    Status:[el.Status,Validators.required],
+     });
+     console.log(el);
+}
+updateAsset(){
 
+  this.asset.disable();
+  this.service.Update(APIENUM.ASS, this.asset.value).subscribe((res:any)=>{
+
+  
+    swal.fire({
+      title: res.message,position: "center",
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 3500,
+      showCloseButton: true,
+  
+     })
+    this.asset.enable();
+  
+  
+  },(err=>{
+    this.asset.enable();
+
+  
+    swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'Something went wrong',
+      showConfirmButton: true,
+      timer: 3500,
+  
+     })
+  
+  }))
+
+}
 }

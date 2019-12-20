@@ -105,8 +105,8 @@ loadEvent(){
 
     this.location= res[0].records;
     this.optionsSelect = [
-      { value: '1', label:'Male' },
-      { value: '2', label: 'Female' },
+      { value: 'Male', label:'Male' },
+      { value: 'Female', label: 'Female' },
       ];
     this.department = res[1].records;
     this.employee=res[2].records;

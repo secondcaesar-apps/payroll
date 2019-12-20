@@ -24,6 +24,7 @@ import { UserProfileComponent } from '../@component/user-profile/user-profile.co
 import { UserPayrollComponent } from '../@component/user-payroll/user-payroll.component';
 import { UserLeaveComponent } from '../@component/user-leave/user-leave.component';
 import { UserExpenseComponent } from '../@component/user-expense/user-expense.component';
+import { SharedService } from '../@shared/shared/shared.service';
 
 @NgModule({
   declarations: [HomeComponent, DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent, ContactComponent, CreatecontactComponent, UserDashboardComponent, UserProfileComponent, UserPayrollComponent, UserLeaveComponent, UserExpenseComponent],
@@ -33,7 +34,9 @@ import { UserExpenseComponent } from '../@component/user-expense/user-expense.co
     SharedModule
   ],
   entryComponents: [AddassetsComponent],
-  providers:[ApiserviceService,{
+  providers:[ApiserviceService,
+    SharedService,
+    {
     provide:HTTP_INTERCEPTORS,
     useClass:InterceptorServices,
     multi:true
