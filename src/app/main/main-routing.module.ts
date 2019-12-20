@@ -15,6 +15,7 @@ import { UserDashboardComponent } from '../@component/user-dashboard/user-dashbo
 import { UserExpenseComponent } from '../@component/user-expense/user-expense.component';
 import { UserPayrollComponent } from '../@component/user-payroll/user-payroll.component';
 import { UserLeaveComponent } from '../@component/user-leave/user-leave.component';
+import { UserProfileComponent } from '../@component/user-profile/user-profile.component';
 const routes: Routes = [
 
  
@@ -36,7 +37,7 @@ const routes: Routes = [
       { path: 'user-dahboard', component: UserDashboardComponent},
       { path: 'user-expense', component:UserExpenseComponent},
       { path: 'user-payroll', component:UserPayrollComponent},
-      { path: 'user-profile', component:UserPayrollComponent},
+      { path: 'user-profile', component:UserProfileComponent},
       { path: 'user-leave', component:UserLeaveComponent},
 
     {

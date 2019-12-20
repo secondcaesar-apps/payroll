@@ -37,6 +37,10 @@ export class RoleComponent implements OnInit {
       this.mdbTable.setDataSource(this.elements);
       this.elements = this.mdbTable.getDataSource();
       this.previous = this.mdbTable.getDataSource();
+    }, (err: any) => {
+      this.loading = false;
+      this.messages = err.error.message;
+      this.message = true;
     })
     this.Role= this._fb.group({
       RoleName:['',[Validators.required]],

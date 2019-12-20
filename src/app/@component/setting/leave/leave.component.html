@@ -4,6 +4,44 @@
       <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
     </button>
   </div>
+  <div class="table-responsive-vertical shadow-z-1">
+    <!-- Table starts here -->
+    <table id="table" class="table table-hover table-mc-light-blue">
+        <thead>
+          <tr>
+            <th>LeaveType ID</th>
+            <th>LeaveType Name</th>
+            <th>TotalDays</th>
+            <th>AllowedDesignations</th>
+            <th>Paid</th>
+            <th>Gender</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let el of elements; let i = index">
+            <td data-title="ID">{{el.LeaveTypeID}}</td>
+            <td data-title="Name">{{el.LeaveTypeName}}</td>
+            <td data-title="Link">{{el.TotalDays}}
+            </td>
+            <td data-title="Status">{{el.AllowedDesignations}}</td>
+            <td data-title="Status">{{el.Paid}}</td>
+            <td data-title="Status">{{el.Gender}}</td>
+          </tr>
+          <!-- <tr>
+            <td data-title="ID">2</td>
+            <td data-title="Name">Material Design Iconic Font</td>
+            <td data-title="Link">
+              <a href="https://codepen.io/zavoloklom/pen/uqCsB" target="_blank">Codepen</a>
+              <a href="https://github.com/zavoloklom/material-design-iconic-font" target="_blank">GitHub</a>
+            </td>
+            <td data-title="Status">Completed</td>
+          </tr> -->
+         
+        </tbody>
+      </table>
+      <div *ngIf="message" style="padding-left: 40%;"><p>{{messages}}</p></div>
+      <div *ngIf="loading"  class="item"><ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader></div>
+        </div>
   <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
      <div class="modal-content">

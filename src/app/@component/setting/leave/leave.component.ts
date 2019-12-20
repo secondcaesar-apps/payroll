@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  ViewChild, HostListener} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum';
@@ -11,6 +11,13 @@ export class LeaveComponent implements OnInit {
  Leave:FormGroup;
   error:any;
   success:any;
+  elements = [];
+  searchText: string = '';
+  previous: string;
+  message: Boolean=false;
+  loading:Boolean=true;
+  messages: string;
+  maxVisibleItems: number = 8;
   optionsSelect: { value: string; label: string; }[];
   constructor(
     
@@ -33,6 +40,15 @@ export class LeaveComponent implements OnInit {
       Gender:['',[Validators.required]],
      
     });
+    this.Api.Read(APIENUM.LEAVETYPE)
+    .subscribe((res:any)=>{
+      this.loading = false;
+      this.elements=res.records;
+    }, (err: any) => {
+      this.loading = false;
+      this.messages = err.error.message;
+      this.message = true;
+    })
   }
 
   get LeaveTypeName(){
