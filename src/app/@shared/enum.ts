@@ -8,6 +8,7 @@ export enum APIENUM{
     DEPT='department',
     DES='designation',
     LOC='location',
+    LEAVETYPE='leavetype',
     INCR='incrementpromotion',
     MENU='menu',
     MENUG='menugroup',
