@@ -1,3 +1,4 @@
+import { forkJoin } from 'rxjs';
 import { ApiserviceService } from './../../@shared/apiservice.service';
 import { Component, OnInit, Input, ViewChild, HostListener } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
@@ -5,6 +6,7 @@ import { Router } from '@angular/router';
 import { MdbTableDirective } from 'ng-uikit-pro-standard';
 import { APIENUM } from 'src/app/@shared/enum';
 import swal from 'sweetalert2';
+import { SharedService } from 'src/app/@shared/shared/shared.service';
 
 
 
@@ -22,6 +24,12 @@ export class EmployeeComponent implements OnInit {
   message: Boolean=false;
   loading:Boolean=true;
   messages: string;
+  location:any;
+  role:any;
+  department:any;
+  employees:any;
+  designation:any;
+  salarygroup: any;
   maxVisibleItems: number = 8;
   show: Boolean; 
   displaySide: Boolean = false;
@@ -29,6 +37,7 @@ export class EmployeeComponent implements OnInit {
     private router: Router,
     private Api: ApiserviceService,
     private _fb:FormBuilder,
+    private shared: SharedService,
     ) { }
 
   @HostListener('input') oninput() {
@@ -39,6 +48,7 @@ export class EmployeeComponent implements OnInit {
   employee:FormGroup;
 
   ngOnInit() {
+    this.loadEvent();
     this.Api.Read(APIENUM.EMP)
     .subscribe((res:any)=>{
       this.loading = false;
@@ -73,6 +83,8 @@ export class EmployeeComponent implements OnInit {
       this.displaySide = true;
     } else {
       this.router.navigate(['/main/read-employer'])
+      this.shared.AddInfo(el)
+      console.log(el)
     }
     this.employee = this._fb.group({
       EmployeeID :[el.EmployeeID],
@@ -84,7 +96,10 @@ export class EmployeeComponent implements OnInit {
       Department:[el.Department,Validators.required],
       Designation:[el.Designation, Validators.required],
       Location:[el.Location,Validators.required],
-      ReportsTo:[el.ReportsTO,Validators.required],
+      ReportsTO:[el.ReportsTO,Validators.required],
+      Status:[el.Status,Validators.required],
+      SalaryGroup:[el.SalaryGroup,Validators.required],
+      Role:[el.Role,Validators.required],
       ContactNumber:[el.ContactNumber,Validators.required],
       EmergencyContactNumber:[el.EmergencyContactNumber,Validators.required],
       EmergencyContactPerson:[el.EmergencyContactPerson,Validators.required],
@@ -133,4 +148,20 @@ export class EmployeeComponent implements OnInit {
     }))
   
   }
+  loadEvent(){
+
+    let event = [this.Api.Read(APIENUM.LOC),this.Api.Read(APIENUM.DEPT),this.Api.Read(APIENUM.EMP),this.Api.Read(APIENUM.SAG),this.Api.Read(APIENUM.DES),this.Api.Read(APIENUM.ROLE)]
+  
+    forkJoin(event).subscribe((res:any)=>{
+      console.log(res);
+  
+      this.location= res[0].records;
+      this.department = res[1].records;
+      this.employees=res[2].records;
+       this.salarygroup=res[3].records;
+       this.designation=res[4].records;
+       this.role=res[5].records;
+    })
+  }
+  
 }
