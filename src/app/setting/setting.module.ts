@@ -18,10 +18,11 @@ import { DesignationComponent } from '../@component/setting/designation/designat
 import { ApiserviceService } from '../@shared/apiservice.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorServices } from '../@shared/intercept';
+import { IncreComponent } from '../@component/setting/incre/incre.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent, DesignationComponent],
+  declarations: [HomeComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent, DesignationComponent, IncreComponent],
   imports: [
     CommonModule,
     SettingRoutingModule,

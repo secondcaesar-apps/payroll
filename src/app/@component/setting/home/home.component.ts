@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
       {name:'Salary-group',route:'salary-group',icon:'fa fa-list fa-2x'},
       {name:'Expense-setup',route:'expense-setup',icon:'fa fa-list fa-2x'},
       {name:'Leave-setup',route:'leave-setup',icon:'fa fa-laptop fa-2x'},
+      {name:'Increment',route:'increment',icon:'fa fa-bus fa-2x'},
       {name:'Roles',route:'roles',icon:'fa fa-bus fa-2x'},
       {name:'Location',route:'location',icon:'fa fa-map fa-2x'},
       {name:'Designation',route:'designation',icon:'fa fa-map fa-2x'},

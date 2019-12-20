@@ -12,6 +12,7 @@ import { RoleComponent } from '../@component/setting/role/role.component';
 import { RolecreateComponent } from '../@component/setting/rolecreate/rolecreate.component';
 import { LocationComponent } from '../@component/setting/location/location.component';
 import { DesignationComponent } from '../@component/setting/designation/designation.component';
+import { IncreComponent } from '../@component/setting/incre/incre.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
      { path: 'location', component: LocationComponent},
      { path: 'expense', component: ExpenseComponent},
      { path: 'designation', component: DesignationComponent},
+     { path: 'increment', component: IncreComponent},
   ] },
  
   
