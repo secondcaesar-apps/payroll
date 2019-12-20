@@ -19,9 +19,14 @@ import { CreatecontactComponent } from '../@component/createcontact/createcontac
 import { ApiserviceService } from '../@shared/apiservice.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorServices } from '../@shared/intercept';
+import { UserDashboardComponent } from '../@component/user-dashboard/user-dashboard.component';
+import { UserProfileComponent } from '../@component/user-profile/user-profile.component';
+import { UserPayrollComponent } from '../@component/user-payroll/user-payroll.component';
+import { UserLeaveComponent } from '../@component/user-leave/user-leave.component';
+import { UserExpenseComponent } from '../@component/user-expense/user-expense.component';
 
 @NgModule({
-  declarations: [HomeComponent, DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent, ContactComponent, CreatecontactComponent],
+  declarations: [HomeComponent, DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent, ContactComponent, CreatecontactComponent, UserDashboardComponent, UserProfileComponent, UserPayrollComponent, UserLeaveComponent, UserExpenseComponent],
   imports: [
     CommonModule,
     MainRoutingModule,

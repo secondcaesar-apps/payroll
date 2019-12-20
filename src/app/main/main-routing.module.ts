@@ -11,6 +11,10 @@ import { CreateEmployerComponent } from '../@component/create-employer/create-em
 import { ReadOneEmployeeComponent } from '../@component/read-one-employee/read-one-employee.component'
 import { ContactComponent } from '../@component/contact/contact.component';
 import { CreatecontactComponent } from '../@component/createcontact/createcontact.component';
+import { UserDashboardComponent } from '../@component/user-dashboard/user-dashboard.component';
+import { UserExpenseComponent } from '../@component/user-expense/user-expense.component';
+import { UserPayrollComponent } from '../@component/user-payroll/user-payroll.component';
+import { UserLeaveComponent } from '../@component/user-leave/user-leave.component';
 const routes: Routes = [
 
  
@@ -29,6 +33,11 @@ const routes: Routes = [
       { path: 'read-employer', component: ReadOneEmployeeComponent},
       { path: 'contact', component: ContactComponent},
       { path: 'create-contact', component: CreatecontactComponent},
+      { path: 'user-dahboard', component: UserDashboardComponent},
+      { path: 'user-expense', component:UserExpenseComponent},
+      { path: 'user-payroll', component:UserPayrollComponent},
+      { path: 'user-profile', component:UserPayrollComponent},
+      { path: 'user-leave', component:UserLeaveComponent},
 
     {
       path: 'settings', 
