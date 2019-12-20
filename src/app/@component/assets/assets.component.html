@@ -161,7 +161,7 @@
         <div class="form-row mt-4 mb-4 ">
           <div class="col-md-6">
             <!-- <mdb-select [options]="location"  label="Location"></mdb-select> -->
-
+            <label for="inputPassword4">Location</label>
             <select  [formControl]="Location" class="browser-default custom-select">
               <option selected disabled>Select Location</option>
               <option *ngFor="let item of location" [ngValue]="item.LocationsID">{{item.LocationsName}}</option>
