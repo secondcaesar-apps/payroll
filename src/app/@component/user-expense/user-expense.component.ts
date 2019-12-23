@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { APIENUM } from 'src/app/@shared/enum';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-user-expense',
   templateUrl: './user-expense.component.html',
@@ -8,6 +10,17 @@ import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 })
 export class UserExpenseComponent implements OnInit {
   headElements = ['ExpenseID', 'Category', 'Amount', 'BillDate','Status'];
+  bio=["Daily",
+   " Weekly",
+   "Bi-Weekly",
+  "Monthly",
+   "Quarterly",
+   "Half Yearly"
+  ]
+  status=['Paid','Unpaid'];
+  types=[ "Expense",
+    "ReOccurentExpense",
+    "Claim"]
   elements = [];
   searchText: string = '';
   previous: string;
@@ -26,11 +39,40 @@ export class UserExpenseComponent implements OnInit {
   Description: string  = '';
   ExpenseID: string  = '';
   Title: string  = '';
+  Expense:FormGroup;
+  error: any;
+  success: any;
+  cat :any;
+  emp:any;
   constructor(
-    private Api:ApiserviceService
+    private Api:ApiserviceService,
+    private _fb:FormBuilder
   ) { }
 
   ngOnInit() {
+
+
+    this.loadEvent();
+
+    this.Expense = this._fb.group({
+
+  
+      Merchant:['',[Validators.required]],
+      Receipt:['',[Validators.required]],
+      PaymentMethod:['',[Validators.required]],
+      Amount:['',[Validators.required]],
+      BillDate:['',[Validators.required]],
+      Category:['',[Validators.required]],
+      Description:['',[Validators.required]],
+      Status:['',[Validators.required]],
+      Title:['',[Validators.required]],
+      EmployeeID:['',[Validators.required]],
+      Rotation:['',[Validators.required]],
+      Day:['',[Validators.required]],
+      Type:['',[Validators.required]],
+     
+
+    });
     this.Api.Read(APIENUM.EXP)
     .subscribe((res:any)=>{
       this.loading = false;
@@ -57,4 +99,116 @@ export class UserExpenseComponent implements OnInit {
     this.Description=el.Description;
     this.Title=el.Title;
   }
+
+  get ExpenseIDs() {
+    return this.Expense.get('ExpenseID');
+  }
+  get Merchants() {
+    return this.Expense.get('Merchant');
+  }
+  get Receipts() {
+    return this.Expense.get('Receipt');
+  }
+  get PaymentMethods() {
+    return this.Expense.get('PaymentMethod');
+  }
+  get Amounts() {
+    return this.Expense.get('Amount');
+    
+  }
+
+  get BillDates() {
+    return this.Expense.get('BillDate');
+    
+  }
+
+  get Categorys() {
+    return this.Expense.get('Category');
+    
+  }
+  get Descriptions() {
+    return this.Expense.get('Description');
+    
+  }
+
+  get Status() {
+    return this.Expense.get('Status');
+    
+  }
+  get Titles() {
+    return this.Expense.get('Title');
+    
+  }
+
+  get EmployeeID() {
+    return this.Expense.get('EmployeeID');
+    
+  }
+
+  get Rotation() {
+    return this.Expense.get('Rotation');
+    
+  }
+  get Day() {
+    return this.Expense.get('Day');
+    
+  }
+  get Type() {
+    return this.Expense.get('Type');
+    
+  }
+
+  loadEvent(){
+    let event =[ this.Api.Read(APIENUM.CAT), this.Api.Read(APIENUM.EMP)];
+
+    forkJoin(event).subscribe((res:any)=>{
+
+      this.cat = res[0].records;
+      this.emp= res[1].records;
+  
+    })
+  }
+
+  createExpense(){
+    this.Expense.disable();
+      let value = this.Expense.value;
+  
+      this.Api.Create(APIENUM.EXP,value).subscribe((res:any)=>{
+         this.success=res.message
+  
+      },err=>{
+        this.error=err.error.message;
+        this.Expense.enable();
+  
+  
+      },()=>{
+        setTimeout(()=>{
+          this.success='';
+          this.error='';
+          this.Expense.reset();
+          this.Expense.enable();
+        },800)
+      })
+  }
 }
+
+
+export enum Status{
+  Paid,
+  UnPaid
+}
+
+export enum Type{
+  Expense,
+  ReOccurentExpense,
+  Claim
+}
+
+
+// ID: "1"
+// PostedUser: ""
+// CategoryID: "CAT1900001"
+// CategoryName: "Salaries"
+// CategoryDescription: "Salary of Full time Staffs"
+// Status: "Active"
+// DateCreated: "2019-12-13 12:40:19"
