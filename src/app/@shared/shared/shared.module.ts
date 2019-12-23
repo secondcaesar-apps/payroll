@@ -10,6 +10,8 @@ import { AgmCoreModule } from '@agm/core';
 import { MDBSpinningPreloader, MDBBootstrapModulesPro, ToastModule } from 'ng-uikit-pro-standard';
 import { CommonModule } from '@angular/common';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 
 
@@ -23,6 +25,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     ReactiveFormsModule,
     HttpClientModule,
    // ToastModule.forRoot(),
+   CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     MDBBootstrapModulesPro.forRoot(),
     AgmCoreModule.forRoot({
       // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en#key
@@ -35,7 +38,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxSkeletonLoaderModule
+    NgxSkeletonLoaderModule,
+    CalendarModule
     //ToastModule
   ]
 })

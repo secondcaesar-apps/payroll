@@ -13,6 +13,7 @@ import { LoginComponent } from './@component/login/login.component';
 import { SharedModule } from './@shared/shared/shared.module';
 import { StrengthPipe } from './@pipe/strength.pipe';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,8 @@ import { StrengthPipe } from './@pipe/strength.pipe';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-   SharedModule
+   SharedModule,
+  
   ],
   providers: [MDBSpinningPreloader],
   bootstrap: [AppComponent],
