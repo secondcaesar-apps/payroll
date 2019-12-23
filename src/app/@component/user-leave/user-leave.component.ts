@@ -24,6 +24,7 @@ export class UserLeaveComponent implements OnInit {
   lType:any;
   error:any;
   leave:any=null;
+  leaveHistory:any;
   @Input() title: string;
   success:any;
   constructor(
@@ -34,6 +35,7 @@ export class UserLeaveComponent implements OnInit {
   ngOnInit() {
     this.loadEvent();
     this.getAllLeave();
+    this.readLeave();
     this.Leave= this._fb.group({
       LeaveType:['',[Validators.required]],
       StartDate:['',[Validators.required]],
@@ -86,7 +88,7 @@ loadEvent(){
 
 
   this.service.Read(APIENUM.LEAVETYPE).subscribe((res:any)=>{
-    console.log(res);
+
     this.lType=res.records;
 
   },err=>{
@@ -113,7 +115,7 @@ getAllLeave(){
    
 }
   this.service.Create(APIENUM.REPORT,value).subscribe((res:any)=>{
-    console.log(res);
+  
     this.loading = false;
     this.elements=res.records;
     this.mdbTable.setDataSource(this.elements);
@@ -166,6 +168,12 @@ reademployee(el){
 
   this.loadEvent();
 
+ }
+
+ readLeave(){
+   this.service.Read(APIENUM.LEAVE).subscribe((res:any)=>{
+     console.log(res);
+   })
  }
 
 

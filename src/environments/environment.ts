@@ -6,8 +6,8 @@ export const environment = {
   production: false,
   url:'http://66.70.202.147/Payroll_server/',
 
-  token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9leGFtcGxlLm9yZyIsImF1ZCI6Imh0dHA6XC9cL2V4YW1wbGUuY29tIiwiaWF0IjoxNTc2ODM5NjI1LCJuYmYiOjE1NzY4Mzk2MjUsImV4cCI6MTU3NjkyNjAyNSwiZGF0YSI6eyJVc2VybmFtZSI6Ik9sdXllbWkgQmFtaXJvIiwiUm9sZUlEIjoiMTgiLCJFbWFpbCI6Im9iYW1pcm9AcGFnZWZpbmFuY2lhbHMuY29tIn19.A0G2J2aiK14P-wdfYC1mQgl2BtbkiZID9vCsNUDuqZo",
-
+  token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9leGFtcGxlLm9yZyIsImF1ZCI6Imh0dHA6XC9cL2V4YW1wbGUuY29tIiwiaWF0IjoxNTc3MDg1MzIwLCJuYmYiOjE1NzcwODUzMjAsImV4cCI6MTU3NzE3MTcyMCwiZGF0YSI6eyJVc2VybmFtZSI6Ik9sdXllbWkgQmFtaXJvIiwiUm9sZUlEIjoiMTgiLCJFbWFpbCI6Im9iYW1pcm9AcGFnZWZpbmFuY2lhbHMuY29tIn19.u-CvKgNYenJxKYz7Pr2QS9XuCcNZdr73_IHRiRmQFT0",
+  
   countryList :[
     "Afghanistan",
     "Albania",
