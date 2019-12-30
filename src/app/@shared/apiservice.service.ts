@@ -31,6 +31,12 @@ export class ApiserviceService {
 
   }
 
+  Login(type:APIENUM,data:any){
+
+
+    return this._http.post(`${this.apiUrl}${type.toString()}/login.php`,data);
+
+  }
   Update(type:APIENUM,data:any){
 
     return this._http.post(`${this.apiUrl}${type.toString()}/update.php`,data);
@@ -44,7 +50,12 @@ export class ApiserviceService {
   return this._http.post(`${this.apiUrl}${type.toString()}/read.php`,{});
 
   }
+  MontlyRead(data:any,type:APIENUM){
 
+
+    return this._http.post(`${this.apiUrl}${type.toString()}/monthlyread.php`,data);
+  
+    }
 
 Delete(type:APIENUM,id:any){
 

@@ -2,11 +2,12 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+
 export const environment = {
   production: false,
   url:'http://66.70.202.147/Payroll_server/',
 
-  token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9leGFtcGxlLm9yZyIsImF1ZCI6Imh0dHA6XC9cL2V4YW1wbGUuY29tIiwiaWF0IjoxNTc3MDg1MzIwLCJuYmYiOjE1NzcwODUzMjAsImV4cCI6MTU3NzE3MTcyMCwiZGF0YSI6eyJVc2VybmFtZSI6Ik9sdXllbWkgQmFtaXJvIiwiUm9sZUlEIjoiMTgiLCJFbWFpbCI6Im9iYW1pcm9AcGFnZWZpbmFuY2lhbHMuY29tIn19.u-CvKgNYenJxKYz7Pr2QS9XuCcNZdr73_IHRiRmQFT0",
+  token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9leGFtcGxlLm9yZyIsImF1ZCI6Imh0dHA6XC9cL2V4YW1wbGUuY29tIiwiaWF0IjoxNTc3Njk5NzM1LCJuYmYiOjE1Nzc2OTk3MzUsImV4cCI6MTU3Nzc4NjEzNSwiZGF0YSI6eyJVc2VybmFtZSI6Ik9sdXllbWkgQmFtaXJvIiwiUm9sZUlEIjoiMTgiLCJFbXBsb3llZUlEIjoiRU1QMTkwMDAwMSIsIkVtYWlsIjoib2JhbWlyb0BwYWdlZmluYW5jaWFscy5jb20ifX0.TwxOgtLBzhLgIm_BNSipSn6zH20ISkQC2yxWM7xWKfw",
   
   countryList :[
     "Afghanistan",
