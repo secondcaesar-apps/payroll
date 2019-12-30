@@ -1,4 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+
+* {
+
+font-family: 'Slabo 27px', serif;
+
+}
+
+button {
+
+    
+      border-radius: 5px !important;
+    
+    }
+    
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 .navbar.scrolling-navbar {
     transition: background .20s ease-in-out,padding .20s ease-in-out;
@@ -27,11 +42,11 @@
 // .side-nav .collapsible .card.active .card-header a h5 {
 //     font-family: oxygen;
 // }
-*{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: .85rem;
-    font-weight: 700;
-}
+// *{
+//     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+//     font-size: .85rem;
+//     font-weight: 700;
+// }
 .navbar.scrolling-navbar .navbar-brand{
     color: rgba(67, 69, 75, 0.596) !important;
     margin-left: 270px;
