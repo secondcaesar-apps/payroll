@@ -1,6 +1,9 @@
 <div class="padding">
     <div class="header"> 
       <div class="row">
+        <div *ngIf="error" class="alert alert-danger col-12" role="alert">
+          {{messages}}
+         </div> 
           <div class="col-sm-4">
               <div class="form-group">
                 <button mdbBtn type="button" color="success" mdbWavesEffect>
@@ -14,26 +17,18 @@
           <div class="col-sm-8">
             <div class="row float-right">
               <div class="col-sm-5">
-                  <div class="md-form">
-                  <input mdbInput class="mr-1" type="text" placeholder="Search" aria-label="Search"> 
-                </div>
+                <div class="md-form">
+                <input mdbInput class="mr-1" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="searchText" class="form-control" id="search" mdbInput> 
               </div>
-              <div class="col-sm-5">
-                  <div class="dropdown" mdbDropdown>
-  
-                      <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
-                        mdbWavesEffect>
-                        Status
-                      </button>
-                    
-                      <div class="dropdown-menu dropdown-primary">
-                        <button class="dropdown-item" href="#">All</button>
-                        <button class="dropdown-item" href="#">Active</button>
-                        <button class="dropdown-item" href="#">Inactive</button>
-                      </div>
-                      
-                </div>
+              </div> 
+              <div class="col-sm-5" [formGroup]="myForm1">
+                <div class="md-form">
+                  <input type="date" formControlName="Month" (change)="hitApi()">
               </div>
+              </div>
+                <!-- <mdb-date-picker name="mydate" formControlName="DOB" [options]="myDatePickerOptions" [(ngModel)]="date" [placeholder]="Date"
+                required></mdb-date-picker> -->
+
               <div class="col-sm-2">
                   <div class="btn-group" mdbDropdown>
                       <a mdbDropdownToggle mdbBtn  floating="true" size="sm" gradient="blue"  class="dropdown-toggle waves-light" mdbWavesEffect>
@@ -66,18 +61,50 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let el of elements; let i = index">
-                      <th scope="row" (click)="reademployee()">{{el.id}}</th>
-                      <td (click)="reademployee()">{{el.first}}</td>
-                      <td>{{el.last}}</td>
-                      <td>{{el.handle}}</td>
+                      <th scope="row" (click)="openDetails(el)">{{el.id}}{{el.id}}{{el.FirstName}} {{el.LastName}}</th>
+                      <td (click)="openDetails(el)">{{el.NetSalary}}</td>
+                      <td>{{el.PaymentDate}}</td>
+                      <td><button mdbBtn type="button" color="primary" mdbWavesEffect>
+                        <mdb-icon fas icon="credit-card" class="mr-1"></mdb-icon>{{el.Status}}
+                      </button></td>
                     </tr>
                   </tbody>
               </table>
           </div>
           <div class="col-4 line" *ngIf="show">
-               <div class="pre-body">
-                 <p>Select a row to view it's details here</p>
-               </div>
+              <div class="pre-body" *ngIf="displaySide">
+              <p style="font-size: large;">{{EmployeeID}}</p>
+                <button mdbBtn type="button" color="primary" mdbWavesEffect>
+                  <mdb-icon fas icon="magic" class="mr-1"></mdb-icon>{{statusValue}}
+                </button>
+                <ul class="list-group">
+                  <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                    Salary Slip ID
+                   {{SalarySlipID}}
+                  </li>
+                  <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                    Salary Group
+                   {{SalaryGroup}}
+                  </li>
+                  <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                    Month
+                    {{Month}}
+                  </li>
+                  <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                    Payment Method
+                  {{PaymentMethod}}
+                  </li>
+                  <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                    Payment Date
+                      {{PaymentDate}}
+                    </li>
+                    <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                      Employee Status
+                      {{EmployeeStatus}}
+                    </li>
+                    
+                </ul>
+           </div>
                <div class="body">
                   <div class="row">
   

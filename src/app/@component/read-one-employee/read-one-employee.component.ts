@@ -161,7 +161,7 @@ export class ReadOneEmployeeComponent implements OnInit {
     let event = [this.Api.Read(APIENUM.LOC),this.Api.Read(APIENUM.DEPT),this.Api.Read(APIENUM.EMP),this.Api.Read(APIENUM.SAG),this.Api.Read(APIENUM.DES),this.Api.Read(APIENUM.ROLE)]
   
     forkJoin(event).subscribe((res:any)=>{
-      console.log(res);
+      console.log(res); 
   
       this.location= res[0].records;
       this.department = res[1].records;

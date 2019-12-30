@@ -23,6 +23,7 @@
     "@fortawesome/fontawesome-free": "^5.6.3",
     "angular-bootstrap-md": "^8.8.0",
     "angular-calendar": "^0.28.2",
+    "angular-date-value-accessor": "0.0.2",
     "chart.js": "^2.5.0",
     "date-fns": "^2.8.0",
     "easy-pie-chart": "2.1.x",

@@ -20,6 +20,6 @@ export enum APIENUM{
     SAG='salarygroup',
     FILE='Fileuploads/fileupload.php',
     REPORT='leave/reporttoreaad.php',
-    LEAVEAPPROVE='leave/approve.php'
-    
+    LEAVEAPPROVE='leave/approve.php',
+    PAYROLL='salaryslip'   
 }
