@@ -9,122 +9,128 @@ import { environment } from 'src/environments/environment';
 })
 export class ApiserviceService {
 
-  apiUrl = environment.url ;
-  list=[];
+  apiUrl = environment.url;
+  list = [];
 
-  constructor(private _http:HttpClient,) { }
-
-
-
-  Approve(type:APIENUM,data:any){
+  constructor(private _http: HttpClient, ) { }
 
 
-    return this._http.post(this.apiUrl+'leave/approve.php',data);
 
-  }
-
-
-  Create(type:APIENUM,data:any){
+  Approve(type: APIENUM, data: any) {
 
 
-    return this._http.post(`${this.apiUrl}${type.toString()}/create.php`,data);
-
-  }
-
-  Login(type:APIENUM,data:any){
-
-
-    return this._http.post(`${this.apiUrl}${type.toString()}/login.php`,data);
-
-  }
-  Update(type:APIENUM,data:any){
-
-    return this._http.post(`${this.apiUrl}${type.toString()}/update.php`,data);
+    return this._http.post(this.apiUrl + 'leave/approve.php', data);
 
   }
 
 
- Read(type:APIENUM){
+  Create(type: APIENUM, data: any) {
 
 
-  return this._http.post(`${this.apiUrl}${type.toString()}/read.php`,{});
+    return this._http.post(`${this.apiUrl}${type.toString()}/create.php`, data);
 
   }
-  MontlyRead(data:any,type:APIENUM){
+
+  Login(type: APIENUM, data: any) {
 
 
-    return this._http.post(`${this.apiUrl}${type.toString()}/monthlyread.php`,data);
-  
+    return this._http.post(`${this.apiUrl}${type.toString()}/login.php`, data);
+
+  }
+  Update(type: APIENUM, data: any) {
+
+    return this._http.post(`${this.apiUrl}${type.toString()}/update.php`, data);
+
+  }
+
+
+  Read(type: APIENUM) {
+
+
+    return this._http.post(`${this.apiUrl}${type.toString()}/read.php`, {});
+
+  }
+  MontlyRead(data: any, type: APIENUM) {
+
+
+    return this._http.post(`${this.apiUrl}${type.toString()}/monthlyread.php`, data);
+
+  }
+
+  Delete(type: APIENUM, id: any) {
+
+    let value = 'AssetID';
+
+    switch (type) {
+      case APIENUM.ASS:
+        value = 'AssetID';
+        break;
+      case APIENUM.CON:
+        value = 'ContactID';
+        break;
+      case APIENUM.COM:
+        value = 'CompanyID';
+        break;
+      case APIENUM.DES:
+        value = 'DesignationID';
+        break;
+      case APIENUM.CAT:
+        value = 'CategoryID';
+        break;
+      case APIENUM.DEPT:
+        value = 'DepartmentID';
+        break;
+
+      case APIENUM.LOC:
+        value = 'LocationsID';
+        break;
+      case APIENUM.MENU:
+        value = 'MenuID';
+        break;
+      case APIENUM.MENUG:
+        value = 'ID';
+        break;
+      case APIENUM.ROLE:
+        value = 'RoleID';
+        break;
+      case APIENUM.INCR:
+        value = 'AssetID';
+        break;
+
+      case APIENUM.EXP:
+        value = 'AssetID';
+        break;
+
+      case APIENUM.LOG:
+        value = 'AssetID';
+        break;
     }
 
-Delete(type:APIENUM,id:any){
-
- let  value='AssetID';
-
- switch (type) {
-  case APIENUM.ASS:  
-   value='AssetID';
-      break;
-case APIENUM.CON:
-      value='ContactID';
-      break;
-case APIENUM.COM:
-    value='CompanyID';
-     break;
-     case APIENUM.DES:
-    value='DesignationID';
-     break;
- case APIENUM.CAT:
-              value='CategoryID';
-              break;
-  case APIENUM.DEPT:
-        value='DepartmentID';
-          break;
-
-  case APIENUM.LOC:
-          value='LocationsID';
-          break;
-  case APIENUM.MENU:
-          value='MenuID';
-          break;
-  case APIENUM.MENUG:
-          value='ID';
-          break;
-   case APIENUM.ROLE:
-          value='RoleID';
-          break;
-  case APIENUM.INCR:
-          value='AssetID';
-          break;
-
-  case APIENUM.EXP:
-              value='AssetID';
-     break;
-
-     case APIENUM.LOG:
-        value='AssetID';
-break;
- }
-
- 
- 
 
 
 
 
-  return this._http.post(`${this.apiUrl}/ ${type}/delete.php`,{value:id});
-}
-
-ImageUpload(F){
-
-  console.log(F);
-  const formData = new FormData();  
-  formData.append('upfile', F);  
-
-  return this._http.post(this.apiUrl+APIENUM.FILE,formData);
-}
 
 
+    return this._http.post(`${this.apiUrl}/ ${type}/delete.php`, { value: id });
+  }
+
+  ImageUpload(F) {
+
+    console.log(F);
+    const formData = new FormData();
+    formData.append('upfile', F);
+
+    return this._http.post(this.apiUrl + APIENUM.FILE, formData);
+  }
+
+  populatePayRoll() {
+    return this._http.post(this.apiUrl + APIENUM.POPULATEPAYROLL, {});
+  }
+
+  createPayslip(data) {
+    return this._http.post(this.apiUrl + APIENUM.CREATEPAYROLL, data);
+  }
 
 
 

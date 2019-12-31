@@ -1,5 +1,5 @@
 import { map } from 'rxjs/operators';
-import { FormGroup,    Validators,  FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ApiserviceService } from '../../../@shared/apiservice.service';
 import { Component, OnInit, Input, ElementRef, HostListener, AfterViewInit, ViewChild } from '@angular/core';
 import { MdbTableDirective } from 'ng-uikit-pro-standard';
@@ -16,7 +16,7 @@ import swal from 'sweetalert2';
   styleUrls: ['./payroll.component.scss']
 })
 export class PayrollComponent implements OnInit {
-  @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;  
+  @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements = [];
   error: Boolean = false;
   headElements = ['Employee', 'Net Salary', 'Pay Date', 'Status'];
@@ -27,26 +27,26 @@ export class PayrollComponent implements OnInit {
   messages: string;
   maxVisibleItems: number = 8;
   loaded: boolean = false
-  show: Boolean; 
+  show: Boolean;
   displaySide: Boolean = false;
   date: string = '';
-  myForm1: FormGroup; 
-  Month: string  = '';
-  statusValue: string  = '';
+  myForm1: FormGroup;
+  Month: string = '';
+  statusValue: string = '';
   NetSalary: string = '';
-SalaryGroup: string = '';
-PaymentMethod: string = '';
-PaymentDate: string = '';
-EmployeeStatus: string = '';
-SalarySlipID: string = '';
-EmployeeID: string = '';
+  SalaryGroup: string = '';
+  PaymentMethod: string = '';
+  PaymentDate: string = '';
+  EmployeeStatus: string = '';
+  SalarySlipID: string = '';
+  EmployeeID: string = '';
   constructor(
     private router: Router,
     private service: ApiserviceService,
     private fb: FormBuilder,
     private shared: SharedService,
-    ) { }
- 
+  ) { }
+
   ngOnInit() {
     this.myForm1 = this.fb.group({
       Month: [this.date, Validators.required]
@@ -70,47 +70,54 @@ EmployeeID: string = '';
     //   })
     // )
   }
-  
-  hitApi(){ 
 
-        this.service.MontlyRead(this.myForm1.value, APIENUM.PAYROLL)
-    .subscribe((res: any) => {  
-      this.loading = false;
-      this.error = false;
-      this.elements = res.records;
-      this.mdbTable.setDataSource(this.elements);
-      this.elements = this.mdbTable.getDataSource();
-      this.previous = this.mdbTable.getDataSource();
-    }, (err: any) => {
-      this.loading = false;
-      this.error = true;
-      this.messages = err.error.message;
-      this.message = true;
-      this.elements = [];
-    })
+  hitApi() {
+
+    this.service.MontlyRead(this.myForm1.value, APIENUM.PAYROLL)
+      .subscribe((res: any) => {
+        this.loading = false;
+        this.error = false;
+        this.elements = res.records;
+        this.mdbTable.setDataSource(this.elements);
+        this.elements = this.mdbTable.getDataSource();
+        this.previous = this.mdbTable.getDataSource();
+      }, (err: any) => {
+        this.loading = false;
+        this.error = true;
+        this.messages = err.error.message;
+        this.message = true;
+        this.elements = [];
+      })
   }
-  view(){
-    this.show = !this.show ;
+  view() {
+    this.show = !this.show;
   }
-  newemployee(){
+  newemployee() {
     this.router.navigate(['/main/create-employer'])
   }
-  reademployee(){
+  reademployee() {
     this.router.navigate(['/main/read-employer'])
   }
-  openDetails(el){
-    if(this.show){
+  openDetails(el) {
+    if (this.show) {
       this.displaySide = true;
-    } 
+    }
     this.statusValue = el.Status;
     this.NetSalary = el.NetSalary;
-    this.SalaryGroup =el.SalaryGroup;
+    this.SalaryGroup = el.SalaryGroup;
     this.PaymentMethod = el.PaymentMethod;
     this.PaymentDate = el.PaymentMethod;
-    this.EmployeeStatus =el.EmployeeStatus
+    this.EmployeeStatus = el.EmployeeStatus
     this.EmployeeID = el.EmployeeID;
     this.SalarySlipID = el.SalarySlipID;
     this.Month = el.Month;
   }
+
+
+  generatePayroll() {
+    this.router.navigate(['/main/generate-payroll']);
+  }
+
+
 
 }
