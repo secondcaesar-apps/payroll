@@ -15,7 +15,12 @@ import { map, tap  } from 'rxjs/operators';
 export class UserProfileComponent implements OnInit {
 
   @Input() title: string;
-  value:any;
+  value: string="";
+  elements: any = [];
+  message: Boolean=false;
+  edit: Boolean=false;
+  loading:Boolean=true;
+  messages: string;
   employee:FormGroup;
   location:any;
   role:any;
@@ -35,7 +40,6 @@ export class UserProfileComponent implements OnInit {
     private route: Router,
   ) { }
 
-
   ngOnInit() {
     this.optionsSelect = [
       { value: 'Account 1', label: 'Account 1' },
@@ -52,120 +56,130 @@ export class UserProfileComponent implements OnInit {
           { value: 'Married', label: 'Married' },
           { value: 'Divoced', label: 'Divoced' },
           ];
-    this.value = this.shared.getInfo().value
-        if(this.value==null){
-          this.value=null;
-        }else {
-          console.log(this.value)
-          this.email = this.value.Email;
+    // this.value = this.shared.getInfo().value
+    this.value = "EMP1900002"
+          let data = {
+            EmployeeID: "EMP1900003"
+            
+      }
+          this.Api.ReadOne(APIENUM.EMP, data)
+          .subscribe((res:any)=>{
+            this.loading = false;
+            this.elements=res.records[0];
+
+            console.log(this.elements)
+          this.email = this.elements.Email;
           this.employee = this._fb.group({
-            EmployeeID :[this.value.EmployeeID],
-            FirstName :[this.value.FirstName, Validators.required],
-            LastName:[this.value.LastName,Validators.required],
-            Email:[this.value.Email,Validators.required],
-            Gender:[this.value.Gender, Validators.required],
-            DOB:[this.value.DOB,Validators.required],
-            Department:[this.value.Department,Validators.required],
-            Designation:[this.value.Designation, Validators.required],
-            Location:[this.value.Location,Validators.required],
-            ReportsTO:[this.value.ReportsTO,Validators.required],
-            ProbationEndDate:[this.value.ProbationEndDate,Validators.required],
-            JoiningDate:[this.value.JoiningDate,Validators.required],
-            MaritalStatus:[this.value.MaritalStatus,Validators.required],
-            ExitDate:[this.value.ExitDate,Validators.required],
-            Status:[this.value.Status,Validators.required],
-            SalaryGroup:[this.value.SalaryGroup,Validators.required],
-            Role:[this.value.Role,Validators.required],
-            ContactNumber:[this.value.ContactNumber,Validators.required],
-            EmergencyContactNumber:[this.value.EmergencyContactNumber,Validators.required],
-            EmergencyContactPerson:[this.value.EmergencyContactPerson,Validators.required],
-            Address:[this.value.Address,Validators.required],
-            DrivingLicenseNumber:[this.value.DrivingLicenseNumber,Validators.required],
-            PANNumber:[this.value.PANNumber,Validators.required],
-            AadharNumber_SSN:[this.value.AadharNumber_SSN,Validators.required],
-            VoterIDNumber:[this.value.VoterIDNumber,Validators.required],
-            DrivingLicense:[this.value.DrivingLicense,Validators.required],
-            PANCard:[this.value.PANCard,Validators.required],
-            Aadhar_SSN:[this.value.Aadhar_SSN,Validators.required],
-            VoterID:[this.value.VoterID,Validators.required],
-            OfferLetter:[this.value.OfferLetter,Validators.required],
-            JoiningLetter:[this.value.JoiningLetter,Validators.required],
-            Contract:[this.value.Contract,Validators.required],
-            Resume:[this.value.Resume,Validators.required],
-            Relievingletter:[this.value.Relievingletter,Validators.required],
-            ExperienceLetter:[this.value.ExperienceLetter,Validators.required],
-            PrimaryBankAccount:[this.value.PrimaryBankAccount,Validators.required],
-            Acct1AccountType:[this.value.Acct1AccountType,Validators.required],
-            Acct1AccountHolderName:[this.value.Acct1AccountHolderName,Validators.required],
-            Acct1AccountNumber:[this.value.Acct1AccountNumber,Validators.required],
-            Acct1BankCode:[this.value.Acct1BankCode,Validators.required],
-            Acct1BankName:[this.value.Acct1BankName,Validators.required],
-            Acct1BankBranch:[this.value.Acct1BankBranch,Validators.required],
-            Acct2AccountType:[this.value.Acct2AccountType,Validators.required],
-            Acct2AccountHolderName:[this.value.Acct2AccountHolderName,Validators.required],
-            Acct2AccountNumber:[this.value.Acct2AccountNumber,Validators.required],
-            Acct2BankCode:[this.value.Acct2BankCode,Validators.required],
-            Acct2BankName:[this.value.Acct2BankName,Validators.required],
-            Acct2BankBranch:[this.value.Acct1BankBranch,Validators.required],
-            GradSchoolUniversity:[this.value.GradSchoolUniversity,Validators.required],
-            GradStartDate:[this.value.GradStartDate,Validators.required],
-            GradEndDate:[this.value.GradEndDate,Validators.required],
-            GradDetails:[this.value.GradDetails,Validators.required],
-            PGSchoolUniversity:[this.value.PGSchoolUniversity,Validators.required],
-            PGStartDate:[this.value.PGStartDate,Validators.required],
-            PGEndDate:[this.value.PGEndDate,Validators.required],
-            PGDetails:[this.value.PGDetails,Validators.required],
-            DoctorateSchoolUniversity:[this.value.DoctorateSchoolUniversity,Validators.required],
-            DoctorateStartDate:[this.value.DoctorateStartDate,Validators.required],
-            DoctorateEndDate:[this.value.DoctorateEndDate,Validators.required],
-            DoctorateDetails:[this.value.DoctorateDetails,Validators.required],
-            CertificationsCoursesDetails:[this.value.CertificationsCoursesDetails,Validators.required],
-            WE1CompanyName:[this.value.WE1CompanyName,Validators.required],
-            WE1Designation:[this.value.WE1Designation,Validators.required],
-            WE1From:[this.value.WE1From,Validators.required],
-            WE1To:[this.value.WE1To,Validators.required],
-            WE1Details:[this.value.WE1Details,Validators.required],
-            WE2CompanyName:[this.value.WE2CompanyName,Validators.required],
-            WE2Designation:[this.value.WE2Designation,Validators.required],
-            WE2From:[this.value.WE2From,Validators.required],
-            WE2To:[this.value.WE2To,Validators.required],
-            WE2Details:[this.value.WE2Details,Validators.required],
-            WE3CompanyName:[this.value.WE3CompanyName,Validators.required],
-            WE3Designation:[this.value.WE3Designation,Validators.required],
-            WE3From:[this.value.WE3From,Validators.required],
-            WE3To:[this.value.WE3To,Validators.required],
-            WE3Details:[this.value.WE3Details,Validators.required],
-            OtherWEsDetails:[this.value.OtherWEsDetails,Validators.required],
-            PassportNumber:[this.value.PassportNumber,Validators.required],
-            PassportIssueDate:[this.value.PassportIssueDate,Validators.required],
-            PassportExpiryDate:[this.value.PassportExpiryDate,Validators.required],
-            PassportScanCopy:[this.value.PassportScanCopy,Validators.required],
-            VisaNumber:[this.value.VisaNumber,Validators.required],
-            VisaIssueDate:[this.value.VisaIssueDate,Validators.required],
-            VisaExpiryDate:[this.value.VisaExpiryDate,Validators.required],
-            VisaScanCopy:[this.value.VisaScanCopy,Validators.required],
-            Slackusername:[this.value.Slackusername,Validators.required],
-            Facebookusername:[this.value.Facebookusername,Validators.required],
-            Twitterusername:[this.value.Twitterusername,Validators.required],
-            LinkedInusername:[this.value.LinkedInusername,Validators.required],
-             });
-        }
-          
+            EmployeeID:[this.elements.EmployeeID],
+            FirstName:[this.elements.FirstName, Validators.required],
+            LastName:[this.elements.LastName,Validators.required],
+            Email:[this.elements.Email,Validators.required],
+            Gender:[this.elements.Gender, Validators.required],
+            DOB:[this.elements.DOB,Validators.required],
+            Department:[this.elements.Department,Validators.required],
+            Designation:[this.elements.Designation, Validators.required],
+            Location:[this.elements.Location,Validators.required],
+            ReportsTO:[this.elements.ReportsTO,Validators.required],
+            ProbationEndDate:[this.elements.ProbationEndDate,Validators.required],
+            JoiningDate:[this.elements.JoiningDate,Validators.required],
+            MaritalStatus:[this.elements.MaritalStatus,Validators.required],
+            ExitDate:[this.elements.ExitDate,Validators.required],
+            Status:[this.elements.Status,Validators.required],
+            SalaryGroup:[this.elements.SalaryGroup,Validators.required],
+            Role:[this.elements.Role,Validators.required],
+            ContactNumber:[this.elements.ContactNumber,Validators.required],
+            EmergencyContactNumber:[this.elements.EmergencyContactNumber,Validators.required],
+            EmergencyContactPerson:[this.elements.EmergencyContactPerson,Validators.required],
+            Address:[this.elements.Address,Validators.required],
+            DrivingLicenseNumber:[this.elements.DrivingLicenseNumber,Validators.required],
+            PANNumber:[this.elements.PANNumber,Validators.required],
+            AadharNumber_SSN:[this.elements.AadharNumber_SSN,Validators.required],
+            VoterIDNumber:[this.elements.VoterIDNumber,Validators.required],
+            DrivingLicense:[this.elements.DrivingLicense,Validators.required],
+            PANCard:[this.elements.PANCard,Validators.required],
+            Aadhar_SSN:[this.elements.Aadhar_SSN,Validators.required],
+            VoterID:[this.elements.VoterID,Validators.required],
+            OfferLetter:[this.elements.OfferLetter,Validators.required],
+            JoiningLetter:[this.elements.JoiningLetter,Validators.required],
+            Contract:[this.elements.Contract,Validators.required],
+            Resume:[this.elements.Resume,Validators.required],
+            Relievingletter:[this.elements.Relievingletter,Validators.required],
+            ExperienceLetter:[this.elements.ExperienceLetter,Validators.required],
+            PrimaryBankAccount:[this.elements.PrimaryBankAccount,Validators.required],
+            Acct1AccountType:[this.elements.Acct1AccountType,Validators.required],
+            Acct1AccountHolderName:[this.elements.Acct1AccountHolderName,Validators.required],
+            Acct1AccountNumber:[this.elements.Acct1AccountNumber,Validators.required],
+            Acct1BankCode:[this.elements.Acct1BankCode,Validators.required],
+            Acct1BankName:[this.elements.Acct1BankName,Validators.required],
+            Acct1BankBranch:[this.elements.Acct1BankBranch,Validators.required],
+            Acct2AccountType:[this.elements.Acct2AccountType,Validators.required],
+            Acct2AccountHolderName:[this.elements.Acct2AccountHolderName,Validators.required],
+            Acct2AccountNumber:[this.elements.Acct2AccountNumber,Validators.required],
+            Acct2BankCode:[this.elements.Acct2BankCode,Validators.required],
+            Acct2BankName:[this.elements.Acct2BankName,Validators.required],
+            Acct2BankBranch:[this.elements.Acct1BankBranch,Validators.required],
+            GradSchoolUniversity:[this.elements.GradSchoolUniversity,Validators.required],
+            GradStartDate:[this.elements.GradStartDate,Validators.required],
+            GradEndDate:[this.elements.GradEndDate,Validators.required],
+            GradDetails:[this.elements.GradDetails,Validators.required],
+            PGSchoolUniversity:[this.elements.PGSchoolUniversity,Validators.required],
+            PGStartDate:[this.elements.PGStartDate,Validators.required],
+            PGEndDate:[this.elements.PGEndDate,Validators.required],
+            PGDetails:[this.elements.PGDetails,Validators.required],
+            DoctorateSchoolUniversity:[this.elements.DoctorateSchoolUniversity,Validators.required],
+            DoctorateStartDate:[this.elements.DoctorateStartDate,Validators.required],
+            DoctorateEndDate:[this.elements.DoctorateEndDate,Validators.required],
+            DoctorateDetails:[this.elements.DoctorateDetails,Validators.required],
+            CertificationsCoursesDetails:[this.elements.CertificationsCoursesDetails,Validators.required],
+            WE1CompanyName:[this.elements.WE1CompanyName,Validators.required],
+            WE1Designation:[this.elements.WE1Designation,Validators.required],
+            WE1From:[this.elements.WE1From,Validators.required],
+            WE1To:[this.elements.WE1To,Validators.required],
+            WE1Details:[this.elements.WE1Details,Validators.required],
+            WE2CompanyName:[this.elements.WE2CompanyName,Validators.required],
+            WE2Designation:[this.elements.WE2Designation,Validators.required],
+            WE2From:[this.elements.WE2From,Validators.required],
+            WE2To:[this.elements.WE2To,Validators.required],
+            WE2Details:[this.elements.WE2Details,Validators.required],
+            WE3CompanyName:[this.elements.WE3CompanyName,Validators.required],
+            WE3Designation:[this.elements.WE3Designation,Validators.required],
+            WE3From:[this.elements.WE3From,Validators.required],
+            WE3To:[this.elements.WE3To,Validators.required],
+            WE3Details:[this.elements.WE3Details,Validators.required],
+            OtherWEsDetails:[this.elements.OtherWEsDetails,Validators.required],
+            PassportNumber:[this.elements.PassportNumber,Validators.required],
+            PassportIssueDate:[this.elements.PassportIssueDate,Validators.required],
+            PassportExpiryDate:[this.elements.PassportExpiryDate,Validators.required],
+            PassportScanCopy:[this.elements.PassportScanCopy,Validators.required],
+            VisaNumber:[this.elements.VisaNumber,Validators.required],
+            VisaIssueDate:[this.elements.VisaIssueDate,Validators.required],
+            VisaExpiryDate:[this.elements.VisaExpiryDate,Validators.required],
+            VisaScanCopy:[this.elements.VisaScanCopy,Validators.required],
+            Slackusername:[this.elements.Slackusername,Validators.required],
+            Facebookusername:[this.elements.Facebookusername,Validators.required],
+            Twitterusername:[this.elements.Twitterusername,Validators.required],
+            LinkedInusername:[this.elements.LinkedInusername,Validators.required],
+             }); 
+            }, (err: any) => {
+              this.loading = false;
+              this.messages = err.error.message;
+              this.message = true;
+            })
+        
+
         this.loadEvent();
     
   }
   
+
   loadEvent(){
 
     let event = [this.Api.Read(APIENUM.LOC),this.Api.Read(APIENUM.DEPT),this.Api.Read(APIENUM.EMP),this.Api.Read(APIENUM.SAG),this.Api.Read(APIENUM.DES),this.Api.Read(APIENUM.ROLE)]
   
     forkJoin(event).subscribe((res:any)=>{
-      console.log(res);
-  
       this.location= res[0].records;
       this.department = res[1].records;
       this.employees=res[2].records;
-       this.salarygroup=res[3].records;
        this.designation=res[4].records;
        this.role=res[5].records;
     })
@@ -195,7 +209,7 @@ export class UserProfileComponent implements OnInit {
       swal.fire({
         position: 'center',
         icon: 'error',
-        title: 'Something went wrong',
+        title: err.error.message,
         showConfirmButton: true,
         timer: 3500,
     
@@ -204,5 +218,7 @@ export class UserProfileComponent implements OnInit {
     }))
   
   }
-
+  CanEdit(){
+    this.edit = true
+  }
 }

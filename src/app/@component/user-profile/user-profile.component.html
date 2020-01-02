@@ -7,7 +7,7 @@
           <mdb-card-body>
               <div class="col-1">
               <input type="image" src="../../../assets/profile_image.jpg" width=200px height=200px >
-              <button mdbBtn type="button" size="lg" color="success" mdbWavesEffect>
+              <button mdbBtn type="button" size="lg" color="success" mdbWavesEffect (click)='CanEdit()'>
                   <mdb-icon fas icon="pencil-alt"></mdb-icon>Edit
                 </button>
                 </div>
@@ -23,6 +23,8 @@
         </mdb-card>
   </div>
   <div class="col">
+<mdb-tabset #staticTabs [buttonClass]="'nav md-pills pills-secondary mb-2'" [justified]="true" [contentClass]="'card'">
+  <mdb-tab heading="ABOUT">
     <form [formGroup]="employee">
       <div class="pre-body">
          <mdb-accordion [multiple]="false">
@@ -61,29 +63,29 @@
                         
                         <div class="form-row">
                         
-                          <div class="form-group col-md-6">
+                          <div class="col-md-6">
                             <label for="inputEmail4">First Name</label>
-                            <input mdbInput type="email" class="form-control" formControlName="FirstName" id="inputEmail4">
+                            <input type="text" formControlName="FirstName" class="form-control" id="inputEmail4" mdbInput>
                           </div>
                         
-                          <div class="form-group col-md-6">
+                          <div class="col-md-6">
                             <label for="inputPassword4">Last Name</label>
-                            <input mdbInput type="text" formControlName="LastName" class="form-control" id="inputPassword4">
+                            <input type="text" formControlName="LastName" class="form-control" id="inputEmail4" mdbInput>
                           </div>
                         </div>
-                        <div class="form-row">
+                        <div class="form-row" >
                         
-                            <div class="form-group col-md-6">
+                            <div class="col-md-6">
                               <label for="inputEmail4">Email</label>
-                              <input mdbInput formControlName="Email" type="email" class="form-control" id="inputEmail4">
+                              <input formControlName="Email" type="email" class="form-control" id="inputEmail4" mdbInput>
                             </div>
                           
-                            <div class="form-group col-md-6">
+                            <div class="col-md-6">
                                 <label for="inputEmail4">Gender</label>
                                 <input type="text"  formControlName="Gender" class="form-control" id="inputEmail4" mdbInput>
                             </div>
                           </div>
-                          <mdb-date-picker name="mydate" formControlName="DOB" [options]="myDatePickerOptions" [placeholder]="'Date of Birth'"
+                          <mdb-date-picker name="mydate" formControlName="DOB" [options]="" [placeholder]="'Date of Birth'"
                           required></mdb-date-picker>
                     </mdb-card-body>
                 </mdb-card>
@@ -190,7 +192,7 @@
                                
                                 <div class="form-group col-md-6">
                                   <label for="inputEmail4">Probation End Date</label>
-                                  <input mdbInput type="email" class="form-control" formControlName="ProbationEndDat" id="inputEmail4">
+                                  <input mdbInput type="email" class="form-control" formControlName="ProbationEndDate" id="inputEmail4">
                                 </div>
                               
                               </div>
@@ -787,10 +789,35 @@
       </mdb-accordion-item>
 
      </mdb-accordion>
-     <button mdbBtn type="button" size="lg" color="success" mdbWavesEffect (click)="createemployee()">
+     <button mdbBtn type="button" size="lg" color="success" mdbWavesEffect (click)="createemployee()" *ngIf='edit'>
        <mdb-icon fas icon="pencil-alt"></mdb-icon>Update
      </button>
    </div>
  </form>
+  </mdb-tab>
+  <!--Panel 2-->
+  <mdb-tab heading="APPRECIATIONA">
+    <div class="row">
+      <div class="col-12">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
+          reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
+          porro voluptate odit minima.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
+          reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
+          porro voluptate odit minima.</p>
+      </div>
+    </div>
+  </mdb-tab>
+  <!--Panel 3-->
+  <mdb-tab heading="INCREMENT & PROMOTION">
+    <div class="row">
+      <div class="col-12">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
+          reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
+          porro voluptate odit minima.</p>
+      </div>
+    </div>
+  </mdb-tab>
+</mdb-tabset>
   </div>
 </div>
