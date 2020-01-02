@@ -19,10 +19,11 @@ import { ApiserviceService } from '../@shared/apiservice.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorServices } from '../@shared/intercept';
 import { IncreComponent } from '../@component/setting/incre/incre.component';
+import { CalenderComponent } from '../@component/setting/calender/calender.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent, DesignationComponent, IncreComponent],
+  declarations: [HomeComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent, DesignationComponent, IncreComponent, CalenderComponent],
   imports: [
     CommonModule,
     SettingRoutingModule,

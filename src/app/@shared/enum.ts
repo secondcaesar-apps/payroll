@@ -23,5 +23,6 @@ export enum APIENUM{
     LEAVEAPPROVE='leave/approve.php',
     PAYROLL='salaryslip.php',   
     POPULATEPAYROLL='salaryslip/populatepayroll.php',
-    CREATEPAYROLL='/salaryslip/create.php'
+    CREATEPAYROLL='/salaryslip/create.php',
+    EVENT='event'
 }
