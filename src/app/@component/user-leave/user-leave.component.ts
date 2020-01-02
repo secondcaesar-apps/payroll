@@ -114,8 +114,7 @@ getAllLeave(){
   let value = {EmployeeID : "EMP1900002"
    
 }
-  this.service.Create(APIENUM.REPORT,value).subscribe((res:any)=>{
-  
+    this.service.Create(APIENUM.REPORT,value).subscribe((res:any)=>{
     this.loading = false;
     this.elements=res.records;
     this.mdbTable.setDataSource(this.elements);
@@ -175,7 +174,6 @@ reademployee(el){
      console.log(res);
    })
  }
-
 
 }
 

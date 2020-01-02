@@ -50,6 +50,12 @@ export class ApiserviceService {
   return this._http.post(`${this.apiUrl}${type.toString()}/read.php`,{});
 
   }
+  ReadOne(type:APIENUM,data:any,){
+
+
+    return this._http.post(`${this.apiUrl}${type.toString()}/read_one.php`,data);
+  
+    }
   MontlyRead(data:any,type:APIENUM){
 
 
