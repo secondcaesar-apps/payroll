@@ -25,21 +25,22 @@ import { UserPayrollComponent } from '../@component/user-payroll/user-payroll.co
 import { UserLeaveComponent } from '../@component/user-leave/user-leave.component';
 import { UserExpenseComponent } from '../@component/user-expense/user-expense.component';
 import { SharedService } from '../@shared/shared/shared.service';
+import { GeneratePayrollComponent } from '../@component/generate-payroll/generate-payroll.component';
 
 @NgModule({
-  declarations: [HomeComponent, DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent, ContactComponent, CreatecontactComponent, UserDashboardComponent, UserProfileComponent, UserPayrollComponent, UserLeaveComponent, UserExpenseComponent],
+  declarations: [HomeComponent, DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent, ContactComponent, CreatecontactComponent, UserDashboardComponent, UserProfileComponent, UserPayrollComponent, UserLeaveComponent, UserExpenseComponent, GeneratePayrollComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
     SharedModule
   ],
   entryComponents: [AddassetsComponent],
-  providers:[ApiserviceService,
+  providers: [ApiserviceService,
     SharedService,
     {
-    provide:HTTP_INTERCEPTORS,
-    useClass:InterceptorServices,
-    multi:true
-  }]
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorServices,
+      multi: true
+    }]
 })
 export class MainModule { }

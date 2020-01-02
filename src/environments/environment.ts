@@ -6,7 +6,6 @@
 export const environment = {
   production: false,
   url:'http://66.70.202.147/Payroll_server/',
-
   token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9leGFtcGxlLm9yZyIsImF1ZCI6Imh0dHA6XC9cL2V4YW1wbGUuY29tIiwiaWF0IjoxNTc3OTU2Mzc3LCJuYmYiOjE1Nzc5NTYzNzcsImV4cCI6MTU3ODA0Mjc3NywiZGF0YSI6eyJVc2VybmFtZSI6Ik9sdXllbWkgQmFtaXJvIiwiUm9sZUlEIjoiMTgiLCJFbXBsb3llZUlEIjoiRU1QMTkwMDAwMSIsIkVtYWlsIjoib2JhbWlyb0BwYWdlZmluYW5jaWFscy5jb20ifX0.aacrLBpJyH14XdQwkbsL67HZieM2WrTITFsybCW1WTI",
   
   countryList :[

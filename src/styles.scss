@@ -1,9 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+@import url('https://fonts.googleapis.com/css?family=br-firma-sb+27px');
+@font-face {
+  font-family: ‘BR Firma CW’;
+  src: url(assets/font/br-firma-sb.woff2) format(‘woff2’);
+ 
+  font-weight: normal;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: ‘Sailec’;
+  src: url(assets/font/sailec-reg.woff2) format(‘woff2’);
+  
+  font-weight: normal;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face{
+  font-family:“Frank”;
+  src:url(assets/font/Frank-Regular.eot) format(“embedded-opentype”),url(assets/font/Frank-Light.woff) format(“woff”),url(assets/font/Frank-Regular.ttf) format(“truetype”);
+  font-style:normal;
+  /* font-weight:500 */
+}
+/*@font-face{
+  font-family:“Circulartt”;
+  src:url(assets/font/Circular-Book.eot) format(“embedded-opentype”),url(assets/font/Circular-Book.woff) format(“woff”),url(assets/font/Circular-Book.ttf) format(“truetype”),url(assets/font/Circular-Book.svg) format(“svg”);
+  font-style:normal;
+  /* font-weight:500 */
+/*}*/
+@font-face {
+  font-family: 'Circular';
+  src: url('assets/font/Circular-Book.eot') format('embedded-opentype'),
+       url('assets/font/Circular-Book.woff') format('woff'),
+       url('assets/font/Circular-Book.ttf') format('truetype'),
+
+  }
 
 * {
 
-font-family: 'Slabo 27px', serif;
+  font-family: 'Sailec' , 'Frank' , 'Circular' , 'BR Firma CW';
+  box-shadow: none!important;
 
 }
 
