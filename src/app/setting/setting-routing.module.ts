@@ -13,6 +13,7 @@ import { RolecreateComponent } from '../@component/setting/rolecreate/rolecreate
 import { LocationComponent } from '../@component/setting/location/location.component';
 import { DesignationComponent } from '../@component/setting/designation/designation.component';
 import { IncreComponent } from '../@component/setting/incre/incre.component';
+import { CalenderComponent } from '../@component/setting/calender/calender.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
      { path: 'expense', component: ExpenseComponent},
      { path: 'designation', component: DesignationComponent},
      { path: 'increment', component: IncreComponent},
+     { path: 'calender', component: CalenderComponent},
   ] },
  
   
