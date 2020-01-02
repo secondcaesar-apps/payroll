@@ -20,6 +20,7 @@ export class UserProfileComponent implements OnInit {
   message: Boolean=false;
   edit: Boolean=false;
   loading:Boolean=true;
+  profile: Boolean=false;
   messages: string;
   employee:FormGroup;
   location:any;
@@ -160,6 +161,7 @@ export class UserProfileComponent implements OnInit {
             Twitterusername:[this.elements.Twitterusername,Validators.required],
             LinkedInusername:[this.elements.LinkedInusername,Validators.required],
              }); 
+             this.profile = true
             }, (err: any) => {
               this.loading = false;
               this.messages = err.error.message;

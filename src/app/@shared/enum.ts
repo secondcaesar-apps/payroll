@@ -24,5 +24,6 @@ export enum APIENUM{
     PAYROLL='salaryslip.php',   
     POPULATEPAYROLL='salaryslip/populatepayroll.php',
     CREATEPAYROLL='/salaryslip/create.php',
-    EVENT='event'
+    EVENT='event',
+    PAYROLLM='salaryslip', 
 }
