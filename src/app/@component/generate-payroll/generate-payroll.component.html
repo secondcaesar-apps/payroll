@@ -5,6 +5,13 @@
     <!-- <button mdbBtn type="button" (click)="newemployee()" color="default" mdbWavesEffect>
             <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
           </button> -->
+
+          <div *ngIf="success" class="alert alert-success col-12" role="alert">
+            {{success}}
+          </div>
+          <div *ngIf="error" class="alert alert-danger col-12" role="alert">
+           {{error}}
+          </div> 
 </div>
 
 

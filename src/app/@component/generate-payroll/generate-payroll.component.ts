@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import swal from 'sweetalert2';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-generate-payroll',
   templateUrl: './generate-payroll.component.html',
@@ -10,7 +10,9 @@ import swal from 'sweetalert2';
 })
 export class GeneratePayrollComponent implements OnInit {
   payrollGenarte: FormGroup;
-  constructor(private _fb: FormBuilder, private service: ApiserviceService) {
+  error: any;
+  success: any;
+  constructor(private _fb: FormBuilder, private service: ApiserviceService,private _location: Location) {
 
 
     this.payrollGenarte = this._fb.group({
@@ -82,7 +84,9 @@ export class GeneratePayrollComponent implements OnInit {
 
 
   }
-
+  back () {
+    this._location.back()
+  }
 
   convert() {
     var date = new Date(),
@@ -95,9 +99,11 @@ export class GeneratePayrollComponent implements OnInit {
   CreatePayslip() {
     //console.log(this.itemArray.value);
     let data = this.itemArray.value;
-    this.service.createPayslip(data).subscribe((res) => {
-      console.log(res);
-    })
+    this.service.createPayslip(data).subscribe((res:any) => {
+      this.success=res.message
+    }, (err: any) => {
+      this.error = err.error.message;
+    });
   }
 
 
