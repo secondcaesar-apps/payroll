@@ -73,7 +73,7 @@ export class PayrollComponent implements OnInit {
 
   hitApi() {
 
-    this.service.MontlyRead(this.myForm1.value, APIENUM.PAYROLL)
+    this.service.MontlyRead(this.myForm1.value, APIENUM.PAYROLLM)
       .subscribe((res: any) => {
         this.loading = false;
         this.error = false;
