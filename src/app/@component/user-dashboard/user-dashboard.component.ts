@@ -17,6 +17,9 @@ import {
   isSameMonth,
   addHours
 } from 'date-fns';
+import { ApiserviceService } from 'src/app/@shared/apiservice.service';
+import { APIENUM } from 'src/app/@shared/enum';
+import { map } from 'rxjs/operators';
 const colors: any = {
   red: {
     primary: '#ad2121',
@@ -39,10 +42,70 @@ const colors: any = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserDashboardComponent implements OnInit {
-
-  constructor() { }
+  events: CalendarEvent[]
+  constructor(private service:ApiserviceService) { }
 
   ngOnInit() {
+this.service.Read(APIENUM.EVENT).
+pipe(
+
+map((res:any)=>res.records)
+
+)
+.
+subscribe((res)=>{
+var array=[];
+  for (let index = 0; index < res.length; index++) {
+    //const element = array[index];
+    array[index]=
+      {
+        start:startOfDay( new Date(res[index].StartDate)),
+        end: addDays(new Date(res[index].EndDate), 1),
+        title: res[index].EventTitle,
+        color: colors.red,
+        actions: this.actions,
+        allDay: true,
+        resizable: {
+          beforeStart: true,
+          afterEnd: true
+        },
+        draggable: true
+      }
+    
+    
+        
+
+
+    
+  }
+
+  this.events= array;
+  console.log(this.events);
+
+// res.forEach((element,i) => {
+
+
+//   this.events[i]=
+//     {
+//       start: startOfDay(element.StartDate),
+//       end: addDays(element.EndDate, 1),
+//       title: element.EventTitle,
+//       color: colors.red,
+//       actions: this.actions,
+//       allDay: true,
+//       resizable: {
+//         beforeStart: true,
+//         afterEnd: true
+//       },
+//       draggable: true
+//     }
+  
+  
+// });
+
+console.log(this.events);
+})
+
   }
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
@@ -77,46 +140,6 @@ export class UserDashboardComponent implements OnInit {
 
   refresh: Subject<any> = new Subject();
 
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    }
-  ];
 
   activeDayIsOpen: boolean = true;
 

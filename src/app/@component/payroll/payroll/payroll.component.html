@@ -66,7 +66,7 @@
           <tbody>
             <tr *ngFor="let el of elements; let i = index">
               <th scope="row" (click)="openDetails(el)">{{el.id}}{{el.id}}{{el.FirstName}} {{el.LastName}}</th>
-              <td (click)="openDetails(el)">{{el.NetSalary}}</td>
+              <td (click)="openDetails(el)" style="text-align: right;">{{el.NetSalary}}</td>
               <td>{{el.PaymentDate}}</td>
               <td><button mdbBtn type="button" color="primary" mdbWavesEffect>
                   <mdb-icon fas icon="credit-card" class="mr-1"></mdb-icon>{{el.Status}}
