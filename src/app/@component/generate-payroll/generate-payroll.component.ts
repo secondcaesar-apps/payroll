@@ -3,6 +3,7 @@ import { FormArray, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import swal from 'sweetalert2';
 import { Location } from '@angular/common';
+import { ConditionalExpr } from '@angular/compiler';
 @Component({
   selector: 'app-generate-payroll',
   templateUrl: './generate-payroll.component.html',
@@ -23,7 +24,7 @@ export class GeneratePayrollComponent implements OnInit {
   ngOnInit() {
 
     this.service.populatePayRoll().subscribe((res: any) => {
-
+ console.log(res);
 
       for (let index = 0; index < res.records.length; index++) {
         const element = res.records[index];
@@ -53,6 +54,8 @@ export class GeneratePayrollComponent implements OnInit {
       NetSalary: [value.NetPay ? value.NetPay : '', [Validators.required]],
       EmployeeID: [value.EmployeeID ? value.EmployeeID : '', [Validators.required]],
       Status: ['Paid', [Validators.required]],
+      FirstName:[value.FirstName,[Validators.required]],
+      LastName:[value.LastName,[Validators.required]]
     });
   }
 
