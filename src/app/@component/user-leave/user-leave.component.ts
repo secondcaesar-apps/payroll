@@ -11,7 +11,7 @@ import { MdbTableDirective } from 'ng-uikit-pro-standard';
 export class UserLeaveComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements = []    
-  headElements = ['LeaveID', 'Email', 'Status', 'DateCreated',];
+  headElements = ['LeaveID', 'Description','Start Date', 'End Date', 'Status', 'DateCreated'];
   searchText: string = '';
   previous: string;
   message: Boolean=false;
@@ -89,6 +89,7 @@ loadEvent(){
 
   this.service.Read(APIENUM.LEAVETYPE).subscribe((res:any)=>{
 
+
     this.lType=res.records;
 
   },err=>{
@@ -106,6 +107,18 @@ loadEvent(){
 
 
   });
+  
+  this.service.Read(APIENUM.LEAVE).subscribe((res:any)=>{
+
+
+    this.lType=res.records;
+
+  },err=>{
+    this.error=err.error.message;
+    this.Leave.enable();
+  
+
+  })
 }
 
 getAllLeave(){

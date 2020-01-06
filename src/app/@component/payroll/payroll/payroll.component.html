@@ -1,9 +1,6 @@
 <div class="padding">
   <div class="header">
     <div class="row">
-      <div *ngIf="error" class="alert alert-danger col-12" role="alert">
-        {{messages}}
-      </div>
       <div class="col-sm-4">
         <div class="form-group">
           <button (click)="generatePayroll()" mdbBtn type="button" color="success" mdbWavesEffect>
@@ -74,6 +71,12 @@
             </tr>
           </tbody>
         </table>
+        <div *ngIf="message" style="padding-left: 40%;">
+          <p>{{messages}}</p>
+        </div>
+        <div *ngIf="loading" class="item">
+          <ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader>
+        </div>
       </div>
       <div class="col-4 line" *ngIf="show">
         <div class="pre-body" *ngIf="displaySide">
@@ -83,30 +86,54 @@
           </button>
           <ul class="list-group">
             <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-              Salary Slip ID
+              Salary Slip ID:
               {{SalarySlipID}}
             </li>
             <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-              Salary Group
+              Salary Group:
               {{SalaryGroup}}
             </li>
             <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-              Month
+              Month:
               {{Month}}
             </li>
             <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-              Payment Method
+              Payment Method:
               {{PaymentMethod}}
             </li>
             <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-              Payment Date
+              Payment Date:
               {{PaymentDate}}
             </li>
             <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-              Employee Status
+              Employee Status:
               {{EmployeeStatus}}
             </li>
 
+<!-- <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+  Name:
+  {{}}
+</li>
+<li class="list-group-item form-group d-flex justify-content-between align-items-center">
+  Type:
+  {{SalaryGroup}}
+</li>
+<li class="list-group-item form-group d-flex justify-content-between align-items-center">
+  Month:
+  {{Month}}
+</li>
+<li class="list-group-item form-group d-flex justify-content-between align-items-center">
+  Payment Method:
+  {{PaymentMethod}}
+</li>
+<li class="list-group-item form-group d-flex justify-content-between align-items-center">
+  Payment Date:
+  {{PaymentDate}}
+</li>
+<li class="list-group-item form-group d-flex justify-content-between align-items-center">
+  Employee Status:
+  {{EmployeeStatus}}
+</li> -->
           </ul>
         </div>
         <div class="body">

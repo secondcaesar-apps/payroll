@@ -1,9 +1,4 @@
-<div *ngIf="success" class="alert alert-success" role="alert">
-  {{success}}
-</div>
-<div *ngIf="error" class="alert alert-danger" role="alert">
- {{error}}
-</div>
+
   <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
      <div class="modal-content">
@@ -39,7 +34,7 @@
                 
               </div>
               <div class="form-group col-md-6">
-                <mdb-date-picker name="mydate" formControlName="EndDate" [options]="myDatePickerOptions" [placeholder]="'End Date'"
+                <mdb-date-picker name="mydate" formControlName="EndDate" [options]="" [placeholder]="'End Date'"
                 required></mdb-date-picker>
             
               </div>
@@ -150,18 +145,23 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let el of elements; let i = index">
+                      <tr *ngFor="let el of 1Type">
                         <th scope="row" (click)="reademployee(el)">{{el.LeaveID}}</th>
-                        <td (click)="reademployee(el)">{{el.Email}}</td>
+                        <td (click)="reademployee(el)">{{el.Description}}</td>
+                        <td                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         >{{el.StartDate}}</td>
+                        <td>{{el.EndDate}}</td>
                         <td>{{el.Status}}</td>
                         <td>{{el.DateCreated}}</td>
                        
                       </tr>
                     </tbody>
                 </table>
-                <div *ngIf="message" style="padding-left: 40%;"><p>{{messages}}</p></div>
-                <div *ngIf="loading"  class="item"><ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader></div>
-            </div>
+                <div *ngIf="message" style="padding-left: 40%;">
+                  <p>{{messages}}</p>
+                </div>
+                <div *ngIf="loading" class="item">
+                  <ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader>
+                </div>
             <div class="col-4 line" *ngIf="show">
               <p *ngIf="!displaySide" >Select a row to view it's details here</p>
             

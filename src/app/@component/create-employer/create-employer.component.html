@@ -10,6 +10,12 @@
 </div>
      <form [formGroup]="Employee"> 
    <div class="body">
+    <div *ngIf="success" class="alert alert-success col-12" role="alert">
+      {{success}}
+    </div>
+    <div *ngIf="error" class="alert alert-danger col-12" role="alert">
+     {{error}}
+    </div> 
      <div class="sectionA row">
        <div class="col-8">    
        <mdb-card>
@@ -17,13 +23,6 @@
              <mdb-icon fas icon="info-circle"></mdb-icon> Basic Info
              </div>
            <mdb-card-body>
-            <div *ngIf="success" class="alert alert-success col-12" role="alert">
-              {{success}}
-            </div>
-            <div *ngIf="error" class="alert alert-danger col-12" role="alert">
-             {{error}}
-            </div> 
-               
                <div class="form-row">
                
                  <div class="form-group col-md-6">
@@ -59,10 +58,10 @@
                    <mdb-icon far icon="grin"></mdb-icon> Photo
                  </div>
                <mdb-card-body>
-                   <div class="col-1">
-                   <input type="image" src="../../../assets/profile_image.jpg" width=190px height=190px >
-                   <input type="file" name="image">
-                     </div>
+                <div class="col-1">
+                  <input (click)="onClick()" type="image" [src]="image" width=250px height=250px >
+                  <input type="file"  #fileUpload id="fileUpload" name="fileUpload"  accept="image/*" style="display:none;" />
+                    </div>
                </mdb-card-body>
            </mdb-card>
        </div>

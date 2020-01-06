@@ -13,17 +13,24 @@ import { Form, FormBuilder, Validators, FormGroup, FormArray } from '@angular/fo
 export class SalarySetupComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements = [];
-  headElements = ['Name', 'Amount', 'Type', ''];
+  headElements = ['SalaryGroupID', 'SalaryGroupName', 'Description', 'NetPay'];
   searchText: string = '';
   previous: string;
   message: Boolean=false;
   loading:Boolean=true;
+  displaySide: Boolean = false;
   messages: string;
   maxVisibleItems: number = 8;
   error:any;
   success:any;
   show: boolean;
   Salary:FormGroup;
+  Name: string = '';
+  Type: string = '';
+  Amount: string = '';
+  SalaryComponentID: string = '';
+  // SalarySlipID: string = '';
+  // EmployeeID: string = '';
   Total=0;
   constructor(
     private router: Router,
@@ -51,8 +58,27 @@ export class SalarySetupComponent implements OnInit {
 
      
     });
+   
+  }
+SalaryCom(el){
+  if (this.show) {
+    this.displaySide = true;
+    let data = {
+      "SalaryGroupID": el.SalaryGroupID
+    }
+    this.Api.SalaryComponentRead(data, APIENUM.SAG)
+    .subscribe((res:any)=>{
+      this.loading = false;
+       console.log(res.records)
+       this.Name = res.records[0].Name;
+       this.Type = res.records[0].Type;
+       this.Amount = res.records[0].Amount;
+       this.SalaryComponentID = res.records[0].SalaryComponentID;
+    })
+  
   }
 
+}
   createSalary(): FormGroup{
     return this._fb.group({
       Name :['',[Validators.required]],
