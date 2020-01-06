@@ -124,7 +124,7 @@ loadEvent(){
 getAllLeave(){
 
   //login user
-  let value = {EmployeeID : "EMP1900002"
+  let value = {EmployeeID : "EMP1900001"
    
 }
     this.service.Create(APIENUM.REPORT,value).subscribe((res:any)=>{
@@ -133,6 +133,8 @@ getAllLeave(){
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
     this.previous = this.mdbTable.getDataSource();
+
+    console.log(this.elements);
   })
 }
 
@@ -185,6 +187,11 @@ reademployee(el){
  readLeave(){
    this.service.Read(APIENUM.LEAVE).subscribe((res:any)=>{
      console.log(res);
+    //  this.elements=res.records;
+    //  this.mdbTable.setDataSource(this.elements);
+    //  this.elements = this.mdbTable.getDataSource();
+    //  this.previous = this.mdbTable.getDataSource();
+ 
    })
  }
 
