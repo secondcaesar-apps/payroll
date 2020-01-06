@@ -20,7 +20,7 @@ export class PayrollComponent implements OnInit {
   elements = [];
   dated: string = new Date().toJSON().slice(0, 10)
   error: Boolean = false;
-  headElements = ['Employee', 'Net Salary', 'Pay Date', 'Status'];
+  headElements = ['Employee','Pay Date', 'Net Salary',  'Status'];
   searchText: string = '';
   previous: string;
   message: Boolean = false;
@@ -41,6 +41,9 @@ export class PayrollComponent implements OnInit {
   EmployeeStatus: string = '';
   SalarySlipID: string = '';
   EmployeeID: string = '';
+  Salaryslip:any;
+error_message: string="";
+errormsg: boolean = false
   constructor(
     private router: Router,
     private service: ApiserviceService,
@@ -131,19 +134,18 @@ export class PayrollComponent implements OnInit {
       this.SalarySlipID = el.SalarySlipID;
       this.Month = el.Month;
 
-      let data = {
-        "SalaryGroupID": el.SalaryGroupID
-      }
-      this.service.ReadOne(APIENUM.PAYROLLM,data)
-      .subscribe((res:any)=>{
-        this.loading = false;
-         console.log(res.records)
-        //  this.Name = res.records[0].Name;
-        //  this.Type = res.records[0].Type;
-        //  this.Amount = res.records[0].Amount;
-        //  this.SalaryComponentID = res.records[0].SalaryComponentID;
-      }, (err: any) => {
-        console.log(err.error.message);
+      this.service.ReadOne(APIENUM.PAYROLL, {
+        SalarySlipID: el.SalarySlipID
+      })
+      .subscribe((res: any) => {
+        console.log(res.records);
+        this.Salaryslip =res.records
+        this.error_message = "";
+        this.errormsg = false;
+      },(err: any) => {
+        this.Salaryslip =[];
+        this.error_message = err.error.message;
+        this.errormsg = true;
       })
     }
   }

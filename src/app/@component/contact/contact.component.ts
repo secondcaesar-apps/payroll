@@ -1,9 +1,10 @@
 import { ApiserviceService } from './../../@shared/apiservice.service';
-import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { MdbTableDirective } from 'ng-uikit-pro-standard';
 import { APIENUM } from 'src/app/@shared/enum';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import swal from 'sweetalert2';
 
 
 
@@ -27,6 +28,8 @@ export class ContactComponent implements OnInit {
   location: any;
   error: any;
   success: any;
+  displaySide: Boolean = false;
+  statusValue: string  = '';
   constructor(
     private router: Router,
     private service: ApiserviceService,
@@ -36,6 +39,8 @@ export class ContactComponent implements OnInit {
   @HostListener('input') oninput() {
     this.searchItems();
   }
+  @Input() title: string;
+  contact: FormGroup;
   ngOnInit() {
     this.Contact = this._fb.group({
       ContactName: ['', [Validators.required]],
@@ -116,6 +121,54 @@ export class ContactComponent implements OnInit {
   view() {
     this.show = !this.show;
   }
+  openDetails(el){
+    if(this.show){
+      this.displaySide = true;
+    } 
+    console.log(el);
+    this.statusValue = el.Status;
+    this.contact = this._fb.group({
+      ContactID :[el.ContactID],
+      ContactName :[el.ContactName, Validators.required],
+      Description:[el.Description,Validators.required],
+      Email :[el.Email, Validators.required],
+      ContactNumber:[el.ContactNumber,Validators.required],
+      Service:[el.Service, Validators.required],
+      Status:[el.Status,Validators.required],
+       });
+       console.log(el);
+  }
+  updateContact(){
 
-
+    this.contact.disable();
+    this.service.Update(APIENUM.CON, this.contact.value).subscribe((res:any)=>{
+  
+    
+      swal.fire({
+        title: res.message,position: "center",
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 3500,
+        showCloseButton: true,
+    
+       })
+      this.contact.enable();
+    
+    
+    },(err=>{
+      this.contact.enable();
+  
+    
+      swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: err.error.message,
+        showConfirmButton: true,
+        timer: 3500,
+    
+       })
+    
+    }))
+  
+  }
 }

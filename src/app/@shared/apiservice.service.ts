@@ -62,6 +62,12 @@ export class ApiserviceService {
     return this._http.post(`${this.apiUrl}${type.toString()}/monthlyread.php`, data);
 
   }
+ EmployeeSalaryRead(data: any, type: APIENUM) {
+
+
+    return this._http.post(`${this.apiUrl}${type.toString()}/employeeread`, data);
+
+  }
   SalaryComponentRead(data: any, type: APIENUM) {
 
 

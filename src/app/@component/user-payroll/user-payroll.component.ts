@@ -19,7 +19,7 @@ export class UserPayrollComponent implements OnInit {
 elements = [];
 dated: string = new Date().toJSON().slice(0, 10)
 error: Boolean = false;
-headElements = ['Employee', 'Net Salary', 'Pay Date', 'Status'];
+headElements = ['Month', 'Net Salary','TotalAmountDue','PaymentMethod', 'Attendance', 'Status'];
 searchText: string = '';
 previous: string;
 message: Boolean = false;
@@ -39,7 +39,10 @@ PaymentMethod: string = '';
 PaymentDate: string = '';
 EmployeeStatus: string = '';
 SalarySlipID: string = '';
-EmployeeID: string = '';
+EmployeeID: string = ''; 
+Salaryslip:any;
+error_message: string="";
+errormsg: boolean = false
 constructor(
   private router: Router,
   private service: ApiserviceService,
@@ -71,8 +74,8 @@ ngOnInit() {
   // )
   let date = new Date().toJSON().slice(0, 10)
 
-  this.service.MontlyRead({
-    Month: this.dated
+  this.service.EmployeeSalaryRead({
+    EmployeeID: "EMP1900001"
   }, APIENUM.PAYROLLM)
   .subscribe((res: any) => {
     this.loading = false;
@@ -90,24 +93,6 @@ ngOnInit() {
   })
 }
 
-hitApi() {
-
-  this.service.MontlyRead(this.myForm1.value, APIENUM.PAYROLLM)
-    .subscribe((res: any) => {
-      this.loading = false;
-      this.error = false;
-      this.elements = res.records;
-      this.mdbTable.setDataSource(this.elements);
-      this.elements = this.mdbTable.getDataSource();
-      this.previous = this.mdbTable.getDataSource();
-    }, (err: any) => {
-      this.loading = false;
-      this.error = true;
-      this.messages = err.error.message;
-      this.message = true;
-      this.elements = [];
-    })
-}
 view() {
   this.show = !this.show;
 }
@@ -120,16 +105,31 @@ reademployee() {
 openDetails(el) {
   if (this.show) {
     this.displaySide = true;
+
   }
+  this.service.ReadOne(APIENUM.PAYROLL, {
+    SalarySlipID: el.SalarySlipID
+  })
+  .subscribe((res: any) => {
+    console.log(res.records);
+    this.Salaryslip =res.records
+    this.error_message = "";
+    this.errormsg = false;
+  },(err: any) => {
+    this.Salaryslip =[];
+    this.error_message = err.error.message;
+    this.errormsg = true;
+  })
   this.statusValue = el.Status;
   this.NetSalary = el.NetSalary;
   this.SalaryGroup = el.SalaryGroup;
   this.PaymentMethod = el.PaymentMethod;
-  this.PaymentDate = el.PaymentMethod;
+  this.PaymentDate = el.PaymentDate;
   this.EmployeeStatus = el.EmployeeStatus
   this.EmployeeID = el.EmployeeID;
   this.SalarySlipID = el.SalarySlipID;
   this.Month = el.Month;
+
 }
 
 
@@ -140,3 +140,13 @@ generatePayroll() {
 
 
 }
+// this.service.ReadOne(APIENUM.PAYROLL, {
+//   SalarySlipID: el.SalarySlipID
+// })
+// .subscribe((res: any) => {
+//   console.log(res.records);
+//   this.name = res.records[0].Name;
+//   this.name1 = res.records[1].Name;
+//   this.amount = res.records[0].Amount;
+//   this.amount1 = res.records[1].Amount;
+// })

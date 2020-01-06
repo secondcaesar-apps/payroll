@@ -21,9 +21,9 @@ export enum APIENUM{
     FILE='Fileuploads/fileupload.php',
     REPORT='leave/reporttoreaad.php',
     LEAVEAPPROVE='leave/approve.php',
-    PAYROLL='salaryslip.php',   
+    PAYROLL='salaryslip',   
     POPULATEPAYROLL='salaryslip/populatepayroll.php',
     CREATEPAYROLL='/salaryslip/create.php',
     EVENT='event',
-    PAYROLLM='salaryslip', 
+    PAYROLLM='salaryslip',
 }
