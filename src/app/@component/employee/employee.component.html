@@ -63,6 +63,7 @@
                       <th>{{headElements[2]}}</th>
                       <th>{{headElements[3]}}</th>
                       <th>{{headElements[4]}}</th>
+                      <th>{{headElements[4]}}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -71,7 +72,8 @@
                     <td (click)="reademployee(el)">{{el.FirstName}}</td>
                     <td>{{el.LastName}}</td>
                     <td>{{el.Email}}</td>
-                    <td>{{el.Department}}</td>
+                    <td>{{el.RoleName}}</td>
+                    <td>{{el.DepartmentName}}</td>
                   </tr>
                 </tbody>
             </table>
@@ -188,7 +190,7 @@
                           </li>
                           <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                             Reports To
-                            <input type="text"  formControlName="ReportsTo" mdbInput>
+                            <input type="text"  formControlName="ReportsTO" mdbInput>
                           </li>
                           <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                             Salary Group

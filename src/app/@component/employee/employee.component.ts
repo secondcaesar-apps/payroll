@@ -18,7 +18,7 @@ import { SharedService } from 'src/app/@shared/shared/shared.service';
 export class EmployeeComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements = []    
-  headElements = ['ID', 'Firstname', 'Lastname', 'Email', 'Deparment'];
+  headElements = ['ID', 'Firstname', 'Lastname', 'Email','Role', 'Deparment'];
   error: Boolean = false;
   searchText: string = '';
   previous: string;
@@ -100,13 +100,13 @@ export class EmployeeComponent implements OnInit {
       Email:[el.Email,Validators.required],
       Gender:[el.Gender, Validators.required],
       DOB:[el.DOB,Validators.required],
-      Department:[el.Department,Validators.required],
-      Designation:[el.Designation, Validators.required],
-      Location:[el.Location,Validators.required],
+      Department:[el.DepartmentName,Validators.required],
+      Designation:[el.DesignationName, Validators.required],
+      Location:[el.LocationsName,Validators.required],
       ReportsTO:[el.ReportsTO,Validators.required],
       Status:[el.Status,Validators.required],
-      SalaryGroup:[el.SalaryGroup,Validators.required],
-      Role:[el.Role,Validators.required],
+      SalaryGroup:[el.SalaryGroupName,Validators.required],
+      Role:[el.RoleName,Validators.required],
       ContactNumber:[el.ContactNumber,Validators.required],
       EmergencyContactNumber:[el.EmergencyContactNumber,Validators.required],
       EmergencyContactPerson:[el.EmergencyContactPerson,Validators.required],

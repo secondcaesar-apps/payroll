@@ -72,8 +72,8 @@
           </thead>
           <tbody>
             <tr *ngFor="let el of elements; let i = index">
-              <th scope="row">{{el.ContactID}}</th>
-              <td>{{el.ContactName}}</td>
+              <th scope="row"(click)="openDetails(el)" style="cursor: pointer;">{{el.ContactID}}</th>
+              <td (click)="openDetails(el)" style="cursor: pointer;">{{el.ContactName}}</td>
               <td>{{el.Description}}</td>
               <td>{{el.ContactNumber}}</td>
               <td>{{el.Email}}</td>
@@ -90,7 +90,44 @@
       </div>
       <div class="col-4 line" *ngIf="show">
         <div class="pre-body">
-          <p>Select a row to view it's details here</p>
+          <p *ngIf="!displaySide">Select a row to view it's details here</p>
+          <form [formGroup]="contact">
+            <div class="pre-body" *ngIf="displaySide">
+              <p style="font-size: large;">Contact Info</p>
+              <button mdbBtn type="button" color="primary" mdbWavesEffect>
+                <mdb-icon fas icon="magic" class="mr-1"></mdb-icon>{{statusValue}}
+              </button>
+              <ul class="list-group">
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  ContactName
+                  <input type="text"  formControlName="ContactName" mdbInput>
+                </li>
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  Description
+                  <input type="text"  formControlName="Description" mdbInput>
+                </li>
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  Email
+                  <input type="text"  formControlName="Email" mdbInput>
+                </li>
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  ContactNumber
+                  <input type="text"  formControlName="ContactNumber" mdbInput>
+                </li>
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  Service
+                    <input type="text"  formControlName="Service" mdbInput>
+                  </li>
+                  <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  Status
+                    <input type="text"  formControlName="Status" mdbInput>
+                  </li>
+              </ul>
+           <button mdbBtn type="button" size="lg" color="success" mdbWavesEffect (click)="updateContact()">
+             <mdb-icon fas icon="pencil-alt"></mdb-icon>Update
+           </button>
+         </div>
+       </form>
         </div>
         <div class="body">
           <div class="row">

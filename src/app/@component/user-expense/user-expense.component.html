@@ -28,8 +28,8 @@
                   
                     <div class="dropdown-menu dropdown-primary">
                       <button class="dropdown-item" href="#">All</button>
-                      <button class="dropdown-item" href="#">Active</button>
-                      <button class="dropdown-item" href="#">Inactive</button>
+                      <button class="dropdown-item" href="#">Paid</button>
+                      <button class="dropdown-item" href="#">Unpaid</button>
                     </div>
                     
               </div>
@@ -71,7 +71,9 @@
                     <td (click)="readExpense(el)">{{el.Category}}</td>
                     <td>{{el.Amount}}</td>
                     <td>{{el.BillDate}}</td>
-                    <td>{{el.Status}}</td>
+                    <td><button mdbBtn type="button" color="primary" style="padding:3px; margin:0;" mdbWavesEffect>
+                      <mdb-icon fas icon="credit-card" class="mr-1"></mdb-icon>{{el.Status}}
+                    </button></td>
                   </tr>
                 </tbody>
             </table>
