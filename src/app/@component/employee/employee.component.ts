@@ -19,6 +19,7 @@ export class EmployeeComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements = []    
   headElements = ['ID', 'Firstname', 'Lastname', 'Email', 'Deparment'];
+  error: Boolean = false;
   searchText: string = '';
   previous: string;
   message: Boolean=false;
@@ -56,6 +57,12 @@ export class EmployeeComponent implements OnInit {
       this.mdbTable.setDataSource(this.elements);
       this.elements = this.mdbTable.getDataSource();
       this.previous = this.mdbTable.getDataSource();
+    }, (err: any) => {
+      this.loading = false;
+      this.error = true;
+      this.messages = err.error.message;
+      this.message = true;
+      this.elements = [];
     })
   }
   searchItems() {

@@ -25,7 +25,9 @@ export class CreateEmployerComponent implements OnInit {
   @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef; files = [];
   salarygroup: any;
   gender: string[];
-  constructor(private _location: Location,    private _fb: FormBuilder, private service: ApiserviceService) {
+  constructor(private _location: Location,  
+      private _fb: FormBuilder,
+       private service: ApiserviceService) {
 
     this.Employee = this._fb.group({
       FirstName: ['', [Validators.required]],
@@ -47,10 +49,10 @@ export class CreateEmployerComponent implements OnInit {
 
     
     
-    // this.optionsSelect = [
-    //   { value: '1', label: '' },
-    //   { value: '2', label: 'Female' },
-    //   ];
+    this.optionsSelect = [
+      { value: 'Male', label: 'Male' },
+      { value: 'Female', label: 'Female' },
+      ];
     this.loadEvent()
       this.gender = ['Male','Female']
     }

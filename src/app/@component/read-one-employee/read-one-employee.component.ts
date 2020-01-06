@@ -1,12 +1,13 @@
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { ApiserviceService } from './../../@shared/apiservice.service';
-import { Component, OnInit, Input, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { APIENUM } from 'src/app/@shared/enum';
 import swal from 'sweetalert2';
 import { SharedService } from 'src/app/@shared/shared/shared.service';
 import { map, tap  } from 'rxjs/operators';
+import {IMAGE} from './enus';
 @Component({
   selector: 'app-read-one-employee',
   templateUrl: './read-one-employee.component.html',
@@ -18,12 +19,14 @@ export class ReadOneEmployeeComponent implements OnInit {
   value:any;
   employee:FormGroup;
   location:any;
+  image='../../../assets/profile_image.jpg';
   role:any;
   department:any;
   employees:any;
   designation:any;
   email: string="";
   salarygroup: any;
+  @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef; files = [];
 
   optionsSelect: Array<any>;
   accountSelect: Array<any>;
@@ -33,6 +36,7 @@ export class ReadOneEmployeeComponent implements OnInit {
     private Api: ApiserviceService,
     private _fb:FormBuilder,
     private route: Router,
+    
   ) { }
 
   ngOnInit() {
@@ -150,7 +154,6 @@ export class ReadOneEmployeeComponent implements OnInit {
             LinkedInusername:[this.value.LinkedInusername,Validators.required],
              });
         }
-          
         this.loadEvent();
     
   }
@@ -205,5 +208,43 @@ export class ReadOneEmployeeComponent implements OnInit {
     }))
   
   }
+  onClick(img:IMAGE) {
+    const fileUpload = this.fileUpload.nativeElement;
+    fileUpload.onchange = () => {
+
+      for (let index = 0; index < fileUpload.files.length; index++) {
+        const file = fileUpload.files[index];
+        this.files.push({ data: file, inProgress: false, progress: 0 });
+      }
+      this.uploadFiles(img);
+    };
+    fileUpload.click();
+  }
+
+  private uploadFiles(img:IMAGE) {
+    this.fileUpload.nativeElement.value = '';
+    this.files.forEach(file => {
+
+      this.uploadFile(file);
+    });
+  }
+
+  uploadFile(file) {
+    const formData = new FormData();
+    formData.append('file', file.data);
+    file.inProgress = true;
+
+    this.Api.ImageUpload(file.data)
+      .subscribe((event: any) => {
+        this.image = event.Path;
+        this.image = event.Path;
+        this.image = event.Path;
+        this.image = event.Path;
+        this.image = event.Path;
+      }
+      )
+  }
 
 }
+
+

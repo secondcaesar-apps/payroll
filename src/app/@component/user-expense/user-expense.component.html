@@ -75,6 +75,12 @@
                   </tr>
                 </tbody>
             </table>
+            <div *ngIf="message" style="padding-left: 40%;">
+              <p>{{messages}}</p>
+            </div>
+            <div *ngIf="loading" class="item">
+              <ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader>
+            </div>
         </div>
         <div class="col-4 line" *ngIf="show">
   

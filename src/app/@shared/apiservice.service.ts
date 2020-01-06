@@ -62,7 +62,12 @@ export class ApiserviceService {
     return this._http.post(`${this.apiUrl}${type.toString()}/monthlyread.php`, data);
 
   }
+  SalaryComponentRead(data: any, type: APIENUM) {
 
+
+    return this._http.post(`${this.apiUrl}${type.toString()}/salarycomponentread.php`, data);
+
+  }
   Delete(type: APIENUM, id: any) {
 
     let value = 'AssetID';

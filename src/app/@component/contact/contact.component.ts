@@ -15,7 +15,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 export class ContactComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements = [];
-  headElements = ['id', 'first', 'last', 'handle'];
+  headElements = ['ContactID', 'ContactName', 'Description', 'ContactNumber','Email','Service'];
   show: Boolean = false;
   searchText: string = '';
   previous: string;

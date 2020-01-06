@@ -82,7 +82,7 @@
          
              <div class="form-group col-md-6">
                 <label for="inputEmail4">Paid</label>
-                <input [formControl]="Paid" mdbInput type="number" class="form-control" >
+                <input [formControl]="Paid" mdbInput type="text" class="form-control" >
                 <mdb-error *ngIf="Paid.invalid && (Paid.dirty||Paid.touched)">
                     Invalid Input.
                   </mdb-error>

@@ -6,7 +6,7 @@
               </div>
             <mdb-card-body>
                 <div class="col-1">
-                <input type="image" src="../../../assets/profile_image.jpg" width=200px height=200px >
+                <input type="image" src="http://66.70.202.147/Payroll_server/images/9ad6067ecac1fb5ba6287a68c914b344e341cef5.png" width=200px height=200px >
                 <button mdbBtn type="button" size="lg" color="success" mdbWavesEffect>
                     <mdb-icon fas icon="pencil-alt"></mdb-icon>Edit
                   </button>
@@ -96,9 +96,9 @@
                               <mdb-icon far icon="grin"></mdb-icon> Photo
                             </div>
                           <mdb-card-body>
-                              <div class="col-1">
-                              <input type="image" src="../../../assets/profile_image.jpg" width=190px height=190px >
-                              <input type="file" name="image">
+                            <div class="col-1">
+                              <input (click)="onClick(pics.A)" type="image" [src]="image" width=250px height=250px >
+                              <input type="file"  #fileUpload id="fileUpload" name="fileUpload"  accept="image/*" style="display:none;" />
                                 </div>
                           </mdb-card-body>
                       </mdb-card>

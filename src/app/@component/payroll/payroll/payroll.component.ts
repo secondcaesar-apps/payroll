@@ -18,6 +18,7 @@ import swal from 'sweetalert2';
 export class PayrollComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements = [];
+  dated: string = new Date().toJSON().slice(0, 10)
   error: Boolean = false;
   headElements = ['Employee', 'Net Salary', 'Pay Date', 'Status'];
   searchText: string = '';
@@ -69,6 +70,25 @@ export class PayrollComponent implements OnInit {
     // })
     //   })
     // )
+    let date = new Date().toJSON().slice(0, 10)
+  
+    this.service.MontlyRead({
+      Month: this.dated
+    }, APIENUM.PAYROLLM)
+    .subscribe((res: any) => {
+      this.loading = false;
+      this.error = false;
+      this.elements = res.records;
+      this.mdbTable.setDataSource(this.elements);
+      this.elements = this.mdbTable.getDataSource();
+      this.previous = this.mdbTable.getDataSource();
+    }, (err: any) => {
+      this.loading = false;
+      this.error = true;
+      this.messages = err.error.message;
+      this.message = true;
+      this.elements = [];
+    })
   }
 
   hitApi() {
@@ -101,16 +121,31 @@ export class PayrollComponent implements OnInit {
   openDetails(el) {
     if (this.show) {
       this.displaySide = true;
+      this.statusValue = el.Status;
+      this.NetSalary = el.NetSalary;
+      this.SalaryGroup = el.SalaryGroup;
+      this.PaymentMethod = el.PaymentMethod;
+      this.PaymentDate = el.PaymentMethod;
+      this.EmployeeStatus = el.EmployeeStatus
+      this.EmployeeID = el.EmployeeID;
+      this.SalarySlipID = el.SalarySlipID;
+      this.Month = el.Month;
+
+      let data = {
+        "SalaryGroupID": el.SalaryGroupID
+      }
+      this.service.ReadOne(APIENUM.PAYROLLM,data)
+      .subscribe((res:any)=>{
+        this.loading = false;
+         console.log(res.records)
+        //  this.Name = res.records[0].Name;
+        //  this.Type = res.records[0].Type;
+        //  this.Amount = res.records[0].Amount;
+        //  this.SalaryComponentID = res.records[0].SalaryComponentID;
+      }, (err: any) => {
+        console.log(err.error.message);
+      })
     }
-    this.statusValue = el.Status;
-    this.NetSalary = el.NetSalary;
-    this.SalaryGroup = el.SalaryGroup;
-    this.PaymentMethod = el.PaymentMethod;
-    this.PaymentDate = el.PaymentMethod;
-    this.EmployeeStatus = el.EmployeeStatus
-    this.EmployeeID = el.EmployeeID;
-    this.SalarySlipID = el.SalarySlipID;
-    this.Month = el.Month;
   }
 
 
