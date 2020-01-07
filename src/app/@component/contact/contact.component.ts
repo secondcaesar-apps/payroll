@@ -55,14 +55,15 @@ export class ContactComponent implements OnInit {
       .subscribe((res: any) => {
         this.loading = false;
         this.elements = res.records;
+        this.mdbTable.setDataSource(this.elements);
+        this.elements = this.mdbTable.getDataSource();
+        this.previous = this.mdbTable.getDataSource();
       }, (err: any) => {
         this.loading = false;
         this.messages = err.error.message;
         this.message = true;
       })
-    this.mdbTable.setDataSource(this.elements);
-    this.elements = this.mdbTable.getDataSource();
-    this.previous = this.mdbTable.getDataSource();
+
   }
 
 

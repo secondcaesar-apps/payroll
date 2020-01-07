@@ -22,9 +22,15 @@ export class ReadOneEmployeeComponent implements OnInit {
   image='../../../assets/profile_image.jpg';
   role:any;
   department:any;
+  edit: Boolean=false;
   employees:any;
   designation:any;
   email: string="";
+  increment: string="";
+  previous: string="";
+  promo: Boolean=false
+  current: string="";
+  pic: string="";
   salarygroup: any;
   @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef; files = [];
 
@@ -62,6 +68,8 @@ export class ReadOneEmployeeComponent implements OnInit {
         }else {
           console.log(this.value)
           this.email = this.value.Email;
+          this.pic=this.value.Avatar
+
           this.employee = this._fb.group({
             EmployeeID :[this.value.EmployeeID],
             FirstName :[this.value.FirstName, Validators.required],
@@ -153,9 +161,22 @@ export class ReadOneEmployeeComponent implements OnInit {
             Twitterusername:[this.value.Twitterusername,Validators.required],
             LinkedInusername:[this.value.LinkedInusername,Validators.required],
              });
+  this.Api.EmployeeRead(APIENUM.INCR, {
+    EmployeeID: this.value.EmployeeID
+  })
+  .subscribe((res: any) => {
+    console.log(res.records);
+    this.promo = true
+this.increment = res.records[0].Description;
+this.previous = res.records[0].PreviousDsg;
+this.current = res.records[0].CurrentDsg;
+
+  },(err: any) => {
+    this.increment = err.error.message;
+  })
         }
         this.loadEvent();
-    
+    setTimeout(() => this.employee.disable(), 2000);
   }
   
 
@@ -174,10 +195,12 @@ export class ReadOneEmployeeComponent implements OnInit {
        this.role=res[5].records;
     })
   }
+
   createemployee(){
 
     this.employee.disable();
-    this.Api.Update(APIENUM.EMP, this.employee.value).subscribe((res:any)=>{
+    let value = {Status:"Active",Avatar:this.image,...this.employee.value};
+    this.Api.Update(APIENUM.EMP, value).subscribe((res:any)=>{
   
     
       swal.fire({
@@ -190,7 +213,7 @@ export class ReadOneEmployeeComponent implements OnInit {
        })
       this.employee.reset();
       this.employee.enable();
-    
+      this.image='../../../assets/profile_image.jpg';
     
     },(err=>{
       this.employee.enable();
@@ -208,7 +231,7 @@ export class ReadOneEmployeeComponent implements OnInit {
     }))
   
   }
-  onClick(img:IMAGE) {
+  onClick() {
     const fileUpload = this.fileUpload.nativeElement;
     fileUpload.onchange = () => {
 
@@ -216,12 +239,12 @@ export class ReadOneEmployeeComponent implements OnInit {
         const file = fileUpload.files[index];
         this.files.push({ data: file, inProgress: false, progress: 0 });
       }
-      this.uploadFiles(img);
+      this.uploadFiles();
     };
     fileUpload.click();
   }
 
-  private uploadFiles(img:IMAGE) {
+  private uploadFiles() {
     this.fileUpload.nativeElement.value = '';
     this.files.forEach(file => {
 
@@ -243,6 +266,10 @@ export class ReadOneEmployeeComponent implements OnInit {
         this.image = event.Path;
       }
       )
+  }
+      CanEdit(){
+    this.edit = true
+      this.employee.enable();
   }
 
 }

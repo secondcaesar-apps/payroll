@@ -17,40 +17,39 @@ import { UserPayrollComponent } from '../@component/user-payroll/user-payroll.co
 import { UserLeaveComponent } from '../@component/user-leave/user-leave.component';
 import { UserProfileComponent } from '../@component/user-profile/user-profile.component';
 import { GeneratePayrollComponent } from '../@component/generate-payroll/generate-payroll.component';
+import { ReportComponent } from '../@component/report/report.component';
 const routes: Routes = [
 
-
-  {
-    path: '',
-    component: HomeComponent,
-    children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'employee', component: EmployeeComponent },
-      { path: 'basic-salary', component: BasicsalaryComponent },
-      { path: 'payroll', component: PayrollComponent },
-      { path: 'payroll-reports', component: ReportsalaryComponent },
-      { path: 'assets', component: AssetsComponent },
-      { path: 'assets', component: AssetsComponent },
-      { path: 'create-employer', component: CreateEmployerComponent },
-      { path: 'read-employer', component: ReadOneEmployeeComponent },
-      { path: 'contact', component: ContactComponent },
-      { path: 'create-contact', component: CreatecontactComponent },
-      { path: 'user-dahboard', component: UserDashboardComponent },
-      { path: 'user-expense', component: UserExpenseComponent },
-      { path: 'user-payroll', component: UserPayrollComponent },
-      { path: 'user-profile', component: UserProfileComponent },
-      { path: 'user-leave', component: UserLeaveComponent },
-      { path: 'generate-payroll', component: GeneratePayrollComponent },
-      {
-        path: 'settings',
-        loadChildren: () => import('../setting/setting.module').then(m => m.SettingModule)
-      },
-      { path: 'settings', redirectTo: 'settings/company', pathMatch: 'full' },
-    ]
-  }
-  ,
-
-];
+    {
+      path: '',
+      component: HomeComponent,
+      children: [
+        { path: 'dashboard', component: DashboardComponent },
+        { path: 'employee', component: EmployeeComponent },
+        { path: 'basic-salary', component: BasicsalaryComponent },
+        { path: 'payroll', component: PayrollComponent },
+        { path: 'payroll-reports', component: ReportsalaryComponent },
+        { path: 'assets', component: AssetsComponent },
+        { path: 'assets', component: AssetsComponent },
+        { path: 'create-employer', component: CreateEmployerComponent },
+        { path: 'read-employer', component: ReadOneEmployeeComponent },
+        { path: 'contact', component: ContactComponent },
+        { path: 'create-contact', component: CreatecontactComponent },
+        { path: 'user-dahboard', component: UserDashboardComponent },
+        { path: 'user-expense', component: UserExpenseComponent },
+        { path: 'user-payroll', component: UserPayrollComponent },
+        { path: 'user-profile', component: UserProfileComponent },
+        { path: 'user-leave', component: UserLeaveComponent },
+        { path: 'generate-payroll', component: GeneratePayrollComponent },
+        { path: 'report', component: ReportComponent },
+        {
+          path: 'settings',
+          loadChildren: () => import('../setting/setting.module').then(m => m.SettingModule)
+        },
+        { path: 'settings', redirectTo: 'settings/company', pathMatch: 'full' },
+      ]
+  },
+]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

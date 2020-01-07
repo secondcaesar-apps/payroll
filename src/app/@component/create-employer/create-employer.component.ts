@@ -41,6 +41,7 @@ export class CreateEmployerComponent implements OnInit {
       SalaryGroup: ['', [Validators.required]],
       Role: ['', [Validators.required]],
       Email: ['', [Validators.email,Validators.required]],
+     
     });
 
    }
@@ -120,11 +121,11 @@ loadEvent(){
 
 createEmployee(){
   this.Employee.disable();
-    let value = {Status:"Active",...this.Employee.value};
+    let value = {Status:"Active",Avatar:this.image,...this.Employee.value};
 
     this.service.Create(APIENUM.EMP,value).subscribe((res:any)=>{
        this.success=res.message
-
+       this.image='../../../assets/profile_image.jpg';
     },err=>{
       this.error=err.error.message;
       this.Employee.enable();

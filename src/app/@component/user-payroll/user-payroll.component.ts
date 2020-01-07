@@ -49,7 +49,9 @@ constructor(
   private fb: FormBuilder,
   private shared: SharedService,
 ) { }
-
+    @HostListener('input') oninput() {
+    this.searchItems();
+  }
 ngOnInit() {
   this.myForm1 = this.fb.group({
     Month: [this.date, Validators.required]
@@ -92,7 +94,19 @@ ngOnInit() {
     this.elements = [];
   })
 }
+    searchItems() {
+    const prev = this.mdbTable.getDataSource();
 
+    if (!this.searchText) {
+      this.mdbTable.setDataSource(this.previous);
+      this.elements = this.mdbTable.getDataSource();
+    }
+
+    if (this.searchText) {
+      this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
+      this.mdbTable.setDataSource(prev);
+    }
+  }
 view() {
   this.show = !this.show;
 }

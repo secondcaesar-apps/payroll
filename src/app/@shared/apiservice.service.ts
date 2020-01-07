@@ -56,6 +56,12 @@ export class ApiserviceService {
     return this._http.post(`${this.apiUrl}${type.toString()}/read_one.php`,data);
   
     }
+      ReadLeave(type:APIENUM,data:any,){
+
+
+    return this._http.post(`${this.apiUrl}${type.toString()}/readoneemployee.php`,data);
+  
+    }
   MontlyRead(data: any, type: APIENUM) {
 
 
@@ -63,6 +69,12 @@ export class ApiserviceService {
 
   }
  EmployeeSalaryRead(data: any, type: APIENUM) {
+
+
+    return this._http.post(`${this.apiUrl}${type.toString()}/employeeread`, data);
+
+  }
+  EmployeeRead(type: APIENUM, data: any) {
 
 
     return this._http.post(`${this.apiUrl}${type.toString()}/employeeread`, data);

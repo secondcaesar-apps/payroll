@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { ApiserviceService } from './../../@shared/apiservice.service';
-import { Component, OnInit, Input, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, HostListener, ElementRef } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { APIENUM } from 'src/app/@shared/enum';
 import swal from 'sweetalert2';
@@ -13,10 +13,12 @@ import { map, tap  } from 'rxjs/operators';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
+    @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef; files = [];
 
   @Input() title: string;
   value: string="";
   elements: any = [];
+  image='../../../assets/profile_image.jpg';
   message: Boolean=false;
   edit: Boolean=false;
   loading:Boolean=true;
@@ -30,7 +32,7 @@ export class UserProfileComponent implements OnInit {
   designation:any;
   email: string="";
   salarygroup: any;
-
+  pic: string="";
 
   optionsSelect: Array<any>;
   accountSelect: Array<any>;
@@ -61,17 +63,16 @@ export class UserProfileComponent implements OnInit {
     // this.value = this.shared.getInfo().value
     this.value = "EMP1900002"
           let data = {
-            EmployeeID: "EMP1900003"
+            EmployeeID: "EMP1900001"
             
       }
           this.Api.ReadOne(APIENUM.EMP, data)
           .subscribe((res:any)=>{
             this.loading = false;
             this.elements=res.records[0];
-
-            console.log(this.elements)
-          this.email = this.elements.Email;
-          this.employee = this._fb.group({
+            this.email = this.elements.Email;
+            this.pic=this.elements.Avatar
+            this.employee = this._fb.group({
             EmployeeID:[this.elements.EmployeeID],
             FirstName:[this.elements.FirstName, Validators.required],
             LastName:[this.elements.LastName,Validators.required],
@@ -168,13 +169,11 @@ export class UserProfileComponent implements OnInit {
               this.messages = err.error.message;
               this.message = true;
             })
-        
-
-        this.loadEvent();
-    
+            this.loadEvent();
+setTimeout(() => this.employee.disable(), 2000);
   }
-  
 
+ 
   loadEvent(){
 
     let event = [this.Api.Read(APIENUM.LOC),this.Api.Read(APIENUM.DEPT),this.Api.Read(APIENUM.EMP),this.Api.Read(APIENUM.SAG),this.Api.Read(APIENUM.DES),this.Api.Read(APIENUM.ROLE)]
@@ -189,8 +188,9 @@ export class UserProfileComponent implements OnInit {
   }
   createemployee(){
 
-    this.employee.disable();
-    this.Api.Update(APIENUM.EMP, this.employee.value).subscribe((res:any)=>{
+    
+    let value = {Status:"Active",Avatar:this.image,...this.employee.value};
+    this.Api.Update(APIENUM.EMP, value).subscribe((res:any)=>{
   
     
       swal.fire({
@@ -221,7 +221,46 @@ export class UserProfileComponent implements OnInit {
     }))
   
   }
+
   CanEdit(){
     this.edit = true
+      this.employee.enable();
+  }
+
+    onClick() {
+    const fileUpload = this.fileUpload.nativeElement;
+    fileUpload.onchange = () => {
+
+      for (let index = 0; index < fileUpload.files.length; index++) {
+        const file = fileUpload.files[index];
+        this.files.push({ data: file, inProgress: false, progress: 0 });
+      }
+      this.uploadFiles();
+    };
+    fileUpload.click();
+  }
+
+  private uploadFiles() {
+    this.fileUpload.nativeElement.value = '';
+    this.files.forEach(file => {
+
+      this.uploadFile(file);
+    });
+  }
+
+  uploadFile(file) {
+    const formData = new FormData();
+    formData.append('file', file.data);
+    file.inProgress = true;
+
+    this.Api.ImageUpload(file.data)
+      .subscribe((event: any) => {
+        this.image = event.Path;
+        this.image = event.Path;
+        this.image = event.Path;
+        this.image = event.Path;
+        this.image = event.Path;
+      }
+      )
   }
 }
