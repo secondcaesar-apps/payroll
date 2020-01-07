@@ -15,28 +15,32 @@ import { DesignationComponent } from '../@component/setting/designation/designat
 import { IncreComponent } from '../@component/setting/incre/incre.component';
 import { CalenderComponent } from '../@component/setting/calender/calender.component';
 import { WorkflowComponent } from '../@component/setting/workflow/workflow.component';
+import { MenuComponent } from '../@component/setting/menu/menu.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent,children:[
-    { path: 'company', component:CompanyComponent },
-    { path: 'department', component:DepartmentComponent },
-    { path: 'salary-group', component:SalarySetupComponent},
+  {
+    path: '', component: HomeComponent, children: [
+      { path: 'company', component: CompanyComponent },
+      { path: 'department', component: DepartmentComponent },
+      { path: 'salary-group', component: SalarySetupComponent },
 
-     { path: 'expense-setup', component:ExpenseComponent },
-     { path: 'leave-setup', component:LeaveComponent },
-     { path: 'salary-create', component:SalarycreateComponent },
-     { path: 'roles', component:RoleComponent },
-     { path: 'roles-create', component: RolecreateComponent},
-     { path: 'location', component: LocationComponent},
-     { path: 'expense', component: ExpenseComponent},
-     { path: 'designation', component: DesignationComponent},
-     { path: 'increment', component: IncreComponent},
-     { path: 'calender', component: CalenderComponent},
-     { path: 'workflow', component: WorkflowComponent},
-  ] },
- 
-  
+      { path: 'expense-setup', component: ExpenseComponent },
+      { path: 'leave-setup', component: LeaveComponent },
+      { path: 'salary-create', component: SalarycreateComponent },
+      { path: 'roles', component: RoleComponent },
+      { path: 'roles-create', component: RolecreateComponent },
+      { path: 'location', component: LocationComponent },
+      { path: 'expense', component: ExpenseComponent },
+      { path: 'designation', component: DesignationComponent },
+      { path: 'increment', component: IncreComponent },
+      { path: 'calender', component: CalenderComponent },
+      { path: 'workflow', component: WorkflowComponent },
+      { path: 'menu', component: MenuComponent },
+    ]
+  },
+
+
 ];
 
 @NgModule({
