@@ -3,12 +3,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum'
 import { MdbTableDirective } from 'ng-uikit-pro-standard';
+import swal from 'sweetalert2';
+
 @Component({
-  selector: 'app-user-leave',
-  templateUrl: './user-leave.component.html',
-  styleUrls: ['./user-leave.component.scss']
+  selector: 'app-report',
+  templateUrl: './report.component.html',
+  styleUrls: ['./report.component.scss']
 })
-export class UserLeaveComponent implements OnInit {
+export class ReportComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements = []    
   headElements = ['LeaveID', 'Description','Start Date', 'End Date','DateCreated', 'Status'];
@@ -83,7 +85,7 @@ loadEvent(){
     let value = {EmployeeID : "EMP1900001"
    
 }
-  this.service.ReadLeave(APIENUM.LEAVE, value).subscribe((res:any)=>{
+this.service.Create(APIENUM.REPORT,value).subscribe((res:any)=>{
         this.loading = false;
         this.error = false;
         console.log(this.elements);
@@ -144,29 +146,36 @@ searchItems() {
 }
 
 reademployee(el){
+  this.displaySide=true;
  this.leave=el;
- this.displaySide=true;
  
 }
- updateSalary(){
-   let value={LeaveID:this.leave.LeaveID};
+ updateSalary(el){
+   console.log(el)
+   let value={LeaveID:this.leave.LeaveID, Status:el};
    this.service.Approve(APIENUM.LEAVEAPPROVE,value).subscribe((res:any)=>{
 
     this.success=res.message;
+    swal.fire({
+      title: res.message,position: "center",
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 3500,
+      showCloseButton: true,
+  
+     })
 
    },err=>{
     this.error=err.error.message;
     this.Leave.enable();
+    swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: err.error.message,
+      showConfirmButton: true,
+      timer: 3500,
   
-
-  },()=>{
-    setTimeout(()=>{
-      this.success='';
-      this.error='';
-      this.Leave.reset();
-      this.Leave.enable();
-    },900)
-
+     })
 
   })
 

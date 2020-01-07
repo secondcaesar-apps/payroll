@@ -32,6 +32,7 @@ export class EmployeeComponent implements OnInit {
   designation:any;
   salarygroup: any;
   maxVisibleItems: number = 8;
+  pic: string="";
   show: Boolean; 
   displaySide: Boolean = false;
   constructor(
@@ -93,6 +94,7 @@ export class EmployeeComponent implements OnInit {
       this.shared.AddInfo(el)
       console.log(el)
     }
+    this.pic =el.Avatar;   
     this.employee = this._fb.group({
       EmployeeID :[el.EmployeeID],
       FirstName :[el.FirstName, Validators.required],
@@ -111,14 +113,6 @@ export class EmployeeComponent implements OnInit {
       EmergencyContactNumber:[el.EmergencyContactNumber,Validators.required],
       EmergencyContactPerson:[el.EmergencyContactPerson,Validators.required],
       Address:[el.Address,Validators.required],
-      // ReleasedDate:[''],
-      // DOB:['',Validators.required],
-      // Designation:['',Validators.required],
-      // StaffRSAPin:['',Validators.required],
-      // NextOfKinName:['',Validators.required],
-      // NextOfKinAddress:['',Validators.required],
-      // NextOfKinTelephoneNo:['',Validators.required],
-    
        });
   }
   createemployee(){

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, HostListener } from '@angular/core';
 import { APIENUM } from 'src/app/@shared/enum';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MdbTableDirective } from 'ng-uikit-pro-standard';
 import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-user-expense',
@@ -9,6 +10,7 @@ import { forkJoin } from 'rxjs';
   styleUrls: ['./user-expense.component.scss']
 })
 export class UserExpenseComponent implements OnInit {
+    @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   headElements = ['ExpenseID', 'Category', 'Amount', 'BillDate','Status'];
   bio=["Daily",
    " Weekly",
@@ -49,6 +51,10 @@ export class UserExpenseComponent implements OnInit {
     private _fb:FormBuilder
   ) { }
 
+    @HostListener('input') oninput() {
+    this.searchItems();
+  }
+
   ngOnInit() {
 
 
@@ -77,11 +83,28 @@ export class UserExpenseComponent implements OnInit {
     .subscribe((res:any)=>{
       this.loading = false;
       this.elements=res.records;
+      this.mdbTable.setDataSource(this.elements);
+      this.elements = this.mdbTable.getDataSource();
+      this.previous = this.mdbTable.getDataSource();
     }, (err: any) => {
       this.loading = false;
       this.messages = err.error.message;
       this.message = true;
+      this.elements = [];
     })
+  }
+    searchItems() {
+    const prev = this.mdbTable.getDataSource();
+
+    if (!this.searchText) {
+      this.mdbTable.setDataSource(this.previous);
+      this.elements = this.mdbTable.getDataSource();
+    }
+
+    if (this.searchText) {
+      this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
+      this.mdbTable.setDataSource(prev);
+    }
   }
   view() {
     this.show = !this.show;

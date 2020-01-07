@@ -84,65 +84,7 @@
           <p *ngIf="!displaySide" >Select a row to view it's details here</p>
           <form [formGroup]="employee">
              <div class="pre-body" *ngIf="displaySide">
-               <input style="padding-left: 70px; padding-right: 30px;"type="image" src="../../../assets/profile_image.jpg" width=400px height=300px >
-             <!-- <ul class="list-group">
-              <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                Full Name
-                <input type="text"  formControlName= mdbInput>
-              </li>
-              <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                Employee ID
-                <input type="text"  formControlName= mdbInput>
-              </li>
-              <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                Email Address
-                <input type="text"  formControlName= mdbInput>
-              </li>
-              <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                  Full Name
-                  <input type="text"  formControlName= mdbInput>
-                </li>
-                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                  Employee ID
-                  <input type="text"  formControlName= mdbInput>
-                </li>
-                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                  Email Address
-                  <input type="text"  formControlName= mdbInput>
-                </li>
-                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                    Full Name
-                    <input type="text"  formControlName= mdbInput>
-                  </li>
-                  <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                    Employee ID
-                    <input type="text"  formControlName= mdbInput>
-                  </li>
-                  <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                    Email Address
-                    <input type="text"  formControlName= mdbInput>
-                  </li>
-                  <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                     Gender
-                      <input type="text"  formControlName= mdbInput>
-                    </li>
-                    <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                      Birthday
-                      <input type="text"  formControlName= mdbInput>
-                    </li>
-                    <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                     Martial Status
-                      <input type="text"  formControlName= mdbInput>
-                    </li>
-                    <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                       Status
-                         <input type="text"  formControlName= mdbInput>
-                       </li>
-                       <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                          Probation
-                            <input type="text"  formControlName= mdbInput>
-                          </li>
-            </ul> -->
+             <input style="padding-left: 70px; padding-right: 30px;"type="image" src="{{pic}}"width=400px height=300px >
             <mdb-accordion [multiple]="false">
               <mdb-accordion-item [collapsed]="false">
                 <mdb-accordion-item-head><h6><mdb-icon class="space" fas icon="user"></mdb-icon>Basic Information</h6></mdb-accordion-item-head>
