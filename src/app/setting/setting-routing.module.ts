@@ -14,6 +14,7 @@ import { LocationComponent } from '../@component/setting/location/location.compo
 import { DesignationComponent } from '../@component/setting/designation/designation.component';
 import { IncreComponent } from '../@component/setting/incre/incre.component';
 import { CalenderComponent } from '../@component/setting/calender/calender.component';
+import { WorkflowComponent } from '../@component/setting/workflow/workflow.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
      { path: 'designation', component: DesignationComponent},
      { path: 'increment', component: IncreComponent},
      { path: 'calender', component: CalenderComponent},
+     { path: 'workflow', component: WorkflowComponent},
   ] },
  
   

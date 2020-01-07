@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   list:any;
-//expense-setup roles location expense designation
+//expense-setup roles location expense designation workflow
 
   constructor() { }
 
@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
       {name:'Location',route:'location',icon:'fa fa-map fa-2x'},
       {name:'Designation',route:'designation',icon:'fa fa-map fa-2x'},
       {name:'calender',route:'calender',icon:'fa fa-book fa-2x'},
+      {name:'workflow',route:'workflow',icon:'fa fa-book fa-2x'},
   
   ]
   }
