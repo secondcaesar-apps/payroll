@@ -20,10 +20,11 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorServices } from '../@shared/intercept';
 import { IncreComponent } from '../@component/setting/incre/incre.component';
 import { CalenderComponent } from '../@component/setting/calender/calender.component';
+import { WorkflowComponent } from '../@component/setting/workflow/workflow.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent, DesignationComponent, IncreComponent, CalenderComponent],
+  declarations: [HomeComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent, DesignationComponent, IncreComponent, CalenderComponent, WorkflowComponent],
   imports: [
     CommonModule,
     SettingRoutingModule,
