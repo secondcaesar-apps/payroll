@@ -70,8 +70,8 @@
           </thead>
           <tbody>
             <tr *ngFor="let el of elements; let i = index">
-            <th scope="row" (click)="openDetails(el)">{{el.PaymentDate}}</th>
-              <td (click)="openDetails(el)" style="text-align: right;">{{el.NetSalary  | currency:'₦':'symbol'}}</td>
+            <th scope="row" (click)="openDetails(el)"style="cursor: pointer;">{{el.PaymentDate}}</th>
+              <td (click)="openDetails(el)"style="cursor: pointer;" style="text-align: right;">{{el.NetSalary  | currency:'₦':'symbol'}}</td>
               <td (click)="openDetails(el)" style="text-align: right;">{{el.TotalAmountDue  | currency:'₦':'symbol'}}</td>
               <td>{{el.PaymentMethod}}</td>
               <td>{{el.Attendance}}</td>

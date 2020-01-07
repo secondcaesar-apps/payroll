@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  ViewChild, HostListener  } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum';
+import { MdbTableDirective } from 'ng-uikit-pro-standard';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -10,6 +11,14 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./workflow.component.scss']
 })
 export class WorkflowComponent implements OnInit {
+  
+  @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
+  elements = [];
+  searchText: string = '';
+  previous: string;
+  message: Boolean=false;
+  loading:Boolean=true;
+  messages: string;
  WorkFlow:FormGroup;
   error:any;
   success:any;
@@ -20,7 +29,18 @@ export class WorkflowComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.Api.Read(APIENUM.WORKFLOWSETUP)
+    .subscribe((res:any)=>{
+      this.loading = false;
+      this.elements=res.records;
+      this.mdbTable.setDataSource(this.elements);
+      this.elements = this.mdbTable.getDataSource();
+      this.previous = this.mdbTable.getDataSource();
+    }, (err: any) => {
+      this.loading = false;
+      this.messages = err.error.message;
+      this.message = true;
+    })
     this.Api.Read(APIENUM.EMP)
     .pipe(
       map((res:any)=>res.records)
@@ -37,7 +57,19 @@ export class WorkflowComponent implements OnInit {
     
     });
   }
+  searchItems() {
+    const prev = this.mdbTable.getDataSource();
 
+    if (!this.searchText) {
+      this.mdbTable.setDataSource(this.previous);
+      this.elements = this.mdbTable.getDataSource();
+    }
+
+    if (this.searchText) {
+      this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
+      this.mdbTable.setDataSource(prev);
+    }
+  }
   get PWFName(){
     return this.WorkFlow.get('PWFName');
   }

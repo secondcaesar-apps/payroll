@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {  Component, OnInit,  ViewChild, HostListener  } from '@angular/core';
 import {
   startOfDay,
   endOfDay,
@@ -19,6 +19,9 @@ import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 })
 export class CalenderComponent implements OnInit {
   messages: string;
+  previous: string;
+  message: Boolean=false;
+  loading:Boolean=true;
   elements: any = [];
   Cal:FormGroup;
   error:any;
@@ -26,7 +29,15 @@ export class CalenderComponent implements OnInit {
   constructor(   private _fb:FormBuilder,private Api:ApiserviceService) { }
 
   ngOnInit() {
-
+    this.Api.Read(APIENUM.EVENT)
+    .subscribe((res:any)=>{
+      this.loading = false;
+      this.elements=res.records;
+    }, (err: any) => {
+      this.loading = false;
+      this.messages = err.error.message;
+      this.message = true;
+    })
     this.Cal= this._fb.group({
       EventTitle:['',[Validators.required]],
     
