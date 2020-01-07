@@ -67,8 +67,8 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let el of elements; let i = index">
-                    <th scope="row" (click)="readExpense(el)">{{el.ExpenseID}}</th>
-                    <td (click)="readExpense(el)">{{el.Category}}</td>
+                    <th scope="row" (click)="readExpense(el)"style="cursor: pointer;">{{el.ExpenseID}}</th>
+                    <td (click)="readExpense(el)"style="cursor: pointer;">{{el.Category}}</td>
                     <td>{{el.Amount}}</td>
                     <td>{{el.BillDate}}</td>
                     <td><button mdbBtn type="button" color="primary" style="padding:3px; margin:0;" mdbWavesEffect>
