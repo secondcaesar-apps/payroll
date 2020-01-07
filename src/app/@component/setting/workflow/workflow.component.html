@@ -1,33 +1,33 @@
 <div class="form-group">
-
+      
     <button mdbBtn (click)="frame.show()" type="button" color="default" mdbWavesEffect>
-        <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New WorkFlow
+      <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New WorkFlow
     </button>
-</div>
-<div class="table-responsive-vertical shadow-z-1">
+  </div>
+  <div class="table-responsive-vertical shadow-z-1">
     <!-- Table starts here -->
     <table id="table" class="table table-hover table-mc-light-blue">
         <thead>
-            <tr>
-                <th>EmployeeID</th>
-                <th>Work flow Setup ID</th>
-                <th>PWFName</th>
-                <th>level</th>
-                <th>Status</th>
-            </tr>
+          <tr>
+            <th>EmployeeID</th>
+            <th>Work flow Setup ID</th>
+            <th>PWFName</th>
+            <th>level</th>
+            <th>Status</th>
+          </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let el of elements; let i = index">
-                <td data-title="Link">{{el.EmployeeID}}
-                </td>
-                <td data-title="ID">{{el.WorkflowSetupID}}</td>
-                <td data-title="Name">{{el.PWFName}}</td>
+          <tr *ngFor="let el of elements; let i = index">
+            <td data-title="Link">{{el.EmployeeID}}
+            </td>
+            <td data-title="ID">{{el.WorkflowSetupID}}</td>
+            <td data-title="Name">{{el.PWFName}}</td>
 
-                <td data-title="Link">{{el.level}}
-                </td>
-                <td data-title="Status">{{el.Status}}</td>
-            </tr>
-            <!-- <tr>
+            <td data-title="Link">{{el.level}}
+            </td>
+            <td data-title="Status">{{el.Status}}</td>
+          </tr>
+          <!-- <tr>
             <td data-title="ID">2</td>
             <td data-title="Name">Material Design Iconic Font</td>
             <td data-title="Link">
@@ -36,93 +36,85 @@
             </td>
             <td data-title="Status">Completed</td>
           </tr> -->
-
+         
         </tbody>
-    </table>
-    <div *ngIf="message" style="padding-left: 40%;">
-        <p>{{messages}}</p>
-    </div>
-    <div *ngIf="loading" class="item">
-        <ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader>
-    </div>
-</div>
-<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
-    aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header light-blue darken-3 text-center text-white">
-
-                <h4 class="modal-title w-100 font-weight-bold">Manage Leave</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body mx-3">
-                <div *ngIf="success" class="alert alert-success" role="alert">
-                    {{success}}
-                </div>
-                <div *ngIf="error" class="alert alert-danger" role="alert">
-                    {{error}}
-                </div>
-
-                <div class="row">
-
-
-                    <div class="form-group col-md-6">
-                        <label for="inputEmail4">PWFName</label>
-                        <input [formControl]="PWFName" mdbInput type="text" class="form-control">
-                        <mdb-error *ngIf="PWFName.invalid && (PWFName.dirty||PWFName.touched)">
-                            Invalid Input.
-                        </mdb-error>
-                    </div>
-
-
-                    <div class="form-group col-md-4">
-                        <label for="inputPassword4">EmployeeID</label>
-                        <mdb-icon class="space" fas icon="question-circle"> </mdb-icon>
-                        <select [formControl]="EmployeeID" class="browser-default custom-select">
-
-                            <option *ngFor="let item of emp" [ngValue]="item.EmployeeID">{{item.EmployeeID}}</option>
-
-                        </select>
-                    </div>
-
-
-                    <div class="form-group col-md-6">
-                        <label for="inputEmail4">level</label>
-                        <input [formControl]="level" mdbInput type="number" class="form-control">
-
-                        <mdb-error *ngIf="level.invalid && (level.dirty||level.touched)">
-                            Invalid Input.
-                        </mdb-error>
-                    </div>
-
-
-                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-            <div class="modal-footer d-flex justify-content-right">
-                <div class="btn-group" role="group" aria-label="Basic example">
-
-
-                    <button mdbBtn type="button" [disabled]="WorkFlow.invalid" color="info" (click)="createWorkflow()"
-                        class="waves-light mr-2" mdbWavesEffect>Create</button>
-                    <button mdbBtn type="button" color="danger" (click)="frame.hide()" class="waves-light"
-                        mdbWavesEffect>Cancel</button>
-                </div>
-            </div>
+      </table>
+      <div *ngIf="message" style="padding-left: 40%;"><p>{{messages}}</p></div>
+      <div *ngIf="loading"  class="item"><ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader></div>
         </div>
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header light-blue darken-3 text-center text-white">
+         
+         <h4 class="modal-title w-100 font-weight-bold">Manage Leave</h4>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body mx-3">
+        <div *ngIf="success" class="alert alert-success" role="alert">
+          {{success}}
+        </div>
+        <div *ngIf="error" class="alert alert-danger" role="alert">
+         {{error}}
+        </div>
+    
+        <div class="row" >
+        
+        
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">PWFName</label>
+                <input [formControl]="PWFName" mdbInput type="text" class="form-control" >
+                <mdb-error *ngIf="PWFName.invalid && (PWFName.dirty||PWFName.touched)">
+                    Invalid Input.
+                  </mdb-error>
+            </div> 
+        
+          
+            <div class="form-group col-md-4">
+                <label for="inputPassword4">EmployeeID</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
+                <select  [formControl]="EmployeeID" class="browser-default custom-select">
+              
+                  <option *ngFor="let item of emp" [ngValue]="item.EmployeeID">{{item.EmployeeID}}</option>
+                
+                </select>
+              </div>
+            
+
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">level</label>
+                <input [formControl]="level" mdbInput type="number" class="form-control" >
+               
+                <mdb-error *ngIf="level.invalid && (level.dirty||level.touched)">
+                    Invalid Input.
+                  </mdb-error>
+            </div> 
+        
+
+        </div>
+        
+    
+    
+    
+    
+    
+    
+    
+    
+        
+    
+    
+    
+       </div>
+       <div class="modal-footer d-flex justify-content-right">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                    
+
+    <button mdbBtn type="button" [disabled]="WorkFlow.invalid" color="info" (click)="createWorkflow()" class="waves-light mr-2" mdbWavesEffect>Create</button>
+                    <button mdbBtn type="button" color="danger"  (click)="frame.hide()" class="waves-light" mdbWavesEffect>Cancel</button>
+                </div>
+       </div>
+     </div>
     </div>
-</div>
+    </div>

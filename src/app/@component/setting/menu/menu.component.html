@@ -1,11 +1,52 @@
 <div class="form-group">
 
     <button mdbBtn (click)="frame.show()" type="button" color="default" mdbWavesEffect>
-        <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New WorkFlow
+        <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New Menu
     </button>
 </div>
 
+<div class="table-responsive-vertical shadow-z-1">
+    <!-- Table starts here -->
+    <table id="table" class="table table-hover table-mc-light-blue">
+        <thead>
+            <tr>
+                <th>Menu ID</th>
+                <th>Menu Name</th>
+                <th>Menu URL</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let el of elements; let i = index">
+                <td data-title="Link">{{el.MenuID}}
+                </td>
+                <td data-title="ID">{{el.MenuName}}</td>
+                <td data-title="Name">{{el.MenuURL}}</td>
 
+                <td data-title="Link">{{el.Description}}
+                </td>
+                <td data-title="Status">{{el.Status}}</td>
+            </tr>
+            <!-- <tr>
+            <td data-title="ID">2</td>
+            <td data-title="Name">Material Design Iconic Font</td>
+            <td data-title="Link">
+              <a href="https://codepen.io/zavoloklom/pen/uqCsB" target="_blank">Codepen</a>
+              <a href="https://github.com/zavoloklom/material-design-iconic-font" target="_blank">GitHub</a>
+            </td>
+            <td data-title="Status">Completed</td>
+          </tr> -->
+
+        </tbody>
+    </table>
+    <div *ngIf="message" style="padding-left: 40%;">
+        <p>{{messages}}</p>
+    </div>
+    <div *ngIf="loading" class="item">
+        <ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader>
+    </div>
+</div>
 
 <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
     aria-labelledby="myModalLabel" aria-hidden="true">
@@ -13,7 +54,7 @@
         <div class="modal-content">
             <div class="modal-header light-blue darken-3 text-center text-white">
 
-                <h4 class="modal-title w-100 font-weight-bold">Manage Leave</h4>
+                <h4 class="modal-title w-100 font-weight-bold">Manage Menu</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
                     <span aria-hidden="true">&times;</span>
                 </button>

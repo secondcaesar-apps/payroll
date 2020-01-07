@@ -1,14 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  ViewChild, HostListener  } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum';
-
+import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
+  elements = [];
+  searchText: string = '';
+  previous: string;
+  message: Boolean=false;
+  loading:Boolean=true;
+  messages: string;
     Menu:FormGroup;
   error:any;
   success:any;
@@ -18,6 +24,15 @@ export class MenuComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.Api.Read(APIENUM.MENU)
+    .subscribe((res:any)=>{
+      this.loading = false;
+      this.elements=res.records;
+    }, (err: any) => {
+      this.loading = false;
+      this.messages = err.error.message;
+      this.message = true;
+    })
     this.Menu= this._fb.group({
       MenuName:['',[Validators.required]],
       MenuURL:['',[Validators.required]],
