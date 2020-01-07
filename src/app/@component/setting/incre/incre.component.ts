@@ -21,6 +21,7 @@ export class IncreComponent implements OnInit {
   messages: string;
   emp;
   sg;
+  optionsSelect: { value: string; label: string; }[];
   constructor(
 
     private _fb:FormBuilder,
@@ -29,6 +30,12 @@ export class IncreComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.optionsSelect = [
+      { value: 'promotion', label: 'Promotion' },
+      { value: 'increment', label: 'Increment' },
+      { value: 'incrementpromotion', label: 'Increment and Promotion' },
+      ];
     this.loadEvent();
     this.Increment= this._fb.group({
       EmployeeID:['',[Validators.required]],

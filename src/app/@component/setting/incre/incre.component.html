@@ -62,14 +62,17 @@
     </div>
 
     <div class="row">
-        <div class="md-form col-md-12">
-            <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
-            <input [formControl]="Type" type="text" id="form34" class="form-control" mdbInput mdbValidate>
-            <label for="form34">Type</label>
+        <div class="form-group col-md-12">
+          
+            <label for="inputEmail4">Increment Type</label>
+            <select   [formControl]="Type"  class="browser-default custom-select">
+              
+              <option *ngFor="let item of optionsSelect" [ngValue]="item.value">{{item.label}}</option>
+            
+            </select>
+        
      
-            <mdb-error *ngIf="Type.invalid && (Type.dirty||Type.touched)">
-              Invalid Input.
-            </mdb-error>
+         
             
           </div>
           <div class="form-group col-md-6">
