@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
       {name:'Designation',route:'designation',icon:'fa fa-map fa-2x'},
       {name:'calender',route:'calender',icon:'fa fa-book fa-2x'},
       {name:'workflow',route:'workflow',icon:'fa fa-book fa-2x'},
+      {name:'menu Setup',route:'menu',icon:'fa fa-book fa-2x'},
   
   ]
   }
