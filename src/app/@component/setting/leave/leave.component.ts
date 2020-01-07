@@ -31,6 +31,7 @@ export class LeaveComponent implements OnInit {
     this.optionsSelect = [
       { value: 'Male', label: 'Male' },
       { value: 'Female', label: 'Female' },
+      { value: 'Female,Male', label: 'Female,Male' },
       ];
     this.Leave= this._fb.group({
       LeaveTypeName:['',[Validators.required]],
