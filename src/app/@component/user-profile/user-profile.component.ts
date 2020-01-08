@@ -31,6 +31,11 @@ export class UserProfileComponent implements OnInit {
   employees:any;
   designation:any;
   email: string="";
+  Increment: any = [];
+  increment: string="";
+  previous: string="";
+  promo: Boolean=false
+  current: string="";
   salarygroup: any;
   pic: string="";
 
@@ -163,6 +168,17 @@ export class UserProfileComponent implements OnInit {
             Twitterusername:[this.elements.Twitterusername,Validators.required],
             LinkedInusername:[this.elements.LinkedInusername,Validators.required],
              }); 
+             this.Api.EmployeeRead(APIENUM.INCR, {
+              EmployeeID: this.elements.EmployeeID
+            })
+            .subscribe((res: any) => {
+              console.log(res.records);
+              this.promo = true
+          this.Increment = res.records
+          
+            },(err: any) => {
+              this.increment = err.error.message;
+            })
              this.profile = true
             }, (err: any) => {
               this.loading = false;

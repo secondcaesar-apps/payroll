@@ -61,8 +61,8 @@
               <th aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[0]">
                 {{headElements[0] | titlecase}}<mdb-icon fas icon="sort"></mdb-icon>
               </th>
-              <th style="text-align: right;">{{headElements[1]}}</th>
-              <th style="text-align: right;">{{headElements[2]}}</th>
+              <th style="text-align: right; cursor: pointer;">{{headElements[1]}}</th>
+              <th style="text-align: right; cursor: pointer;">{{headElements[2]}}</th>
               <th>{{headElements[3]}}</th>
               <th>{{headElements[4]}}</th>
               <th>{{headElements[5]}}</th>
@@ -106,7 +106,7 @@
             </li>
             <li class="list-group-item form-group d-flex justify-content-between align-items-center">
               Month:
-              <p style="padding-left: 50px;">{{Month}}</p>
+              <p style="padding-left: 50px;">{{Month | date}}</p>
             </li>
             <li class="list-group-item form-group d-flex justify-content-between align-items-center">
               Payment Method:
@@ -114,7 +114,7 @@
             </li>
             <li class="list-group-item form-group d-flex justify-content-between align-items-center">
               Payment Date:
-              <p style="padding-left: 50px;">{{PaymentDate}}</p>
+              <p style="padding-left: 50px;">{{PaymentDate | date}}</p>
             </li>
             <li class="list-group-item form-group d-flex justify-content-between align-items-center">
               Employee Status:

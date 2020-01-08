@@ -15,7 +15,7 @@
           <div class="row float-right">
             <div class="col-sm-5">
                 <div class="md-form">
-                <input mdbInput class="mr-1" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="searchText" class="form-control" id="search" mdbInput> 
+                <input mdbInput [disabled]="isDisabled" class="mr-1" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="searchText" class="form-control" id="search" mdbInput [disabled]="isDisabled"> 
               </div>
             </div>
             <div class="col-sm-5">
@@ -68,8 +68,8 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let el of elements; let i = index">
-                    <th scope="row" (click)="reademployee(el)">{{el.EmployeeID}}</th>
-                    <td (click)="reademployee(el)">{{el.FirstName}}</td>
+                    <th scope="row" (click)="reademployee(el)" style="cursor: pointer;">{{el.EmployeeID}}</th>
+                    <td (click)="reademployee(el)"style="cursor: pointer;">{{el.FirstName}}</td>
                     <td>{{el.LastName}}</td>
                     <td>{{el.Email}}</td>
                     <td>{{el.RoleName}}</td>
@@ -92,23 +92,23 @@
                     <ul class="list-group">
                         <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                           FirstName
-                          <input type="text"  formControlName="FirstName" mdbInput>
+                          <input type="text"  formControlName="FirstName" mdbInput [disabled]="isDisabled">
                         </li>
                         <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                           Lastname
-                          <input type="text"  formControlName="LastName" mdbInput>
+                          <input type="text"  formControlName="LastName" mdbInput [disabled]="isDisabled">
                         </li>
                         <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                           Email Address
-                          <input type="text"  formControlName="Email" mdbInput>
+                          <input type="text"  formControlName="Email" mdbInput [disabled]="isDisabled">
                         </li>
                         <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                           Gender
-                            <input type="text"  formControlName="Gender" mdbInput>
+                            <input type="text"  formControlName="Gender" mdbInput [disabled]="isDisabled">
                           </li>
                           <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                           Date of Birth
-                            <input type="text"  formControlName="DOB" mdbInput>
+                            <input type="text"  formControlName="DOB" mdbInput [disabled]="isDisabled">
                           </li>
                       </ul>
                 </mdb-accordion-item-body>
@@ -120,35 +120,35 @@
                     <ul class="list-group">
                       <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                         Department
-                          <input type="text"  formControlName="Department" mdbInput>
+                          <input type="text"  formControlName="Department" mdbInput [disabled]="isDisabled">
                         </li>
                         <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                           Designation
-                          <input type="text"  formControlName="Designation" mdbInput>
+                          <input type="text"  formControlName="Designation" mdbInput [disabled]="isDisabled">
                         </li>
                         <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                           Location
-                            <input type="text"  formControlName="Location" mdbInput>
+                            <input type="text"  formControlName="Location" mdbInput [disabled]="isDisabled">
                           </li>
                           <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                             Reports To
-                            <input type="text"  formControlName="ReportsTO" mdbInput>
+                            <input type="text"  formControlName="ReportsTO" mdbInput [disabled]="isDisabled">
                           </li>
                           <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                             Salary Group
-                              <input type="text"  formControlName="SalaryGroup" mdbInput>
+                              <input type="text"  formControlName="SalaryGroup" mdbInput [disabled]="isDisabled">
                             </li>
                             <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                               Role
-                              <input type="text"  formControlName="Role" mdbInput>
+                              <input type="text"  formControlName="Role" mdbInput [disabled]="isDisabled">
                             </li>
                           <!-- <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                              Joining date
-                            <input type="text"  formControlName= mdbInput>
+                            <input type="text"  formControlName= mdbInput [disabled]="isDisabled">
                           </li>
                           <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                               Work Duration
-                             <input type="text"  formControlName= mdbInput>
+                             <input type="text"  formControlName= mdbInput [disabled]="isDisabled">
                            </li> -->
                       </ul>
                 </mdb-accordion-item-body>
@@ -160,19 +160,19 @@
                     <ul class="list-group">
                         <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                           Mobile Phone
-                          <input type="text"  formControlName="ContactNumber" mdbInput>
+                          <input type="text"  formControlName="ContactNumber" mdbInput [disabled]="isDisabled">
                         </li>
                         <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                             Emergency Contact Number
-                          <input type="text"  formControlName="EmergencyContactNumber" mdbInput>
+                          <input type="text"  formControlName="EmergencyContactNumber" mdbInput [disabled]="isDisabled">
                         </li>
                         <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                            Emergency Contact Person
-                          <input type="text"  formControlName="EmergencyContactPerson" mdbInput>
+                          <input type="text"  formControlName="EmergencyContactPerson" mdbInput [disabled]="isDisabled">
                         </li>
                         <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                             Address
-                            <input type="text"  formControlName="Address" mdbInput>
+                            <input type="text"  formControlName="Address" mdbInput [disabled]="isDisabled">
                           </li>
                       </ul>
                 </mdb-accordion-item-body>

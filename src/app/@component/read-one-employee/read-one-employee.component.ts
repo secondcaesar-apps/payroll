@@ -31,6 +31,7 @@ export class ReadOneEmployeeComponent implements OnInit {
   promo: Boolean=false
   current: string="";
   pic: string="";
+  Increment: any = [];
   salarygroup: any;
   @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef; files = [];
 
@@ -161,20 +162,18 @@ export class ReadOneEmployeeComponent implements OnInit {
             Twitterusername:[this.value.Twitterusername,Validators.required],
             LinkedInusername:[this.value.LinkedInusername,Validators.required],
              });
-  this.Api.EmployeeRead(APIENUM.INCR, {
-    EmployeeID: this.value.EmployeeID
-  })
-  .subscribe((res: any) => {
-    console.log(res.records);
-    this.promo = true
-this.increment = res.records[0].Description;
-this.previous = res.records[0].PreviousDsg;
-this.current = res.records[0].CurrentDsg;
-
-  },(err: any) => {
-    this.increment = err.error.message;
-  })
-        }
+             this.Api.EmployeeRead(APIENUM.INCR, {
+              EmployeeID: this.value.EmployeeID
+            })
+            .subscribe((res: any) => {
+              console.log(res.records);
+              this.promo = true
+          this.Increment = res.records
+          
+            },(err: any) => {
+              this.increment = err.error.message;
+            })
+          }
         this.loadEvent();
     setTimeout(() => this.employee.disable(), 2000);
   }

@@ -31,7 +31,9 @@ export class UserLeaveComponent implements OnInit {
     private _fb:FormBuilder,
     private service:ApiserviceService
   ) { }
-
+  @HostListener('input') oninput() {
+    this.searchItems();
+  }
   ngOnInit() {
     this.loadEvent();
     // this.getAllLeave();

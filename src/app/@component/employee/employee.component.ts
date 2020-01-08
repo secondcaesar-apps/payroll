@@ -65,6 +65,7 @@ export class EmployeeComponent implements OnInit {
       this.message = true;
       this.elements = [];
     })
+   
   }
   searchItems() {
     const prev = this.mdbTable.getDataSource();
@@ -114,6 +115,7 @@ export class EmployeeComponent implements OnInit {
       EmergencyContactPerson:[el.EmergencyContactPerson,Validators.required],
       Address:[el.Address,Validators.required],
        });
+       setTimeout(() => this.employee.disable(), 2000);
   }
   createemployee(){
 
