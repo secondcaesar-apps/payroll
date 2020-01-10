@@ -13,6 +13,7 @@ import { Form, FormBuilder, Validators, FormGroup, FormArray } from '@angular/fo
 export class SalarySetupComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements = [];
+  group = [];
   headElements = ['SalaryGroupID', 'SalaryGroupName', 'Description', 'NetPay'];
   searchText: string = '';
   previous: string;
@@ -70,10 +71,7 @@ SalaryCom(el){
     .subscribe((res:any)=>{
       this.loading = false;
        console.log(res.records)
-       this.Name = res.records[0].Name;
-       this.Type = res.records[0].Type;
-       this.Amount = res.records[0].Amount;
-       this.SalaryComponentID = res.records[0].SalaryComponentID;
+       this.group = res.records;
     })
   
   }

@@ -286,8 +286,8 @@
                         <li class="list-group-item">Leave ID<h4>{{leave.LeaveID}}</h4></li>
                         <li class="list-group-item">Employee ID<h4>{{leave.EmployeeID}}</h4></li>
                          <li class="list-group-item">Reason<h4> {{leave.Reason}}</h4></li>
-                        <li class="list-group-item">StartDate<h4> {{leave.StartDate}}</h4></li>
-                        <li class="list-group-item">EndDate<h4> {{leave.EndDate}}</h4></li>
+                        <li class="list-group-item">StartDate<h4> {{leave.StartDate | date}}</h4></li>
+                        <li class="list-group-item">EndDate<h4> {{leave.EndDate | date}}</h4></li>
                         <li class="list-group-item">Status<h4 >{{leave.Status}}</h4></li>
                       </ul>
                       <!-- <button type="button" (click)="updateSalary()" mdbBtn color="primary" mdbWavesEffect>Approve</button>

@@ -93,18 +93,18 @@
           <div class="row">
             <p>Salary component: {{SalaryComponentID}}</p>
 
-            <ul class="list-group">
+            <ul class="list-group" *ngFor="let el of group">
               <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                 Name:
-                {{Name}}
+                {{el.Name}}
               </li>
               <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                 Type:
-                {{Type}}
+                {{el.Type}}
               </li>
               <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                 Amount:
-                {{Amount}}
+                {{el.Amount}}
               </li>
             </ul>
           </div>

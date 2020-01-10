@@ -77,7 +77,7 @@ ngOnInit() {
   let date = new Date().toJSON().slice(0, 10)
 
   this.service.EmployeeSalaryRead({
-    EmployeeID: "EMP1900001"
+    EmployeeID: "EMP1900006"
   }, APIENUM.PAYROLLM)
   .subscribe((res: any) => {
     this.loading = false;

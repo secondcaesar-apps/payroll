@@ -812,10 +812,14 @@
   <!--Panel 3-->
   <mdb-tab heading="INCREMENT & PROMOTION">
     <div class="row">
-      <div class="col-12">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
-          reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
-          porro voluptate odit minima.</p>
+      <div class="col-12" *ngFor="let el of Increment">
+      <p>{{el.Description}}{{increment}}</p>
+      <div *ngIf="promo">
+        <button mdbBtn type="button" color="primary"  mdbWavesEffect>
+          <mdb-icon fas icon="award" class="mr-1"></mdb-icon>{{el.PreviousDsg}} 
+        </button> => <button mdbBtn type="button" color="primary"mdbWavesEffect>
+          <mdb-icon fas icon="award" class="mr-1"></mdb-icon>{{el.CurrentDsg}}
+        </button></div>
       </div>
     </div>
   </mdb-tab>
