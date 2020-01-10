@@ -49,11 +49,11 @@ export class GeneratePayrollComponent implements OnInit {
       PaymentMethod: ['online', [Validators.required]],
       PaymentDate: [this.convert(), [Validators.required]],
       EmployeeStatus: ['Active', [Validators.required]],
-      Attendance: [22, [Validators.required]],
+      Attendance: [22, [Validators.required,Validators.min(0),Validators.max(22)]],
       TotalAmountDue: [value.NetPay ? value.NetPay : '', [Validators.required]],
       NetSalary: [value.NetPay ? value.NetPay : '', [Validators.required]],
       EmployeeID: [value.EmployeeID ? value.EmployeeID : '', [Validators.required]],
-      Status: ['Paid', [Validators.required]],
+      Status: ['Generated', [Validators.required]],
       FirstName:[value.FirstName,[Validators.required]],
       LastName:[value.LastName,[Validators.required]]
     });

@@ -65,7 +65,7 @@
               <th scope="row" (click)="openDetails(el)">{{el.id}}{{el.id}}{{el.FirstName}} {{el.LastName}}</th>
               <td>{{el.PaymentDate | date}}</td>
               <td (click)="openDetails(el)" style="text-align: right;">{{el.NetSalary}}</td>
-              <td><button mdbBtn type="button" color="primary" mdbWavesEffect>
+              <td><button mdbBtn type="button" color="primary"  style="padding:3px; margin:0;" mdbWavesEffect>
                   <mdb-icon fas icon="credit-card" class="mr-1"></mdb-icon>{{el.Status}}
                 </button></td>
             </tr>
