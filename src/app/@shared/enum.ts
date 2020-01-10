@@ -28,3 +28,19 @@ export enum APIENUM{
     PAYROLLM='salaryslip',
     WORKFLOWSETUP='workflowsetup'
 }
+
+export enum UType{
+    CERT='certificate',
+    AVATAR='avatar',
+    DRIVER='Driving License',
+    PAN='PAN Card',
+    VoterID='VoterID',
+   SSN='Aadhar/SSN',
+   Offer='Offer Letter',
+   Joining ='Joining Letter',
+   Contract='Contract',
+   Resume='Resume',
+   Relieving='Relieving letter',
+   Experience ='Experience Letter'
+
+}
