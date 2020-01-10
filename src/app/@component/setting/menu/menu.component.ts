@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum';
 import { map } from 'rxjs/operators';
+import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -15,7 +16,10 @@ export class MenuComponent implements OnInit {
   message: Boolean=false;
   loading:Boolean=true;
   messages: string;
+  role:any;
+  menu:any;
     Menu:FormGroup;
+    MenuG:FormGroup;
   error:any;
   success:any;
   constructor(
@@ -32,6 +36,11 @@ export class MenuComponent implements OnInit {
       this.loading = false;
       this.messages = err.error.message;
       this.message = true;
+    })
+this.menuGroupApi()
+    this.MenuG = this._fb.group({
+      MenuID:['',[Validators.required]],
+      RoleID:['',[Validators.required]],
     })
     this.Menu= this._fb.group({
       MenuName:['',[Validators.required]],
@@ -89,5 +98,37 @@ export class MenuComponent implements OnInit {
  
    })
 
+  }
+
+  menuGroupApi(){
+ var list =   [this.Api.Read(APIENUM.ROLE),this.Api.Read(APIENUM.MENU)];
+
+ forkJoin(list).subscribe((res:any)=>{
+   console.log(res);
+   this.role = res[0].records;
+   this.menu = res[1].records;
+ })
+  }
+
+  createMenuG(){
+    this.MenuG.disable();
+    this.Api.Create(APIENUM.MENUG,this.MenuG.value).subscribe((res:any)=>{
+      this.success=res.message
+
+   },err=>{
+     this.error=err.error.message;
+     this.MenuG.enable();
+   
+
+   },()=>{
+     setTimeout(()=>{
+       this.success='';
+       this.error='';
+       this.MenuG.reset();
+       this.MenuG.enable();
+     },500)
+
+ 
+   })
   }
 }
