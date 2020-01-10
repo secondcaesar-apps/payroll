@@ -41,8 +41,6 @@ export class MenuComponent implements OnInit {
       ParentID:['',[Validators.required]],
       ParentID2:['',[Validators.required]],
       Description:['',[Validators.required]],
-   
-    
     });
   }
 
