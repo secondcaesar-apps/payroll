@@ -20,14 +20,14 @@
             </div>
           </div>
           <div class="col-sm-5" [formGroup]="myForm1">
-            <div class="md-form">
+            <div class="md-form" style="margin-top: 38px;">
               <input type="date" formControlName="Month" (change)="hitApi()">
             </div>
           </div>
           <!-- <mdb-date-picker name="mydate" formControlName="DOB" [options]="myDatePickerOptions" [(ngModel)]="date" [placeholder]="Date"
                 required></mdb-date-picker> -->
 
-          <div class="col-sm-2">
+          <div class="col-sm-2"style="margin-top: 20px;">
             <div class="btn-group" mdbDropdown>
               <a mdbDropdownToggle mdbBtn floating="true" size="sm" gradient="blue" class="dropdown-toggle waves-light"
                 mdbWavesEffect>
@@ -62,10 +62,10 @@
           </thead>
           <tbody>
             <tr *ngFor="let el of elements; let i = index">
-              <th scope="row" (click)="openDetails(el)">{{el.id}}{{el.id}}{{el.FirstName}} {{el.LastName}}</th>
-              <td>{{el.PaymentDate | date}}</td>
-              <td (click)="openDetails(el)" style="text-align: right;">{{el.NetSalary}}</td>
-              <td><button mdbBtn type="button" color="primary"  style="padding:3px; margin:0;" mdbWavesEffect>
+              <th scope="row" (click)="openDetails(el)"style="cursor: pointer;">{{el.id}}{{el.id}}{{el.FirstName}} {{el.LastName}}</th>
+              <td (click)="openDetails(el)"style="cursor: pointer;">{{el.Month | date}}</td>
+              <td (click)="openDetails(el)" style="text-align: right;cursor: pointer;">{{el.TotalAmountDue  | currency:'₦':'symbol'}}</td>
+              <td><button mdbBtn type="button" color="primary"style="padding:3px; margin:0;" mdbWavesEffect>
                   <mdb-icon fas icon="credit-card" class="mr-1"></mdb-icon>{{el.Status}}
                 </button></td>
             </tr>

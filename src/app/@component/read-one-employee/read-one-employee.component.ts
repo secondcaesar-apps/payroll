@@ -48,8 +48,8 @@ export class ReadOneEmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.optionsSelect = [
-      { value: 'Account 1', label: 'Account 1' },
-      { value: 'Account 2', label: 'Account 2' }
+      { value: 'Account1', label: 'Account 1' },
+      { value: 'Account2', label: 'Account 2' }
       ];
       this.accountSelect = [
         { value: 'Salary', label: 'Salary' },

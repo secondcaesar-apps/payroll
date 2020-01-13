@@ -28,6 +28,8 @@
     "date-fns": "^2.8.0",
     "easy-pie-chart": "2.1.x",
     "hammerjs": "^2.0.8",
+    "html2canvas": "^1.0.0-rc.5",
+    "jspdf": "^1.5.3",
     "ng-uikit-pro-standard": "file:ng-uikit-pro-standard-8.7.0.tgz",
     "ngx-skeleton-loader": "^1.2.2",
     "rxjs": "~6.4.0",

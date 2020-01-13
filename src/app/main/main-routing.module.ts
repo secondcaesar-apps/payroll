@@ -18,6 +18,7 @@ import { UserLeaveComponent } from '../@component/user-leave/user-leave.componen
 import { UserProfileComponent } from '../@component/user-profile/user-profile.component';
 import { GeneratePayrollComponent } from '../@component/generate-payroll/generate-payroll.component';
 import { ReportComponent } from '../@component/report/report.component';
+import { PayslipComponent } from '../@component/payroll/payslip/payslip.component';
 import { ControlComponent } from '../@component/control/control.component';
 import { FinanceComponent } from '../@component/finance/finance.component';
 import { CeoComponent } from '../@component/ceo/ceo.component';
@@ -46,6 +47,7 @@ const routes: Routes = [
         { path: 'user-leave', component: UserLeaveComponent },
         { path: 'generate-payroll', component: GeneratePayrollComponent },
         { path: 'report', component: ReportComponent },
+        { path: 'payslip', component: PayslipComponent },
         { path: 'control', component: ControlComponent },
         { path: 'finance', component: FinanceComponent },
         { path: 'ceo', component: CeoComponent },
