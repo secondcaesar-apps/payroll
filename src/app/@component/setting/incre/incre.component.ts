@@ -21,6 +21,7 @@ export class IncreComponent implements OnInit {
   messages: string;
   emp;
   sg;
+  ds;
   optionsSelect: { value: string; label: string; }[];
   constructor(
 
@@ -95,12 +96,13 @@ export class IncreComponent implements OnInit {
 
   loadEvent(){
  
-    let event = [this.Api.Read(APIENUM.EMP),this.Api.Read(APIENUM.SAG)];
+    let event = [this.Api.Read(APIENUM.EMP),this.Api.Read(APIENUM.SAG),this.Api.Read(APIENUM.DES)];
 
 forkJoin(event).subscribe((res:any)=>{
   console.log(res);
   this.emp =  res[0].records;
   this.sg= res[1].records;
+ this.ds=res[2].records;
 
 })
 

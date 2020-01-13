@@ -3,7 +3,7 @@ import { forkJoin } from 'rxjs';
 import { ApiserviceService } from './../../@shared/apiservice.service';
 import { Component, OnInit, Input, ViewChild, HostListener, ElementRef } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { APIENUM } from 'src/app/@shared/enum';
+import { APIENUM,UType } from 'src/app/@shared/enum';
 import swal from 'sweetalert2';
 import { SharedService } from 'src/app/@shared/shared/shared.service';
 import { map, tap  } from 'rxjs/operators';
@@ -201,6 +201,11 @@ setTimeout(() => this.employee.disable(), 2000);
        this.designation=res[4].records;
        this.role=res[5].records;
     })
+  }
+  onClick2(file:UType){
+
+    console.log(file);
+
   }
   createemployee(){
 

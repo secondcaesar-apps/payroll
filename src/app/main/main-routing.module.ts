@@ -19,7 +19,10 @@ import { UserProfileComponent } from '../@component/user-profile/user-profile.co
 import { GeneratePayrollComponent } from '../@component/generate-payroll/generate-payroll.component';
 import { ReportComponent } from '../@component/report/report.component';
 import { PayslipComponent } from '../@component/payroll/payslip/payslip.component';
-
+import { ControlComponent } from '../@component/control/control.component';
+import { FinanceComponent } from '../@component/finance/finance.component';
+import { CeoComponent } from '../@component/ceo/ceo.component';
+import { ApprovalComponent } from '../@component/approval/approval.component';
 const routes: Routes = [
 
     {
@@ -45,6 +48,10 @@ const routes: Routes = [
         { path: 'generate-payroll', component: GeneratePayrollComponent },
         { path: 'report', component: ReportComponent },
         { path: 'payslip', component: PayslipComponent },
+        { path: 'control', component: ControlComponent },
+        { path: 'finance', component: FinanceComponent },
+        { path: 'ceo', component: CeoComponent },
+        { path: 'Approvals', component: ApprovalComponent },
         {
           path: 'settings',
           loadChildren: () => import('../setting/setting.module').then(m => m.SettingModule)
