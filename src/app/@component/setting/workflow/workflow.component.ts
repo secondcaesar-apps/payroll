@@ -19,7 +19,7 @@ export class WorkflowComponent implements OnInit {
   message: Boolean=false;
   loading:Boolean=true;
   messages: string;
- WorkFlow:FormGroup;
+  WorkFlow:FormGroup;
   error:any;
   success:any;
   emp:any;

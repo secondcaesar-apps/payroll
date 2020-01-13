@@ -8,6 +8,7 @@ export enum APIENUM{
     DEPT='department',
     DES='designation',
     LOC='location',
+    LOGIN='login.php',
     LEAVETYPE='leavetype',
     INCR='incrementpromotion',
     MENU='menu',
