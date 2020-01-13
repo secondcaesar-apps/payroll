@@ -12,6 +12,7 @@ import { MDBSpinningPreloader, MDBBootstrapModulesPro, ToastModule } from 'ng-ui
 import { LoginComponent } from './@component/login/login.component';
 import { SharedModule } from './@shared/shared/shared.module';
 import { StrengthPipe } from './@pipe/strength.pipe';
+import { ApiserviceService } from './@shared/apiservice.service';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { StrengthPipe } from './@pipe/strength.pipe';
    SharedModule,
   
   ],
-  providers: [MDBSpinningPreloader],
+  providers: [MDBSpinningPreloader,ApiserviceService,],
   bootstrap: [AppComponent],
   schemas:      [ NO_ERRORS_SCHEMA ]
 })
