@@ -27,9 +27,10 @@ import { UserExpenseComponent } from '../@component/user-expense/user-expense.co
 import { SharedService } from '../@shared/shared/shared.service';
 import { GeneratePayrollComponent } from '../@component/generate-payroll/generate-payroll.component';
 import { ReportComponent } from '../@component/report/report.component';
+import { PayslipComponent } from '../@component/payroll/payslip/payslip.component';
 
 @NgModule({
-  declarations: [HomeComponent, DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent, ContactComponent, CreatecontactComponent, UserDashboardComponent, UserProfileComponent, UserPayrollComponent, UserLeaveComponent, UserExpenseComponent, GeneratePayrollComponent, ReportComponent],
+  declarations: [HomeComponent, DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent, ContactComponent, CreatecontactComponent, UserDashboardComponent, UserProfileComponent, UserPayrollComponent, UserLeaveComponent, UserExpenseComponent, GeneratePayrollComponent, ReportComponent, PayslipComponent],
   imports: [
     CommonModule,
     MainRoutingModule,

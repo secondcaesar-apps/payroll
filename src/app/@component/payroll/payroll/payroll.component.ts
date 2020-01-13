@@ -58,24 +58,6 @@ errormsg: boolean = false
     this.myForm1 = this.fb.group({
       Month: [this.date, Validators.required]
     });
-    // .pipe(
-    //   map((values: any) => {
-    //     this.date = values;
-    //     console.log(values)
-    //     this.service.MontlyRead(this.date, APIENUM.PAYROLL)
-    // .subscribe((res: any) => {
-    //   this.loading = false;
-    //   this.elements = res.records;
-    //   this.mdbTable.setDataSource(this.elements);
-    //   this.elements = this.mdbTable.getDataSource();
-    //   this.previous = this.mdbTable.getDataSource();
-    // }, (err: any) => {
-    //   this.loading = false;
-    //   this.messages = err.error.message;
-    //   this.message = true;
-    // })
-    //   })
-    // )
     let date = new Date().toJSON().slice(0, 10)
   
     this.service.MontlyRead({
@@ -144,7 +126,7 @@ errormsg: boolean = false
       this.NetSalary = el.NetSalary;
       this.SalaryGroup = el.SalaryGroup;
       this.PaymentMethod = el.PaymentMethod;
-      this.PaymentDate = el.PaymentMethod;
+      this.PaymentDate = el.PaymentDate;
       this.EmployeeStatus = el.EmployeeStatus
       this.EmployeeID = el.EmployeeID;
       this.SalarySlipID = el.SalarySlipID;
@@ -163,6 +145,9 @@ errormsg: boolean = false
         this.error_message = err.error.message;
         this.errormsg = true;
       })
+    } else {
+      this.router.navigate(['/main/payslip']);
+      this.shared.AddInfo(el)
     }
   }
 
