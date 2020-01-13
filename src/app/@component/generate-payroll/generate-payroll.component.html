@@ -30,7 +30,7 @@
                         <th style="text-align: right;">NetSalary</th>
                 
                         <th style="text-align: right;">TotalAmountDue</th>
-
+                        <th style="text-align: right;"></th>
                
 
 
@@ -47,7 +47,9 @@
                         <td style="text-align: right;">{{item.value.NetSalary  | currency:'₦':'symbol'}}</td>
                        
                         <td style="text-align: right;">{{item.value.TotalAmountDue  | currency:'₦':'symbol'}}</td>
-
+                        <th style="float: right;">
+                            <mdb-icon (click)="removeItems(i)" fas icon="trash" class="mr-1 "></mdb-icon>
+                          </th>
 
                     </tr>
                 </tbody>
