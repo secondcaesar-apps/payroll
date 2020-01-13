@@ -156,11 +156,15 @@ export class ApiserviceService {
   populatePayRoll() {
     return this._http.post(this.apiUrl + APIENUM.POPULATEPAYROLL, {});
   }
-
+  populateApprove(type: APIENUM) {
+    return this._http.post(`${this.apiUrl}${type.toString()}/populateapprove.php`, {});
+  }
   createPayslip(data) {
     return this._http.post(this.apiUrl + APIENUM.CREATEPAYROLL, data);
   }
 
-
+  App(type: APIENUM, data: any) {
+    return this._http.post(`${this.apiUrl}${type.toString()}/approve.php`, data);
+  }
 
 }
