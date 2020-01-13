@@ -109,5 +109,8 @@ export class GeneratePayrollComponent implements OnInit {
     });
   }
 
-
+  removeItems(id) {
+    this.itemArray.removeAt(id);
+   // this.Cart();
+  }
 }

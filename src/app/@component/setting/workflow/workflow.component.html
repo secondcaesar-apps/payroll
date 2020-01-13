@@ -43,7 +43,7 @@
       <div *ngIf="loading"  class="item"><ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader></div>
         </div>
 <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
      <div class="modal-content">
        <div class="modal-header light-blue darken-3 text-center text-white">
          
@@ -59,44 +59,39 @@
         <div *ngIf="error" class="alert alert-danger" role="alert">
          {{error}}
         </div>
-    
-        <div class="row" >
-        
-        
-              <div class="form-group col-md-6">
-                <label for="inputEmail4">PWFName</label>
-                <input [formControl]="PWFName" mdbInput type="text" class="form-control" >
-                <mdb-error *ngIf="PWFName.invalid && (PWFName.dirty||PWFName.touched)">
-                    Invalid Input.
-                  </mdb-error>
-            </div> 
-        
-          
-            <div class="form-group col-md-4">
-                <label for="inputPassword4">EmployeeID</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
-                <select  [formControl]="EmployeeID" class="browser-default custom-select">
+        <table mdbTable  [formGroup]="WorkFlow">
+          <caption>
+            <button (click)="addItem()"  class="float-right" type="button" color="success"
+          >
+             Add new
+            </button>
+          </caption>
+          <thead>
+            <tr>
+              <th>PWFNAME</th>
+              <th>EMPLOYEE ID</th>
+              <th>Level</th>
+            </tr>
+            
+          </thead>
+          <tbody formArrayName="Item">
+            <tr mdbTableCol *ngFor="let item of WorkFlow.get('Item').controls; let i = index;"
+              [formGroupName]="i">
+              <th> <input formControlName="PWFName" nbInput name="quantity" type="text" class=""></th>
+              <th> 
+                <select  formControlName="EmployeeID" class="mdb-select md-form colorful-select dropdown-primary">
               
                   <option *ngFor="let item of emp" [ngValue]="item.EmployeeID">{{item.EmployeeID}}</option>
                 
                 </select>
-              </div>
-            
-
-              <div class="form-group col-md-6">
-                <label for="inputEmail4">level</label>
-                <input [formControl]="level" mdbInput type="number" class="form-control" >
-               
-                <mdb-error *ngIf="level.invalid && (level.dirty||level.touched)">
-                    Invalid Input.
-                  </mdb-error>
-            </div> 
-        
-
-        </div>
-        
-    
-    
-    
+              </th>
+              <th> <input formControlName="level" nbInput name="quantity" type="number" class=""></th>
+              <th>
+                <mdb-icon (click)="removeItems(i)" fas icon="trash" class="mr-1"></mdb-icon>
+              </th>
+            </tr>
+          </tbody>
+        </table>
     
     
     
