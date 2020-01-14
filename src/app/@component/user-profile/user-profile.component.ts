@@ -21,7 +21,7 @@ export class UserProfileComponent implements OnInit {
   image='../../../assets/profile_image.jpg';
   message: Boolean=false;
   edit: Boolean=false;
-  loading:Boolean=true;
+  loading: Boolean = true;
   profile: Boolean=false;
   messages: string;
   employee:FormGroup;
