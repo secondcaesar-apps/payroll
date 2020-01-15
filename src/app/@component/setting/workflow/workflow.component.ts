@@ -26,7 +26,13 @@ export class WorkflowComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
     private Api: ApiserviceService
-  ) { }
+  ) {
+    this.WorkFlow = this._fb.group({
+    
+      Item:this._fb.array([this.createWorkflows2('','')]),
+
+    });
+   }
 
   ngOnInit() {
     this.Api.Read(APIENUM.WORKFLOWSETUP)
@@ -36,6 +42,14 @@ export class WorkflowComponent implements OnInit {
         this.mdbTable.setDataSource(this.elements);
         this.elements = this.mdbTable.getDataSource();
         this.previous = this.mdbTable.getDataSource();
+        for (let index = 0; index < res.records.length; index++) {
+          const element = res.records[index];
+  
+  
+          this.addItem23(res.records[index], index);
+        }
+        
+    this.itemArray.removeAt(0);
       }, (err: any) => {
         this.loading = false;
         this.messages = err.error.message;
@@ -50,17 +64,28 @@ export class WorkflowComponent implements OnInit {
         this.emp = res;
       });
 
-    this.WorkFlow = this._fb.group({
     
-      Item:this._fb.array([this.createWorkflows()]),
+  }
 
-    });
+  addItem23(value, id) {
+    this.itemArray.push(this.createWorkflows2(value, id));
+    //this.itemArray.removeAt(0);
   }
   createWorkflows(): FormGroup{
     return this._fb.group({
-      PWFName: ['', ],
-      EmployeeID: ['',],
-      level: [''],
+      PWFName: ['', [Validators.required]],
+      EmployeeID: ['', [Validators.required]],
+      level: ['', [Validators.required]],
+      Status: ["Active"]
+      
+
+    });
+  };
+  createWorkflows2(value?: any, index?: any){
+    return this._fb.group({
+      PWFName: [value.PWFName, [Validators.required]],
+      EmployeeID: [value.EmployeeID, [Validators.required]],
+      level: [value.level, [Validators.required]],
       Status: ["Active"]
       
 
@@ -71,6 +96,11 @@ export class WorkflowComponent implements OnInit {
 }
   addItem(){
     this.itemArray.push(this.createWorkflows());
+    }
+
+    addItem2(value, id) {
+      this.itemArray.push(this.createWorkflows2(value, id));
+      //this.itemArray.removeAt(0);
     }
   
   searchItems() {
@@ -101,10 +131,10 @@ export class WorkflowComponent implements OnInit {
   }
 
   createWorkflow() {
-   
+  //  console.log(this.WorkFlow.value)
     this.WorkFlow.disable();
    
-    this.Api.Create(APIENUM.WORKFLOWSETUP,this.WorkFlow.value['Item']).subscribe((res: any) => {
+    this.Api.Create(APIENUM.WORKFLOWSETUP, this.WorkFlow.value['Item']).subscribe((res: any) => {
       this.success = res.message
 
     }, err => {
@@ -116,14 +146,10 @@ export class WorkflowComponent implements OnInit {
       setTimeout(() => {
         this.success = '';
         this.error = '';
-        this.WorkFlow.reset();
+      //  this.WorkFlow.reset();
         this.WorkFlow.enable();
         
-    this.WorkFlow = this._fb.group({
-     
-      Item:this._fb.array([this.createWorkflows()]),
-
-    });
+    
       }, 500)
 
 
@@ -135,5 +161,9 @@ export class WorkflowComponent implements OnInit {
     this.itemArray.removeAt(id);
    // this.Cart();
   }
+
+load(){
+  
+}
 
 }

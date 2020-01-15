@@ -35,23 +35,29 @@ export class ExpenseComponent implements OnInit {
     }
   
     ngOnInit() {
+      this.load();
+    }
+
+    load(){
+
       this.Api.Read(APIENUM.CAT)
-        .subscribe((res:any)=>{
-          this.loading = false;
-          this.elements=res.records;
-          this.mdbTable.setDataSource(this.elements);
-          this.elements = this.mdbTable.getDataSource();
-          this.previous = this.mdbTable.getDataSource();
-        },(err:any)=>{
-          this.loading= false;
-          this.messages = err.error.message;
-          this.message = true;
-        })
-          this.Category= this._fb.group({
-      CategoryName:['',[Validators.required]],
-      CategoryDescription:['',[Validators.required]],
-     
-    });
+      .subscribe((res:any)=>{
+        this.loading = false;
+        this.elements=res.records;
+        this.mdbTable.setDataSource(this.elements);
+        this.elements = this.mdbTable.getDataSource();
+        this.previous = this.mdbTable.getDataSource();
+      },(err:any)=>{
+        this.loading= false;
+        this.messages = err.error.message;
+        this.message = true;
+      })
+        this.Category= this._fb.group({
+    CategoryName:['',[Validators.required]],
+    CategoryDescription:['',[Validators.required]],
+   
+  });
+
     }
     searchItems() {
       const prev = this.mdbTable.getDataSource();
@@ -71,7 +77,8 @@ export class ExpenseComponent implements OnInit {
     this.Category.disable();
     let value = {Status:"Active",...this.Category.value};
     this.Api.Create(APIENUM.CAT,value).subscribe((res:any)=>{
-      this.success=res.message
+      this.success=res.message;
+      this.load();
 
    },err=>{
      this.error=err.error.message;
@@ -84,7 +91,8 @@ export class ExpenseComponent implements OnInit {
        this.error='';
        this.Category.reset();
        this.Category.enable();
-     },500)
+     },500);
+     this.load();
    })
 
   }

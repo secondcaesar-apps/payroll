@@ -28,6 +28,9 @@ export class LeaveComponent implements OnInit {
 
   ngOnInit() {
 
+   this.load();
+  }
+  load(){
     this.optionsSelect = [
       { value: 'Male', label: 'Male' },
       { value: 'Female', label: 'Female' },
@@ -76,7 +79,8 @@ export class LeaveComponent implements OnInit {
     this.Leave.disable();
     let value = {Status:"Active",...this.Leave.value};
     this.Api.Create(APIENUM.LEAVETYPE,value).subscribe((res:any)=>{
-      this.success=res.message
+      this.success=res.message;
+      this.load();
 
    },err=>{
      this.error=err.error.message;
@@ -89,7 +93,8 @@ export class LeaveComponent implements OnInit {
        this.error='';
        this.Leave.reset();
        this.Leave.enable();
-     },500)
+     },500);
+     this.load();
 
  
    })

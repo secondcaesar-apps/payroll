@@ -28,7 +28,10 @@ export class MenuComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.Api.Read(APIENUM.MENU)
+    this.load();
+  }
+load(){
+  this.Api.Read(APIENUM.MENU)
     .subscribe((res:any)=>{
       this.loading = false;
       this.elements=res.records;
@@ -51,8 +54,7 @@ this.menuGroupApi()
       ParentID2:['',[Validators.required]],
       Description:['',[Validators.required]],
     });
-  }
-
+}
 
   get MenuName(){
     return this.Menu.get('MenuName');
@@ -80,7 +82,8 @@ this.menuGroupApi()
     this.Menu.disable();
     let value = {Status:"Active",...this.Menu.value};
     this.Api.Create(APIENUM.MENU,value).subscribe((res:any)=>{
-      this.success=res.message
+      this.success=res.message;
+      this.load();
 
    },err=>{
      this.error=err.error.message;
@@ -93,7 +96,8 @@ this.menuGroupApi()
        this.error='';
        this.Menu.reset();
        this.Menu.enable();
-     },500)
+     },500);
+     this.load();
 
  
    })

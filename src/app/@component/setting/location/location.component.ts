@@ -34,6 +34,10 @@ export class LocationComponent implements OnInit {
     }
   
     ngOnInit() {
+     this.load();
+    }
+
+    load(){
       this.Api.Read(APIENUM.LOC)
         .subscribe((res:any)=>{
           this.loading = false;
