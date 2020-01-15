@@ -15,8 +15,8 @@
         <div class="row float-right">
           <div class="col-sm-5">
             <div class="md-form">
-              <input mdbInput class="mr-1" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="searchText"
-                class="form-control" id="search" mdbInput>
+              <input mdbInput class="mr-1 search-input" type="text" placeholder="Search" aria-label="Search" id="search"
+                [(ngModel)]="searchText">
             </div>
           </div>
           <div class="col-sm-5">
@@ -29,8 +29,8 @@
 
               <div class="dropdown-menu dropdown-primary">
                 <button class="dropdown-item" href="#">All</button>
-                <button class="dropdown-item" href="#">Active</button>
-                <button class="dropdown-item" href="#">Inactive</button>
+                <button class="dropdown-item" href="#">Paid</button>
+                <button class="dropdown-item" href="#">Unpaid</button>
               </div>
 
             </div>

@@ -55,6 +55,10 @@ constructor(
     this.searchItems();
   }
   ngOnInit() {
+   this.load();
+  }
+
+  load(){
     this.myForm1 = this.fb.group({
       Month: [this.date, Validators.required]
     });
@@ -95,6 +99,7 @@ constructor(
       this.message = true;
       this.elements = [];
     })
+
   }
   public captureScreen()    
   {  

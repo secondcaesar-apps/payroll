@@ -33,21 +33,25 @@ export class DepartmentComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.load();
+  }
+
+  load(){
     this.Api.Read(APIENUM.DEPT)
-      .subscribe((res:any)=>{
-        this.loading = false;
-        this.elements=res.records;
-        this.mdbTable.setDataSource(this.elements);
-        this.elements = this.mdbTable.getDataSource();
-        this.previous = this.mdbTable.getDataSource();
-      },(err:any)=>{
-        this.loading= false;
-        this.messages = err.error.message;
-        this.message = true;
-      })
-        this.Dept= this._fb.group({
-      DepartmentName:['',[Validators.required]]
-    });
+    .subscribe((res:any)=>{
+      this.loading = false;
+      this.elements=res.records;
+      this.mdbTable.setDataSource(this.elements);
+      this.elements = this.mdbTable.getDataSource();
+      this.previous = this.mdbTable.getDataSource();
+    },(err:any)=>{
+      this.loading= false;
+      this.messages = err.error.message;
+      this.message = true;
+    })
+      this.Dept= this._fb.group({
+    DepartmentName:['',[Validators.required]]
+  });
   }
   get DepartmentValue(){
     return this.Dept.get('DepartmentName');
@@ -57,7 +61,8 @@ export class DepartmentComponent implements OnInit {
     let value = {Status:"Active",...this.Dept.value};
 
     this.Api.Create(APIENUM.DEPT,value).subscribe((res:any)=>{
-       this.success=res.message
+       this.success=res.message;
+       this.load();
 
     },err=>{
       this.error=err.error.message;
@@ -70,7 +75,8 @@ export class DepartmentComponent implements OnInit {
         this.error='';
         this.Dept.reset();
         this.Dept.enable();
-      },500)
+      },500);
+      this.load();
     })
   }
   searchItems() {

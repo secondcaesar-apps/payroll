@@ -15,8 +15,8 @@
         <div class="row float-right">
           <div class="col-sm-5">
             <div class="md-form">
-              <input mdbInput class="mr-1" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="searchText"
-                class="form-control" id="search" mdbInput>
+              <input mdbInput class="mr-1 search-input" type="text" placeholder="Search" aria-label="Search" id="search"
+                [(ngModel)]="searchText">
             </div>
           </div>
           <div class="col-sm-5">
@@ -198,8 +198,17 @@
                           [formGroupName]="i">
                           <th> <input formControlName="Name" nbInput name="quantity" type="text" class=""></th>
                           <th> <input formControlName="Amount" nbInput name="quantity" type="number" class=""></th>
-                          <th> <input formControlName="Type" nbInput name="quantity" type="text" class=""></th>
-                          <th>
+                          <th> <input formControlName="Description" nbInput name="quantity" type="text" class=""></th>
+                          <th>  
+                            
+                            <select  formControlName="Type" class="">
+       
+                              <option *ngFor="let item of type" [ngValue]="item">{{item}}</option>
+                            
+                            </select>
+                          
+                         
+                            <th>
                             <mdb-icon (click)="removeItems(i)" fas icon="trash" class="mr-1"></mdb-icon>
                           </th>
                         </tr>

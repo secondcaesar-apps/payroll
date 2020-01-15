@@ -31,7 +31,10 @@ export class IncreComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+this.load();
+  }
 
+  load(){
     this.optionsSelect = [
       { value: 'promotion', label: 'Promotion' },
       { value: 'increment', label: 'Increment' },
@@ -114,7 +117,8 @@ forkJoin(event).subscribe((res:any)=>{
     this.Increment.disable();
     let value = {Status:"Active",...this.Increment.value};
     this.Api.Create(APIENUM.INCR,value).subscribe((res:any)=>{
-      this.success=res.message
+      this.success=res.message;
+      this.load();
 
    },err=>{
      this.error=err.error.message;
@@ -127,7 +131,8 @@ forkJoin(event).subscribe((res:any)=>{
        this.error='';
        this.Increment.reset();
        this.Increment.enable();
-     },500)
+     },500);
+     this.load();
 
  
    })

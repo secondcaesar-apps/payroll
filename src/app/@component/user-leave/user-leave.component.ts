@@ -62,7 +62,8 @@ export class UserLeaveComponent implements OnInit {
     this.Leave.disable();
     let value = {Status:"Pending",EmployeeID:"EMP1900001",...this.Leave.value};
     this.service.Create(APIENUM.LEAVE,value).subscribe((res:any)=>{
-      this.success=res.message
+      this.success=res.message;
+      this.loadEvent();
 
    },err=>{
      this.error=err.error.message;
@@ -75,7 +76,8 @@ export class UserLeaveComponent implements OnInit {
        this.error='';
        this.Leave.reset();
        this.Leave.enable();
-     },900)
+     },900);
+     this.loadEvent();
 
  
    })

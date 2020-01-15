@@ -14,7 +14,7 @@ export class SalarySetupComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements = [];
   group = [];
-  headElements = ['SalaryGroupID', 'SalaryGroupName', 'Description', 'NetPay'];
+  headElements = ['Name', 'Amount','Description', 'Type', ''];
   searchText: string = '';
   previous: string;
   message: Boolean=false;
@@ -30,6 +30,11 @@ export class SalarySetupComponent implements OnInit {
   Type: string = '';
   Amount: string = '';
   SalaryComponentID: string = '';
+  type = ['Credit','Debit']
+  optionsSelect = [
+    { value: 'Credit', label: 'Credit' },
+    { value: 'Debit', label: 'Debit' },
+    ];
   // SalarySlipID: string = '';
   // EmployeeID: string = '';
   Total=0;
@@ -43,23 +48,7 @@ export class SalarySetupComponent implements OnInit {
         this.searchItems();
     }
   ngOnInit() {
-    this.Api.Read(APIENUM.SAG)
-    .subscribe((res:any)=>{
-      this.loading = false;
-      this.elements=res.records;
-      this.mdbTable.setDataSource(this.elements);
-      this.elements = this.mdbTable.getDataSource();
-      this.previous = this.mdbTable.getDataSource();
-    })
-
-    this.Salary= this._fb.group({
-      SalaryGroupName:['',[Validators.required]],
-      Description:['',[Validators.required]],
-      SalaryComponent:this._fb.array([this.createSalary()]),
-
-     
-    });
-   
+    this.load();
   }
 SalaryCom(el){
   if (this.show) {
@@ -133,7 +122,8 @@ this.Cart();
 this.Salary.disable();
 let value = {Status:"Active",NetPay:this.Total,...this.Salary.value};
 this.Api.Create(APIENUM.SAG,value).subscribe((res:any)=>{
-  this.success=res.message
+  this.success=res.message;
+  this.load();
 
 },err=>{
  this.error=err.error.message;
@@ -147,7 +137,8 @@ this.Api.Create(APIENUM.SAG,value).subscribe((res:any)=>{
    this.Salary.reset();
    this.resetTeamForm()
    this.Salary.enable();
- },500)
+ },500);
+ this.load();
 })
 
   }
@@ -177,5 +168,24 @@ this.Api.Create(APIENUM.SAG,value).subscribe((res:any)=>{
 
       resetTeamForm() {
         this.itemArray.reset();
+      }
+
+      load(){
+        this.Api.Read(APIENUM.SAG)
+        .subscribe((res:any)=>{
+          this.loading = false;
+          this.elements=res.records;
+          this.mdbTable.setDataSource(this.elements);
+          this.elements = this.mdbTable.getDataSource();
+          this.previous = this.mdbTable.getDataSource();
+        })
+    
+        this.Salary= this._fb.group({
+          SalaryGroupName:['',[Validators.required]],
+          Description:['',[Validators.required]],
+          SalaryComponent:this._fb.array([this.createSalary()]),
+    
+         
+        });
       }
 }

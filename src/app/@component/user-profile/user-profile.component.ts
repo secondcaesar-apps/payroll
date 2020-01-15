@@ -68,7 +68,7 @@ export class UserProfileComponent implements OnInit {
     // this.value = this.shared.getInfo().value
     this.value = "EMP1900002"
           let data = {
-            EmployeeID: "EMP1900001"
+            EmployeeID: "EMP1900003"
             
       }
           this.Api.ReadOne(APIENUM.EMP, data)

@@ -30,6 +30,9 @@ export class RoleComponent implements OnInit {
     this.searchItems();
 }
   ngOnInit() {
+    this.load();
+  }
+  load(){
     this.Api.Read(APIENUM.ROLE)
     .subscribe((res:any)=>{
       this.loading = false;
@@ -65,7 +68,8 @@ export class RoleComponent implements OnInit {
      let value = {Status:"Active",...this.Role.value};
  
      this.Api.Create(APIENUM.ROLE,value).subscribe((res:any)=>{
-        this.success=res.message
+        this.success=res.message;
+        this.load();
  
      },err=>{
        this.error=err.error.message;
@@ -78,7 +82,8 @@ export class RoleComponent implements OnInit {
          this.error='';
          this.Role.reset();
          this.Role.enable();
-       },500)
+       },500);
+       this.load();
      })
    }
 
