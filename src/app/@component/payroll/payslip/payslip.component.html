@@ -36,7 +36,7 @@
               <div>Branch: {{element.LocationsName}}</div>
             </div>
           </div>
-          <div class="table-responsive-sm">
+          <!-- <div class="table-responsive-sm">
             <table class="table table-striped">
               <thead class="bg-blue-200 text-white">
                 <tr>
@@ -64,8 +64,8 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-          <div class="row">
+          </div> -->
+          <!-- <div class="row">
             <div class="col-lg-6 col-sm-6 ml-auto">
               <table class="table table-clear">
                 <tbody>
@@ -94,7 +94,57 @@
   
             </div>
   
-          </div>
+          </div> -->
+          <div class="fhsco-table">
+            <table class='table table-bordered'>
+               <thead>
+                 <td>Earning </td>
+                 <td>Amount(₦) </td>
+                 <td>Deductions </td>
+                 <td>Amount(₦) </td>
+               </thead>
+               <tbody>
+                 <tr  *ngFor="let slip of Salaryslipcredit;let i = index">
+                   <td class="center" style="font-size:20px;">{{slip.Name}}</td>
+                   <td class="right" style="font-size:20px; padding-left: 0px; color: green;">{{slip.Amount  | currency:'₦':'symbol'}}</td>
+                   <td></td>
+                   <td></td>
+                 </tr>
+                 <tr  *ngFor="let slip of Salaryslipdebit;let i = index">
+                   <td></td>
+                   <td></td>
+                   <td class="center" style="font-size:20px;">{{slip.Name}}</td>
+                   <td class="right" style="font-size:20px; padding-left: 0px; color: red;">{{slip.Amount  | currency:'₦':'symbol'}}  </td>
+                 </tr>
+                 <!-- <tr>
+                   <td> </td>
+                   <td> </td>
+                   <td>Pension </td>
+                   <td>20,000.00 </td>
+                 </tr>
+                 <tr>
+                   <td> </td>
+                   <td> </td>
+                   <td>Others </td>
+                   <td>600.00 </td>
+                 </tr> -->
+                 <tr class="tfooter">
+                   <td style="font-size:20px;">Gross Earning</td>
+                   <td class="right" style="font-size:20px; color: green;">{{TotalEarnings  | currency:'₦':'symbol'}}</td>
+                   <td style="font-size:20px;">Total Deduction</td>
+                   <td class="right" style="font-size:20px;  color: red;">{{TotalDeductions  | currency:'₦':'symbol'}}</td>
+                </tr>
+               </tbody>
+               <tfoot class="borderless">
+                 <tr>
+                   <td class="border"></td>
+                   <td class="border"></td>
+                   <td style="font-size:20px;"class="back">Net Salary</td>
+                   <td style="font-size:20px; color: green;" class="back">{{element.NetSalary  | currency:'₦':'symbol'}}</td>
+                 </tr>
+               <tfoot>
+            </table>
+           </div>
         </div>
       </div>
     </div>
