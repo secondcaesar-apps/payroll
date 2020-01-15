@@ -84,7 +84,7 @@ export class UserProfileComponent implements OnInit {
             Email:[this.elements.Email,Validators.required],
             Gender:[this.elements.Gender, Validators.required],
             DOB:[this.elements.DOB,Validators.required],
-            Department:[this.elements.Department,Validators.required],
+            Department:[{ value: this.elements.Department, disabled: true },Validators.required],
             Designation:[this.elements.Designation, Validators.required],
             Location:[this.elements.Location,Validators.required],
             ReportsTO:[this.elements.ReportsTO,Validators.required],
@@ -186,7 +186,7 @@ export class UserProfileComponent implements OnInit {
               this.message = true;
             })
             this.loadEvent();
-setTimeout(() => this.employee.disable(), 2000);
+// setTimeout(() => this.employee.disable(), 2000);
   }
 
  
@@ -198,6 +198,7 @@ setTimeout(() => this.employee.disable(), 2000);
       this.location= res[0].records;
       this.department = res[1].records;
       this.employees=res[2].records;
+      this.salarygroup=res[3].records
        this.designation=res[4].records;
        this.role=res[5].records;
     })
