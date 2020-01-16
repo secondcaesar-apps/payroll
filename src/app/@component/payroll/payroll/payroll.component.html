@@ -4,7 +4,7 @@
       <div class="col-sm-4">
         <div class="form-group">
           <button (click)="generatePayroll()" mdbBtn type="button" color="success" mdbWavesEffect>
-            <mdb-icon fab icon="google-play" class="space"></mdb-icon>Generate
+            <mdb-icon fab icon="google-play" class="space"></mdb-icon>Generate Payslip
           </button>
           <!-- <button mdbBtn type="button" (click)="newemployee()" color="default" mdbWavesEffect>
                   <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
@@ -57,7 +57,6 @@
               </th>
               <th>{{headElements[1]}}</th>
               <th style="text-align: right;">{{headElements[2]}}</th>
-              <th>{{headElements[3]}}</th>
             </tr>
           </thead>
           <tbody>
@@ -65,9 +64,9 @@
               <th scope="row" (click)="openDetails(el)"style="cursor: pointer;">{{el.id}}{{el.id}}{{el.FirstName}} {{el.LastName}}</th>
               <td (click)="openDetails(el)"style="cursor: pointer;">{{el.Month | date}}</td>
               <td (click)="openDetails(el)" style="text-align: right;cursor: pointer;">{{el.TotalAmountDue  | currency:'₦':'symbol'}}</td>
-              <td><button mdbBtn type="button" color="primary"style="padding:3px; margin:0;" mdbWavesEffect>
+              <!-- <td><button mdbBtn type="button" color="primary"style="padding:3px; margin:0;" mdbWavesEffect>
                   <mdb-icon fas icon="credit-card" class="mr-1"></mdb-icon>{{el.Status}}
-                </button></td>
+                </button></td> -->
             </tr>
           </tbody>
         </table>

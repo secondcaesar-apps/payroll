@@ -246,7 +246,6 @@ export class UserProfileComponent implements OnInit {
 
   CanEdit(){
     this.edit = true
-      this.employee.enable();
   }
 
     onClick() {

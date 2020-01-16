@@ -74,9 +74,7 @@
                     <td (click)="readExpense(el)" (click)="basicModal.show()" style="cursor: pointer;">{{el.Category}}</td>
                     <td>{{el.Amount  | currency:'₦':'symbol'}}</td>
                     <td>{{ el.BillDate | date:'medium' }} </td>
-                    <td><button mdbBtn type="button" color="primary" style="padding:3px; margin:0;" mdbWavesEffect>
-                      <mdb-icon fas icon="credit-card" class="mr-1"></mdb-icon>{{el.Status}}
-                    </button></td>
+                    <td>{{el.Status}}</td>
                   </tr>
                 </tbody>
             </table>
