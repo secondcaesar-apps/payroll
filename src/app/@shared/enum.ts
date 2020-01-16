@@ -27,7 +27,8 @@ export enum APIENUM{
     CREATEPAYROLL='/salaryslip/create.php',
     EVENT='event',
     PAYROLLM='salaryslip',
-    WORKFLOWSETUP='workflowsetup'
+    WORKFLOWSETUP='workflowsetup',
+    CHECK='salaryslip/checkmonth'
 }
 
 export enum UType{

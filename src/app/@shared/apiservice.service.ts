@@ -31,6 +31,13 @@ export class ApiserviceService {
     return this._http.post(`${this.apiUrl}${type.toString()}/create.php`, data);
 
   }
+  BLnk(type: APIENUM, data: any) {
+
+
+    return this._http.post(`${this.apiUrl}${type.toString()}`, data);
+
+  }
+
 
   Login(type: APIENUM, data: any) {
 
