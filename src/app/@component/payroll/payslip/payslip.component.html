@@ -1,6 +1,11 @@
+<div> 
+  <button mdbBtn type="button" (click)="back()" color="success" mdbWavesEffect>
+    <mdb-icon fas icon="angle-double-left"></mdb-icon>Back
+ </button>
+</div>
 <div class="payslip" >
   <div style="margin-bottom: -250px;"> 
-      <button mdbBtn type="button" (click)="captureScreen() " color="default" mdbWavesEffect>
+      <button mdbBtn type="button" (click)="captureScreen() " color="primary" mdbWavesEffect>
       <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>Open PDF
      </button>
   </div>
@@ -32,7 +37,7 @@
               </div>
               <div>Joining Date: {{element.JoiningDate}}</div>
               <div>Attendance:{{element.Attendance}}</div>
-              <div>PayDate: <a href="mailto:LoremIpsum@gmail.com">{{element.PaymentDate}}</a></div>
+              <div>PayDate: <a href="mailto:LoremIpsum@gmail.com">{{element.PaymentDate | date}}</a></div>
               <div>Branch: {{element.LocationsName}}</div>
             </div>
           </div>
@@ -96,7 +101,123 @@
   
           </div> -->
           <div class="fhsco-table">
-            <table class='table table-bordered'>
+            <table border="1" style="border-collapse:collapse;width:100%;margin-left:0%">
+              <tbody>
+                  <tr style="background:#a1a0a0" *ngIf="earnings">
+                      <th style="text-align:center">#</th>
+                      <th style="font-size:20px;">Earnings </th>
+                      <th style="font-size:20px; text-align:right">Amount</th>
+                  </tr>
+                  <tr  *ngFor="let slip of Salaryslipcredit;let i = index ">
+                      <td style="width:4%;text-align:center">{{ i + 1}}</td>
+                      <td style="font-weight:bolder;width:48%; font-size:20px;">{{slip.Name}}</td>
+                      <td style="width:48%;text-align:right; font-size:20px; " >{{slip.Amount  | currency:'₦':'symbol'}}</td>
+                  </tr>
+                  <!-- <tr>
+                    <td style="width:4%;text-align:center">1</td>
+                    <td style="font-weight:bolder;width:48%">Total Earnings</td>
+                    <td style="width:48%;text-align:right">{{TotalEarnings  | currency:'₦':'symbol'}}</td>
+                </tr> -->
+                  <!-- <tr>
+                      <td style="width:4%;text-align:center">2</td>
+                      <td style="font-weight:bolder;width:48%"> Nghỉ Phép/ Lễ/ Days off</td>
+                      <td style="width:48%;text-align:right"></td>
+                  </tr>
+                  <tr>
+                      <td style="width:4%;text-align:center">3</td>
+                      <td style="font-weight:bolder;width:48%">Mức lương + PC hiện hưởng đóng BHXH/ Salary at Insurrance</td>
+                      <td style="width:48%;text-align:right">3,880,000.00</td>
+                  </tr>
+                  <tr>
+                      <td style="width:4%;text-align:center">4</td>
+                      <td style="font-weight:bolder;width:48%">Mức lương theo ngày công/ Salary up to working days</td>
+                      <td style="width:48%;text-align:right">3,880,000.00</td>
+                  </tr>
+                  <tr>
+                      <td style="width:4%;text-align:center">5</td>
+                      <td style="font-weight:bolder;width:48%">Phụ cấp theo hiệu quả, kết quả CV (năng suất)/ Amount of Allowance</td>
+                      <td style="width:48%;text-align:right">2,050,000.00</td>
+                  </tr>
+                  <tr style="font-weight:bolder;background-color:#f2f2f2">
+                      <td style="width:4%;text-align:center">6</td>
+                      <td style="font-weight:bolder;width:48%">Thu nhập tháng (lương + PCCV + PC theo hiệu quả CV)/ Total salary</td>
+                      <td style="width:48%;text-align:right">2,900,000.00</td>
+                  </tr>
+                  <tr>
+                      <td style="width:4%;text-align:center">7</td>
+                      <td style="font-weight:bolder;width:48%">Hệ số PC theo hiệu quả CV (K năng suất)/ Posion cofficient</td>
+                      <td style="width:48%;text-align:right">2.35</td>
+                  </tr>
+                  <tr>
+                      <td style="width:4%;text-align:center">8</td>
+                      <td style="font-weight:bolder;width:48%">Tỷ lệ hoàn thành công việc/ Work completion rate</td>
+                      <td style="width:48%;text-align:right">100%</td>
+                  </tr>
+                  <tr>
+                      <td style="width:4%;text-align:center">9</td>
+                      <td style="font-weight:bolder;width:48%"> Tiền cơm/ Money for meal </td>
+                      <td style="width:48%;text-align:right">680,000.00</td>
+                  </tr>
+                  <tr>
+                      <td style="width:4%;text-align:center">10</td>
+                      <td style="font-weight:bolder;width:48%">Tổng thu nhập tính thuế / Taxable personal Income </td>
+                      <td style="width:48%;text-align:right">118,000.00</td>
+                  </tr>
+                  <tr>
+                      <td style="width:4%;text-align:center">11</td>
+                      <td style="font-weight:bolder;width:48%">Số người giảm trừ/ Depedent person </td>
+                      <td style="width:48%;text-align:right">0.00</td>
+                  </tr> -->
+                  <tr style="font-weight:bolder;background-color:#aaa9a9" *ngIf="deductions">
+                      <td style="font-weight:bold;text-align:center">*</td>
+                      <td style="font-size:20px;">Deductions</td>
+                      <td style="font-size:20px; text-align:right">Amount</td>
+                  </tr>
+                  <tr *ngFor="let slip of Salaryslipdebit;let i = index">
+                  <td style="width:4%;text-align:center">{{i}}</td>
+                      <td style="font-weight:bolder;width:48%; font-size:20px;">{{slip.Name}}
+                      </td>
+                      <td style="width:48%;text-align:right; font-size:20px;">{{slip.Amount  | currency:'₦':'symbol'}}</td>
+                  </tr>
+                  <!-- <tr>
+                    <td style="width:4%;text-align:center">1</td>
+                    <td style="font-weight:bolder;width:48%">Total Deductions</td>
+                    <td style="width:48%;text-align:right">{{TotalDeductions  | currency:'₦':'symbol'}}</td>
+                </tr> -->
+              </tbody>
+          </table>
+                    <div class="row">
+            <div class="col-lg-6 col-sm-6 ml-auto">
+              <table class="table table-clear">
+                <tbody>
+                  <tr>
+                    <td class="left" style="font-size:20px;">
+                      <strong>Total Earnings</strong>
+                    </td>
+                  <td class="right  text-success" style="font-size:20px; text-align:right;">{{TotalEarnings  | currency:'₦':'symbol'}}</td>
+                  </tr>
+                  <tr>
+                    <td class="left" style="font-size:20px;">
+                      <strong>Total Deductions</strong>
+                    </td>
+                  <td class="right" style="font-size:20px; text-align:right; color: red;">{{TotalDeductions  | currency:'₦':'symbol'}}</td>
+                  </tr>
+                  <tr>
+                    <td class="left" style="font-size:20px;">
+                      <strong>Net Salary</strong>
+                    </td>
+                    <td class="right" style="font-size:20px; text-align:right;">
+                    <strong>{{element.NetSalary  | currency:'₦':'symbol'}}</strong>
+                    <!-- clculate(TotalEarnings, TotalDeductions )  -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+  
+            </div>
+  
+          </div>
+            <!-- <table class='table table-bordered'>
                <thead>
                  <td>Earning </td>
                  <td>Amount(₦) </td>
@@ -116,18 +237,6 @@
                    <td class="center" style="font-size:20px;">{{slip.Name}}</td>
                    <td class="right" style="font-size:20px; padding-left: 0px; color: red;">{{slip.Amount  | currency:'₦':'symbol'}}  </td>
                  </tr>
-                 <!-- <tr>
-                   <td> </td>
-                   <td> </td>
-                   <td>Pension </td>
-                   <td>20,000.00 </td>
-                 </tr>
-                 <tr>
-                   <td> </td>
-                   <td> </td>
-                   <td>Others </td>
-                   <td>600.00 </td>
-                 </tr> -->
                  <tr class="tfooter">
                    <td style="font-size:20px;">Gross Earning</td>
                    <td class="right" style="font-size:20px; color: green;">{{TotalEarnings  | currency:'₦':'symbol'}}</td>
@@ -143,7 +252,7 @@
                    <td style="font-size:20px; color: green;" class="back">{{element.NetSalary  | currency:'₦':'symbol'}}</td>
                  </tr>
                <tfoot>
-            </table>
+            </table> -->
            </div>
         </div>
       </div>

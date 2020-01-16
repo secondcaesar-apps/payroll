@@ -13,7 +13,7 @@ import swal from 'sweetalert2';
 export class ReportComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements = []    
-  headElements = ['LeaveID', 'Description','Start Date', 'End Date','DateCreated', 'Status'];
+  headElements = ['Employee Name', 'Description','Start Date', 'End Date','DateCreated', 'Status'];
   searchText: string = '';
   previous: string;
   message: Boolean=false;

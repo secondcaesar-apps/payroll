@@ -73,9 +73,7 @@
               <th scope="row" style="cursor: pointer;" (click)="reademployee(el)">{{el.EmployeeID}}</th>
               <td style="cursor: pointer;"  (click)="reademployee(el)">{{el.Month | date}}</td>
               <td  style="text-align: right;cursor: pointer;">{{el.TotalAmountDue  | currency:'₦':'symbol'}}</td>
-              <td><button mdbBtn type="button" color="primary"style="padding:3px; margin:0;" mdbWavesEffect>
-                  <mdb-icon fas icon="credit-card" class="mr-1"></mdb-icon>{{el.Status}}
-                </button></td>
+              <td>{{el.Status}}</td>
             </tr>
           </tbody>
         </table>

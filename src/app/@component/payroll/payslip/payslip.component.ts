@@ -6,8 +6,7 @@ import { SharedService } from 'src/app/@shared/shared/shared.service';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { APIENUM } from 'src/app/@shared/enum';
-
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-payslip',
   templateUrl: './payslip.component.html',
@@ -22,6 +21,8 @@ Salaryslipcredit:any =[];
 Salaryslipdebit:any =[];
 error_message: string="";
 errormsg: boolean = false;
+deductions: boolean = false;
+earnings: boolean = false;
 show: boolean = false
 amount: boolean = false
 TotalDeductions: number = 0;
@@ -31,6 +32,7 @@ TotalEarnings: number = 0;
     private shared: SharedService,
     private router: Router,
     private service: ApiserviceService,
+    private _loc: Location
   ) { }
 
   ngOnInit() {
@@ -47,10 +49,12 @@ TotalEarnings: number = 0;
         this.Salaryslip =res.records
         this.Salaryslip.forEach((element:any) => {
           if(element.Type === "Credit"){
+            this.earnings = true;
               this.Salaryslipcredit.push(element)
               this.TotalEarnings = parseInt(element.Amount) + this.TotalEarnings;
               console.log(this.TotalEarnings);
           } else {
+            this.deductions = true;
             this.Salaryslipdebit.push(element)
             this.TotalDeductions = parseInt(element.Amount) + this.TotalDeductions;
           }
@@ -79,5 +83,11 @@ TotalEarnings: number = 0;
           pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)     
           pdf.save('pdf.pdf'); // Generated PDF      
          });   
+         }
+         clculate(amount1, amount2){
+          return amount1 - amount2
+         }
+         back(){
+           this._loc.back()
          }
 }

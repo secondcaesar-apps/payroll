@@ -20,7 +20,7 @@ export class PayrollComponent implements OnInit {
   elements = [];
   dated: string = new Date().toJSON().slice(0, 10)
   error: Boolean = false;
-  headElements = ['Employee','Pay Date', 'Net Salary',  'Status'];
+  headElements = ['Employee','Pay Date', 'Total Amount Due',  'Status'];
   searchText: string = '';
   previous: string;
   message: Boolean = false;
