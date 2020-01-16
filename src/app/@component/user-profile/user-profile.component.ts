@@ -66,9 +66,9 @@ export class UserProfileComponent implements OnInit {
           { value: 'Divoced', label: 'Divoced' },
           ];
     // this.value = this.shared.getInfo().value
-    this.value = "EMP1900002"
+    this.value =  sessionStorage.getItem('EmpID')
           let data = {
-            EmployeeID: "EMP1900003"
+            EmployeeID:  sessionStorage.getItem('EmpID')
             
       }
           this.Api.ReadOne(APIENUM.EMP, data)

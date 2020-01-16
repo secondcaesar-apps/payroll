@@ -60,7 +60,7 @@ export class ReportComponent implements OnInit {
   createLeave(){
 
     this.Leave.disable();
-    let value = {Status:"Pending",EmployeeID:"EMP1900001",...this.Leave.value};
+    let value = {Status:"Pending",EmployeeID: sessionStorage.getItem('EmpID'),...this.Leave.value};
     this.service.Create(APIENUM.LEAVE,value).subscribe((res:any)=>{
       this.success=res.message
 
@@ -82,7 +82,7 @@ export class ReportComponent implements OnInit {
 
   }
 loadEvent(){
-    let value = {EmployeeID : "EMP1900001"
+    let value = {EmployeeID :  sessionStorage.getItem('EmpID')
    
 }
 this.service.Create(APIENUM.REPORT,value).subscribe((res:any)=>{
@@ -117,7 +117,7 @@ this.service.Create(APIENUM.REPORT,value).subscribe((res:any)=>{
 // getAllLeave(){
 
 //   //login user
-//   let value = {EmployeeID : "EMP1900001"
+//   let value = {EmployeeID :  sessionStorage.getItem('EmpID')
    
 // }
 //     this.service.Create(APIENUM.REPORT,value).subscribe((res:any)=>{

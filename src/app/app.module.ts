@@ -28,7 +28,7 @@ import { ApiserviceService } from './@shared/apiservice.service';
    SharedModule,
   
   ],
-  providers: [MDBSpinningPreloader,ApiserviceService,],
+  providers: [MDBSpinningPreloader,ApiserviceService, ],
   bootstrap: [AppComponent],
   schemas:      [ NO_ERRORS_SCHEMA ]
 })

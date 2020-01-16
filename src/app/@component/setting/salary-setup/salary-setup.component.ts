@@ -89,8 +89,8 @@ SalaryCom(el){
     return this.Salary.get('SalaryGroupName');
   }
 
-  get Description(){
-    return this.Salary.get('Description');
+  get LeaveDays(){
+    return this.Salary.get('LeaveDays');
   }
  
   removeItems(id) {
@@ -182,7 +182,7 @@ this.Api.Create(APIENUM.SAG,value).subscribe((res:any)=>{
     
         this.Salary= this._fb.group({
           SalaryGroupName:['',[Validators.required]],
-          Description:['',[Validators.required]],
+          LeaveDays :['',[Validators.required]],
           SalaryComponent:this._fb.array([this.createSalary()]),
     
          

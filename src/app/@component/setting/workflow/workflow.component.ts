@@ -35,36 +35,40 @@ export class WorkflowComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.Api.Read(APIENUM.WORKFLOWSETUP)
-      .subscribe((res: any) => {
-        this.loading = false;
-        this.elements = res.records;
-        this.mdbTable.setDataSource(this.elements);
-        this.elements = this.mdbTable.getDataSource();
-        this.previous = this.mdbTable.getDataSource();
-        for (let index = 0; index < res.records.length; index++) {
-          const element = res.records[index];
-  
-  
-          this.addItem23(res.records[index], index);
-        }
-        
-    this.itemArray.removeAt(0);
-      }, (err: any) => {
-        this.loading = false;
-        this.messages = err.error.message;
-        this.message = true;
-      })
-    this.Api.Read(APIENUM.EMP)
-      .pipe(
-        map((res: any) => res.records)
-      )
-      .subscribe((res: any) => {
-        console.log(res);
-        this.emp = res;
-      });
+  this.loadevent();
 
     
+  }
+
+  loadevent(){
+    this.Api.Read(APIENUM.WORKFLOWSETUP)
+    .subscribe((res: any) => {
+      this.loading = false;
+      this.elements = res.records;
+      this.mdbTable.setDataSource(this.elements);
+      this.elements = this.mdbTable.getDataSource();
+      this.previous = this.mdbTable.getDataSource();
+      for (let index = 0; index < res.records.length; index++) {
+        const element = res.records[index];
+
+
+        this.addItem23(res.records[index], index);
+      }
+      
+  this.itemArray.removeAt(0);
+    }, (err: any) => {
+      this.loading = false;
+      this.messages = err.error.message;
+      this.message = true;
+    })
+  this.Api.Read(APIENUM.EMP)
+    .pipe(
+      map((res: any) => res.records)
+    )
+    .subscribe((res: any) => {
+      console.log(res);
+      this.emp = res;
+    });
   }
 
   addItem23(value, id) {
@@ -135,7 +139,8 @@ export class WorkflowComponent implements OnInit {
     this.WorkFlow.disable();
    
     this.Api.Create(APIENUM.WORKFLOWSETUP, this.WorkFlow.value['Item']).subscribe((res: any) => {
-      this.success = res.message
+      this.success = res.message;
+   
 
     }, err => {
       this.error = err.error.message;
@@ -150,7 +155,8 @@ export class WorkflowComponent implements OnInit {
         this.WorkFlow.enable();
         
     
-      }, 500)
+      }, 500);
+    
 
 
     })

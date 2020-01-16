@@ -15,7 +15,7 @@ export class InterceptorServices implements HttpInterceptor {
 console.log(this.value);
         if (idToken) {
             const customReq = request.clone({
-                headers: request.headers.set("Authorization", " Bearer " +idToken)
+                headers: request.headers.set("Authorization", " Bearer " +sessionStorage.getItem('jwt'))
             });
             return next.handle(customReq);
         }

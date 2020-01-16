@@ -138,7 +138,7 @@
             <div class="sectionA row">
               <div class="col">
                 <mdb-card>
-                  
+
                   <mdb-card-body>
                     <form>
 
@@ -156,11 +156,11 @@
                         </div>
 
                         <div class="form-group col-md-12">
-                          <label for="inputPassword4">Description</label>
-                          <textarea [formControl]="Description" type="text" id="form107"
-                            class="md-textarea form-control" rows="5" mdbInput></textarea>
+                          <label for="inputPassword4">Level Days</label>
+                          <input [formControl]="LeaveDays" mdbInput type="number" class="form-control" id="inputEmail4">
 
-                          <mdb-error *ngIf="Description.invalid && (Description.dirty||Description.touched)">
+
+                          <mdb-error *ngIf="LeaveDays.invalid && (LeaveDays.dirty||LeaveDays.touched)">
                             Invalid Value.
                           </mdb-error>
 
@@ -183,9 +183,8 @@
                   <mdb-card-body>
                     <table mdbTable>
                       <caption>
-                        <button (click)="addItem()"  class="float-right" type="button" color="success"
-                      >
-                         Add new
+                        <button (click)="addItem()" class="float-right" type="button" color="success">
+                          Add new
                         </button>
                       </caption>
                       <thead>
@@ -199,16 +198,16 @@
                           <th> <input formControlName="Name" nbInput name="quantity" type="text" class=""></th>
                           <th> <input formControlName="Amount" nbInput name="quantity" type="number" class=""></th>
                           <th> <input formControlName="Description" nbInput name="quantity" type="text" class=""></th>
-                          <th>  
-                            
-                            <select  formControlName="Type" class="">
-       
+                          <th>
+
+                            <select formControlName="Type" class="">
+
                               <option *ngFor="let item of type" [ngValue]="item">{{item}}</option>
-                            
+
                             </select>
-                          
-                         
-                            <th>
+
+
+                          <th>
                             <mdb-icon (click)="removeItems(i)" fas icon="trash" class="mr-1"></mdb-icon>
                           </th>
                         </tr>

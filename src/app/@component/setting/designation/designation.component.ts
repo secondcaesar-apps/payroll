@@ -58,7 +58,8 @@ export class DesignationComponent implements OnInit {
     this.Designation.disable();
     let value = {Status:"Active",...this.Designation.value};
     this.Api.Create(APIENUM.DES,value).subscribe((res:any)=>{
-      this.success=res.message
+      this.success=res.message;
+      this.reload();
 
    },err=>{
      this.error=err.error.message;

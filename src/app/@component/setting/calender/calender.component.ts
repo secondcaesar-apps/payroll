@@ -29,6 +29,9 @@ export class CalenderComponent implements OnInit {
   constructor(   private _fb:FormBuilder,private Api:ApiserviceService) { }
 
   ngOnInit() {
+    this.loadevent();
+  }
+  loadevent(){
     this.Api.Read(APIENUM.EVENT)
     .subscribe((res:any)=>{
       this.loading = false;
@@ -76,7 +79,8 @@ console.log(startOfDay(this.Cal.value.StartDate));
      let value = {Status:"Active",StartDate:this.Cal.value.StartDate,EndDate:this.Cal.value.EndDate, Color:'red',EventTitle:this.Cal.value.EventTitle,};
  
      this.Api.Create(APIENUM.EVENT,value).subscribe((res:any)=>{
-        this.success=res.message
+        this.success=res.message;
+        this.loadevent();
  
      },err=>{
        this.error=err.error.message;
