@@ -1,89 +1,106 @@
-
 <body class="black-skin">
 
-    <!--Double navigation-->
-    <header>
-        <!-- Sidebar navigation -->
-        <div id="sidenav">
-            <div class="wrapper">
-              <div class="logo">
-                <a >HRM</a>
-                <a class="nav-icon pull-right"><i class="fa fa-bars"></i></a>
-              </div>
-              <div class="menu">
-                <ul>
-                  <li  routerLink="dashboard" routerLinkActive="active"><a ><i class="fa fa-home p-2"></i>Home</a></li>
-                  <li  routerLink="user-dahboard" routerLinkActive="active"><a> <i class="fa fa-calendar p-2" aria-hidden="true"></i> Activies</a></li>
-                  <li  routerLink="user-expense" routerLinkActive="active"><a> <i class="fa fa-cart-plus p-2"></i>Expense Claim</a></li>
-                  <li  routerLink="user-payroll" routerLinkActive="active"><a> <i class="fa fa-dollar-sign p-2"></i> PayRoll</a></li>
-                  <li  routerLink="user-profile" routerLinkActive="active"><a > <i class="fa fa-user p-2"></i>Profile</a></li>
-                  <li  routerLink="user-leave" routerLinkActive="active"><a > <i class="fa fa-users p-2"></i>Leave</a></li>
-                  
-                  <li routerLink="employee" routerLinkActive="active"  ><a ><i class="fa fa-address-book p-2"></i>Employee</a></li>
-                  <li   routerLink="assets" routerLinkActive="active"><a ><i class="fa fa-object-group p-2"></i>Assets</a></li>
-                  <li   routerLink="contact" routerLinkActive="active"><a > <i class="fa fa-phone-square p-2"></i>Contact</a></li>
-                  <li routerLink="payroll"  routerLinkActive="active" > <a 
-                    mdbWavesEffect> <i class="fa fa-book p-2"></i>Manage</a></li>
-                    <li routerLinkActive="active"  routerLink="report"> <a 
-                    ><i class="fa fa-envelope p-2"></i>Report</a></li>
-                    <!-- <li routerLinkActive="active"  routerLink="control"> <a 
-                      ><i class="fa fa-envelope p-2"></i>Control</a></li>
-                      <li routerLinkActive="active"  routerLink="finance"> <a 
-                        ><i class="fa fa-dollar-sign p-2"></i>Finance</a></li> -->
-                        <li routerLinkActive="active"  routerLink="Approvals"> <a 
-                          ><i class="fa fa-dollar-sign p-2"></i>Approval</a></li>
-                  <li   routerLink="settings/company" routerLinkActive="active"><a ><i class="fa fa-cog p-2"></i>Settings</a></li>
-                  
-                </ul>
-              </div>
+  <!--Double navigation-->
+  <header>
+    <!-- Sidebar navigation -->
+    <div id="sidenav">
+      <div class="wrapper">
+        <div class="logo">
+          <a>HRM</a>
+          <a class="nav-icon pull-right"><i class="fa fa-bars"></i></a>
+        </div>
+        <div class="menu">
+          <ul>
+            <li routerLink="dashboard" routerLinkActive="active"><a><i class="fa fa-home p-2"></i>Home</a></li>
+            <li routerLink="user-dahboard" routerLinkActive="active"><a> <i class="fa fa-calendar p-2"
+                  aria-hidden="true"></i> Activies</a></li>
+            <li routerLink="user-expense" routerLinkActive="active"><a> <i class="fa fa-cart-plus p-2"></i>Expense
+                Claim</a></li>
+            <li routerLink="user-payroll" routerLinkActive="active"><a> <i class="fa fa-dollar-sign p-2"></i>
+                PayRoll</a></li>
+            <li routerLink="user-profile" routerLinkActive="active"><a> <i class="fa fa-user p-2"></i>Profile</a></li>
+            <li routerLink="user-leave" routerLinkActive="active"><a> <i class="fa fa-users p-2"></i>Leave</a></li>
+
+            <li routerLink="employee" routerLinkActive="active"><a><i class="fa fa-address-book p-2"></i>Employee</a>
+            </li>
+            <li routerLink="assets" routerLinkActive="active"><a><i class="fa fa-object-group p-2"></i>Assets</a></li>
+            <li routerLink="contact" routerLinkActive="active"><a> <i class="fa fa-phone-square p-2"></i>Contact</a>
+            </li>
+            <li routerLink="payroll" routerLinkActive="active"> <a mdbWavesEffect> <i
+                  class="fa fa-book p-2"></i>Manage</a></li>
+            <li routerLinkActive="active" routerLink="report"> <a><i class="fa fa-envelope p-2"></i>Report</a></li>
+
+            <li   class="show"><a ><i class="fa fa-dollar-sign p-2"></i>Aprroval</a>
+              <ul class="sub">
+             
+                <li *ngFor="let item of approval"><a [routerLink]="item.route" routerLinkActive="active">   {{item.name}}</a></li>
+               
+              </ul>  
+            </li>
+            <li class="show"><a><i class="fa fa-cog p-2"></i>Settings</a>
+              <ul class="sub">
+
+                <li *ngFor="let item of list"><a [routerLink]="item.route" routerLinkActive="active"> {{item.name}}</a>
+                </li>
+
+              </ul>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!--Navbar-->
+    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-grey s mb-0" [containerInside]="false">
+
+      <mdb-navbar-brand><a class="navbar-brand" style="color: #555;" href="#"></a></mdb-navbar-brand>
+
+      <!-- Collapsible content control -->
+      <links>
+
+        <!-- Links -->
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link waves-light" mdbWavesEffect>
+              <mdb-icon fas icon="envelope"></mdb-icon> Contact<span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-light" mdbWavesEffect>
+              <mdb-icon fas icon="cog"></mdb-icon> Settings
+            </a>
+          </li>
+
+          <!-- Dropdown -->
+          <li class="nav-item dropdown" dropdown>
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+              <mdb-icon fas icon="user"></mdb-icon> Profile<span class="caret"></span>
+            </a>
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+              <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
             </div>
-          </div>
+          </li>
 
-<!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-grey s mb-0"  [containerInside]="false">
+        </ul>
+        <!-- Links -->
+      </links>
+      <!-- Collapsible content -->
 
-    <mdb-navbar-brand><a class="navbar-brand" style="color: #555;"href="#"></a></mdb-navbar-brand>
-
-    <!-- Collapsible content control -->
-    <links>
-  
-      <!-- Links -->
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="envelope"></mdb-icon> Contact<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="cog"></mdb-icon> Settings</a>
-        </li>
-  
-        <!-- Dropdown -->
-        <li class="nav-item dropdown" dropdown>
-          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-            <mdb-icon fas icon="user"></mdb-icon> Profile<span class="caret"></span></a>
-          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-            <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
-          </div>
-        </li>
-  
-      </ul>
-      <!-- Links -->
-    </links>
-    <!-- Collapsible content -->
-
-</mdb-navbar>
-<!--/.Navbar-->
+    </mdb-navbar>
+    <!--/.Navbar-->
 
 
-    </header>
-    <!--/.Double navigation-->
+  </header>
+  <!--/.Double navigation-->
 
-    <!--Main layout-->
-    <main class="">
+  <!--Main layout-->
+  <main class="">
 
-        <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
 
-    </main>
-    <!--/Main layout-->
+  </main>
+  <!--/Main layout-->
 
 </body>
