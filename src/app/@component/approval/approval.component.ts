@@ -46,7 +46,7 @@ export class ApprovalComponent implements OnInit {
   }
 
 loadEvent(){
-    let value = {EmployeeID : "EMP1900001"
+    let value = {EmployeeID :  sessionStorage.getItem('EmpID')
    
 }
 this.service.populateApprove(APIENUM.PAYROLL).subscribe((res:any)=>{

@@ -3,7 +3,8 @@ import { APIENUM } from './enum';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
-
+import { JwtHelperService } from "@auth0/angular-jwt";
+const helper:JwtHelperService = new JwtHelperService();
 @Injectable({
   providedIn: 'root'
 })
@@ -166,5 +167,31 @@ export class ApiserviceService {
   App(type: APIENUM, data: any) {
     return this._http.post(`${this.apiUrl}${type.toString()}/approve.php`, data);
   }
+
+
+  setUser(resp:any) {
+    // sessionStorage.setItem('EmpID', resp.name);
+    // sessionStorage.setItem('RoleID', resp.access_token);
+    const helper = new JwtHelperService();
+ 
+    const decodedToken = helper.decodeToken(resp);
+    const expirationDate = helper.getTokenExpirationDate(resp);
+    const isExpired = helper.isTokenExpired(resp);
+
+    console.log(isExpired);
+
+     sessionStorage.setItem('EmpID', decodedToken.data.EmployeeID);
+     
+     sessionStorage.setItem('RoleID', decodedToken.data.RoleID);
+     sessionStorage.setItem('Email', decodedToken.data.Email);
+    // sessionStorage.setItem('RoleID', resp.access_token);
+  
+  }
+ 
+  // Checking if token is set
+  isLoggedIn() {
+    return sessionStorage.getItem('jwt') != null;
+  }
+ 
 
 }

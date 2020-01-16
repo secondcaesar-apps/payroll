@@ -83,7 +83,7 @@ constructor(
     let date = new Date().toJSON().slice(0, 10)
   
     this.service.EmployeeSalaryRead({
-      EmployeeID: "EMP1900002"
+      EmployeeID:  sessionStorage.getItem('EmpID')
     }, APIENUM.PAYROLLM)
     .subscribe((res: any) => {
       this.loading = false;
