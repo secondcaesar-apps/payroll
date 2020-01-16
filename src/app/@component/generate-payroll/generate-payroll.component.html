@@ -25,8 +25,9 @@
                             </mdb-icon>
                         </th>
                         <th> Employee Name</th>
+                        <th> Grade</th>
                       
-                        <th style="text-align: right;">Grade</th>
+                        <th style="text-align: right;">Attendance</th>
                         <th style="text-align: right;">NetSalary</th>
                 
                         <th style="text-align: right;">TotalAmountDue</th>
@@ -40,6 +41,7 @@
                     <tr [formGroupName]="i">
                         <td>{{item.value.EmployeeID}}</td>
                         <td  style="text-align: left;">{{item.value.FirstName }} {{item.value.LastName}}</td>
+                        <td  style="text-align: left;">{{item.value.SalaryGroup }}</td>
                     
                         <td (click)="changeAttendance(i)" >
                             <p style="text-align: right;">{{item.value.Attendance}}</p>

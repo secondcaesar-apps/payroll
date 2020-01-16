@@ -75,7 +75,8 @@ export class LocationComponent implements OnInit {
     this.Location.disable();
     let value = {Status:"Active",...this.Location.value};
     this.Api.Create(APIENUM.LOC,value).subscribe((res:any)=>{
-      this.success=res.message
+      this.success=res.message;
+      this.load();
 
    },err=>{
      this.error=err.error.message;
@@ -88,7 +89,8 @@ export class LocationComponent implements OnInit {
        this.error='';
        this.Location.reset();
        this.Location.enable();
-     },500)
+     },500);
+     
    })
 
   }
