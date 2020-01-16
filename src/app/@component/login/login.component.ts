@@ -40,7 +40,9 @@ Login: FormGroup;
     this.Api.Create(APIENUM.LOGIN,this.Login.value).subscribe((res:any)=>{
       this.success=res.message;
       sessionStorage.setItem('jwt',res.Token);
-      console.log(res.jwt);
+
+      this.Api.setUser(res.Token);
+   
       this.router.navigateByUrl('main/dashboard');
 
    },err=>{
