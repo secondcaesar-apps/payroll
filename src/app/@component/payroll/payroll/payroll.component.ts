@@ -44,12 +44,29 @@ export class PayrollComponent implements OnInit {
   Salaryslip:any;
 error_message: string="";
 errormsg: boolean = false
+gen = false;
   constructor(
     private router: Router,
     private service: ApiserviceService,
     private fb: FormBuilder,
     private shared: SharedService,
-  ) { }
+  ) {
+    
+    var d = new Date();
+ 
+    var date = d.getDate();
+    var month = d.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
+    var year = d.getFullYear();
+     
+    var dateStr =(year + "-" + month + "-" + date).toString();
+    console.log(dateStr);
+    service.BLnk(APIENUM.CHECK,{Month:dateStr}).subscribe((res:any)=>{
+   
+      if( res.records.length>0){
+this.gen= true;
+      }
+    })
+   }
   @HostListener('input') oninput() {
     this.searchItems();
   }
@@ -153,7 +170,28 @@ errormsg: boolean = false
 
 
   generatePayroll() {
-    this.router.navigate(['/main/generate-payroll']);
+
+    if(this.gen){
+      swal.fire({
+        title: 'Duplicate payslip?',
+        text: "Do you want to override this current payslip?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, create new  payslip!'
+      }).then((result) => {
+        if (result.value) {
+          this.router.navigate(['/main/generate-payroll']);
+        
+        }
+        
+      })
+    }
+    else{
+      this.router.navigate(['/main/generate-payroll']);
+    }
+   // 
   }
 
 
