@@ -1,118 +1,119 @@
-<div>
-  <div class="header">
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="form-group">
-          <button mdbBtn type="button" color="success" mdbWavesEffect>
-            <mdb-icon fas icon="envelope" class="mr-1"></mdb-icon>Invite
-          </button>
-          <button mdbBtn type="button" (click)="frame.show()" color="default" mdbWavesEffect>
-            <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
-          </button>
+<div id="demo">
+  <div>
+    <div class="header">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <button mdbBtn type="button" color="success" mdbWavesEffect>
+              <mdb-icon fas icon="envelope" class="mr-1"></mdb-icon>Invite
+            </button>
+            <button mdbBtn type="button" (click)="frame.show()" color="default" mdbWavesEffect>
+              <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
+            </button>
+          </div>
         </div>
-      </div>
-      <div class="col-sm-8">
-        <div class="row float-right">
-          <div class="col-sm-5">
-            <div class="md-form">
-              <input mdbInput class="mr-1 search-input" type="text" placeholder="Search" aria-label="Search" id="search"
-                [(ngModel)]="searchText">
-            </div>
-          </div>
-          <div class="col-sm-5">
-            <div class="dropdown" mdbDropdown>
-
-              <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
-                mdbWavesEffect>
-                Status
-              </button>
-
-              <div class="dropdown-menu dropdown-primary">
-                <button class="dropdown-item" href="#">All</button>
-                <button class="dropdown-item" href="#">Active</button>
-                <button class="dropdown-item" href="#">Inactive</button>
+        <div class="col-sm-8">
+          <div class="row float-right">
+            <div class="col-sm-6">
+              <div class="md-form">
+                <input mdbInput class="mr-1 search-input" type="text" placeholder="Search" aria-label="Search" id="search"
+                  [(ngModel)]="searchText">
               </div>
-
             </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="btn-group" mdbDropdown>
-              <a mdbDropdownToggle mdbBtn floating="true" size="sm" gradient="blue" class="dropdown-toggle waves-light"
-                mdbWavesEffect>
-                <mdb-icon fas icon="ellipsis-v"></mdb-icon>
-              </a>
-
-              <div class="dropdown-menu dropdown-primary">
-                <a class="dropdown-item" (click)="view()" *ngIf="!show">Show details</a>
-                <a class="dropdown-item" (click)="view()" *ngIf="show">Hide details</a>
-
-                <a class="dropdown-item" href="#">Refresh</a>
+            <div class="col-sm-6">
+              <div class="dropdown" mdbDropdown>
+  
+                <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
+                  mdbWavesEffect>
+                  Status
+                </button>
+  
+                <div class="dropdown-menu dropdown-primary">
+                  <button class="dropdown-item" href="#">All</button>
+                  <button class="dropdown-item" href="#">Active</button>
+                  <button class="dropdown-item" href="#">Inactive</button>
+                </div>
+  
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="body">
-    <div class="row">
-      <div class="col">
-        <table id="tableSortExample" mdbTable class="z-depth-1 auto">
-          <thead class="black white-text">
-            <tr>
-              <th aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[0]">
-                {{headElements[0] | titlecase}}<mdb-icon fas icon="sort"></mdb-icon>
-              </th>
-              <th>{{headElements[1]}}</th>
-              <th>{{headElements[2]}}</th>
-              <th>{{headElements[3]}}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let el of elements; let i = index">
-              <th scope="row" (click)="SalaryCom(el)">{{el.SalaryGroupID}}</th>
-              <td (click)="SalaryCom(el)">{{el.SalaryGroupName}}</td>
-              <td>{{el.LeaveDays}}</td>
-              <td>{{el.NetPay}}</td>
-
-            </tr>
-          </tbody>
-        </table>
-        <div *ngIf="message" style="padding-left: 40%;">
-          <p>{{messages}}</p>
-        </div>
-        <div *ngIf="loading" class="item">
-          <ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader>
-        </div>
-      </div>
-      <div class="col-4 line" *ngIf="show">
-        <div class="pre-body" *ngIf="!displaySide">
-          <p>Select a row to view it's details here</p>
-        </div>
-        <div class="body" *ngIf="displaySide">
-          <div class="row">
-            <p>Salary component: {{SalaryComponentID}}</p>
-
-            <ul class="list-group" *ngFor="let el of group">
-              <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                Name:
-                {{el.Name}}
-              </li>
-              <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                Type:
-                {{el.Type}}
-              </li>
-              <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                Amount:
-                {{el.Amount}}
-              </li>
-            </ul>
+    <div class="body">
+      <div class="row">
+        <div class="col">
+          <table id="tableSortExample" mdbTable class="z-depth-1 auto">
+            <thead class="black white-text">
+              <tr>
+                <th aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[0]">
+                  {{headElements[0] | titlecase}}<mdb-icon fas icon="sort"></mdb-icon>
+                </th>
+                <th>{{headElements[1]}}</th>
+                <th>{{headElements[2]}}</th>
+                <th>{{headElements[3]}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let el of elements; let i = index">
+                <th scope="row" (click)="SalaryCom(el)" (click)="basicModal.show()">{{el.SalaryGroupID}}</th>
+                <td (click)="SalaryCom(el)">{{el.SalaryGroupName}}</td>
+                <td>{{el.LeaveDays}}</td>
+                <td>{{el.NetPay}}</td>
+  
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="message" style="padding-left: 40%;">
+            <p>{{messages}}</p>
+          </div>
+          <div *ngIf="loading" class="item">
+            <ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Salary group information</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <table id="tableSortExample" mdbTable class="z-depth-1 auto">
+            <thead class="black white-text">
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let el of group; let i = index">
+                <th scope="row">{{el.Name}}</th>
+                <td >{{el.Type}}</td>
+                <td>{{el.Amount}}</td>
+  
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
   aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-lg" role="document" [formGroup]="Salary">

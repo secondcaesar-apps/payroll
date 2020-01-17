@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="form-group" id="demo">
       
     <button mdbBtn (click)="frame.show()" type="button" color="default" mdbWavesEffect>
       <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
@@ -6,7 +6,7 @@
   </div>
   <div class="table-responsive-vertical shadow-z-1">
     <!-- Table starts here -->
-    <table id="table" class="table table-hover table-mc-light-blue">
+    <table id="table" class="table table-hover table-mc-light-blue" id="demo">
         <thead>
           <tr>
             <th>LeaveType ID</th>
@@ -39,8 +39,8 @@
          
         </tbody>
       </table>
-      <div *ngIf="message" style="padding-left: 40%;"><p>{{messages}}</p></div>
-      <div *ngIf="loading"  class="item"><ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader></div>
+      <div id="demo" *ngIf="message" style="padding-left: 40%;"><p>{{messages}}</p></div>
+      <div id="demo" *ngIf="loading"  class="item"><ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader></div>
         </div>
   <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

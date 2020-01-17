@@ -286,7 +286,7 @@
                 </thead>
                     <tbody>
                       <tr *ngFor="let el of elements">
-                        <th scope="row" (click)="reademployee(el)" (click)="basicModal.show()"style="cursor: pointer;">{{el.LeaveID}}</th>
+                        <th scope="row" (click)="reademployee(el)"style="cursor: pointer;">{{el.LeaveID}}</th>
                         <td (click)="reademployee(el)"style="cursor: pointer;">{{el.Reason}}</td>
                         <td>{{el.StartDate | date}}</td>
                         <td>{{el.EndDate | date}}</td>
