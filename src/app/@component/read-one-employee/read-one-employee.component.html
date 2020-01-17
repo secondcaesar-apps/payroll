@@ -1,3 +1,8 @@
+<div class="padding"> 
+  <button mdbBtn type="button" (click)="back()" color="success" mdbWavesEffect>
+    <mdb-icon fas icon="angle-double-left"></mdb-icon>Back
+ </button>
+</div>
 <div class="row padding "> 
     <div class="col-3  line">
         <mdb-card>
@@ -190,7 +195,8 @@
                                  
                                   <div class="form-group col-md-6">
                                     <label for="inputEmail4">Probation End Date</label>
-                                    <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="ProbationEndDat" id="inputEmail4">
+                                    <mdb-date-picker name="mydate" formControlName="ProbationEndDat" [options]="myDatePickerOptions" [placeholder]="'Date of Birth'"
+                                    required></mdb-date-picker>
                                   </div>
                                 
                                 </div>
@@ -198,12 +204,14 @@
                                    
                                   <div class="form-group col-md-6">
                                     <label for="inputEmail4">Joining Date</label>
-                                    <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="JoiningDate" id="inputEmail4">
+                                    <mdb-date-picker name="mydate" formControlName="JoiningDate" [options]="myDatePickerOptions" [placeholder]="'Joining Date'"
+                                    required></mdb-date-picker>
                                   </div>
                                 
                                   <div class="form-group col-md-6">
                                     <label for="inputPassword4">Exit Date</label>
-                                    <input mdbInput [disabled]="isDisabled" type="file" formControlName="ExitDate" class="form-control" id="inputPassword4">
+                                    <mdb-date-picker name="mydate" formControlName="ExitDate" [options]="myDatePickerOptions" [placeholder]="'Exit Date'"
+                                    required></mdb-date-picker>
                                   </div>
                                 </div>
                       </mdb-card-body>

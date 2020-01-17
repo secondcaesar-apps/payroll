@@ -8,6 +8,8 @@ import swal from 'sweetalert2';
 import { SharedService } from 'src/app/@shared/shared/shared.service';
 import { map, tap  } from 'rxjs/operators';
 import {IMAGE} from './enus';
+
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-read-one-employee',
   templateUrl: './read-one-employee.component.html',
@@ -43,6 +45,7 @@ export class ReadOneEmployeeComponent implements OnInit {
     private Api: ApiserviceService,
     private _fb:FormBuilder,
     private route: Router,
+    private _loc: Location
     
   ) { }
 
@@ -269,6 +272,9 @@ export class ReadOneEmployeeComponent implements OnInit {
       CanEdit(){
     this.edit = true
       this.employee.enable();
+  }
+  back(){
+    this._loc.back()
   }
 
 }
