@@ -11,7 +11,7 @@ import { forkJoin } from 'rxjs';
 })
 export class UserExpenseComponent implements OnInit {
     @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
-  headElements = ['ExpenseID', 'Category', 'Amount', 'BillDate','Status'];
+  headElements = ['Expense ID', 'Category', 'Amount', 'Bill Date','Status'];
   bio=["Daily",
    " Weekly",
    "Bi-Weekly",

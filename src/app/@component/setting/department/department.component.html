@@ -1,19 +1,24 @@
 
- <div class="form-group">
+      <div id="demo">
+        <div class="form-group">
+  
+                <button mdbBtn (click)="frame.show()" type="button" color="default" mdbWavesEffect>
+                  <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
+                </button>
+              </div>
       
-        <button mdbBtn (click)="frame.show()" type="button" color="default" mdbWavesEffect>
-          <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
-        </button>
+              <div>
+                <h4>
+                  <strong>Name
+                </strong>
+              </h4>
+            </div>
+            <ul class="list-group" *ngFor="let el of elements; let i = index">
+                    <li class="list-group-item ">{{el.DepartmentName}}</li>
+                  </ul>
+        
       </div>
-<div class='margin'>
-    <h4>
-      <strong>Name
-    </strong>
-  </h4>
-</div>
-<ul class="list-group" *ngFor="let el of elements; let i = index">
-        <li class="list-group-item ">{{el.DepartmentName}}</li>
-      </ul>
+
       <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
       aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog" role="document">
