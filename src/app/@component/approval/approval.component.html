@@ -70,7 +70,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let el of elements; let i = index">
-              <th scope="row" style="cursor: pointer;" (click)="reademployee(el)">{{el.EmployeeID}}</th>
+              <th scope="row" style="cursor: pointer;" (click)="reademployee(el)">{{el.FirstName}} {{el.LastName}}</th>
               <td style="cursor: pointer;"  (click)="reademployee(el)">{{el.Month | date}}</td>
               <td  style="text-align: right;cursor: pointer;">{{el.TotalAmountDue  | currency:'₦':'symbol'}}</td>
               <td>{{el.Status}}</td>

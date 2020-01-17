@@ -5,6 +5,7 @@ import { MdbTableDirective } from 'ng-uikit-pro-standard';
 import { APIENUM } from 'src/app/@shared/enum';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { Form, FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
+
 @Component({
   selector: 'app-salary-setup',
   templateUrl: './salary-setup.component.html',
@@ -30,6 +31,7 @@ export class SalarySetupComponent implements OnInit {
   Type: string = '';
   Amount: string = '';
   SalaryComponentID: string = '';
+  Modal : Boolean=false;
   type = ['Credit','Debit']
   optionsSelect = [
     { value: 'Credit', label: 'Credit' },
@@ -51,7 +53,6 @@ export class SalarySetupComponent implements OnInit {
     this.load();
   }
 SalaryCom(el){
-  if (this.show) {
     this.displaySide = true;
     let data = {
       "SalaryGroupID": el.SalaryGroupID
@@ -62,8 +63,7 @@ SalaryCom(el){
        console.log(res.records)
        this.group = res.records;
     })
-  
-  }
+    this.Modal = true;
 
 }
   createSalary(): FormGroup{

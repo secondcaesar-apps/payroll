@@ -1,11 +1,11 @@
 
- <div class="form-group">
+ <div class="form-group" id="demo">
       
         <button mdbBtn (click)="frame.show()" type="button" color="default" mdbWavesEffect>
           <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
         </button>
       </div>
-      <table mdbTable small="true">
+      <table mdbTable small="true" id="demo">
             <thead>
               <tr>
                 <th *ngFor="let head of headElements" scope="col">{{head}} </th>
