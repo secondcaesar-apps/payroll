@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { JoyrideService } from 'ngx-joyride';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +11,10 @@ export class HomeComponent implements OnInit {
   list: { name: string; route: string; icon: string; }[];
   approval: { name: string; route: string; icon: string; }[];
 
-  constructor() { }
+  constructor(private router:Router,private readonly joyrideService: JoyrideService ) { }
 
   ngOnInit() {
+  //  this.onClick();
     this.list =[
       {name:'Company',route:'settings/company',icon:'fa fa-home fa-2x'},
       {name:'Department',route:'settings/department',icon:'fa fa-laptop fa-2x'},
@@ -31,6 +34,17 @@ export class HomeComponent implements OnInit {
   {name:'Workflow Approval',route:'Approvals',icon:'fa fa-home fa-2x'},
 ]
 
+  }
+  
+
+  logout(){
+    sessionStorage.clear();
+    this.router.navigateByUrl('');
+  }
+  onClick() {
+    this.joyrideService.startTour(
+      { steps: ['firstStep','dashboard','user-dahboard','user-expense','user-payroll','user-profile','user-leave','employee','assets','payroll','report']} // Your steps order
+    );
   }
 
  

@@ -12,13 +12,14 @@ import { CommonModule } from '@angular/common';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-
+import {JoyrideModule} from 'ngx-joyride';
 
 
 @NgModule({
 
   imports: [
     CommonModule,
+    JoyrideModule.forRoot(),
     MDBBootstrapModulesPro.forRoot(),
     NgxSkeletonLoaderModule,
     FormsModule,
@@ -35,6 +36,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
   ],exports:[
     MDBBootstrapModulesPro,
     AgmCoreModule,
+    JoyrideModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
