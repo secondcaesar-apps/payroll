@@ -82,6 +82,7 @@ SalaryCom(el){
 }
 
   addItem(){
+    this.Cart();
   this.itemArray.push(this.createSalary());
   }
 
@@ -95,7 +96,7 @@ SalaryCom(el){
  
   removeItems(id) {
     this.itemArray.removeAt(id);
-   // this.Cart();
+    this.Cart();
   }
   searchItems() {
     const prev = this.mdbTable.getDataSource();
@@ -147,21 +148,43 @@ this.Api.Create(APIENUM.SAG,value).subscribe((res:any)=>{
   
   Cart(){
 
+    let addtion =0;
+    let reduction = 0;
+     let cal = this.itemArray.value;
 
-
-    let cal = this.itemArray.value;
-    
-    let smallTotal=0;
-    
     for (let index = 0; index < cal.length; index++) {
-      let Amount =parseInt(cal[index].Amount);
-     
-      smallTotal= Amount +  smallTotal;
+if(cal[index].Type=='Credit'){
+  let Amount =parseInt(cal[index].Amount);
+  addtion =  Amount +  addtion;
+
+}
+else{
+  let Amount =parseInt(cal[index].Amount);
+  reduction =  Amount +  reduction;
+}
+
     
     }
+
+    this.Total = addtion - reduction;
+
+    console.log(this.Total);
+
+
+
+    // let cal = this.itemArray.value;
+    
+    // let smallTotal=0;
+    
+    // for (let index = 0; index < cal.length; index++) {
+    //   let Amount =parseInt(cal[index].Amount);
+     
+    //   smallTotal= Amount +  smallTotal;
+    
+    // }
     
     
-    this.Total = smallTotal;
+    //this.Total = smallTotal;
     
 
       }
