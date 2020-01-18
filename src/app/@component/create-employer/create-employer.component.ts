@@ -4,6 +4,7 @@ import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { APIENUM } from 'src/app/@shared/enum';
 import { forkJoin } from 'rxjs';
+import { IMyOptions } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-create-employer',
@@ -22,6 +23,9 @@ export class CreateEmployerComponent implements OnInit {
   department:any;
   employee:any;
   designation:any;
+  public myDatePickerOptions: IMyOptions = {
+    // Your options
+  };
   @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef; files = [];
   salarygroup: any;
   gender: string[];

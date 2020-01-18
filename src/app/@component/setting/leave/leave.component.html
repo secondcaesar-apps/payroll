@@ -43,7 +43,7 @@
       <div id="demo" *ngIf="loading"  class="item"><ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader></div>
         </div>
   <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document"  [formGroup]="Leave">
      <div class="modal-content">
        <div class="modal-header light-blue darken-3 text-center text-white">
          
@@ -81,11 +81,22 @@
              </div> 
          
              <div class="form-group col-md-6">
-                <label for="inputEmail4">Paid</label>
-                <input [formControl]="Paid" mdbInput type="text" class="form-control" >
-                <mdb-error *ngIf="Paid.invalid && (Paid.dirty||Paid.touched)">
-                    Invalid Input.
-                  </mdb-error>
+              <div class="col-md-6">
+          
+                <div class="form-check">
+                  <input type="radio" class="form-check-input" id="materialUnchecked2" value="YES"
+                  formControlName="Paid" name="Paid">
+                  <label class="form-check-label" for="materialUnchecked2">YES</label>
+                </div>
+              
+                <div class="form-check">
+                  <input type="radio" class="form-check-input" id="materialChecked2" value="NO"
+                  formControlName="Paid" name="Paid">
+                  <label class="form-check-label" for="materialChecked2">NO</label>
+                </div>
+              </div>
+             
+                
             </div> 
 
             <div class="form-group col-md-6">

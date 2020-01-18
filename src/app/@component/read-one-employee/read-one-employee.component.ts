@@ -10,6 +10,7 @@ import { map, tap  } from 'rxjs/operators';
 import {IMAGE} from './enus';
 
 import { Location } from '@angular/common';
+import { IMyOptions } from 'ng-uikit-pro-standard';
 @Component({
   selector: 'app-read-one-employee',
   templateUrl: './read-one-employee.component.html',
@@ -18,6 +19,9 @@ import { Location } from '@angular/common';
 export class ReadOneEmployeeComponent implements OnInit {
 
   @Input() title: string;
+  public myDatePickerOptions: IMyOptions = {
+    // Your options
+  };
   value:any;
   employee:FormGroup;
   location:any;
@@ -25,6 +29,7 @@ export class ReadOneEmployeeComponent implements OnInit {
   role:any;
   department:any;
   edit: Boolean=false;
+  isDisabled:Boolean= false;
   employees:any;
   designation:any;
   email: string="";
