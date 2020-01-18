@@ -20,7 +20,7 @@ export class PayrollComponent implements OnInit {
   elements = [];
   dated: string = new Date().toJSON().slice(0, 10)
   error: Boolean = false;
-  headElements = ['Employee','Pay Date', 'Total Amount Due',  'Status'];
+  headElements = ['Employee','Email','Salary Grade', 'Total Amount Due', 'Designation'];
   searchText: string = '';
   previous: string;
   message: Boolean = false;
@@ -75,8 +75,7 @@ this.gen= true;
     this.myForm1 = this.fb.group({
       Month: [this.date, Validators.required]
     });
-    let date = new Date().toJSON().slice(0, 10)
-  
+  console.log(this.dated)
     this.service.MontlyRead({
       Month: this.dated
     }, APIENUM.PAYROLLM)
@@ -97,7 +96,8 @@ this.gen= true;
   }
 
   hitApi() {
-
+console.log(this.myForm1.value)
+this.dated = this.myForm1.value['Month']
     this.service.MontlyRead(this.myForm1.value, APIENUM.PAYROLLM)
       .subscribe((res: any) => {
         this.loading = false;
@@ -145,7 +145,7 @@ this.gen= true;
       this.PaymentMethod = el.PaymentMethod;
       this.PaymentDate = el.PaymentDate;
       this.EmployeeStatus = el.EmployeeStatus
-      this.EmployeeID = el.EmployeeID;
+      this.EmployeeID = el.FirstName;
       this.SalarySlipID = el.SalarySlipID;
       this.Month = el.Month;
 

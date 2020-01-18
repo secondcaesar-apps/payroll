@@ -169,7 +169,7 @@
                                       <label for="inputEmail4">Reports to</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
                                       <select  formControlName="ReportsTO" class="browser-default custom-select">
              
-                                       <option *ngFor="let item of employees" [ngValue]="item.EmployeeID">{{item.EmployeeID}}</option>
+                                       <option *ngFor="let item of employees" [ngValue]="item.EmployeeID">{{item.FirstName}} {{item.LastName}}</option>
                                      
                                      </select>
                                   </div>
@@ -195,7 +195,7 @@
                                  
                                   <div class="form-group col-md-6">
                                     <label for="inputEmail4">Probation End Date</label>
-                                    <mdb-date-picker name="mydate" formControlName="ProbationEndDat" [options]="myDatePickerOptions" [placeholder]="'Date of Birth'"
+                                    <mdb-date-picker name="mydate" formControlName="ProbationEndDat" [options]="myDatePickerOptions" [placeholder]="'Probation End Date'"
                                     required></mdb-date-picker>
                                   </div>
                                 
