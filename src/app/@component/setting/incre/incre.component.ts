@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum';
 import { forkJoin } from 'rxjs';
+import { IMyOptions } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-incre',
@@ -22,6 +23,9 @@ export class IncreComponent implements OnInit {
   emp;
   sg;
   ds;
+  public myDatePickerOptions: IMyOptions = {
+    // Your options
+  };
   optionsSelect: { value: string; label: string; }[];
   constructor(
 

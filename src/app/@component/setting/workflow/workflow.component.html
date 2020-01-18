@@ -75,7 +75,7 @@
             
           </thead>
           <tbody formArrayName="Item">
-            <tr mdbTableCol *ngFor="let item of WorkFlow.get('Item').controls; let i = index;"
+            <tr mdbTableCol *ngFor="let item of WorkFlow.get('Item')['controls']; let i = index;"
               [formGroupName]="i">
               <th> <input formControlName="PWFName" nbInput name="quantity" type="text" class=""></th>
               <th> 

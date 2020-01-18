@@ -37,7 +37,7 @@
 
                     </tr>
                 </thead>
-                <tbody formArrayName="Item" *ngFor="let item of payrollGenarte.get('Item').controls; let i = index;">
+                <tbody formArrayName="Item" *ngFor="let item of payrollGenarte.get('Item')['controls']; let i = index;">
                     <tr [formGroupName]="i">
                         <td>{{item.value.EmployeeID}}</td>
                         <td  style="text-align: left;">{{item.value.FirstName }} {{item.value.LastName}}</td>

@@ -32,17 +32,17 @@ export enum APIENUM{
 }
 
 export enum UType{
-    CERT='certificate',
-    AVATAR='avatar',
-    DRIVER='Driving License',
-    PAN='PAN Card',
-    VoterID='VoterID',
-   SSN='Aadhar/SSN',
-   Offer='Offer Letter',
-   Joining ='Joining Letter',
-   Contract='Contract',
-   Resume='Resume',
-   Relieving='Relieving letter',
-   Experience ='Experience Letter'
+    CERT,
+    AVATAR,
+    DRIVER,
+    PAN,
+    VoterID,
+   SSN,
+   Offer,
+   Joining ,
+   Contract,
+   Resume,
+   Relieving,
+   Experience
 
 }

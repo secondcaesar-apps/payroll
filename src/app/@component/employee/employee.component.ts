@@ -31,6 +31,7 @@ export class EmployeeComponent implements OnInit {
   employees:any;
   designation:any;
   salarygroup: any;
+  isDisabled:Boolean = true;
   maxVisibleItems: number = 8;
   pic: string="";
   show: Boolean; 

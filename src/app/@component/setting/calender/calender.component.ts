@@ -12,6 +12,7 @@ import {
 import { APIENUM } from 'src/app/@shared/enum';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
+import { IMyOptions } from 'ng-uikit-pro-standard';
 @Component({
   selector: 'app-calender',
   templateUrl: './calender.component.html',
@@ -26,6 +27,9 @@ export class CalenderComponent implements OnInit {
   Cal:FormGroup;
   error:any;
   success:any;
+  public myDatePickerOptions: IMyOptions = {
+    // Your options
+  };
   constructor(   private _fb:FormBuilder,private Api:ApiserviceService) { }
 
   ngOnInit() {
