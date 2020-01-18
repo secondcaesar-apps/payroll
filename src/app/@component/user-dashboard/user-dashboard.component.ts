@@ -47,13 +47,7 @@ export class UserDashboardComponent implements OnInit {
 
   ngOnInit() {
 this.service.Read(APIENUM.EVENT).
-pipe(
-
-map((res:any)=>res.records)
-
-)
-.
-subscribe((res)=>{
+pipe(map((res:any)=>res.records)).subscribe((res)=>{
 var array=[];
   for (let index = 0; index < res.length; index++) {
     //const element = array[index];

@@ -38,7 +38,6 @@ export class UserProfileComponent implements OnInit {
   current: string="";
   salarygroup: any;
   pic: string="";
-
   optionsSelect: Array<any>;
   accountSelect: Array<any>;
   marriageSelect: Array<any>;
