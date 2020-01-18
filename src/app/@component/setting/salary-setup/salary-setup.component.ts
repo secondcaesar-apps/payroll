@@ -15,7 +15,7 @@ export class SalarySetupComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements = [];
   group = [];
-  headElements = ['Name', 'Amount','Leave Days', 'Type', ''];
+  headElements = ['Name', 'Amount','Leave Days',];
   searchText: string = '';
   previous: string;
   message: Boolean=false;

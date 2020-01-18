@@ -16,8 +16,9 @@ export class ApprovalComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements = []    
   elementID = []   
-  headElements = ['Employee','Pay Date', 'Net Salary',  'Status'];
+  headElements = ['Employee','Salary Grade', 'Total Amount Due'];
   searchText: string = '';
+  dated: string = new Date().toJSON().slice(0, 10)
   previous: string;
   message: Boolean=false;
   loading:Boolean=true;
@@ -25,6 +26,8 @@ export class ApprovalComponent implements OnInit {
   maxVisibleItems: number = 8;
   show: Boolean; 
   displaySide: Boolean = false;
+  date: string = '';
+  myForm1: FormGroup;
   Leave:FormGroup;
   error:any;
   leave:any=null;
@@ -36,8 +39,14 @@ export class ApprovalComponent implements OnInit {
     private _fb:FormBuilder,
     private service:ApiserviceService
   ) { }
+  @HostListener('input') oninput() {
+    this.searchItems();
+  }
 
   ngOnInit() {
+    this.myForm1 = this._fb.group({
+      Month: [this.date, Validators.required]
+    });
     this.loadEvent();
   }
 
@@ -49,7 +58,9 @@ loadEvent(){
     let value = {EmployeeID :  sessionStorage.getItem('EmpID')
    
 }
-this.service.populateApprove(APIENUM.PAYROLL).subscribe((res:any)=>{
+this.service.populateApprove({
+  Month: this.dated
+}, APIENUM.PAYROLL).subscribe((res:any)=>{
         this.loading = false;
         this.error = false;
         console.log(this.elements);
@@ -68,7 +79,24 @@ this.service.populateApprove(APIENUM.PAYROLL).subscribe((res:any)=>{
         this.elements = [];
       })
 }
-
+hitApi() {
+  this.dated = this.myForm1.value['Month']
+      this.service.populateApprove(this.myForm1.value, APIENUM.PAYROLLM)
+        .subscribe((res: any) => {
+          this.loading = false;
+          this.error = false;
+          this.elements = res.records;
+          this.mdbTable.setDataSource(this.elements);
+          this.elements = this.mdbTable.getDataSource();
+          this.previous = this.mdbTable.getDataSource();
+        }, (err: any) => {
+          this.loading = false;
+          this.error = true;
+          this.messages = err.error.message;
+          this.message = true;
+          this.elements = [];
+        })
+    }
 searchItems() {
   const prev = this.mdbTable.getDataSource();
 

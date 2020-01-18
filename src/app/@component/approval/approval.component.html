@@ -9,9 +9,27 @@
           <!-- <button mdbBtn type="button" (click)="newemployee()" color="default" mdbWavesEffect>
                   <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
                 </button> -->
+                <h5>Payroll Approval</h5>
         </div>
       </div>
       <div class="col-sm-8">
+        <div class="row float-right">
+          <div class="col-sm-6">
+            <div class="md-form">
+              <input mdbInput class="mr-1" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="searchText"
+                class="form-control" id="search" mdbInput>
+            </div>
+          </div>
+          <div class="col-sm-6" [formGroup]="myForm1">
+            <div class="md-form" style="margin-top: 38px;">
+              <input type="date"  [placeholder]="'Select Payroll Month'"formControlName="Month" (change)="hitApi()">
+            </div>
+          </div>
+          <!-- <mdb-date-picker name="mydate" formControlName="DOB" [options]="myDatePickerOptions" [(ngModel)]="date" [placeholder]="Date"
+                required></mdb-date-picker> -->
+        </div>
+      </div>
+      <!-- <div class="col-sm-8">
         <div class="row float-right">
           <div class="col-sm-5">
             <div class="md-form">
@@ -51,29 +69,28 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="body">
     <div class="row">
       <div class="col">
+        <h4>Approve payroll for {{dated | date:'MMMM y'}}</h4>
         <table id="tableSortExample" mdbTable class="z-depth-1">
           <thead>
             <tr>
-              <th aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[0]">
-                {{headElements[0] | titlecase}}<mdb-icon fas icon="sort"></mdb-icon>
+              <th>
+                {{headElements[0]}}
               </th>
               <th>{{headElements[1]}}</th>
-              <th style="text-align: right;">{{headElements[2]}}</th>
-              <th>{{headElements[3]}}</th>
-            </tr>
+              <th style="text-align: right;" >{{headElements[2]}}</th>
           </thead>
           <tbody>
             <tr *ngFor="let el of elements; let i = index">
-              <th scope="row" style="cursor: pointer;" (click)="reademployee(el)">{{el.FirstName}} {{el.LastName}}</th>
-              <td style="cursor: pointer;"  (click)="reademployee(el)">{{el.Month | date}}</td>
-              <td  style="text-align: right;cursor: pointer;">{{el.TotalAmountDue  | currency:'₦':'symbol'}}</td>
-              <td>{{el.Status}}</td>
+              <th scope="row"  style="cursor: pointer;">{{el.id}}{{el.id}}{{el.FirstName}} {{el.LastName}}</th>
+              <td  style="cursor: pointer;">{{el.SalaryGroupName}}</td>
+              <td   style="text-align: right;cursor: pointer;">{{el.TotalAmountDue  | currency:'₦':'symbol'}}</td>
+
             </tr>
           </tbody>
         </table>

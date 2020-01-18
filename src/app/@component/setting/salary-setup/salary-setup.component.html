@@ -49,17 +49,15 @@
                 <th aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[0]">
                   {{headElements[0] | titlecase}}<mdb-icon fas icon="sort"></mdb-icon>
                 </th>
-                <th>{{headElements[1]}}</th>
+                <th style="text-align:right;">{{headElements[1]}}</th>
                 <th>{{headElements[2]}}</th>
-                <th>{{headElements[3]}}</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let el of elements; let i = index">
-                <th scope="row" (click)="SalaryCom(el)" (click)="basicModal.show()">{{el.SalaryGroupID}}</th>
-                <td (click)="SalaryCom(el)">{{el.SalaryGroupName}}</td>
+                <th scope="row" (click)="SalaryCom(el)" (click)="basicModal.show()">{{el.SalaryGroupName}}</th>
+                <td (click)="SalaryCom(el)" style="text-align:right;">{{el.NetPay | currency:'₦':'symbol'}}</td>
                 <td>{{el.LeaveDays}}</td>
-                <td>{{el.NetPay}}</td>
   
               </tr>
             </tbody>
@@ -105,11 +103,7 @@
             </tbody>
           </table>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
-        <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save changes</button>
-      </div>
+      </div>  
     </div>
   </div>
 </div>

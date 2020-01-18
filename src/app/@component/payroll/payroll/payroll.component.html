@@ -21,7 +21,7 @@
           </div>
           <div class="col-sm-5" [formGroup]="myForm1">
             <div class="md-form" style="margin-top: 38px;">
-              <input type="date" formControlName="Month" (change)="hitApi()">
+              <input type="date"  [placeholder]="'Select Payroll Month'"formControlName="Month" (change)="hitApi()">
             </div>
           </div>
           <!-- <mdb-date-picker name="mydate" formControlName="DOB" [options]="myDatePickerOptions" [(ngModel)]="date" [placeholder]="Date"
@@ -49,24 +49,31 @@
   <div class="body">
     <div class="row">
       <div class="col">
+      <h4>This is the payroll for {{dated | date:'MMMM y'}}</h4>
         <table id="tableSortExample" mdbTable class="z-depth-1">
           <thead>
             <tr>
-              <th aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[0]">
-                {{headElements[0] | titlecase}}<mdb-icon fas icon="sort"></mdb-icon>
+              <th>
+                {{headElements[0]}}
               </th>
               <th>{{headElements[1]}}</th>
-              <th style="text-align: right;">{{headElements[2]}}</th>
+              <th >{{headElements[2]}}</th>
+              <th style="text-align: right;" >{{headElements[3]}}</th>
+              
+              <th>{{headElements[4]}}</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let el of elements; let i = index">
               <th scope="row" (click)="openDetails(el)"style="cursor: pointer;">{{el.id}}{{el.id}}{{el.FirstName}} {{el.LastName}}</th>
-              <td (click)="openDetails(el)"style="cursor: pointer;">{{el.Month | date}}</td>
+              <td (click)="openDetails(el)"style="cursor: pointer;">{{el.Email}}</td>
+              <td (click)="openDetails(el)"style="cursor: pointer;">{{el.SalaryGroupName}}</td>
               <td (click)="openDetails(el)" style="text-align: right;cursor: pointer;">{{el.TotalAmountDue  | currency:'₦':'symbol'}}</td>
               <!-- <td><button mdbBtn type="button" color="primary"style="padding:3px; margin:0;" mdbWavesEffect>
                   <mdb-icon fas icon="credit-card" class="mr-1"></mdb-icon>{{el.Status}}
                 </button></td> -->
+                <td (click)="openDetails(el)"style="cursor: pointer;">{{el.DesignationName}}</td>
+
             </tr>
           </tbody>
         </table>

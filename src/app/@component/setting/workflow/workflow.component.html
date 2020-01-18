@@ -9,7 +9,7 @@
     <table id="table" class="table table-hover table-mc-light-blue">
         <thead>
           <tr>
-            <th>EmployeeID</th>
+            <th>Employee Name</th>
             <th>Work flow Setup ID</th>
             <th>PWFName</th>
             <th>level</th>
@@ -18,7 +18,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let el of elements; let i = index">
-            <td data-title="Link">{{el.EmployeeID}}
+            <td data-title="Link">{{el.FirstName}} {{el.LastName}}
             </td>
             <td data-title="ID">{{el.WorkflowSetupID}}</td>
             <td data-title="Name">{{el.PWFName}}</td>
@@ -61,15 +61,14 @@
         </div>
         <table mdbTable  [formGroup]="WorkFlow">
           <caption>
-            <button (click)="addItem()"  class="float-right" type="button" color="success"
-          >
+            <button (click)="addItem()"  class="float-right" type="button" color="success">
              Add new
             </button>
           </caption>
           <thead>
             <tr>
               <th>PWFNAME</th>
-              <th>EMPLOYEE ID</th>
+              <th>EMPLOYEE Name</th>
               <th>Level</th>
             </tr>
             
