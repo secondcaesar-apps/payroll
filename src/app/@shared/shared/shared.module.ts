@@ -5,14 +5,14 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
-
+import { DayPilotModule } from "daypilot-pro-angular";
 
 import { MDBSpinningPreloader, MDBBootstrapModulesPro, ToastModule } from 'ng-uikit-pro-standard';
 import { CommonModule } from '@angular/common';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import {JoyrideModule} from 'ngx-joyride';
+import { JoyrideModule } from 'ngx-joyride';
 
 
 @NgModule({
@@ -25,20 +25,23 @@ import {JoyrideModule} from 'ngx-joyride';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-   // ToastModule.forRoot(),
-   CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+
+    // ToastModule.forRoot(),
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     MDBBootstrapModulesPro.forRoot(),
     AgmCoreModule.forRoot({
       // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en#key
       apiKey: 'Your_api_key'
     })
 
-  ],exports:[
+  ], exports: [
     MDBBootstrapModulesPro,
     AgmCoreModule,
     JoyrideModule,
     HttpClientModule,
     ReactiveFormsModule,
+ 
+
     FormsModule,
     NgxSkeletonLoaderModule,
     CalendarModule
