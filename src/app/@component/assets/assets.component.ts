@@ -21,7 +21,7 @@ export class AssetsComponent implements OnInit {
   error: any;
   success: any;
   elements = [];
-  headElements = ['AssetID', 'AssetName', 'Description', 'AssetType', 'SerailNumber','Location', 'Status'];
+  headElements = ['AssetName', 'Description', 'AssetType', 'SerailNumber','Location', 'Status'];
   public modalRef: MDBModalRef
   searchText: string = '';
   previous: string;

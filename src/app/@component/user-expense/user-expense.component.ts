@@ -118,7 +118,7 @@ export class UserExpenseComponent implements OnInit {
     this.Merchant = el.Merchant;
     this.Amount = el.Amount;
     this.BillDate =el.BillDate;
-    this.Category=el.Category;
+    this.Category=el.CategoryName;
     this.Description=el.Description;
     this.Title=el.Title;
   }

@@ -85,6 +85,8 @@ hitApi() {
         .subscribe((res: any) => {
           this.loading = false;
           this.error = false;
+          this.messages = "";
+          this.message = false;
           this.elements = res.records;
           this.mdbTable.setDataSource(this.elements);
           this.elements = this.mdbTable.getDataSource();
