@@ -20,6 +20,7 @@ import {
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum';
 import { map } from 'rxjs/operators';
+declare var $: any;
 const colors: any = {
   red: {
     primary: '#ad2121',
@@ -42,10 +43,14 @@ const colors: any = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserDashboardComponent implements OnInit {
-  events: CalendarEvent[]
+  events: CalendarEvent[];
+  posts: any;
+  
   constructor(private service:ApiserviceService) { }
-
+ 
   ngOnInit() {
+   // this.tests()
+
 this.service.Read(APIENUM.EVENT).
 pipe(map((res:any)=>res.records)).subscribe((res)=>{
 var array=[];
@@ -53,17 +58,10 @@ var array=[];
     //const element = array[index];
     array[index]=
       {
-        start:startOfDay( new Date(res[index].StartDate)),
-        end: addDays(new Date(res[index].EndDate), 1),
+        start:  this.convertdate( res[index].StartDate),
+    
         title: res[index].EventTitle,
-        color: colors.red,
-        actions: this.actions,
-        allDay: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true
-        },
-        draggable: true
+       
       }
     
     
@@ -74,30 +72,9 @@ var array=[];
   }
 
   this.events= array;
-  console.log(this.events);
 
-// res.forEach((element,i) => {
+this.tests(this.events);
 
-
-//   this.events[i]=
-//     {
-//       start: startOfDay(element.StartDate),
-//       end: addDays(element.EndDate, 1),
-//       title: element.EventTitle,
-//       color: colors.red,
-//       actions: this.actions,
-//       allDay: true,
-//       resizable: {
-//         beforeStart: true,
-//         afterEnd: true
-//       },
-//       draggable: true
-//     }
-  
-  
-// });
-
-console.log(this.events);
 })
 
   }
@@ -176,22 +153,6 @@ console.log(this.events);
     //this.modal.open(this.modalContent, { size: 'lg' });
   }
 
-  addEvent(): void {
-    this.events = [
-      ...this.events,
-      {
-        title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
-        color: colors.red,
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true
-        }
-      }
-    ];
-  }
 
   deleteEvent(eventToDelete: CalendarEvent) {
     this.events = this.events.filter(event => event !== eventToDelete);
@@ -204,4 +165,33 @@ console.log(this.events);
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
   }
+
+  tests(event){
+
+   
+    $("#calendar").fullCalendar({  
+      header: {
+          left   : 'prev,next today',
+          center : 'title',
+          right  : 'month,agendaWeek,agendaDay'
+      },
+      navLinks   : true,
+      editable   : true,
+      eventLimit : true,
+      events: event,  // request to load current events
+  });
+
+  }
+
+  convertdate(date:Date){
+    var i =  new Date(date).toJSON().slice(0, 10);
+    var t = i.split('-');
+    var year = new Date().getFullYear().toString();
+    t[0]=year;
+    
+    
+  return t.join("-");
+
+
+   }
 }

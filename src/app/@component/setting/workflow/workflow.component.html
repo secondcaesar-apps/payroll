@@ -70,6 +70,7 @@
               <th>PWFNAME</th>
               <th>EMPLOYEE Name</th>
               <th>Level</th>
+              <th>Status</th>
             </tr>
             
           </thead>
@@ -85,6 +86,13 @@
                 </select>
               </th>
               <th> <input formControlName="level" nbInput name="quantity" type="number" class=""></th>
+              <th> 
+                <select  formControlName="Status" class="mdb-select md-form colorful-select dropdown-primary">
+              
+                  <option *ngFor="let item of  status" [ngValue]="item">{{item}}</option>
+                
+                </select>
+              </th>
               <th>
                 <mdb-icon (click)="removeItems(i)" fas icon="trash" class="mr-1"></mdb-icon>
               </th>

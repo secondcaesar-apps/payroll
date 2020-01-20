@@ -16,6 +16,7 @@ export class SalarySetupComponent implements OnInit {
   elements = [];
   group = [];
   headElements = ['Name', 'Amount','Leave Days',];
+  headElement = ['Name', 'Amount','Type',];
   searchText: string = '';
   previous: string;
   message: Boolean=false;

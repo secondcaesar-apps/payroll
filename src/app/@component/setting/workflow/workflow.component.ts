@@ -23,6 +23,11 @@ export class WorkflowComponent implements OnInit {
   error: any;
   success: any;
   emp: any;
+  status=[
+    'Paid',
+    'Completed',
+    'Approved'
+  ]
   constructor(
     private _fb: FormBuilder,
     private Api: ApiserviceService
@@ -90,7 +95,7 @@ export class WorkflowComponent implements OnInit {
       PWFName: [value.PWFName, [Validators.required]],
       EmployeeID: [value.EmployeeID, [Validators.required]],
       level: [value.level, [Validators.required]],
-      Status: ["Active"]
+      Status: [value.Status, [Validators.required]],
       
 
     });
