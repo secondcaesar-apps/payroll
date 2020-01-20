@@ -73,12 +73,11 @@
           </thead>
           <tbody>
             <tr *ngFor="let el of elements; let i = index">
-              <th scope="row" (click)="openDetails(el)" style="cursor: pointer;">{{el.AssetID}}</th>
               <td (click)="openDetails(el)" style="cursor: pointer;">{{el.AssetName}}</td>
-              <td>{{el.Description}}</td>
+              <td scope="row" (click)="openDetails(el)" style="cursor: pointer;">{{el.Description}}</td>
               <td>{{el.AssetType}}</td>
               <td>{{el.SerailNumber}}</td>
-              <td>{{el.Location}}</td>
+              <td>{{el.LocationsName}}</td>
               <td>{{el.Status}}</td>
             </tr>
           </tbody>
