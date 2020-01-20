@@ -7,6 +7,7 @@ import { APIENUM,UType } from 'src/app/@shared/enum';
 import swal from 'sweetalert2';
 import { SharedService } from 'src/app/@shared/shared/shared.service';
 import { map, tap  } from 'rxjs/operators';
+import { IMyOptions } from 'ng-uikit-pro-standard';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -17,6 +18,9 @@ export class UserProfileComponent implements OnInit {
 
   @Input() title: string;
   value: string="";
+  public myDatePickerOptions: IMyOptions = {
+    // Your options
+    };
   elements: any = [];
   image='../../../assets/profile_image.jpg';
   message: Boolean=false;
