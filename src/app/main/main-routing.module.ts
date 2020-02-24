@@ -23,6 +23,7 @@ import { ControlComponent } from '../@component/control/control.component';
 import { FinanceComponent } from '../@component/finance/finance.component';
 import { CeoComponent } from '../@component/ceo/ceo.component';
 import { ApprovalComponent } from '../@component/approval/approval.component';
+import { TrainingComponent } from '../@component/setting/training/training.component';
 const routes: Routes = [
 
     {
@@ -52,6 +53,7 @@ const routes: Routes = [
         { path: 'finance', component: FinanceComponent },
         { path: 'ceo', component: CeoComponent },
         { path: 'Approvals', component: ApprovalComponent },
+        { path: 'training', component: TrainingComponent },
         {
           path: 'settings',
           loadChildren: () => import('../setting/setting.module').then(m => m.SettingModule)
