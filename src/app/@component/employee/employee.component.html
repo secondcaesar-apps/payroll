@@ -69,7 +69,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let el of elements; let i = index">
+                  <tr *ngFor="let el of elements; let i = index;">
                     <th scope="row" (click)="reademployee(el)" style="cursor: pointer;">{{el.EmployeeID}}</th>
                     <td (click)="reademployee(el)"style="cursor: pointer;">{{el.FirstName}}</td>
                     <td>{{el.LastName}}</td>

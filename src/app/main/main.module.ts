@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
+import { ToastModule } from 'ng-uikit-pro-standard';
 import { HomeComponent } from '../@component/home/home.component';
 import { DashboardComponent } from '../@component/dashboard/dashboard.component';
 import { SharedModule } from '../@shared/shared/shared.module';
@@ -32,13 +33,15 @@ import { ControlComponent } from '../@component/control/control.component';
 import { FinanceComponent } from '../@component/finance/finance.component';
 import { CeoComponent } from '../@component/ceo/ceo.component';
 import { ApprovalComponent } from '../@component/approval/approval.component';
+import { TrainingComponent } from '../@component/setting/training/training.component';
 
 @NgModule({
-  declarations: [HomeComponent, DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent, ContactComponent, CreatecontactComponent, UserDashboardComponent, UserProfileComponent, UserPayrollComponent, UserLeaveComponent, UserExpenseComponent, GeneratePayrollComponent, ReportComponent, PayslipComponent, ControlComponent, FinanceComponent, CeoComponent, ApprovalComponent],
+  declarations: [HomeComponent, DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent, ContactComponent, CreatecontactComponent, UserDashboardComponent, UserProfileComponent, UserPayrollComponent, UserLeaveComponent, UserExpenseComponent, GeneratePayrollComponent, ReportComponent, PayslipComponent, ControlComponent, FinanceComponent, CeoComponent, ApprovalComponent, TrainingComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
-    SharedModule
+    SharedModule,
+    ToastModule.forRoot(),
   ],
   entryComponents: [AddassetsComponent],
   providers: [ApiserviceService,

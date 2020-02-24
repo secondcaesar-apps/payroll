@@ -14,6 +14,7 @@ export enum APIENUM{
     MENU='menu',
     LEAVE='leave',
     MENUG='menugroup',
+    train='training',
     ROLE='role',
     EXP='expense',
     LOG='login',
