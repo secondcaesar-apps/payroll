@@ -113,4 +113,58 @@
         </div>
     
           </div>
+
+          <div class="container">
+            <!-- Section: Blog v.1 -->
+<section class="my-5">
+
+  <!-- Grid row -->
+  <div class="row" *ngFor="let el of train">
+
+    <!-- Grid column -->
+    <div class="col-lg-5">
+
+      <!-- Featured image -->
+      <div class="view overlay rounded z-depth-2 mb-lg-0 mb-4 waves-light" mdbWavesEffect>
+        <img class="img-fluid" src="https://franchiseindia.s3.ap-south-1.amazonaws.com/uploads/content/wi/art/5a0965f54a5b3.jpg" alt="Sample image">
+        <a>
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+
+    </div>
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    <div class="col-lg-7">
+
+      <!-- Category -->
+      <a href="#!" class="green-text">
+        <h6 class="font-weight-bold mb-3"><mdb-icon fas icon="dumbbell" class="pr-2"></mdb-icon>Training</h6>
+      </a>
+      <!-- Post title -->
+      <h4 class="font-weight-bold mb-3">{{el.TrainingName}}</h4>
+      <!-- Excerpt -->
+      <p>{{el.Description}}</p>
+      <!-- Post data -->
+      <p>by <a><strong>{{el.PostedUser}}</strong></a>,from {{el.StartDate | date}} to {{el.EndDate | date}}</p>
+      <a mdbBtn color="success" mdbWavesEffect>Send feedback</a>
+
+    </div>
+    <!-- Grid column -->
+    <p class=MsoNormal>
+      <span lang=EN-GB style='font-size:10.0pt;font-family:"Century Gothic",sans-serif;
+  color:black'>&nbsp;</span>
+  </p>
+
+  <p class=MsoNormal>
+      <span lang=EN-GB style='font-size:10.0pt;font-family:"Century Gothic",sans-serif;
+  color:black'>&nbsp;</span>
+  </p>
+  </div>
+  <!-- Grid row -->
+
+</section>
+<!-- Section: Blog v.1 -->
+          </div>
 <!--Grid row-->

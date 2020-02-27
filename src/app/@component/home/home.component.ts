@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
   ]
   this.approval =[  {name:'Leave Approval',route:'report',icon:'fa fa-home fa-2x'},
   {name:'Workflow Approval',route:'Approvals',icon:'fa fa-home fa-2x'},
+  {name:'Training Approval',route:'training-approval',icon:'fa fa-home fa-2x'},
 ]
 
   }
