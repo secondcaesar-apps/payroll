@@ -46,8 +46,6 @@ export class TrainingComponent implements OnInit {
   @Input() title: string;
   training: FormGroup;
   ngOnInit() {
- let arr = JSON.stringify(["EMP1900001", "EMP1900003", "EMP1900004", "EMP1900010", "EMP1900011"].toString()) 
-    console.log(arr);
  this.Training = this._fb.group({
       TrainingName: ['', [Validators.required]],
       Description: ['', [Validators.required]],
