@@ -21,7 +21,7 @@ export class UserPayrollComponent implements OnInit {
 elements = [];
 dated: string = new Date().toJSON().slice(0, 10)
 error: Boolean = false;
-headElements = ['Month', 'Net Salary','TotalAmountDue','PaymentMethod', 'Attendance', 'Status'];
+headElements = ['Month', 'Net Salary','Total Amount Due','Payment Method', 'Attendance', 'Status'];
 searchText: string = '';
 previous: string;
 message: Boolean = false;

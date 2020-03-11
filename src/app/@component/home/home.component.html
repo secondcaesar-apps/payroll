@@ -12,7 +12,7 @@
           <ul>
             <li routerLink="dashboard" routerLinkActive="active"><a><i class="fa fa-home p-2"></i>Home</a></li>
             <li routerLink="user-dahboard" routerLinkActive="active"><a> <i class="fa fa-calendar p-2"
-                  aria-hidden="true"></i> Activies</a></li>
+                  aria-hidden="true"></i> Activities</a></li>
             <li routerLink="user-expense" routerLinkActive="active"><a> <i class="fa fa-cart-plus p-2"></i>Expense
                 Claim</a></li>
             <li routerLink="user-payroll" routerLinkActive="active"><a> <i class="fa fa-dollar-sign p-2"></i>
@@ -29,7 +29,7 @@
                   class="fa fa-book p-2"></i>Payroll</a></li>
                   <li routerLink="training" routerLinkActive="active"><a><i class="fa fa-object-group p-2"></i>Training</a></li>
 
-            <li   class="show"><a ><i class="fa fa-dollar-sign p-2"></i>Aprroval</a>
+            <li   class="show"><a ><i class="fa fa-dollar-sign p-2"></i>Approval</a>
               <ul class="sub">
              
                 <li *ngFor="let item of approval"><a [routerLink]="item.route" routerLinkActive="active">   {{item.name}}</a></li>

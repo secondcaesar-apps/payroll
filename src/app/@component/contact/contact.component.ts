@@ -16,7 +16,7 @@ import swal from 'sweetalert2';
 export class ContactComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements = [];
-  headElements = ['ContactID', 'ContactName', 'Description', 'ContactNumber','Email','Service'];
+  headElements = ['Contact ID', 'Contact Name', 'Description', 'Contact Number','Email','Service'];
   show: Boolean = false;
   searchText: string = '';
   previous: string;

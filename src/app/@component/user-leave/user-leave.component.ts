@@ -11,7 +11,7 @@ import { MdbTableDirective } from 'ng-uikit-pro-standard';
 export class UserLeaveComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements = []    
-  headElements = ['Leave', 'Description','Start Date', 'End Date','DateCreated', 'Status'];
+  headElements = ['Leave', 'Description','Start Date', 'End Date','Date Created', 'Status'];
   searchText: string = '';
   previous: string;
   message: Boolean=false;
