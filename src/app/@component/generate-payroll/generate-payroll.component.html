@@ -1,6 +1,12 @@
 <div class="form-group">
-    <button (click)="CreatePayslip()" mdbBtn type="button" color="success" mdbWavesEffect>
-        <mdb-icon fab icon="google-play" class="space"></mdb-icon>Process PaySlip
+    <button [disabled]="active" (click)="CreatePayslip()" mdbBtn type="button" color="success" mdbWavesEffect>
+
+
+
+
+        <span *ngIf="!active">Process PaySlip</span> <div *ngIf="active" class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
     </button>
     <!-- <button mdbBtn type="button" (click)="newemployee()" color="default" mdbWavesEffect>
             <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
@@ -25,7 +31,7 @@
                             </mdb-icon>
                         </th>
                         <th> Employee Name</th>
-                        <th> Grade</th>
+                       
                       
                         <th style="text-align: right;">Attendance</th>
                         <th style="text-align: right;">NetSalary</th>
@@ -41,7 +47,7 @@
                     <tr [formGroupName]="i">
                         <td>{{item.value.EmployeeID}}</td>
                         <td  style="text-align: left;">{{item.value.FirstName }} {{item.value.LastName}}</td>
-                        <td  style="text-align: left;">{{item.value.SalaryGroupName }}</td>
+                       
                     
                         <td (click)="changeAttendance(i)" >
                             <p style="text-align: right;">{{item.value.Attendance}}</p>
