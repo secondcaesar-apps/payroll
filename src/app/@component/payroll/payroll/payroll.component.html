@@ -6,11 +6,15 @@
           <button (click)="generatePayroll()" mdbBtn type="button" color="success" mdbWavesEffect>
             <mdb-icon fab icon="google-play" class="space"></mdb-icon>Generate Payslip
           </button>
+          <button mdbBtn type="button" (click)="exportexcel()" color="success" mdbWavesEffect>
+            <mdb-icon fas icon="envelope" class="mr-1"></mdb-icon>Generate Excel 
+          </button>
           <!-- <button mdbBtn type="button" (click)="newemployee()" color="default" mdbWavesEffect>
                   <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
                 </button> -->
         </div>
       </div>
+      
       <div class="col-sm-8">
         <div class="row float-right">
           <div class="col-sm-5">
@@ -58,17 +62,50 @@
               </th>
               <th>{{headElements[1]}}</th>
               <th >{{headElements[2]}}</th>
-              <th style="text-align: right;" >{{headElements[3]}}</th>
+              <th >{{headElements[3]}}</th>
               
               <th>{{headElements[4]}}</th>
+              <th>{{headElements[5]}}</th>
+              <th>{{headElements[6]}}</th>
+              <th>{{headElements[7]}}</th>
+     
+              <th>{{headElements[8]}}</th>
+              <th>{{headElements[9]}}</th>
+              <th>{{headElements[10]}}</th>
+              <th>{{headElements[11]}}</th>
+                  
+              <th>{{headElements[12]}}</th>
+              <th>{{headElements[13]}}</th>
+              <th>{{headElements[14]}}</th>
+              <th>{{headElements[15]}}</th>
+     
+              <th>{{headElements[16]}}</th>
+              <th>{{headElements[17]}}</th>
+              <th>{{headElements[18]}}</th>
+              <th>{{headElements[19]}}</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let el of elements; let i = index">
               <th scope="row" (click)="openDetails(el)"style="cursor: pointer;">{{el.id}}{{el.id}}{{el.FirstName}} {{el.LastName}}</th>
-              <td (click)="openDetails(el)"style="cursor: pointer;">{{el.Email}}</td>
-              <td (click)="openDetails(el)"style="cursor: pointer;">{{el.SalaryGroupName}}</td>
-              <td (click)="openDetails(el)" style="text-align: right;cursor: pointer;">{{el.TotalAmountDue  | currency:'₦':'symbol'}}</td>
+              <td (click)="openDetails(el)"style="cursor: pointer;">{{el.LocationsName}}</td>
+              <td (click)="openDetails(el)"style="cursor: pointer;">{{el.DesignationName}}</td>
+              <td (click)="openDetails(el)"style="cursor: pointer;">{{el.Account}}</td>
+           
+              <td (click)="openDetails(el)" style="cursor: pointer;">{{el.NetSalary  | currency:'₦':'symbol'}}</td>
+              <td (click)="openDetails(el)" style="cursor: pointer;">{{el.TotalAmountDue  | currency:'₦':'symbol'}}</td>
+              <td (click)="openDetails(el)" style="cursor: pointer;">{{el.GrossPay  | currency:'₦':'symbol'}}</td>
+              <td (click)="openDetails(el)" style="cursor: pointer;">{{el.BasicSalary  | currency:'₦':'symbol'}}</td>
+              <td (click)="openDetails(el)" style="cursor: pointer;">{{el.Benefitinkind  | currency:'₦':'symbol'}}</td>
+              <td (click)="openDetails(el)" style="cursor: pointer;">{{el.EducationAllowance   | currency:'₦':'symbol'}}</td>
+              <td (click)="openDetails(el)" style="cursor: pointer;">{{el.EntertainmentAllowance  | currency:'₦':'symbol'}}</td>
+              <td (click)="openDetails(el)" style="cursor: pointer;">{{el.HousingAllowance  | currency:'₦':'symbol'}}</td>
+              <td (click)="openDetails(el)" style="cursor: pointer;">{{el.LeaveAllowance  | currency:'₦':'symbol'}}</td>
+              <td (click)="openDetails(el)" style="cursor: pointer;">{{el.TransportAllowance  | currency:'₦':'symbol'}}</td>
+              <td (click)="openDetails(el)" style="cursor: pointer;">{{el.UtilitiesAllowance  | currency:'₦':'symbol'}}</td>
+              <td (click)="openDetails(el)" style="cursor: pointer;">{{el.WardrobeAllowance  | currency:'₦':'symbol'}}</td>
+              <td (click)="openDetails(el)" style="cursor: pointer;">{{el.Pension  | currency:'₦':'symbol'}}</td>
+              <td (click)="openDetails(el)" style="cursor: pointer;">{{el.Tax  | currency:'₦':'symbol'}}</td>
               <!-- <td><button mdbBtn type="button" color="primary"style="padding:3px; margin:0;" mdbWavesEffect>
                   <mdb-icon fas icon="credit-card" class="mr-1"></mdb-icon>{{el.Status}}
                 </button></td> -->

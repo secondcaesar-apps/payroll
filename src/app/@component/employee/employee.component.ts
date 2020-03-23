@@ -7,7 +7,7 @@ import { MdbTableDirective } from 'ng-uikit-pro-standard';
 import { APIENUM } from 'src/app/@shared/enum';
 import swal from 'sweetalert2';
 import { SharedService } from 'src/app/@shared/shared/shared.service';
-
+import * as XLSX from 'xlsx'; 
 
 
 @Component({
@@ -68,6 +68,24 @@ export class EmployeeComponent implements OnInit {
     })
    
   }
+
+  /*name of the excel-file which will be downloaded. */ 
+fileName= 'ExcelSheet.xlsx';  
+
+exportexcel(): void 
+    {
+       /* table id is passed over here */   
+       let element = document.getElementById('tableSortExample'); 
+       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+
+       /* generate workbook and add the worksheet */
+       const wb: XLSX.WorkBook = XLSX.utils.book_new();
+       XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+       /* save to file */
+       XLSX.writeFile(wb, this.fileName);
+			
+    }
   searchItems() {
     const prev = this.mdbTable.getDataSource();
 

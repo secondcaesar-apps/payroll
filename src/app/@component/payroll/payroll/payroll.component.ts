@@ -6,7 +6,7 @@ import { MdbTableDirective } from 'ng-uikit-pro-standard';
 import { APIENUM } from 'src/app/@shared/enum';
 import { SharedService } from 'src/app/@shared/shared/shared.service';
 import { Router } from '@angular/router';
-
+import * as XLSX from 'xlsx'; 
 import swal from 'sweetalert2';
 
 
@@ -20,7 +20,7 @@ export class PayrollComponent implements OnInit {
   elements = [];
   dated: string = new Date().toJSON().slice(0, 10)
   error: Boolean = false;
-  headElements = ['Employee','Email','Salary Grade', 'Total Amount Due', 'Designation'];
+  headElements = ['Employee','LocationsName','DesignationName', 'Account Number', 'NetSalary','TotalAmountDue','GrossPay','BasicSalary','Benefitinkind','EducationAllowance','EntertainmentAllowance','HousingAllowance','LeaveAllowance','TransportAllowance','UtilitiesAllowance','WardrobeAllowance','Pension','Tax'];
   searchText: string = '';
   previous: string;
   message: Boolean = false;
@@ -70,6 +70,8 @@ this.gen= true;
   @HostListener('input') oninput() {
     this.searchItems();
   }
+  fileName= 'ExcelSheet.xlsx';  
+
 
   ngOnInit() {
     this.myForm1 = this.fb.group({
@@ -94,7 +96,20 @@ this.gen= true;
       this.elements = [];
     })
   }
-
+  exportexcel(): void 
+      {
+         /* table id is passed over here */   
+         let element = document.getElementById('tableSortExample'); 
+         const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+  
+         /* generate workbook and add the worksheet */
+         const wb: XLSX.WorkBook = XLSX.utils.book_new();
+         XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  
+         /* save to file */
+         XLSX.writeFile(wb, this.fileName);
+        
+      }
   hitApi() {
 console.log(this.myForm1.value)
 this.dated = this.myForm1.value['Month']
