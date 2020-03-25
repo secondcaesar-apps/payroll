@@ -121,7 +121,7 @@ reademployee(el){
  updateSalary(el){
    let value={
     
-    Status: "Approved",
+    Status: el,
     Note: "Okay.",
     SalarySlipIDs: this.elementID
 };
