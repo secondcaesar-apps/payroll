@@ -18,7 +18,7 @@ import * as XLSX from 'xlsx';
 export class EmployeeComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements = []    
-  headElements = ['ID', 'Firstname', 'Lastname', 'Email','Role', 'Deparment'];
+  headElements = ['ID', 'Firstname', 'Lastname', 'Email','Role', 'DepartmentName','LocationsName','DesignationName','Gender','SalaryGroupName','RoleName','MaritalStatus','Status'];
   error: Boolean = false;
   searchText: string = '';
   previous: string;

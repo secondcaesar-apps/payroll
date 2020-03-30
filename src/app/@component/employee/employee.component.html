@@ -59,13 +59,9 @@
         <div class="col">
             <table id="tableSortExample" mdbTable class="z-depth-1">
                 <thead>
-                  <tr>
-                      <th aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[0]">{{headElements[0] | titlecase}}<mdb-icon fas icon="sort"></mdb-icon></th>
-                      <th>{{headElements[1]}}</th>
-                      <th>{{headElements[2]}}</th>
-                      <th>{{headElements[3]}}</th>
-                      <th>{{headElements[4]}}</th>
-                      <th>{{headElements[5]}}</th>
+                  <tr >
+                      <th *ngFor="let item of headElements" aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="item">{{item| titlecase}}<mdb-icon fas icon="sort"></mdb-icon></th>
+                      
                   </tr>
                 </thead>
                 <tbody>
@@ -76,6 +72,13 @@
                     <td>{{el.Email}}</td>
                     <td>{{el.RoleName}}</td>
                     <td>{{el.DepartmentName}}</td>
+                    <td>{{el.LocationsName}}</td>
+                    <td>{{el.DesignationName}}</td>
+                    <td>{{el.Gender}}</td>
+                    <td>{{el.SalaryGroupName}}</td>
+                    <td>{{el.RoleName}}</td>
+                    <td>{{el.MaritalStatus}}</td>
+                    <td>{{el.Status}}</td>
                   </tr>
                 </tbody>
             </table>
