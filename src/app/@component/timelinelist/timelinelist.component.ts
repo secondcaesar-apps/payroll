@@ -20,15 +20,19 @@ export class TimelinelistComponent implements OnInit {
   error: any;
   success: any;
   elements = [];
+  gender = [];
   myForm1: FormGroup; 
   date: string = '';
-  headElements = [ 'Month', 'Total Amount','No of employees', 'Role','Approved By', 'Status'];
+  headElements = [ 'Gender','Total No of employees',];
   public modalRef: MDBModalRef
   searchText: string = '';
   previous: string;
   message: Boolean = false;
   loading: Boolean = true;
   messages: string;
+  messagse: Boolean = false;
+  loadings: Boolean = true;
+  messagess: string;
   maxVisibleItems: number = 8;
   show: Boolean; 
   displaySide: Boolean = false;
@@ -74,6 +78,16 @@ let value = {
         this.loading = false;
         this.messages = err.error.message;
         this.message = true;
+      })
+      this.service.Genderreport(APIENUM.EMP)
+      .subscribe((res: any) => {
+        this.loadings = false;
+        this.gender = res.records;
+        this.mdbTable.setDataSource(this.gender);
+      }, (err: any) => {
+        this.loadings = false;
+        this.messagess = err.error.message;
+        this.messagse = true;
       })
   }
   searchItems() {
@@ -180,6 +194,6 @@ hitApi() {
           this.message = true;
           this.elements = [];
         })
-    }
+    }     
 
 }

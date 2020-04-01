@@ -69,6 +69,12 @@ export class ApiserviceService {
     return this._http.post(`${this.apiUrl}${type.toString()}/read.php`, {});
 
   }
+  Genderreport(type: APIENUM) {
+
+
+    return this._http.post(`${this.apiUrl}${type.toString()}/genderreport.php`, {});
+
+  }
   ReadOne(type:APIENUM,data:any,){
 
 
