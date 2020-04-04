@@ -42,6 +42,13 @@ export class ApiserviceService {
     return this._http.post(`${this.apiUrl}${type.toString()}/create.php`, data);
 
   }
+  employtrain(type: APIENUM, data: any) {
+
+
+    return this._http.post(`${this.apiUrl}${type.toString()}/employeeapprove.php`, data);
+
+  }
+  
   BLnk(type: APIENUM, data: any) {
 
 
