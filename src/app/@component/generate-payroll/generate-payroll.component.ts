@@ -17,6 +17,7 @@ export class GeneratePayrollComponent implements OnInit {
   error: any;
   success: any;
   active=false;
+  size: any;
   constructor(private _fb: FormBuilder, private service: ApiserviceService,private _location: Location) {
 
 
@@ -29,7 +30,7 @@ export class GeneratePayrollComponent implements OnInit {
 
     this.service.populatePayRoll().subscribe((res: any) => {
  console.log(res);
-
+ this.size= res.records.length;
       for (let index = 0; index < res.records.length; index++) {
         const element = res.records[index];
 

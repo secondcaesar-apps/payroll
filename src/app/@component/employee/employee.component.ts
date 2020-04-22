@@ -35,6 +35,7 @@ export class EmployeeComponent implements OnInit {
   maxVisibleItems: number = 8;
   pic: string="";
   show: Boolean; 
+  size;
   displaySide: Boolean = false;
   constructor(
     private router: Router,
@@ -56,6 +57,8 @@ export class EmployeeComponent implements OnInit {
     .subscribe((res:any)=>{
       this.loading = false;
       this.elements=res.records;
+   
+     
       this.mdbTable.setDataSource(this.elements);
       this.elements = this.mdbTable.getDataSource();
       this.previous = this.mdbTable.getDataSource();
@@ -152,7 +155,7 @@ exportexcel(): void
        })
       this.employee.reset();
       this.employee.enable();
-    
+      this.router.navigate(['/main/payroll'])
     
     },(err=>{
       this.employee.enable();
@@ -166,7 +169,7 @@ exportexcel(): void
         timer: 3500,
     
        })
-    
+       this.router.navigate(['/main/payroll'])
     }))
   
   }
