@@ -64,7 +64,7 @@
                 <tbody>
                   <tr *ngFor="let el of elements; let i = index">
                     <td (click)="openDetails(el)" style="cursor: pointer;">{{el.Month}}</td>
-                    <td (click)="openDetails(el)" style="cursor: pointer;">{{el.TotalAmount}}</td>
+                    <td (click)="openDetails(el)" style="cursor: pointer;">{{el.TotalAmount | currency:'₦':'symbol'}}</td>
                     <td (click)="openDetails(el)" style="cursor: pointer;">{{el.TotalCount}}</td>
                     <td (click)="openDetails(el)" style="cursor: pointer;">{{el.PWFName}}</td>
                     <td (click)="openDetails(el)" style="cursor: pointer;">{{el.LatestActor}}</td>

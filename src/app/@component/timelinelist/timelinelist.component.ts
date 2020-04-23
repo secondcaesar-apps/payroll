@@ -23,7 +23,7 @@ export class TimelinelistComponent implements OnInit {
   gender = [];
   myForm1: FormGroup; 
   date: string = '';
-  headElements = [ 'Gender','Total No of employees',];
+  headElements = [ 'Month','Total Salary','Total No of employees','Designation','Employee Name','Status'];
   public modalRef: MDBModalRef
   searchText: string = '';
   previous: string;
