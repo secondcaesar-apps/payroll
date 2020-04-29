@@ -60,7 +60,7 @@ gen = false;
     var dateStr =(year + "-" + month + "-" + date).toString();
     console.log(dateStr);
     service.BLnk(APIENUM.CHECK,{Month:dateStr}).subscribe((res:any)=>{
-   
+   console.log(res);
       if( res.records.length>0){
 this.gen= true;
       }
@@ -188,7 +188,7 @@ this.dated = this.myForm1.value['Month']
     if(this.gen){
       swal.fire({
         title: 'Duplicate payslip?',
-        text: "Do you want to override this current payslip?",
+        text: "Sorry you have an active payroll on queue",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -196,14 +196,14 @@ this.dated = this.myForm1.value['Month']
         confirmButtonText: 'Yes, create new  payslip!'
       }).then((result) => {
         if (result.value) {
-          this.router.navigate(['/main/generate-payroll']);
+         // this.router.navigate(['/main/generate-payroll']);
         
         }
         
       })
     }
     else{
-      this.router.navigate(['/main/generate-payroll']);
+     // this.router.navigate(['/main/generate-payroll']);
     }
    // 
   }
