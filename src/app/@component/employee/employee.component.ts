@@ -9,7 +9,7 @@ import swal from 'sweetalert2';
 import { SharedService } from 'src/app/@shared/shared/shared.service';
 import * as XLSX from 'xlsx'; 
 
-
+import { ToastService } from 'ng-uikit-pro-standard';
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -18,7 +18,7 @@ import * as XLSX from 'xlsx';
 export class EmployeeComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements = []    
-  headElements = ['ID', 'Firstname', 'Lastname', 'Email','Role', 'DepartmentName','LocationsName','DesignationName','Gender','SalaryGroupName','RoleName','MaritalStatus','Status'];
+  headElements = ['ID', 'Firstname', 'Lastname', 'Email','Role', 'DepartmentName','LocationsName','DesignationName','Gender','SalaryGroupName','RoleName','MaritalStatus','Status',''];
   error: Boolean = false;
   searchText: string = '';
   previous: string;
@@ -41,7 +41,8 @@ export class EmployeeComponent implements OnInit {
     private router: Router,
     private Api: ApiserviceService,
     private _fb:FormBuilder,
-    private shared: SharedService,
+    private shared: SharedService
+    ,private toastrService: ToastService
     ) { }
 
   @HostListener('input') oninput() {
@@ -53,23 +54,7 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.loadEvent();
-    this.Api.Read(APIENUM.EMP)
-    .subscribe((res:any)=>{
-      this.loading = false;
-      this.elements=res.records;
-   
-     
-      this.mdbTable.setDataSource(this.elements);
-      this.elements = this.mdbTable.getDataSource();
-      this.previous = this.mdbTable.getDataSource();
-    }, (err: any) => {
-      this.loading = false;
-      this.error = true;
-      this.messages = err.error.message;
-      this.message = true;
-      this.elements = [];
-    })
-   
+    this.initload();
   }
 
   /*name of the excel-file which will be downloaded. */ 
@@ -187,6 +172,60 @@ exportexcel(): void
        this.designation=res[4].records;
        this.role=res[5].records;
     })
+  }
+
+  removeEmp(id){
+    swal.fire({
+      title: 'Remove Employee?',
+      text: `Are sure you want to remove ${id}?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Remove'
+    }).then((result) => {
+      if (result.value) {
+     
+  this.Api.Delete(APIENUM.EMP,id).subscribe((res:any)=>{
+    this.toastrService.error(` ${res.message}  `,'',{ opacity: 9 })
+
+   this.loadEvent();
+    this.initload();
+    
+  },(err:any)=>{
+    this.toastrService.error(` ${err.message}  `,'',{ opacity: 9 })
+  })
+
+ 
+
+      }
+      
+    })
+
+
+    setTimeout(()=>{
+      this.messages='';
+    },500)
+  }
+
+  initload(){
+    this.Api.Read(APIENUM.EMP)
+    .subscribe((res:any)=>{
+      this.loading = false;
+      this.elements=res.records;
+   
+     
+      this.mdbTable.setDataSource(this.elements);
+      this.elements = this.mdbTable.getDataSource();
+      this.previous = this.mdbTable.getDataSource();
+    }, (err: any) => {
+      this.loading = false;
+      this.error = true;
+      this.messages = err.error.message;
+      this.message = true;
+      this.elements = [];
+    })
+   
   }
   
 }

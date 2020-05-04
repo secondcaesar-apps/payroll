@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
 Login: FormGroup;
   error:any;
   success:any;
+  loading=false;
   constructor(  private _fb:FormBuilder,    private Api:ApiserviceService,private router:Router ) { }
 
   ngOnInit() {
@@ -35,9 +36,11 @@ Login: FormGroup;
   }
 
    SignIn(){
+     this.loading=true;
     this.Login.disable();
    
     this.Api.Create(APIENUM.LOGIN,this.Login.value).subscribe((res:any)=>{
+      this.loading=false;
       this.success=res.message;
       sessionStorage.setItem('jwt',res.Token);
 
@@ -46,6 +49,7 @@ Login: FormGroup;
       this.router.navigateByUrl('main/dashboard');
 
    },err=>{
+    this.loading=false;
      this.error=err.error.message;
      this.Login.enable();
    
