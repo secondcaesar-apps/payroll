@@ -44,6 +44,7 @@ export class PayrollComponent implements OnInit {
   Salaryslip:any;
 error_message: string="";
 errormsg: boolean = false
+mess='';
 gen = false;
   constructor(
     private router: Router,
@@ -60,10 +61,15 @@ gen = false;
     var dateStr =(year + "-" + month + "-" + date).toString();
     console.log(dateStr);
     service.BLnk(APIENUM.CHECK,{Month:dateStr}).subscribe((res:any)=>{
-   console.log(res);
+  
       if( res.records.length>0){
+        this.mess= 'Sorry you have an active payroll on queue';
 this.gen= true;
       }
+    },(err)=>{
+      this.mess= err.message;
+      this.gen= true;
+
     })
    }
   @HostListener('input') oninput() {
@@ -187,23 +193,25 @@ this.dated = this.myForm1.value['Month']
 
     if(this.gen){
       swal.fire({
-        title: 'Duplicate payslip?',
-        text: "Sorry you have an active payroll on queue",
+        title: 'Something went wrong',
+        text: this.mess,
         icon: 'warning',
-        showCancelButton: true,
+        showCancelButton: false,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, create new  payslip!'
+       
       }).then((result) => {
-        if (result.value) {
-         // this.router.navigate(['/main/generate-payroll']);
+        console.log(result);
+        // if (result.value) {
+        //   this.router.navigate(['/main/generate-payroll']);
         
-        }
+        // }
         
       })
     }
     else{
-     // this.router.navigate(['/main/generate-payroll']);
+
+    this.router.navigate(['/main/generate-payroll']);
     }
    // 
   }
