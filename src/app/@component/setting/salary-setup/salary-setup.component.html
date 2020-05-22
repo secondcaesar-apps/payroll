@@ -75,13 +75,13 @@
 </div>
 
 <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg " role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
           <span aria-hidden="true">×</span>
         </button>
-        <h4 class="modal-title w-100" id="myModalLabel">Salary group information</h4>
+        <h4 class="modal-title w-100" id="myModalLabel">Salary group Update</h4>
       </div>
       <div class="modal-body mx-3"  [formGroup]="Salary">
         <div *ngIf="success" class="alert alert-success" role="alert">
@@ -143,9 +143,11 @@
                   <mdb-card-body>
                     <table mdbTable>
                       <caption>
-                        <button (click)="addItem()" class="float-right" type="button" color="success">
+                        <!-- <button (click)="addItem()" mdbBtn color="secondary" class="float-right" type="button" >
                           Add new
-                        </button>
+                        </button> -->
+                        <button mdbBtn type="button"  (click)="addItem()" color="primary" class=" float-right waves-light"
+                        mdbWavesEffect>Add</button>
                       </caption>
                       <thead>
                         <tr>
@@ -185,8 +187,8 @@
           <div class='footer mt-1'>
             <div class="btn-group" role="group" aria-label="Basic example">
               <button mdbBtn type="button" (click)="UpadetSalar()" color="primary" class="waves-light mr-1"
-                mdbWavesEffect>Create</button>
-              <button mdbBtn type="button" (click)="frame.hide()" color="danger" class="waves-light"
+                mdbWavesEffect>Update</button>
+              <button mdbBtn type="button" (click)="basicModal.hide()" color="danger" class="waves-light"
                 mdbWavesEffect>Cancel</button>
 
             </div>

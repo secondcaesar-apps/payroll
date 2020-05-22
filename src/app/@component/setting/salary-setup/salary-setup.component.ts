@@ -229,6 +229,9 @@ else{
         this.itemArray.reset();
       }
 
+
+      
+
       load(){
         this.Api.Read(APIENUM.SAG)
         .subscribe((res:any)=>{
@@ -247,7 +250,18 @@ else{
          
         });
       }
-
+      load2(){
+        this.Api.Read(APIENUM.SAG)
+        .subscribe((res:any)=>{
+          this.loading = false;
+          this.elements=res.records;
+          this.mdbTable.setDataSource(this.elements);
+          this.elements = this.mdbTable.getDataSource();
+          this.previous = this.mdbTable.getDataSource();
+        })
+    
+        
+      }
 
       addItem2(value,id){
        
@@ -273,25 +287,29 @@ else{
         let value = {Status:"Active",NetPay:this.Total,...this.Salary.value,SalaryGroupID:this.id};
         console.log(value);
         this.Api.Update(APIENUM.SAG,value).subscribe((res:any)=>{
-          this.success=res.message;
-          this.load();
+          this.success=res.message +`WITH TOTAL OF : ₦ ${this.Total}`;
+          this.reset();
         
         },err=>{
          this.error=err.error.message;
-         this.Salary.enable();
-        
-        
+         this.reset();
+  
         },()=>{
-         setTimeout(()=>{
-           this.success='';
-           this.error='';
-           this.Salary.reset();
-           this.resetTeamForm()
-           this.Salary.enable();
-         },500);
-         this.load();
-        })
         
+      
+        })
+       
           
+}
+
+reset(){
+       setTimeout(()=>{
+          this.success='';
+          this.error='';
+    
+          this.Salary.enable();
+        },1000);
+        this.load2();
+        
 }
 }
