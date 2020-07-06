@@ -26,6 +26,7 @@ import { CeoComponent } from '../@component/ceo/ceo.component';
 import { ApprovalComponent } from '../@component/approval/approval.component';
 import { TrainingComponent } from '../@component/setting/training/training.component';
 import { TrainingApprovalComponent } from '../@component/training-approval/training-approval.component';
+import { LoanComponent } from '../@component/loan/loan.component';
 const routes: Routes = [
 
     {
@@ -58,6 +59,7 @@ const routes: Routes = [
         { path: 'training', component: TrainingComponent },
         { path: 'training-approval', component: TrainingApprovalComponent },
         { path: 'yearlyreport', component: TimelinelistComponent },
+        { path: 'loan', component: LoanComponent },
         {
           path: 'settings',
           loadChildren: () => import('../setting/setting.module').then(m => m.SettingModule)
