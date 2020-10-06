@@ -65,22 +65,21 @@ export class LoanComponent implements OnInit {
         this.firstFormGroup = this._fb.group({
         EmployeeID:[this.elements.EmployeeID],
         DepartmentName:[this.elements.DepartmentName],
-        ReportTO:['',Validators.required],
+        ReportTo:['',Validators.required],
         LoanRequestAmount:['',Validators.required],
         DateOfResumption:[this.elements.JoiningDate],
         GuaranteedLoan:['',Validators.required],
         SalaryGroup:[this.elements.SalaryGroup],
         NetSalary:['',Validators.required],
         Tenor:['',Validators.required],
-        
+        AccountNumber:[this.elements.EmployeeID],
         GuarantorID:['',Validators.required]
-       })
+      })
     }); 
   
     this.Api.ReadOne(APIENUM.EMP, data)
     .subscribe((res:any)=>{
       this.Guarantor=res.records[0];
-      console.log(this.Guarantor)
       this.Gname= this.Guarantor.FirstName +' '+ this.Guarantor.LastName
       this.Guarantordepartment = this.Guarantor.DepartmentName
       this.officeNo =  this.Guarantor.ContactNumber
@@ -89,8 +88,8 @@ export class LoanComponent implements OnInit {
         GuarantorOfficeNumber:[this.Guarantor.ContactNumber],
         GuarantorOfficeEmail:[this.Guarantor.Email],
         GuarantorDepartmentName:[this.Guarantor.DepartmentName],
-        GuarantorPersonalEmail:[''],
-        GuarantorDetailsLoanGuaranted:[''],
+        GuarantorPersonalEmail:['',Validators.required],
+        GuarantorDetailsLoanGuaranted:['',Validators.required],
       });
     })
     this.loadEvent();
@@ -98,10 +97,17 @@ export class LoanComponent implements OnInit {
   async loadEvent(){
     this.Api.Read(APIENUM.EMP).subscribe(( res:any)=>{
       this.employees=res.records;
-      if(this.employees.length > 0){
-        this.loading = false
-      }
+      this.loading = false
+    },err=>{
+      this.error=err.error.message;
+
+
+    },()=>{
+      setTimeout(()=>{
+        this.error='';
+      },800)
     })
+  
   }
   onFileChange(evt:any){
     const target: any = (evt.target);
@@ -124,8 +130,8 @@ export class LoanComponent implements OnInit {
       GuarantorOfficeNumber:[this.Guarantor.ContactNumber],
       GuarantorOfficeEmail:[this.Guarantor.Email],
       GuarantorDepartmentName:[this.Guarantor.DepartmentName],
-      GuarantorPersonalEmail:[''],
-      GuarantorDetailsLoanGuaranted:[''],
+      GuarantorPersonalEmail:['',Validators.required],
+      GuarantorDetailsLoanGuaranted:['',Validators.required],
     });
   })
   }
@@ -134,10 +140,8 @@ export class LoanComponent implements OnInit {
     this.Api.Create(APIENUM.LON, {...this.firstFormGroup.value, ...this.secondFormGroup.value})
     .subscribe((res:any)=>{
       this.success=res.message
-      console.log(this.success)
     },err=>{
       this.error=err.error.message;
-      console.log(this.success)
 
 
     },()=>{
@@ -147,8 +151,6 @@ export class LoanComponent implements OnInit {
       },800)
     })
   }
-  pop(){
-    console.log({...this.firstFormGroup.value})
-  }
+
 
 }
