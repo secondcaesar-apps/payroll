@@ -88,9 +88,9 @@ export class LoanComponent implements OnInit {
         GuarantorOfficeNumber:[this.Guarantor.ContactNumber],
         GuarantorOfficeEmail:[this.Guarantor.Email],
         GuarantorDepartmentName:[this.Guarantor.DepartmentName],
-        GuarantorPersonalEmail:['',Validators.required],
-        GuarantorDetailsLoanGuaranted:['',Validators.required],
-      });
+        // GuarantorPersonalEmail:['',Validators.required],
+        // GuarantorDetailsLoanGuaranted:['',Validators.required],
+      }); 
     })
     this.loadEvent();
   }
@@ -130,8 +130,8 @@ export class LoanComponent implements OnInit {
       GuarantorOfficeNumber:[this.Guarantor.ContactNumber],
       GuarantorOfficeEmail:[this.Guarantor.Email],
       GuarantorDepartmentName:[this.Guarantor.DepartmentName],
-      GuarantorPersonalEmail:['',Validators.required],
-      GuarantorDetailsLoanGuaranted:['',Validators.required],
+      // GuarantorPersonalEmail:['',Validators.required],
+      // GuarantorDetailsLoanGuaranted:['',Validators.required],
     });
   })
   }

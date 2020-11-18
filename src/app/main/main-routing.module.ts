@@ -1,3 +1,4 @@
+import { ReadLoanComponent } from './../@component/read-loan/read-loan.component';
 import { TimelinelistComponent } from './../@component/timelinelist/timelinelist.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -60,6 +61,7 @@ const routes: Routes = [
         { path: 'training-approval', component: TrainingApprovalComponent },
         { path: 'yearlyreport', component: TimelinelistComponent },
         { path: 'loan', component: LoanComponent },
+        { path: 'loan-approval', component: ReadLoanComponent },
         {
           path: 'settings',
           loadChildren: () => import('../setting/setting.module').then(m => m.SettingModule)
