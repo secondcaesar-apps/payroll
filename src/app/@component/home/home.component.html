@@ -10,40 +10,41 @@
         </div>
         <div class="menu">
           <ul>
-            <li routerLink="dashboard" routerLinkActive="active"><a><i class="fa fa-home p-2"></i>Home</a></li>
-            <li routerLink="user-dahboard" routerLinkActive="active"><a> <i class="fa fa-calendar p-2"
-                  aria-hidden="true"></i> Activities</a></li>
-            <li routerLink="user-expense" routerLinkActive="active"><a> <i class="fa fa-cart-plus p-2"></i>Expense
-                Claim</a></li>
+          <!-- <li routerLink="dashboard" routerLinkActive="active"><a><i class="fa fa-home p-2"></i>Home</a></li> -->
+            <!-- <li routerLink="user-dahboard" routerLinkActive="active"><a> <i class="fa fa-calendar p-2"
+                  aria-hidden="true"></i> Activities</a></li> -->
+            <!-- <li routerLink="user-expense" routerLinkActive="active"><a> <i class="fa fa-cart-plus p-2"></i>Expense
+                Claim</a></li> -->
+            <li routerLink="user-profile" routerLinkActive="active"><a> <i class="fa fa-user p-2"></i>Profile</a></li>
             <li routerLink="user-payroll" routerLinkActive="active"><a> <i class="fa fa-dollar-sign p-2"></i>
                 Payslip</a></li>
             <li routerLink="user-profile" routerLinkActive="active"><a> <i class="fa fa-user p-2"></i>Profile</a></li>
             <li routerLink="user-leave" routerLinkActive="active"><a> <i class="fa fa-users p-2"></i>Leave</a></li>
 
-            <li routerLink="employee" routerLinkActive="active"><a><i class="fa fa-address-book p-2"></i>Employee</a>
-            </li>
-            <li routerLink="assets" routerLinkActive="active"><a><i class="fa fa-object-group p-2"></i>Assets</a></li>
-            <li routerLink="contact" routerLinkActive="active"><a> <i class="fa fa-phone-square p-2"></i>Contact</a>
-            </li>
-            <li routerLink="payroll" routerLinkActive="active"> <a mdbWavesEffect> <i
-                  class="fa fa-book p-2"></i>Payroll</a></li>
-                  <li routerLink="training" routerLinkActive="active"><a><i class="fa fa-object-group p-2"></i>Training</a></li>
+            <!-- <li routerLink="employee" routerLinkActive="active"><a><i class="fa fa-address-book p-2"></i>Employee</a>
+            </li> -->
+            <!-- <li routerLink="assets" routerLinkActive="active"><a><i class="fa fa-object-group p-2"></i>Assets</a></li> -->
+            <!-- <li routerLink="contact" routerLinkActive="active"><a> <i class="fa fa-phone-square p-2"></i>Contact</a>
+            </li> -->
+            <!-- <li routerLink="payroll" routerLinkActive="active"> <a mdbWavesEffect> <i
+                  class="fa fa-book p-2"></i>Payroll</a></li> -->
+                  <!-- <li routerLink="training" routerLinkActive="active"><a><i class="fa fa-object-group p-2"></i>Training</a></li> -->
 
-            <li   class="show"><a ><i class="fa fa-dollar-sign p-2"></i>Approval</a>
+            <!-- <li   class="show"><a ><i class="fa fa-dollar-sign p-2"></i>Approval</a>
               <ul class="sub">
-             
+
                 <li *ngFor="let item of approval"><a [routerLink]="item.route" routerLinkActive="active">   {{item.name}}</a></li>
-               
-              </ul>  
-            </li>
-            <li class="show"><a><i class="fa fa-cog p-2"></i>Settings</a>
+
+              </ul>
+            </li> -->
+            <!-- <li class="show"><a><i class="fa fa-cog p-2"></i>Settings</a>
               <ul class="sub">
 
                 <li *ngFor="let item of list"><a [routerLink]="item.route" routerLinkActive="active"> {{item.name}}</a>
                 </li>
 
               </ul>
-            </li>
+            </li> -->
 
           </ul>
         </div>
@@ -60,7 +61,7 @@
 
         <!-- Links -->
         <ul class="navbar-nav ml-auto">
-        
+
           <li class="nav-item" >
             <a class="nav-link waves-light" mdbWavesEffect>
             Pending Request <span class="badge badge-danger ml-2 animated bounce " >0</span>

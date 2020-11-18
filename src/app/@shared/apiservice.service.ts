@@ -73,13 +73,13 @@ export class ApiserviceService {
 
 
     return this._http.post(`${this.apiUrl}${type.toString()}/read_one.php`,data);
-  
+
     }
       ReadLeave(type:APIENUM,data:any,){
 
 
     return this._http.post(`${this.apiUrl}${type.toString()}/readoneemployee.php`,data);
-  
+
     }
   MontlyRead(data: any, type: APIENUM) {
 
@@ -191,7 +191,7 @@ export class ApiserviceService {
     // sessionStorage.setItem('EmpID', resp.name);
     // sessionStorage.setItem('RoleID', resp.access_token);
     const helper = new JwtHelperService();
- 
+
     const decodedToken = helper.decodeToken(resp);
     const expirationDate = helper.getTokenExpirationDate(resp);
     const isExpired = helper.isTokenExpired(resp);
@@ -199,17 +199,17 @@ export class ApiserviceService {
     console.log(isExpired);
 
      sessionStorage.setItem('EmpID', decodedToken.data.EmployeeID);
-     
+
      sessionStorage.setItem('RoleID', decodedToken.data.RoleID);
      sessionStorage.setItem('Email', decodedToken.data.Email);
     // sessionStorage.setItem('RoleID', resp.access_token);
-  
+
   }
- 
+
   // Checking if token is set
   isLoggedIn() {
     return sessionStorage.getItem('jwt') != null;
   }
- 
+
 
 }

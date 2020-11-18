@@ -3,7 +3,7 @@
 @font-face {
   font-family: ‘BR Firma CW’;
   src: url(assets/font/br-firma-sb.woff2) format(‘woff2’);
- 
+
   font-weight: normal;
   font-display: swap;
   font-style: normal;
@@ -11,7 +11,7 @@
 @font-face {
   font-family: ‘Sailec’;
   src: url(assets/font/sailec-reg.woff2) format(‘woff2’);
-  
+
   font-weight: normal;
   font-display: swap;
   font-style: normal;
@@ -42,16 +42,22 @@
   box-shadow: none!important;
 
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 table.table td, table.table th {
   padding: 7px!important;
 }
 button {
 
-    
+
       border-radius: 5px !important;
-    
+
     }
-    
+
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 .navbar.scrolling-navbar {
     transition: background .20s ease-in-out,padding .20s ease-in-out;
@@ -107,8 +113,8 @@ mdb-accordion-item-head *.actives{
     background-color: orange!important;
     color: rgba(67, 69, 75, 0.596);
   }
-mdb-accordion-item-head *:hover{ 
-      
+mdb-accordion-item-head *:hover{
+
     background-color: orange!important;
 
   }

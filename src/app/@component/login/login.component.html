@@ -1,71 +1,52 @@
-<!-- Main navigation -->
-<header>
- 
-    <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/89.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
-      <!-- Mask & flexbox options-->
-      <div class="mask  rgba-black-strong d-flex justify-content-center align-items-center">
-        <!-- Content -->
-        <div class="container">
-          <!--Grid row-->
-          <div class="row pt-lg-5 mt-lg-5">
-            <!--Grid column-->
-            <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left wow fadeInLeft" data-wow-delay="0.3s">
-              <h1 class="display-4 font-weight-bold">Page Financials</h1>
-            
-              <h6 class="mb-3">We understand that opting for a loan is not an easy decision. It's a tricky balance between wanting to be debt-free while trying to sort out unexpected expenses.
-                   We get it, that’s why we’ve got you covered with our quick loans. Get up to N5million in less than 3hour.</h6>
-              <a mdbBtn color="white" outline="true" mdbWavesEffect>Learn more</a>
-            </div>
-            <!--Grid column-->
-            <!--Grid column-->
-            <div class="col-md-6 col-xl-5 mb-4">
-              <!--Form-->
-              <mdb-card class="wow fadeInRight" data-wow-delay="0.3s">
-                <mdb-card-body class="z-depth-2">
-                  <!--Header-->
-                  <div class="text-center">
-                    <h3 class="dark-grey-text">
-                      <strong>Login</strong>
-                    </h3>
-                    <hr>
-                  </div>
-                  <!--Body-->
-                  <div *ngIf="error" class="alert alert-danger" role="alert">
-                    {{error}}
-                   </div>
-                  
-                  <div class="md-form">
-                    <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
-                    <input [formControl]="Username" type="text" id="form2" class="form-control" mdbInput>
-                    <label for="form2">Username</label>
-                    <mdb-error *ngIf="Username.invalid && (Username.dirty||Username.touched)">Input invalid</mdb-error>
- 
-                  </div>
-                  <div class="md-form">
-                    <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
-                    <input [formControl]="Password"  type="password" id="form3" class="form-control" mdbInput>
-                    <label for="form3">Password</label>
-                    <mdb-error *ngIf="Password.invalid && (Password.dirty||Password.touched)">Input invalid</mdb-error>
- 
-                  </div>
-                
-                  <div class="text-center mt-3">
-                    <button  [disabled]="Login.invalid" (click)="SignIn()" mdbBtn color="black" mdbWavesEffect>Login</button>
-                  
-                  
-                  </div>
-                </mdb-card-body>
-              </mdb-card>
-              <!--/.Form-->
-            </div>
-            <!--Grid column-->
-          </div>
-          <!--Grid row-->
+<div class="container">
+  <div class="forms-container">
+    <div class="signin-signup">
+      <form  class="sign-in-form" (keyup.enter)="SignIn()">
+
+        <div *ngIf="error" class="alert alert-danger" role="alert">
+          {{error}}
+         </div>
+        <h2 class="title">Sign in</h2>
+        <div class="input-field">
+          <i class="fas fa-user"></i>
+          <input  [formControl]="Username" type="text" placeholder="Username" />
         </div>
-        <!-- Content -->
-      </div>
-      <!-- Mask & flexbox options-->
+        <div class="input-field">
+          <i class="fas fa-lock"></i>
+          <input  [formControl]="Password"  type="password" placeholder="Password" />
+        </div>
+        <input *ngIf="!loading" type="submit"  [disabled]="Login.invalid" (click)="SignIn()" value="Login" class="btn solid" />
+
+
+
+
+
+
+
+        <div *ngIf="loading" class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+
+        <p class="social-text">Reset Password?</p>
+
+      </form>
+
     </div>
-    <!-- Full Page Intro -->
-  </header>
-  <!-- Main navigation -->
+  </div>
+
+  <div class="panels-container">
+    <div class="panel left-panel">
+      <div class="content mt-5">
+        <h3>PageHRM: Cloud HR Management Solution</h3>
+        <p>
+          Payroll Management Hassle free! Generate payroll in a single click. Review and edit salary components at your ease.
+        </p>
+        <!-- <button class="btn transparent" id="sign-up-btn mb-4">
+          Sign up
+        </button> -->
+      </div>
+      <img src="../../../assets/bo.svg" class="image" alt="" />
+    </div>
+
+  </div>
+</div>
