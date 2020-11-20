@@ -33,6 +33,7 @@ export class LoanComponent implements OnInit {
   ) {}
   elements:any = [];
   Guarantor:any = [];
+  Guarantors:any = [];
   value: string = '';
   name: string = ''
   error: string = '';
@@ -65,16 +66,17 @@ export class LoanComponent implements OnInit {
         this.firstFormGroup = this._fb.group({
         EmployeeID:[this.elements.EmployeeID],
         DepartmentName:[this.elements.DepartmentName],
-        ReportTo:['',Validators.required],
+        DepartmentHead:[this.elements.DepartmentHead],
         LoanRequestAmount:['',Validators.required],
         DateOfResumption:[this.elements.JoiningDate],
         GuaranteedLoan:['',Validators.required],
         SalaryGroup:[this.elements.SalaryGroup],
         NetSalary:['',Validators.required],
         Tenor:['',Validators.required],
-        AccountNumber:[this.elements.EmployeeID],
+        AccountNumber:[this.elements.Acct1AccountNumber],
         GuarantorID:['',Validators.required]
       })
+
     });
 
     this.Api.ReadOne(APIENUM.EMP, data)
@@ -91,7 +93,10 @@ export class LoanComponent implements OnInit {
         // GuarantorPersonalEmail:['',Validators.required],
         // GuarantorDetailsLoanGuaranted:['',Validators.required],
       });
-    })
+
+    });
+
+
     this.loadEvent();
   }
   async loadEvent(){

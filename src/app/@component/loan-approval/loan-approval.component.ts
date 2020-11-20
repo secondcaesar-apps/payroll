@@ -7,13 +7,13 @@ import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-report',
-  templateUrl: './report.component.html',
-  styleUrls: ['./report.component.scss']
+  templateUrl: './loan-approval.component.html',
+  styleUrls: ['./loan-approval.component.scss']
 })
-export class ReportComponent implements OnInit {
+export class LoanApprovalComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements = []    
-  headElements = ['Employee Name', 'Descriptionzz','Start Date', 'End Date','DateCreated', 'Status'];
+  headElements =  ['Employee Name', 'Net Salary','Loan Amount', 'Tenor','DateCreated', 'Status'];
   searchText: string = '';
   previous: string;
   message: Boolean=false;
@@ -85,7 +85,7 @@ loadEvent(){
     let value = {EmployeeID :  sessionStorage.getItem('EmpID')
    
 }
-this.service.Create(APIENUM.REPORT,value).subscribe((res:any)=>{
+this.service.populateApprove(value, APIENUM.LON).subscribe((res:any)=>{
         this.loading = false;
         this.error = false;
         console.log(this.elements);
@@ -150,37 +150,37 @@ reademployee(el){
  this.leave=el;
  
 }
- updateSalary(el){
+ updateSalary(Id:any,el:any){
    console.log(el)
-   let value={LeaveID:this.leave.LeaveID, Status:el};
-   this.service.Approve(APIENUM.LEAVEAPPROVE,value).subscribe((res:any)=>{
+   let value={LoanID:Id, Status:el, Note:"Okay"};
+   this.service.approveloan(APIENUM.LON,value).subscribe((res:any)=>{
 
     this.success=res.message;
-    swal.fire({
-      title: res.message,position: "center",
-      icon: 'success',
-      showConfirmButton: false,
-      timer: 3500,
-      showCloseButton: true,
+    // swal.fire({
+    //   title: res.message,position: "center",
+    //   icon: 'success',
+    //   showConfirmButton: false,
+    //   timer: 3500,
+    //   showCloseButton: true,
   
-     })
+    //  })
 
    },err=>{
     this.error=err.error.message;
-    this.Leave.enable();
-    swal.fire({
-      position: 'center',
-      icon: 'error',
-      title: err.error.message,
-      showConfirmButton: true,
-      timer: 3500,
+    // this.Leave.enable();
+    // swal.fire({
+    //   position: 'center',
+    //   icon: 'error',
+    //   title: err.error.message,
+    //   showConfirmButton: true,
+    //   timer: 3500,
   
-     })
+    //  })
 
   })
 
 
-  this.loadEvent();
+  // this.loadEvent();
 
  }
 

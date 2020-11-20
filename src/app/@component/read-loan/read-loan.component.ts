@@ -20,9 +20,13 @@ import swal from 'sweetalert2';
 export class ReadLoanComponent implements OnInit {  data:any;
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   elements = [];
+  element:any = [];
+  Guarantor:any = [];
+  value: string = '';
+  name: string = ''
   dated: string = new Date().toJSON().slice(0, 10)
   error: Boolean = false;
-  headElements = ['Name', 'Net Salary','Tenor', 'Loan Amount', 'Status'];
+  headElements = ['Employee Name', 'Net Salary','Loan Amount', 'Tenor','DateCreated', 'Status'];
   searchText: string = '';
   previous: string;
   message: Boolean = false;
@@ -46,7 +50,22 @@ export class ReadLoanComponent implements OnInit {  data:any;
   Salaryslip:any;
   error_message: string="";
   errormsg: boolean = false
-  
+  Gname: string = ''
+  AccountNo: string = ''
+  Guarantordepartment: string = ''
+  officeNo: string = ''
+  Gradelevel: string = ''
+  officeEmail: string = ''
+  PersonalEmail: string = ''
+  employee:FormGroup;
+  location:any;
+  role:any;
+  department:any;
+  employees:any;
+  designation:any;
+  salarygroup:any;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
   constructor(
     private router: Router,
     private service: ApiserviceService,
@@ -58,6 +77,43 @@ export class ReadLoanComponent implements OnInit {  data:any;
     }
     ngOnInit() {
      this.load();
+     this.value =  sessionStorage.getItem('EmpID')
+     let data = {EmployeeID:  sessionStorage.getItem('EmpID')}
+     this.service.ReadOne(APIENUM.EMP, data)
+     .subscribe((res:any)=>{
+       this.element=res.records[0];
+       this.name= this.element.FirstName +' '+ this.element.LastName
+       this.AccountNo = this.element.Acct1AccountNumber
+       this.firstFormGroup = this.fb.group({
+       EmployeeID:[this.element.EmployeeID],
+       DepartmentName:[this.element.DepartmentName],
+       ReportTo:[this.element.ReportTo,Validators.required],
+       LoanRequestAmount:['',Validators.required],
+       DateOfResumption:[this.element.JoiningDate],
+       GuaranteedLoan:['',Validators.required],
+       SalaryGroup:[this.element.SalaryGroup],
+       NetSalary:['',Validators.required],
+       Tenor:['',Validators.required],
+       AccountNumber:[this.element.EmployeeID],
+       GuarantorID:['',Validators.required]
+     })
+   }); 
+ 
+   this.service.ReadOne(APIENUM.EMP, data)
+   .subscribe((res:any)=>{
+     this.Guarantor=res.records[0];
+     this.Gname= this.Guarantor.FirstName +' '+ this.Guarantor.LastName
+     this.Guarantordepartment = this.Guarantor.DepartmentName
+     this.officeNo =  this.Guarantor.ContactNumber
+     this.officeEmail =  this.Guarantor.Email
+     this.secondFormGroup = this.fb.group({
+       GuarantorOfficeNumber:[this.Guarantor.ContactNumber],
+       GuarantorOfficeEmail:[this.Guarantor.Email],
+       GuarantorDepartmentName:[this.Guarantor.DepartmentName],
+       // GuarantorPersonalEmail:['',Validators.required],
+       // GuarantorDetailsLoanGuaranted:['',Validators.required],
+     }); 
+   })
     }
   
     load(){
@@ -117,6 +173,23 @@ export class ReadLoanComponent implements OnInit {  data:any;
   view() {
     this.show = !this.show;
   }
+  // onSubmit() {
+
+  //   this.service.Create(APIENUM.LON, {...this.firstFormGroup.value, ...this.secondFormGroup.value})
+  //   .subscribe((res:any)=>{
+  //     this.success=res.message
+  //   },err=>{
+  //     this.error=err.error.message;
+
+
+  //   },()=>{
+  //     setTimeout(()=>{
+  //       this.success='';
+  //       this.error='';
+  //     },800)
+  //   })
+  // }
+
   newemployee() {
     this.router.navigate(['/main/create-employer'])
   }
