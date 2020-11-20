@@ -32,7 +32,8 @@ export class LoanComponent implements OnInit {
     private _fb: FormBuilder
   ) {}
   elements:any = [];
-  Guarantor:any = [];
+  Guarantor:any = []; 
+  Guarantors:any = [];
   value: string = '';
   name: string = ''
   error: string = '';
@@ -65,32 +66,28 @@ export class LoanComponent implements OnInit {
         this.firstFormGroup = this._fb.group({
         EmployeeID:[this.elements.EmployeeID],
         DepartmentName:[this.elements.DepartmentName],
-        ReportTo:['',Validators.required],
+        DepartmentHead:[this.elements.DepartmentHead],
         LoanRequestAmount:['',Validators.required],
         DateOfResumption:[this.elements.JoiningDate],
         GuaranteedLoan:['',Validators.required],
         SalaryGroup:[this.elements.SalaryGroup],
         NetSalary:['',Validators.required],
         Tenor:['',Validators.required],
-        AccountNumber:[this.elements.EmployeeID],
+        AccountNumber:[this.elements.Acct1AccountNumber],
         GuarantorID:['',Validators.required]
       })
     }); 
   
-    this.Api.ReadOne(APIENUM.EMP, data)
+    this.Api.populateGuarantor(data, APIENUM.LON)
     .subscribe((res:any)=>{
-      this.Guarantor=res.records[0];
-      this.Gname= this.Guarantor.FirstName +' '+ this.Guarantor.LastName
-      this.Guarantordepartment = this.Guarantor.DepartmentName
-      this.officeNo =  this.Guarantor.ContactNumber
-      this.officeEmail =  this.Guarantor.Email
-      this.secondFormGroup = this._fb.group({
-        GuarantorOfficeNumber:[this.Guarantor.ContactNumber],
-        GuarantorOfficeEmail:[this.Guarantor.Email],
-        GuarantorDepartmentName:[this.Guarantor.DepartmentName],
-        // GuarantorPersonalEmail:['',Validators.required],
-        // GuarantorDetailsLoanGuaranted:['',Validators.required],
-      }); 
+      this.Guarantors=res.records;
+      // this.Gname= this.Guarantor.Fb.group({
+      //   GuarantorOfficeNumber:[this.Guarantor.ContactNumber],
+      //   GuarantorOfficeEmail:[this.Guarantor.Email],
+      //   GuarantorDepartmentName:[this.Guarantor.DepartmentName],
+      //   // GuarantorPersonalEmail:['',Validators.required],
+      //   // GuarantorDetailsLoanGuaranted:['',Validators.required],
+      // }); 
     })
     this.loadEvent();
   }

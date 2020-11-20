@@ -69,11 +69,10 @@
             <th scope="row" style="cursor: pointer;">{{el.FirstName}} {{el.LastName}}</th>
            
               <td  style="text-align: right;">{{el.NetSalary  | currency:'₦':'symbol'}}</td>
-              <td>{{el.Tenor}}</td>
               <td>{{el.LoanRequestAmount   | currency:'₦':'symbol'}}</td>            
-              <td><button mdbBtn type="button" color="primary" style="padding:3px; margin:0;" mdbWavesEffect>
-                  <mdb-icon fas icon="credit-card" class="mr-1"></mdb-icon>{{el.Status}}
-                </button></td>
+              <td>{{el.Tenor}}</td>
+              <td>{{el.DateCreated | date}}</td>
+              <td>{{el.Status}}</td>
             </tr>
           </tbody>
         </table>
@@ -87,70 +86,6 @@
       <div class="col-4 line" *ngIf="show" id="contentToConvert">
         <p *ngIf="!displaySide">Select a row to view it's details here</p>
         <div class="pre-body" *ngIf="displaySide">
-          <p style="font-size: large;">{{EmployeeID}}</p>
-          <button mdbBtn type="button" color="primary" mdbWavesEffect>
-            <mdb-icon fas icon="magic" class="mr-1"></mdb-icon>{{statusValue}}
-          </button>
-          <ul class="list-group">
-            <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-              Salary Slip ID:
-              <p style="padding-left: 50px;">{{SalarySlipID}}</p>
-            </li>
-            <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-              Salary Group:
-              <p style="padding-left: 50px;">{{SalaryGroup}}</p>
-            </li>
-            <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-              Month:
-              <p style="padding-left: 50px;">{{Month | date}}</p>
-            </li>
-            <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-              Payment Method:
-              <p style="padding-left: 50px;">{{PaymentMethod}}</p>
-            </li>
-            <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-              Payment Date:
-              <p style="padding-left: 50px;">{{PaymentDate | date}}</p>
-            </li>
-            <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-              Employee Status:
-              <p style="padding-left: 50px;">{{EmployeeStatus}}</p>
-            </li>
-
-<!-- <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-  Name:
-  {{}}
-</li>
-<li class="list-group-item form-group d-flex justify-content-between align-items-center">
-  Type:
-  {{SalaryGroup}}
-</li>
-<li class="list-group-item form-group d-flex justify-content-between align-items-center">
-  Month:
-  {{Month}}
-</li>
-<li class="list-group-item form-group d-flex justify-content-between align-items-center">
-  Payment Method:
-  {{PaymentMethod}}
-</li>
-<li class="list-group-item form-group d-flex justify-content-between align-items-center">
-  Payment Date:
-  {{PaymentDate}}
-</li>
-<li class="list-group-item form-group d-flex justify-content-between align-items-center">
-  Employee Status:
-  {{EmployeeStatus}}
-</li> -->
-          </ul>
-          <div style="padding:20px;">
-          <h6>Salary Details</h6>
-          <p *ngIf="errormsg">{{error_message}}</p>
-          <ul class="list-group">
-            <li class="list-group-item form-group d-flex justify-content-between align-items-center" *ngFor="let slip of Salaryslip">
-              {{slip.Name}}:
-              <p style="padding-left: 50px; color: green;">{{slip.Amount  | currency:'₦':'symbol'}}</p>
-            </li>
-          </ul>
         </div>
         </div>
         <div class="body">
@@ -161,4 +96,3 @@
       </div>
     </div>
   </div>
-</div>

@@ -23,6 +23,12 @@ export class ApiserviceService {
     return this._http.post(this.apiUrl + 'leave/approve.php', data);
 
   }
+  Approved(type: APIENUM, data: any) {
+
+
+    return this._http.post(this.apiUrl + 'loan/approve.php', data);
+
+  }
   readbyEmployeeID(type: APIENUM, data: any) {
 
 
@@ -30,6 +36,12 @@ export class ApiserviceService {
 
   }
   approvetrain(type: APIENUM, data: any) {
+
+
+    return this._http.post(`${this.apiUrl}${type.toString()}/approve.php`, data);
+
+  }
+  approveloan(type: APIENUM, data: any) {
 
 
     return this._http.post(`${this.apiUrl}${type.toString()}/approve.php`, data);
@@ -198,6 +210,9 @@ export class ApiserviceService {
   }
   populateApprove(data: any,type: APIENUM) {
     return this._http.post(`${this.apiUrl}${type.toString()}/populateapprove.php`, data);
+  }
+  populateGuarantor(data: any,type: APIENUM) {
+    return this._http.post(`${this.apiUrl}${type.toString()}/populateguarantor.php`, data);
   }
   createPayslip(data) {
     return this._http.post(this.apiUrl + APIENUM.CREATEPAYROLL, data);

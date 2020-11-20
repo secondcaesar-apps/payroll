@@ -5,12 +5,7 @@
  
                   <div class="content clearfix">
              
-                      <div *ngIf="success" class="alert alert-success col-12" role="alert">
-                        {{success}}
-                      </div>
-                      <div *ngIf="error" class="alert alert-danger col-12" role="alert">
-                       {{error}}
-                      </div> 
+
                       <div class="col">
                     
                         <!--Card-->
@@ -78,7 +73,7 @@
                                                 <input type="text" formControlName="SalaryGroup" value={{elements.SalaryGroupName}} class="form-control" id="SalaryGroup" name="street2"  mdbInput disabled>
                                               </div>	
                                             
-                                              <div class="form-group"> <!--HOD-->
+                                              <!-- <div class="form-group">
                                                 <label for="ReportsTO" class="control-label">HOD</label>
                                                 <select id="ReportsTO" formControlName="ReportTo" class="form-control">
                                     
@@ -86,8 +81,9 @@
                                                 
                                                 </select>
                                         
-                                              </div>									
-                                                          
+                                              </div>									 
+                                            -->
+                     
                                               <div class="form-group"> <!--  Net Salary -->
                                                 <label for="NetSalary" class="control-label"> Net Salary</label>
                                                 <input type="text" class="form-control" id="NetSalary" formControlName="NetSalary">			
@@ -97,7 +93,7 @@
                                                 <label for="GuarantorID" class="control-label">Guarantor's Name:</label>
                                                 <select id="GuarantorID" formControlName="GuarantorID" (change)="onFileChange($event)" class="form-control">
                                       
-                                                  <option *ngFor="let item of employees" [ngValue]="item.EmployeeID" value="{{item.EmployeeID}}">{{item.FirstName}} {{item.LastName}}</option>
+                                                  <option *ngFor="let item of Guarantors" [ngValue]="item.EmployeeID" value="{{item.EmployeeID}}">{{item.FirstName}} {{item.LastName}}</option>
                                                 
                                                 </select>
                                               </div>
@@ -346,6 +342,12 @@
                                   </div>
                                 </div>
                               </div>
+                              <div *ngIf="success" class="alert alert-success col-12" role="alert">
+                                {{success}}
+                              </div>
+                              <div *ngIf="error" class="alert alert-danger col-12" role="alert">
+                               {{error}}
+                              </div> 
                               <hr *ngIf="!loading">
                               <p class=MsoListParagraphCxSpMiddle *ngIf="!loading" style='margin-top:0in;margin-right:17.45pt;
                               margin-bottom:8.0pt;margin-left:38.25pt;text-align:justify;text-indent:-.25in;
@@ -356,11 +358,12 @@
                               of the internal control department and approved by the Executive Director</span></p>
                             </div>
                           </mdb-card-body>
+
                         </mdb-card>
                         <!--/.Card-->
                     
                       </div>
-                  
+
                 </div>
               <!-- </form> -->
             </div>

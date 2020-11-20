@@ -28,6 +28,7 @@ import { ApprovalComponent } from '../@component/approval/approval.component';
 import { TrainingComponent } from '../@component/setting/training/training.component';
 import { TrainingApprovalComponent } from '../@component/training-approval/training-approval.component';
 import { LoanComponent } from '../@component/loan/loan.component';
+import { LoanApprovalComponent } from '../@component/loan-approval/loan-approval.component';
 const routes: Routes = [
 
     {
@@ -62,6 +63,7 @@ const routes: Routes = [
         { path: 'yearlyreport', component: TimelinelistComponent },
         { path: 'loan', component: LoanComponent },
         { path: 'loan-approval', component: ReadLoanComponent },
+        { path: 'loan-flow', component: LoanApprovalComponent },
         {
           path: 'settings',
           loadChildren: () => import('../setting/setting.module').then(m => m.SettingModule)
