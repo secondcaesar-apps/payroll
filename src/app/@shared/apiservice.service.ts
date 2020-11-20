@@ -42,6 +42,13 @@ export class ApiserviceService {
     return this._http.post(`${this.apiUrl}${type.toString()}/create.php`, data);
 
   }
+  employtrain(type: APIENUM, data: any) {
+
+
+    return this._http.post(`${this.apiUrl}${type.toString()}/employeeapprove.php`, data);
+
+  }
+
   BLnk(type: APIENUM, data: any) {
 
 
@@ -53,7 +60,7 @@ export class ApiserviceService {
   Login(type: APIENUM, data: any) {
 
 
-    return this._http.post(`${this.apiUrl}${type.toString()}/login.php`, data);
+    return this._http.post(`${this.apiUrl}${type.toString()}`, data);
 
   }
   Update(type: APIENUM, data: any) {
@@ -67,6 +74,12 @@ export class ApiserviceService {
 
 
     return this._http.post(`${this.apiUrl}${type.toString()}/read.php`, {});
+
+  }
+  Genderreport(type: APIENUM) {
+
+
+    return this._http.post(`${this.apiUrl}${type.toString()}/genderreport.php`, {});
 
   }
   ReadOne(type:APIENUM,data:any,){
@@ -85,6 +98,12 @@ export class ApiserviceService {
 
 
     return this._http.post(`${this.apiUrl}${type.toString()}/monthlyread.php`, data);
+
+  }
+  Yearlyreport(data: any, type: APIENUM) {
+
+
+    return this._http.post(`${this.apiUrl}${type.toString()}/yearlyreport.php`, data);
 
   }
  EmployeeSalaryRead(data: any, type: APIENUM) {
@@ -107,11 +126,12 @@ export class ApiserviceService {
   }
   Delete(type: APIENUM, id: any) {
 
-    let value = 'AssetID';
+    let value = {};
 
     switch (type) {
       case APIENUM.ASS:
-        value = 'AssetID';
+
+        value ={ 'AssetID':id};
         break;
       case APIENUM.CON:
         value = 'ContactID';
@@ -139,14 +159,15 @@ export class ApiserviceService {
         value = 'ID';
         break;
       case APIENUM.ROLE:
-        value = 'RoleID';
+
+        value ={ 'RoleID':id};
         break;
-      case APIENUM.INCR:
-        value = 'AssetID';
+      case APIENUM.EMP:
+        value ={ 'EmployeeID':id};
         break;
 
       case APIENUM.EXP:
-        value = 'AssetID';
+        value = 'EmployeeID';
         break;
 
       case APIENUM.LOG:
@@ -160,7 +181,7 @@ export class ApiserviceService {
 
 
 
-    return this._http.post(`${this.apiUrl}/ ${type}/delete.php`, { value: id });
+    return this._http.post(`${this.apiUrl}${type}/delete.php`, value);
   }
 
   ImageUpload(F) {
@@ -198,9 +219,11 @@ export class ApiserviceService {
 
     console.log(isExpired);
 
+    console.log( decodedToken.data);
+
      sessionStorage.setItem('EmpID', decodedToken.data.EmployeeID);
 
-     sessionStorage.setItem('RoleID', decodedToken.data.RoleID);
+     sessionStorage.setItem('MRoleID', decodedToken.data.MRoleID);
      sessionStorage.setItem('Email', decodedToken.data.Email);
     // sessionStorage.setItem('RoleID', resp.access_token);
 

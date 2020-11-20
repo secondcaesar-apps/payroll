@@ -6,7 +6,7 @@ import { MdbTableDirective } from 'ng-uikit-pro-standard';
 import { APIENUM } from 'src/app/@shared/enum';
 import { SharedService } from 'src/app/@shared/shared/shared.service';
 import { Router } from '@angular/router';
-
+import * as XLSX from 'xlsx'; 
 import swal from 'sweetalert2';
 
 
@@ -20,7 +20,7 @@ export class PayrollComponent implements OnInit {
   elements = [];
   dated: string = new Date().toJSON().slice(0, 10)
   error: Boolean = false;
-  headElements = ['Employee','Email','Salary Grade', 'Total Amount Due', 'Designation'];
+  headElements = ['Employee','Locations','Designation Name', 'Account Number', 'NetSalary','TotalAmountDue','GrossPay','Basic Salary','Benefit Inkind','Education Allowance','Entertainment Allowance','Housing Allowance','Leave Allowance','Transport Allowance','Utilities Allowance','Wardrobe Allowance','Pension','Tax'];
   searchText: string = '';
   previous: string;
   message: Boolean = false;
@@ -44,6 +44,7 @@ export class PayrollComponent implements OnInit {
   Salaryslip:any;
 error_message: string="";
 errormsg: boolean = false
+mess='';
 gen = false;
   constructor(
     private router: Router,
@@ -53,7 +54,6 @@ gen = false;
   ) {
     
     var d = new Date();
- 
     var date = d.getDate();
     var month = d.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
     var year = d.getFullYear();
@@ -61,15 +61,22 @@ gen = false;
     var dateStr =(year + "-" + month + "-" + date).toString();
     console.log(dateStr);
     service.BLnk(APIENUM.CHECK,{Month:dateStr}).subscribe((res:any)=>{
-   
+  
       if( res.records.length>0){
+        this.mess= 'Sorry you have an active payroll on queue';
 this.gen= true;
       }
+    },(err)=>{
+      this.mess= err.message;
+      this.gen= true;
+
     })
    }
   @HostListener('input') oninput() {
     this.searchItems();
   }
+  fileName= 'ExcelSheet.xlsx';  
+
 
   ngOnInit() {
     this.myForm1 = this.fb.group({
@@ -94,7 +101,20 @@ this.gen= true;
       this.elements = [];
     })
   }
-
+  exportexcel(): void 
+      {
+         /* table id is passed over here */   
+         let element = document.getElementById('tableSortExample'); 
+         const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+  
+         /* generate workbook and add the worksheet */
+         const wb: XLSX.WorkBook = XLSX.utils.book_new();
+         XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  
+         /* save to file */
+         XLSX.writeFile(wb, this.fileName);
+        
+      }
   hitApi() {
 console.log(this.myForm1.value)
 this.dated = this.myForm1.value['Month']
@@ -173,23 +193,25 @@ this.dated = this.myForm1.value['Month']
 
     if(this.gen){
       swal.fire({
-        title: 'Duplicate payslip?',
-        text: "Do you want to override this current payslip?",
+        title: 'Something went wrong',
+        text: this.mess,
         icon: 'warning',
-        showCancelButton: true,
+        showCancelButton: false,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, create new  payslip!'
+       
       }).then((result) => {
-        if (result.value) {
-          this.router.navigate(['/main/generate-payroll']);
+        console.log(result);
+        // if (result.value) {
+        //   this.router.navigate(['/main/generate-payroll']);
         
-        }
+        // }
         
       })
     }
     else{
-      this.router.navigate(['/main/generate-payroll']);
+
+    this.router.navigate(['/main/generate-payroll']);
     }
    // 
   }

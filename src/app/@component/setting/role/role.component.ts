@@ -33,7 +33,7 @@ export class RoleComponent implements OnInit {
     this.load();
   }
   load(){
-    this.Api.Read(APIENUM.ROLE)
+    this.Api.Read(APIENUM.MROLE)
     .subscribe((res:any)=>{
       this.loading = false;
       this.elements=res.records;
@@ -66,16 +66,16 @@ export class RoleComponent implements OnInit {
   createRole(){
     this.Role.disable();
      let value = {Status:"Active",...this.Role.value};
- 
+
      this.Api.Create(APIENUM.ROLE,value).subscribe((res:any)=>{
         this.success=res.message;
         this.load();
- 
+
      },err=>{
        this.error=err.error.message;
        this.Role.enable();
- 
- 
+
+
      },()=>{
        setTimeout(()=>{
          this.success='';

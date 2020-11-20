@@ -88,7 +88,7 @@ this.menuGroupApi()
    },err=>{
      this.error=err.error.message;
      this.Menu.enable();
-   
+
 
    },()=>{
      setTimeout(()=>{
@@ -99,13 +99,13 @@ this.menuGroupApi()
      },500);
      this.load();
 
- 
+
    })
 
   }
 
   menuGroupApi(){
- var list =   [this.Api.Read(APIENUM.ROLE),this.Api.Read(APIENUM.MENU)];
+ var list =   [this.Api.Read(APIENUM.MROLE),this.Api.Read(APIENUM.MENU)];
 
  forkJoin(list).subscribe((res:any)=>{
    console.log(res);
@@ -122,7 +122,7 @@ this.menuGroupApi()
    },err=>{
      this.error=err.error.message;
      this.MenuG.enable();
-   
+
 
    },()=>{
      setTimeout(()=>{
@@ -132,7 +132,7 @@ this.menuGroupApi()
        this.MenuG.enable();
      },500)
 
- 
+
    })
   }
 }

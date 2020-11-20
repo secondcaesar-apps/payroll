@@ -32,6 +32,7 @@ export class SalarySetupComponent implements OnInit {
   Type: string = '';
   Amount: string = '';
   SalaryComponentID: string = '';
+  id=null;
   Modal : Boolean=false;
   type = ['Credit','Debit']
   optionsSelect = [
@@ -55,17 +56,51 @@ export class SalarySetupComponent implements OnInit {
   }
 SalaryCom(el){
     this.displaySide = true;
+    this.itemArray.clear();
+    this.Salary.reset();
+this.id =el.SalaryGroupID;
+
     let data = {
-      "SalaryGroupID": el.SalaryGroupID
+      "SalaryGroupID": this.id
     }
     this.Api.SalaryComponentRead(data, APIENUM.SAG)
     .subscribe((res:any)=>{
       this.loading = false;
        console.log(res.records)
        this.group = res.records;
+
+       this.Salary.patchValue(
+      {
+        SalaryGroupName:el.SalaryGroupName,
+        LeaveDays:el.LeaveDays
+      }
+
+       )
+
+       for (let index = 0; index < res.records.length; index++) {
+        const element = res.records[index];
+
+
+        this.addItem2(res.records[index], index);
+      }
+     
+
     })
     this.Modal = true;
 
+
+
+
+
+
+
+
+}
+
+
+clear(){
+  this.itemArray.clear();
+  this.Salary.reset();
 }
   createSalary(): FormGroup{
     return this._fb.group({
@@ -194,6 +229,9 @@ else{
         this.itemArray.reset();
       }
 
+
+      
+
       load(){
         this.Api.Read(APIENUM.SAG)
         .subscribe((res:any)=>{
@@ -212,4 +250,66 @@ else{
          
         });
       }
+      load2(){
+        this.Api.Read(APIENUM.SAG)
+        .subscribe((res:any)=>{
+          this.loading = false;
+          this.elements=res.records;
+          this.mdbTable.setDataSource(this.elements);
+          this.elements = this.mdbTable.getDataSource();
+          this.previous = this.mdbTable.getDataSource();
+        })
+    
+        
+      }
+
+      addItem2(value,id){
+       
+      this.itemArray.push(this.createSalary2(value,id));
+    
+      }
+
+
+      createSalary2(value?: any, index?: any): FormGroup{
+        return this._fb.group({
+          Name :[value.Name,[Validators.required]],
+          Amount:[value.Amount,[Validators.required]],
+          Type:[value.Type,[Validators.required]],
+         
+         
+        });
+      }
+
+  UpadetSalar(){
+        //console.info(this.Salary.value);
+        this.Cart();
+        this.Salary.disable();
+        let value = {Status:"Active",NetPay:this.Total,...this.Salary.value,SalaryGroupID:this.id};
+        console.log(value);
+        this.Api.Update(APIENUM.SAG,value).subscribe((res:any)=>{
+          this.success=res.message +`WITH TOTAL OF : ₦ ${this.Total}`;
+          this.reset();
+        
+        },err=>{
+         this.error=err.error.message;
+         this.reset();
+  
+        },()=>{
+        
+      
+        })
+       
+          
+}
+
+reset(){
+       setTimeout(()=>{
+          this.success='';
+          this.error='';
+    
+          this.Salary.enable();
+        },1000);
+        this.load2();
+        
+}
 }

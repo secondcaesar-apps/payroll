@@ -184,8 +184,10 @@ this.tests(this.events);
   }
 
   convertdate(date:Date){
-    var i =  new Date(date).toJSON().slice(0, 10);
-    var t = i.split('-');
+    var i =  new Date(date);
+    var j=i.setDate(i.getDate()+1);
+    var f=   new Date(j).toJSON().slice(0, 10);
+    var t = f.split('-');
     var year = new Date().getFullYear().toString();
     t[0]=year;
     

@@ -1,6 +1,4 @@
 
-
-
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
@@ -8,12 +6,10 @@ import { APIENUM } from 'src/app/@shared/enum';
 import { Router } from '@angular/router';
 
 
-
-
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+selector: 'app-login',
+templateUrl: './login.component.html',
+styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 Login: FormGroup;
@@ -42,7 +38,7 @@ Login: FormGroup;
      this.loading=true;
     this.Login.disable();
 
-    this.Api.Create(APIENUM.LOGIN,this.Login.value).subscribe((res:any)=>{
+    this.Api.Login(APIENUM.LOGIN,this.Login.value).subscribe((res:any)=>{
       this.loading=false;
       this.success=res.message;
       sessionStorage.setItem('jwt',res.Token);
@@ -53,19 +49,23 @@ Login: FormGroup;
    },err=>{
     this.loading=false;
 
+
     if (err.status === 0 && err.error instanceof ProgressEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.log('Client side error:', err.error);
-      this.error='Client side error:'+err.error;
+      this.error='Client side error:Please check your internet';
+    }else{
+      this.error=err.error.Error;
     }
-     this.error=err.error.message;
+
+
      this.Login.enable();
      setTimeout(()=>{
 
       this.error='';
 
 
-    },500)
+    },900)
 
    },()=>{
     setTimeout(()=>{

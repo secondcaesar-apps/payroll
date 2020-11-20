@@ -148,8 +148,22 @@
       <p>{{el.Description}}</p>
       <!-- Post data -->
       <p>by <a><strong>{{el.PostedUser}}</strong></a>,from {{el.StartDate | date}} to {{el.EndDate | date}}</p>
+      <div id="hover">
       <a mdbBtn color="success" mdbWavesEffect>Send feedback</a>
-
+      <div id="popup"> 
+        <form class="form" role="form" [formGroup]="feedback" >
+          <div class="form-group">
+            <div class="comment">
+            <textarea  formControlName="ApprovalComment" placeholder="Comment" rows="4" cols="25" class="form-control"></textarea>
+          </div>
+            <div class="row">
+              <div class="col-6"><button mdbBtn color="danger" (click)="openDetails(el, 'Busy')" >Very Busy</button></div>
+              <div class="col-6"><button mdbBtn color="success" (click)="openDetails(el, 'Attended')">Attended</button></div>
+            </div>
+          </div>
+        </form>    
+      </div> 
+    </div>
     </div>
     <!-- Grid column -->
     <p class=MsoNormal>

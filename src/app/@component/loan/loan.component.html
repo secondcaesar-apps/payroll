@@ -1,0 +1,368 @@
+<div class="bodyy">
+  <div class="main">
+    ​
+            <div class="container">
+ 
+                  <div class="content clearfix">
+             
+                      <div *ngIf="success" class="alert alert-success col-12" role="alert">
+                        {{success}}
+                      </div>
+                      <div *ngIf="error" class="alert alert-danger col-12" role="alert">
+                       {{error}}
+                      </div> 
+                      <div class="col">
+                    
+                        <!--Card-->
+                        <mdb-card class="testimonial-card">
+                          <!--Bacground color-->
+                    
+                          <mdb-card-body>
+                            <div class="spinner-grow" style="width: 5rem; height: 5rem;" *ngIf="loading" role="status">
+                              <span class="sr-only">Loading...</span>
+                            </div>  
+                            <!--Name-->
+                    <!--Grid row-->
+                            <div class="body" *ngIf="!loading">  
+                              <h5><b>Employee Loan Application:</b></h5>
+                              <div class="row">                      
+                                <div class="col">
+                                  <mdb-stepper #stepper [linear]="true">
+                                    <mdb-step name="Step 1" [stepForm]="firstFormGroup" class="step1">
+                                          <div class="row" [formGroup]="firstFormGroup">
+                                            <div class="col-md-6">
+                                              <div class="form-group"> <!-- Full Name -->
+                                                <label for="EmployeeID" class="control-label">Employee Name</label>
+                                                <input type="text" class="form-control" value={{name}} formControlName='EmployeeID' id="EmployeeID" mdbInput disabled>
+                                              </div>	
+                                            
+                                              <div class="form-group"> <!-- Street 1 -->
+                                                <label for="DepartmentName" class="control-label">Department</label>
+                                                <input type="text" class="form-control" formControlName='DepartmentName' id="DepartmentName" value={{elements.DepartmentName}} mdbInput disabled>
+                                              </div>					
+                                                          
+                                              <div class="form-group"> <!-- Date of Resumption -->
+                                                <label for="JoiningDate" class="control-label">Date of Resumption</label>
+                                                <input type="text" class="form-control" formControlName='DateOfResumption' id="JoiningDate" value={{elements.JoiningDate}}  mdbInput disabled>
+                                              </div>	
+                                          
+                                              <div class="form-group"> <!--  Net Salary -->
+                                                <label for="LoanRequestAmount" class="control-label">Loan Amount</label>
+                                                <input type="text" class="form-control" formControlName="LoanRequestAmount">			
+                                              </div>  
+                            
+                                              <div class="form-group"> <!-- Tenor -->
+                                                <label for="Tenor" class="control-label">Tenor</label>
+                                                <select formControlName="Tenor"  name="cars" class="browser-default custom-select" id="Tenor">
+                                                  <option selected>Pick Tenor:</option>
+                                                  <option value="1">1</option>
+                                                  <option value="2">2</option>
+                                                  <option value="3">3</option>
+                                                  <option value="4">4</option>
+                                                  <option value="5">5</option>
+                                                  <option value="6">6</option>
+                                                  <option value="7">7</option>
+                                                  <option value="8">8</option>
+                                                  <option value="9">9</option>
+                                                  <option value="10">10</option>
+                                                  <option value="11">11</option>
+                                                  <option value="12">12</option>
+                                                </select>
+                                              </div>
+                                              
+                                            </div>   
+                                            <div class="col-md-6">
+                            
+                                              <div class="form-group"> <!-- Grade Level-->
+                                                <label for="SalaryGroup" class="control-label">Grade Level</label>
+                                                <input type="text" formControlName="SalaryGroup" value={{elements.SalaryGroupName}} class="form-control" id="SalaryGroup" name="street2"  mdbInput disabled>
+                                              </div>	
+                                            
+                                              <div class="form-group"> <!--HOD-->
+                                                <label for="ReportsTO" class="control-label">HOD</label>
+                                                <select id="ReportsTO" formControlName="ReportTo" class="form-control">
+                                    
+                                                  <option *ngFor="let item of employees" [ngValue]="item.EmployeeID">{{item.FirstName}} {{item.LastName}}</option>
+                                                
+                                                </select>
+                                        
+                                              </div>									
+                                                          
+                                              <div class="form-group"> <!--  Net Salary -->
+                                                <label for="NetSalary" class="control-label"> Net Salary</label>
+                                                <input type="text" class="form-control" id="NetSalary" formControlName="NetSalary">			
+                                              </div>
+                                              
+                                              <div class="form-group"> <!-- DTI -->
+                                                <label for="GuarantorID" class="control-label">Guarantor's Name:</label>
+                                                <select id="GuarantorID" formControlName="GuarantorID" (change)="onFileChange($event)" class="form-control">
+                                      
+                                                  <option *ngFor="let item of employees" [ngValue]="item.EmployeeID" value="{{item.EmployeeID}}">{{item.FirstName}} {{item.LastName}}</option>
+                                                
+                                                </select>
+                                              </div>
+                            
+                                              <div class="form-group"> <!-- Guaranteed Loan(s) -->
+                                                <label for="GuaranteedLoan" class="control-label">Guaranteed Loan(s)</label>
+                                                <textarea type="text" class="form-control" id="GuaranteedLoan" formControlName="GuaranteedLoan" name="GuaranteedLoan">
+                                                </textarea>
+                                              </div>
+                            
+                                            </div>   
+                                          </div> 
+                                      <button mdbBtn size="sm" color="primary" (click)="stepper.next()">CONTINUE</button>
+                                    </mdb-step>
+                                    <mdb-step name="Step 2" [stepForm]="secondFormGroup" class="step2">      
+                                        <h5><b>Guarantor Details:</b></h5>
+                                        <div class="row" [formGroup]="secondFormGroup">
+                                          <div class="col-md-6">
+                                            <div class="form-group">
+                                              <label for="GuarantorID" class="control-label">Name:</label>
+                                              <input type="text" value={{Gname}}  class="form-control" mdbInput disabled >
+                                            </div>		
+                                          
+                                            <div class="form-group"> <!-- Street 1 -->
+                                              <label for="GuarantorOfficeNumber" class="control-label">Office Mobile Number</label>
+                                              <input type="text" formControlName="GuarantorOfficeNumber" value={{officeNo}} class="form-control" mdbInput disabled>
+                                            </div>			
+<!--                             
+                                            <div class="form-group">
+                                              <label for="GuarantorPersonalEmail" class="control-label">Personal e-mail Address</label>
+                                              <input type="text" class="form-control"  formControlName="GuarantorPersonalEmail" id="GuarantorPersonalEmail" >
+                                            </div>			
+                             -->
+                                          </div>   
+                                          
+                                          <div class="col-md-6">
+                                                          
+                                            <div class="form-group"> <!-- Department -->
+                                              <label for="GuarantorDepartmentName" class="control-label">Department</label>
+                                              <input type="text" class="form-control" formControlName="GuarantorDepartmentName" value="{{Guarantordepartment}}" id="GuarantorDepartmentName"   mdbInput disabled>
+                                            </div>
+                            
+                                            <div class="form-group"> <!-- Grade Level -->
+                                              <label for="GuarantorOfficeEmail" class="control-label">Office Email</label>
+                                              <input type="text" class="form-control" formControlName="GuarantorOfficeEmail" value="{{officeEmail}}" id="Acct1AccountNumber"   mdbInput disabled >
+                                            </div>		
+                                            
+<!--                             
+                                            <div class="form-group"> 
+                                              <label for="GuarantorDetailsLoanGuaranted" class="control-label">Details of Loan Guaranteed</label>
+                                              <textarea type="text" class="form-control" id="GuarantorDetailsLoanGuaranted" formControlName="GuarantorDetailsLoanGuaranted">
+                                                </textarea>
+                                            </div> -->
+                                            
+                                          </div>
+                                          <h5><b>Account Number: {{AccountNo}}</b></h5>
+                                        </div> 
+                                      <button mdbBtn size="sm" color="primary" (click)="stepper.next()">CONTINUE</button>
+                                      <button mdbBtn size="sm" color="secondary" (click)="stepper.previous()">BACK</button>
+                                    </mdb-step>
+                                    <mdb-step name="Step 3" class="step3">  
+                                      <h5><b>Terms and conditions:</b></h5> 
+                                      <div class=WordSection1>
+                                      
+                                      <p class=MsoNormal style='margin-top:1.4pt;text-align:justify;line-height:normal'><span
+                                      style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>&nbsp;           &nbsp;&nbsp;<b><u>SCOPE/OBJECTIVE</u></b></span></p>
+                                      
+                                      <p class=MsoNormal style='text-align:justify;text-indent:.5in;line-height:normal'><span
+                                      style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>  The scope of
+                                      this policy applies to all employees of <b>Page International Financial
+                                      Services Limited</b></span></p>
+                                      
+                                      <p class=MsoNormal style='margin-left:23.0pt;text-align:justify;text-indent:
+                                      13.0pt;line-height:normal'><b><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>&nbsp;&nbsp;
+                                      <u>POLICY:</u></span></b></p>
+                                      
+                                      <p class=MsoListParagraphCxSpFirst style='margin-top:1.65pt;margin-right:0in;
+                                      margin-bottom:8.0pt;margin-left:41.25pt;text-align:justify;text-indent:-.25in;
+                                      line-height:normal'><span style='font-size:10.0pt;font-family:Symbol'>·<span
+                                      style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>Personal
+                                      loans will only be granted strictly at the <b>discretion of management</b>.</span></p>
+                                      
+                                      <p class=MsoListParagraphCxSpMiddle style='margin-left:41.25pt;text-align:justify;
+                                      text-indent:-.25in;line-height:normal'><span style='font-size:10.0pt;
+                                      font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'> Applications
+                                      must be made in writing on the loan application form, signed and then sent to
+                                      the H.R. department.</span></p>
+                                      
+                                      <p class=MsoListParagraphCxSpMiddle style='margin-left:41.25pt;text-align:justify;
+                                      text-indent:-.25in;line-height:normal'><span style='font-size:10.0pt;
+                                      font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>Compassionate
+                                      loan request may be granted to contract staff but limited to a maximum of <b>N50,000
+                                      (Fifty Thousand Naira</b>) payable over a 6month period.</span></p>
+                                      
+                                      <p class=MsoListParagraphCxSpMiddle style='margin-left:41.25pt;text-align:justify;
+                                      text-indent:-.25in;line-height:normal'><span style='font-size:10.0pt;
+                                      font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>The
+                                      Applicable Interest rate will apply to ALL staff Loans and maybe revised at any
+                                      time at the discretion of management.</span></p>
+                                      
+                                      <p class=MsoListParagraphCxSpMiddle style='margin-left:41.25pt;text-align:justify;
+                                      text-indent:-.25in;line-height:normal'><span style='font-size:10.0pt;
+                                      font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>No
+                                      management fee will apply to staff loans.</span></p>
+                                      
+                                      <p class=MsoListParagraphCxSpMiddle style='margin-top:4.3pt;margin-right:6.0pt;
+                                      margin-bottom:8.0pt;margin-left:41.25pt;text-align:justify;text-indent:-.25in;
+                                      line-height:normal'><span style='font-size:10.0pt;font-family:Symbol'>·<span
+                                      style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>DTI
+                                      on staff loans which is currently 45% must be strictly adhered to (Any excess
+                                      above this threshold must have the approval of either the ED or MD/CEO).</span></p>
+                                      
+                                      <p class=MsoListParagraphCxSpMiddle style='margin-left:41.25pt;text-align:justify;
+                                      text-indent:-.25in;line-height:normal'><span style='font-size:10.0pt;
+                                      font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>Loans
+                                      will be processed &amp; Approved within 24hrs of submission of application.</span></p>
+                                      
+                                      <p class=MsoListParagraphCxSpMiddle style='margin-left:41.25pt;text-align:justify;
+                                      text-indent:-.25in;line-height:normal'><span style='font-size:10.0pt;
+                                      font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>A
+                                      Staff must sign the loan agreement and terms before disbursement.</span></p>
+                                      
+                                      <p class=MsoListParagraphCxSpMiddle style='margin-left:41.25pt;text-align:justify;
+                                      text-indent:-.25in;line-height:normal'><span style='font-size:10.0pt;
+                                      font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>All
+                                      loan agreements and supporting documentation will be filed in the employee’s
+                                      personal file.</span></p>
+                                      
+                                      <p class=MsoListParagraphCxSpMiddle style='margin-left:41.25pt;text-align:justify;
+                                      text-indent:-.25in;line-height:normal'><span style='font-size:10.0pt;
+                                      font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>Repayments
+                                      are to be deducted on the <b>23rd </b>or on pay-day.</span></p>
+                                      
+                                      <p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:34.65pt;
+                                      margin-bottom:8.0pt;margin-left:41.25pt;text-align:justify;text-indent:-.25in;
+                                      line-height:normal'><span style='font-size:10.0pt;font-family:Symbol'>·<span
+                                      style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>Any
+                                      rejected debit through the DDM as a result of lack of funds will be referred to
+                                      the internal control department as a fraudulent act which will attract stiff
+                                      penalties.</span></p>
+                                      
+                                      <p class=MsoListParagraphCxSpMiddle style='margin-left:41.25pt;text-align:justify;
+                                      text-indent:-.25in;line-height:normal'><span style='font-size:10.0pt;
+                                      font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>Loans
+                                      <b>MUST </b>be <b>FULLY </b>paid down to become eligible for another one.</span></p>
+                                      
+                                      <p class=MsoListParagraphCxSpMiddle style='margin-top:4.3pt;margin-right:0in;
+                                      margin-bottom:8.0pt;margin-left:41.25pt;text-align:justify;text-indent:-.25in;
+                                      line-height:normal'><span style='font-size:10.0pt;font-family:Symbol'>·<span
+                                      style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>A
+                                      cooling off period of 1(One) month will apply between loans</span></p>
+                                      
+                                      <p class=MsoListParagraphCxSpMiddle style='margin-top:4.3pt;margin-right:0in;
+                                      margin-bottom:8.0pt;margin-left:41.25pt;text-align:justify;text-indent:-.25in;
+                                      line-height:normal'><span style='font-size:10.0pt;font-family:Symbol'>·<span
+                                      style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>All
+                                      loans must be paid in full, including accrued interest, on termination,
+                                      dismissal or resignation of employment.</span></p>
+                                      
+                                      <p class=MsoListParagraphCxSpLast style='margin-top:4.3pt;margin-right:4.4pt;
+                                      margin-bottom:8.0pt;margin-left:41.25pt;text-align:justify;text-indent:-.25in;
+                                      line-height:normal'><span style='font-size:10.0pt;font-family:Symbol'>·<span
+                                      style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>The
+                                      staff exit requirement should henceforth include pay-down on guaranteed loan or
+                                      replacement as guarantor for subsisting staff loans. Staff resigning his/her appointment
+                                      will be required to either of the above referenced before an acceptance and
+                                      reference is provided by PIFSL</span></p>
+                                      
+                                      <p class=MsoNormal style='margin-left:28.25pt;text-align:justify;text-indent:
+                                      13.0pt;line-height:normal'><b><u><span style='font-size:10.0pt;font-family:
+                                      "Bookman Old Style",serif'>ELIGIBILITY CRITERIA</span></u></b></p>
+                                      
+                                      <p class=MsoListParagraphCxSpFirst style='margin-left:38.25pt;text-align:justify;
+                                      text-indent:-.25in;line-height:normal'><span style='font-size:10.0pt;
+                                      font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>Only
+                                      confirmed employees would be eligible to enjoy this facility</span></p>
+                                      
+                                      <p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:17.45pt;
+                                      margin-bottom:8.0pt;margin-left:38.25pt;text-align:justify;text-indent:-.25in;
+                                      line-height:normal'><span style='font-size:10.0pt;font-family:Symbol'>·<span
+                                      style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>All
+                                      loan applications will be processed by the HR department with the concurrence
+                                      of the internal control department and approved by the Executive Director</span></p>
+                                      
+                                      <p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:17.45pt;
+                                      margin-bottom:8.0pt;margin-left:38.25pt;text-align:justify;line-height:normal'><span
+                                      style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>Copies of
+                                      approved loan disbursement form should be forwarded to Risk management
+                                      department for appropriate filling.</span></p>
+                                      
+                                      <p class=MsoListParagraphCxSpMiddle style='margin-left:38.25pt;text-align:justify;
+                                      text-indent:-.25in;line-height:normal'><span style='font-size:10.0pt;
+                                      font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>Staff
+                                      cannot guarantee a customer’s loan.</span></p>
+                                      
+                                      <p class=MsoListParagraphCxSpMiddle style='margin-top:4.45pt;margin-right:0in;
+                                      margin-bottom:8.0pt;margin-left:38.25pt;text-align:justify;text-indent:-.25in;
+                                      line-height:normal'><span style='font-size:10.0pt;font-family:Symbol'>·<span
+                                      style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>Where
+                                      a staff guarantees his colleague, his/her total DTI would not exceed 60%.</span></p>
+                                      
+                                      <p class=MsoListParagraphCxSpLast style='margin-top:4.3pt;margin-right:13.3pt;
+                                      margin-bottom:8.0pt;margin-left:38.25pt;text-align:justify;text-indent:-.25in;
+                                      line-height:normal'><span style='font-size:10.0pt;font-family:Symbol'>·<span
+                                      style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>No
+                                      staff can guarantee his/her senior colleagues (while those that are currently
+                                      running will be allowed to elapse in as much as it is performing).</span></p>
+                                      
+                                      <p class=MsoNormal style='text-align:justify;line-height:normal'><span
+                                      style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>All the terms
+                                      and conditions stated above have been read and understood by me. I hereby
+                                      accept the terms and conditions as evidenced by clicking the button below.</span><span
+                                      style='font-size:10.0pt;font-family:"Bookman Old Style",serif'> &nbsp;</span></p>
+                                      </div>   
+                                        <button mdbBtn  size="sm" color="primary" (click)="onSubmit()">I AGREE</button>
+                                        <button mdbBtn size="sm" color="secondary" (click)="stepper.previous()">BACK</button>
+                                    </mdb-step>
+                                  </mdb-stepper>
+                                </div>
+                                <div class="col-4 line" *ngIf="show">
+                              
+                                  <div class="body">
+                                    <div class="row">
+                            
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr *ngIf="!loading">
+                              <p class=MsoListParagraphCxSpMiddle *ngIf="!loading" style='margin-top:0in;margin-right:17.45pt;
+                              margin-bottom:8.0pt;margin-left:38.25pt;text-align:justify;text-indent:-.25in;
+                              line-height:normal'><span style='font-size:10.0pt;font-weight: bold;'>Disclaimer:<span
+                              style='font:7.0pt "Times New Roman"'>
+                              </span></span><span style='font-size:10.0pt;font-family:"Bookman Old Style",serif'>All
+                              loan applications will be processed by the HR department with the concurrence
+                              of the internal control department and approved by the Executive Director</span></p>
+                            </div>
+                          </mdb-card-body>
+                        </mdb-card>
+                        <!--/.Card-->
+                    
+                      </div>
+                  
+                </div>
+              <!-- </form> -->
+            </div>
+        </div>
+</div>

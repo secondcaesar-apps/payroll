@@ -10,9 +10,10 @@ const routes: Routes = [
   {
     path: 'main',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./main/main.module').then(m => m.MainModule)
+    loadChildren: () => import('./main/main.module').then(m => m.MainModule),
+    data:{preload:true}
   },
-  { path: 'main/settings', redirectTo: 'main/settings/company', pathMatch: 'full' },
+  { path: 'main/settings', redirectTo: 'main/settings/company', pathMatch: 'full',data:{preload:true} },
 ];
 
 @NgModule({

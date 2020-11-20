@@ -4,6 +4,9 @@ import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import swal from 'sweetalert2';
 import { Location } from '@angular/common';
 import { ConditionalExpr } from '@angular/compiler';
+import 'lodash';
+
+declare var _:any;
 @Component({
   selector: 'app-generate-payroll',
   templateUrl: './generate-payroll.component.html',
@@ -13,6 +16,8 @@ export class GeneratePayrollComponent implements OnInit {
   payrollGenarte: FormGroup;
   error: any;
   success: any;
+  active=false;
+  size: any;
   constructor(private _fb: FormBuilder, private service: ApiserviceService,private _location: Location) {
 
 
@@ -25,7 +30,7 @@ export class GeneratePayrollComponent implements OnInit {
 
     this.service.populatePayRoll().subscribe((res: any) => {
  console.log(res);
-
+ this.size= res.records.length;
       for (let index = 0; index < res.records.length; index++) {
         const element = res.records[index];
 
@@ -95,17 +100,20 @@ export class GeneratePayrollComponent implements OnInit {
     var date = new Date(),
       mnth = ("0" + (date.getMonth() + 1)).slice(-2),
       day = ("0" + date.getDate()).slice(-2);
-    return [date.getFullYear(), mnth, day].join("-");
+    return [date.getFullYear(), mnth, 4].join("-");
   }
 
 
   CreatePayslip() {
     //console.log(this.itemArray.value);
+    this.active= true;
     let data = this.itemArray.value;
     this.service.createPayslip(data).subscribe((res:any) => {
       this.success=res.message
+      this.active= false;
     }, (err: any) => {
       this.error = err.error.message;
+        this.active= false;
     });
   }
 
