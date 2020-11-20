@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'main', redirectTo: 'main/dashboard', pathMatch: 'full' },
   {
-    path: 'main', 
+    path: 'main',
     canActivate: [AuthGuard],
     loadChildren: () => import('./main/main.module').then(m => m.MainModule),
     data:{preload:true}

@@ -130,11 +130,11 @@
                     <div class="form-group col-md-12">
                         <label for="inputPassword4">Description</label>
                         <textarea  [formControl]="Description" type="text" id="form107" class="md-textarea form-control" rows="5" mdbInput></textarea>
-                         
+
                         <mdb-error *ngIf="Description.invalid && (Description.dirty||Description.touched)">
                           Invalid Value.
                         </mdb-error>
-                     
+
                       </div>
 
                 </div>
@@ -191,19 +191,19 @@
                     <div class="form-group col-md-6">
                         <label for="inputEmail4">ROLE NAME</label>
                         <select   formControlName="RoleID" class="browser-default custom-select">
-                          
+
                           <option *ngFor="let item of role" [ngValue]="item.RoleID">{{item.RoleName}}</option>
-                        
+
                         </select>
                     </div>
-                   
-                    
+
+
                     <div class="form-group col-md-6">
                         <label for="inputEmail4">MENU NAME</label>
                         <select   formControlName="MenuID" class="browser-default custom-select">
-                          
+
                           <option *ngFor="let item of menu" [ngValue]="item.MenuID">{{item.MenuName}}</option>
-                        
+
                         </select>
                     </div>
 
@@ -226,7 +226,7 @@
                 <div class="btn-group" role="group" aria-label="Basic example">
 
 
-                    <button mdbBtn type="button"  [disabled]="MenuG.invalid" color="info" (click)="createMenuG()"
+                    <button mdbBtn type="button"  color="info" (click)="createMenuG()"
                         class="waves-light mr-2" mdbWavesEffect>Create</button>
                     <button mdbBtn type="button" color="danger" (click)="frames.hide()" class="waves-light"
                         mdbWavesEffect>Cancel</button>

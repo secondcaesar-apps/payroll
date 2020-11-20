@@ -2,7 +2,7 @@ import { Component, OnInit,ViewChild } from '@angular/core';
 import { ModalDirective } from 'ng-uikit-pro-standard';
 import { ApiserviceService } from './../../@shared/apiservice.service';
 import { APIENUM,UType } from 'src/app/@shared/enum';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'; 
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-loan',
@@ -26,13 +26,13 @@ export class LoanComponent implements OnInit {
     { value: '12', label: '12' },
   ];
   @ViewChild('basicModal', { static: true }) basicModal: ModalDirective;
-  show: Boolean; 
+  show: Boolean;
   constructor(
     private Api: ApiserviceService,
     private _fb: FormBuilder
   ) {}
   elements:any = [];
-  Guarantor:any = []; 
+  Guarantor:any = [];
   Guarantors:any = [];
   value: string = '';
   name: string = ''
@@ -76,19 +76,27 @@ export class LoanComponent implements OnInit {
         AccountNumber:[this.elements.Acct1AccountNumber],
         GuarantorID:['',Validators.required]
       })
-    }); 
-  
-    this.Api.populateGuarantor(data, APIENUM.LON)
+
+    });
+
+    this.Api.ReadOne(APIENUM.EMP, data)
     .subscribe((res:any)=>{
-      this.Guarantors=res.records;
-      // this.Gname= this.Guarantor.Fb.group({
-      //   GuarantorOfficeNumber:[this.Guarantor.ContactNumber],
-      //   GuarantorOfficeEmail:[this.Guarantor.Email],
-      //   GuarantorDepartmentName:[this.Guarantor.DepartmentName],
-      //   // GuarantorPersonalEmail:['',Validators.required],
-      //   // GuarantorDetailsLoanGuaranted:['',Validators.required],
-      // }); 
-    })
+      this.Guarantor=res.records[0];
+      this.Gname= this.Guarantor.FirstName +' '+ this.Guarantor.LastName
+      this.Guarantordepartment = this.Guarantor.DepartmentName
+      this.officeNo =  this.Guarantor.ContactNumber
+      this.officeEmail =  this.Guarantor.Email
+      this.secondFormGroup = this._fb.group({
+        GuarantorOfficeNumber:[this.Guarantor.ContactNumber],
+        GuarantorOfficeEmail:[this.Guarantor.Email],
+        GuarantorDepartmentName:[this.Guarantor.DepartmentName],
+        // GuarantorPersonalEmail:['',Validators.required],
+        // GuarantorDetailsLoanGuaranted:['',Validators.required],
+      });
+
+    });
+
+
     this.loadEvent();
   }
   async loadEvent(){
@@ -104,7 +112,7 @@ export class LoanComponent implements OnInit {
         this.error='';
       },800)
     })
-  
+
   }
   onFileChange(evt:any){
     const target: any = (evt.target);
@@ -112,7 +120,7 @@ export class LoanComponent implements OnInit {
 
   let data = {
     EmployeeID: strUser
-    
+
 }
   this.Api.ReadOne(APIENUM.EMP, data)
   .subscribe((res:any)=>{

@@ -1,168 +1,54 @@
 
-<header>
- 
-    <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/89.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+<div class="container">
+  <div class="forms-container">
+    <div class="signin-signup">
+      <form  class="sign-in-form" (keyup.enter)="SignIn()">
 
-      <div class="mask  rgba-black-strong d-flex justify-content-center align-items-center">
-
-        <div class="container">
- 
-          <div class="row pt-lg-5 mt-lg-5">
-     
-            <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left wow fadeInLeft" data-wow-delay="0.3s">
-              <h5 class="display-4 font-weight-bold">Page  Payroll</h5>
-             
-            </div>
-            
-            <div class="col-md-6 col-xl-5 mb-4">
-           
-              <mdb-card class="wow fadeInRight" data-wow-delay="0.3s">
-                <mdb-card-body class="z-depth-2">
-               
-                  <div class="text-center">
-                    <h3 class="dark-grey-text">
-                      <strong>Login</strong>
-                    </h3>
-                    <hr>
-                  </div>
-              
-                  <div *ngIf="error" class="alert alert-danger" role="alert">
-                    {{error}}
-                   </div>
-                  
-                  <div class="md-form">
-                    <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
-                    <input [formControl]="Username" type="text" id="form2" class="form-control" mdbInput>
-                    <label for="form2">Username</label>
-                    <mdb-error *ngIf="Username.invalid && (Username.dirty||Username.touched)">Input invalid</mdb-error>
- 
-                  </div>
-                  <div class="md-form">
-                    <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
-                    <input [formControl]="Password"  type="password" id="form3" class="form-control" mdbInput>
-                    <label for="form3">Password</label>
-                    <mdb-error *ngIf="Password.invalid && (Password.dirty||Password.touched)">Input invalid</mdb-error>
- 
-                  </div>
-                
-                  <div class="text-center mt-3">
-                    <button  [disabled]="Login.invalid" (click)="SignIn()" mdbBtn color="black" mdbWavesEffect>
-                      
-                      
-                      <span *ngIf="!loading">Login</span>
-                      
-                      
-                    
-                    
-                      <div *ngIf="loading" class="spinner-border" role="status">
-                        <span class="sr-only">Loading...</span>
-                      </div>
-                    
-                    
-                    </button>
-                  
-                  
-                  </div>
-                </mdb-card-body>
-              </mdb-card>
-         
-            </div>
-          
-          </div>
-          
+        <div *ngIf="error" class="alert alert-danger" role="alert">
+          {{error}}
+         </div>
+        <h2 class="title">Sign in</h2>
+        <div class="input-field">
+          <i class="fas fa-user"></i>
+          <input  [formControl]="Username" type="text" placeholder="Username" />
         </div>
-        
+        <div class="input-field">
+          <i class="fas fa-lock"></i>
+          <input  [formControl]="Password"  type="password" placeholder="Password" />
+        </div>
+        <input *ngIf="!loading" type="submit"  [disabled]="Login.invalid" (click)="SignIn()" value="Login" class="btn solid" />
+
+
+
+
+
+
+
+        <div *ngIf="loading" class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+
+        <p class="social-text">Reset Password?</p>
+
+      </form>
+
+    </div>
+  </div>
+
+  <div class="panels-container">
+    <div class="panel left-panel">
+      <div class="content mt-5">
+        <h3>PageHRM: Cloud HR Management Solution</h3>
+        <p>
+          Payroll Management Hassle free! Generate payroll in a single click. Review and edit salary components at your ease.
+        </p>
+        <!-- <button class="btn transparent" id="sign-up-btn mb-4">
+          Sign up
+        </button> -->
       </div>
-     
+      <img src="../../../assets/bo.svg" class="image" alt="" />
     </div>
-    
-  </header>
-<!--Section: Features v.1-->
-<section class="text-center container">
-
-  <!--Section heading-->
-  <h2 class="h1 py-5 font-weight-bold">Why choose FGPayroll?</h2>
-  <!--Section description-->
-  <p class="px-5 mb-5 pb-3 lead grey-text">Our modules are designed & built with speed and ease of use in mind</p>
-
-  <!--Grid row-->
-  <div class="row">
-
-    <!--Grid column-->
-    <div class="col-md-4">
-      <mdb-icon fas icon="chart-area" size="3x" class="red-text"></mdb-icon>
-      <h5 class="font-weight-bold mt-3">Employee Database</h5>
-      <p class="grey-text">All your employee data at one place, no matter where you're located.
-      </p>
-    </div>
-    <!--Grid column-->
-
-    <!--Grid column-->
-    <div class="col-md-4">
-      <mdb-icon fas icon="book" size="3x" class="cyan-text"></mdb-icon>
-      <h5 class="font-weight-bold mt-3">Leave/Time off Management</h5>
-      <p class="grey-text">Create and manage different leave types.
-      </p>
-    </div>
-    <!--Grid column-->
-
-    <!--Grid column-->
-    <div class="col-md-4">
-      <mdb-icon far icon="comments" size="3x" class="orange-text"></mdb-icon>
-      <h5 class="font-weight-bold mt-3">Payroll Management</h5>
-      <p class="grey-text">Hassle free! Generate payroll in a single click. Review and edit salary components at your ease.
-      </p>
-    </div>
-    <!--Grid column-->
 
   </div>
-  <!--Grid row-->
-
-</section>
-<!--Section: Features v.1-->
-<!-- Section: Testimonials v.2 -->
-
-<div class="container-fluid" >
-  <section class="text-center my-5 container">
-    <!-- Section heading -->
-    <h2 class="h1-responsive font-weight-bold my-5">What our clients say </h2>
-    <!--Carousel Wrapper-->
-    <mdb-carousel [isControls]="false" [animation]="'slide'" class="testimonial-carousel">
-      <!--First slide-->
-      <mdb-slide>
-        <div class="testimonial text-center ">
-          <!--Avatar-->
-          <div class="avatar mx-auto mb-4">
-            <img src="../../../assets/logo.png" class="rounded-circle img-fluid"
-              alt="First sample avatar image">
-          </div>
-          <!--Content-->
-          <p class="text-center container">
-            <mdb-icon fas icon="quote-left"></mdb-icon>We run a medium sized WiFi installation business, staff management is crucial to us as we operate with a lean staffing structure.
-             FGPayroll has been easy to use, cost efficient and includes all the features that are needed in a good Human Resources Management system.
-          </p>
-          <h4 class="font-weight-bold">Anna Deynah</h4>
-          <h6 class="font-weight-bold my-3">HR at pagefinancials</h6>
-          <!--Review-->
-          <mdb-icon fas icon="star" class="yellow-text"> </mdb-icon>
-          <mdb-icon fas icon="star" class="yellow-text"> </mdb-icon>
-          <mdb-icon fas icon="star" class="yellow-text"> </mdb-icon>
-          <mdb-icon fas icon="star" class="yellow-text"> </mdb-icon>
-          <mdb-icon fas icon="star-half" class="yellow-text"> </mdb-icon>
-        </div>
-      </mdb-slide>
-  
-    </mdb-carousel>
-    <!--/.Carousel Wrapper-->
-  </section>
 </div>
 
-<footer class="page-footer font-small black">
-
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2020 Copyright:
-    <a href=""> Forsterfields Griffins.com</a>
-  </div>
-  <!-- Copyright -->
-
-</footer>

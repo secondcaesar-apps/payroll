@@ -5,7 +5,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
-import { DayPilotModule } from "daypilot-pro-angular";
+// import { DayPilotModule } from "daypilot-pro-angular";
 
 import { MDBSpinningPreloader, MDBBootstrapModulesPro, ToastModule } from 'ng-uikit-pro-standard';
 import { CommonModule } from '@angular/common';
@@ -40,7 +40,7 @@ import { JoyrideModule } from 'ngx-joyride';
     JoyrideModule,
     HttpClientModule,
     ReactiveFormsModule,
- 
+
 
     FormsModule,
     NgxSkeletonLoaderModule,

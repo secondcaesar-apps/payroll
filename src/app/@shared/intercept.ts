@@ -12,7 +12,7 @@ export class InterceptorServices implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const idToken = environment.token;
         this.value = this.shared.getInfo().value
-console.log(this.value);
+
         if (idToken) {
             const customReq = request.clone({
                 headers: request.headers.set("Authorization", " Bearer " +sessionStorage.getItem('jwt'))

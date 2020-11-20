@@ -60,7 +60,7 @@ export class ApiserviceService {
     return this._http.post(`${this.apiUrl}${type.toString()}/employeeapprove.php`, data);
 
   }
-  
+
   BLnk(type: APIENUM, data: any) {
 
 
@@ -72,7 +72,7 @@ export class ApiserviceService {
   Login(type: APIENUM, data: any) {
 
 
-    return this._http.post(`${this.apiUrl}${type.toString()}/login.php`, data);
+    return this._http.post(`${this.apiUrl}${type.toString()}`, data);
 
   }
   Update(type: APIENUM, data: any) {
@@ -98,13 +98,13 @@ export class ApiserviceService {
 
 
     return this._http.post(`${this.apiUrl}${type.toString()}/read_one.php`,data);
-  
+
     }
       ReadLeave(type:APIENUM,data:any,){
 
 
     return this._http.post(`${this.apiUrl}${type.toString()}/readoneemployee.php`,data);
-  
+
     }
   MontlyRead(data: any, type: APIENUM) {
 
@@ -142,7 +142,7 @@ export class ApiserviceService {
 
     switch (type) {
       case APIENUM.ASS:
-        
+
         value ={ 'AssetID':id};
         break;
       case APIENUM.CON:
@@ -171,7 +171,7 @@ export class ApiserviceService {
         value = 'ID';
         break;
       case APIENUM.ROLE:
- 
+
         value ={ 'RoleID':id};
         break;
       case APIENUM.EMP:
@@ -227,25 +227,27 @@ export class ApiserviceService {
     // sessionStorage.setItem('EmpID', resp.name);
     // sessionStorage.setItem('RoleID', resp.access_token);
     const helper = new JwtHelperService();
- 
+
     const decodedToken = helper.decodeToken(resp);
     const expirationDate = helper.getTokenExpirationDate(resp);
     const isExpired = helper.isTokenExpired(resp);
 
     console.log(isExpired);
 
+    console.log( decodedToken.data);
+
      sessionStorage.setItem('EmpID', decodedToken.data.EmployeeID);
-     
-     sessionStorage.setItem('RoleID', decodedToken.data.RoleID);
+
+     sessionStorage.setItem('MRoleID', decodedToken.data.MRoleID);
      sessionStorage.setItem('Email', decodedToken.data.Email);
     // sessionStorage.setItem('RoleID', resp.access_token);
-  
+
   }
- 
+
   // Checking if token is set
   isLoggedIn() {
     return sessionStorage.getItem('jwt') != null;
   }
- 
+
 
 }

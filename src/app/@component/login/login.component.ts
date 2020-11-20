@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
@@ -5,12 +6,10 @@ import { APIENUM } from 'src/app/@shared/enum';
 import { Router } from '@angular/router';
 
 
-
-
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+selector: 'app-login',
+templateUrl: './login.component.html',
+styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 Login: FormGroup;
@@ -24,7 +23,7 @@ Login: FormGroup;
     this.Login= this._fb.group({
       Username:['',[Validators.required]],
       Password:['',[Validators.required]],
-    
+
     });
   }
   get Username(){
@@ -38,32 +37,48 @@ Login: FormGroup;
    SignIn(){
      this.loading=true;
     this.Login.disable();
-   
-    this.Api.Create(APIENUM.LOGIN,this.Login.value).subscribe((res:any)=>{
+
+    this.Api.Login(APIENUM.LOGIN,this.Login.value).subscribe((res:any)=>{
       this.loading=false;
       this.success=res.message;
       sessionStorage.setItem('jwt',res.Token);
-
       this.Api.setUser(res.Token);
-   
-      this.router.navigateByUrl('main/dashboard');
+      console.log(res);
+      this.router.navigateByUrl('main/user-profile');
 
    },err=>{
     this.loading=false;
-     this.error=err.error.message;
+
+
+    if (err.status === 0 && err.error instanceof ProgressEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.log('Client side error:', err.error);
+      this.error='Client side error:Please check your internet';
+    }else{
+      this.error=err.error.Error;
+    }
+
+
      this.Login.enable();
-   
+     setTimeout(()=>{
+
+      this.error='';
+
+
+    },900)
 
    },()=>{
-     setTimeout(()=>{
-       this.success='';
-       this.error='';
-       this.Login.reset();
-       this.Login.enable();
-     },500)
+    setTimeout(()=>{
+      this.success='';
+      this.error='';
+      this.Login.reset();
+      this.Login.enable();
+    },900)
 
- 
+
    })
 
   }
+
+
 }

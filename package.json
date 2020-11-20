@@ -29,7 +29,7 @@
     "animate.css": "^3.7.2",
     "chart.js": "^2.5.0",
     "date-fns": "^2.9.0",
-    "daypilot-pro-angular": "https://npm.daypilot.org/daypilot-pro-angular/trial/8.4.2887.tar.gz",
+
     "easy-pie-chart": "2.1.x",
     "file-saver": "^2.0.2",
     "fullcalendar": "^3.10.1",
@@ -43,6 +43,7 @@
     "ngx-joyride": "^2.2.10",
     "ngx-skeleton-loader": "^1.2.2",
     "rxjs": "~6.4.0",
+    "rxjs-compat": "^6.6.3",
     "screenfull": "3.3.x",
     "sweetalert2": "^9.6.0",
     "tslib": "^1.10.0",

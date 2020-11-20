@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { JoyrideService } from 'ngx-joyride';
+import { ApiserviceService } from 'src/app/@shared/apiservice.service';
+import { APIENUM } from 'src/app/@shared/enum';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +12,12 @@ import { JoyrideService } from 'ngx-joyride';
 export class HomeComponent implements OnInit {
   list: { name: string; route: string; icon: string; }[];
   approval: { name: string; route: string; icon: string; }[];
+  menuArray=[];
 
-  constructor(private router:Router,private readonly joyrideService: JoyrideService ) { }
+  settAound=false;
+
+
+  constructor(private service:ApiserviceService,private router:Router,private readonly joyrideService: JoyrideService ) { }
 
   ngOnInit() {
   //  this.onClick();
@@ -28,15 +34,15 @@ export class HomeComponent implements OnInit {
       {name:'Calender',route:'settings/calender',icon:'fa fa-book fa-2x'},
       {name:'Workflow',route:'settings/workflow',icon:'fa fa-book fa-2x'},
       {name:'Menu Setup',route:'settings/menu',icon:'fa fa-book fa-2x'},
-  
+
   ]
   this.approval =[ {name:'Loan Approval',route:'loan-flow',icon:'fa fa-book fa-2x'}, {name:'Leave Approval',route:'report',icon:'fa fa-home fa-2x'},
   {name:'Workflow Approval',route:'Approvals',icon:'fa fa-home fa-2x'},
   {name:'Training Approval',route:'training-approval',icon:'fa fa-home fa-2x'},
 ]
-
+ this.LoadMenu();
   }
-  
+
 
   logout(){
     sessionStorage.clear();
@@ -48,5 +54,24 @@ export class HomeComponent implements OnInit {
     );
   }
 
- 
+  LoadMenu(){
+    let MroleID=   sessionStorage.getItem('MRoleID')
+
+    this.service.ReadOne(APIENUM.MENUG,{'RoleID':MroleID}).subscribe((res)=>{
+       this.menuArray=res['records'];
+  this.menuArray.filter((e:any)=>{
+
+
+if( e['MenuName']=='Settings'){
+this.settAound= true;
 }
+  })
+
+    })
+  }
+
+
+}
+
+
+
