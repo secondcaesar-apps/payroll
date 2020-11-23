@@ -148,9 +148,7 @@ reademployee(el){
  
 }
  updateSalary(Id:any,el:any){
-  
   this.reject = false;
-   console.log(el)
    if(this.Note.value === ''){
     swal.fire({
       title: "Please add comment",position: "center",
@@ -158,13 +156,13 @@ reademployee(el){
       showConfirmButton: false,
       timer: 3500,
       showCloseButton: true,
-  
      })
    }else{
-    this.action = false;
-    let value={LoanID:Id, Status:el, ...this.loan};
-    this.service.approveloan(APIENUM.LON,value).subscribe((res:any)=>{
-      this.approve = true;
+    let value={LoanID:Id, Status:el,Note:this.Note.value}; 
+    this.service.approveloan(APIENUM.LON,value).subscribe((res:any)=>{ 
+      console.log(res.message)
+     this.action = false;
+     this.approve = true;
      this.success=res.message;
      // swal.fire({
      //   title: res.message,position: "center",
@@ -175,7 +173,8 @@ reademployee(el){
    
      //  })
  
-    },err=>{
+    },(err:any)=>{
+      console.log(err.error)
      this.error=err.error.message;
      // this.Leave.enable();
      // swal.fire({
@@ -209,9 +208,9 @@ reademployee(el){
   
      })
   }else{
+   let value={LoanID:Id, Status:el,Note:this.Note.value};
+   this.service.approvetrain(APIENUM.LON,value).subscribe((res:any)=>{
     this.action = false;
-   let value={LoanID:Id, Status:el, ...this.loan};
-   this.service.approveloan(APIENUM.LON,value).subscribe((res:any)=>{
     this.reject = true;
     this.success=res.message;
     // swal.fire({
@@ -223,17 +222,10 @@ reademployee(el){
   
     //  })
 
-   },err=>{
+   },(err:any)=>{
     this.error=err.error.message;
     // this.Leave.enable();
-    // swal.fire({
-    //   position: 'center',
-    //   icon: 'error',
-    //   title: err.error.message,
-    //   showConfirmButton: true,
-    //   timer: 3500,
-  
-    //  })
+
 
   })
 
