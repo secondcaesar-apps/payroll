@@ -3,7 +3,7 @@ import { ModalDirective } from 'ng-uikit-pro-standard';
 import { ApiserviceService } from './../../@shared/apiservice.service';
 import { APIENUM,UType } from 'src/app/@shared/enum';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-loan',
   templateUrl: './loan.component.html',
@@ -150,9 +150,22 @@ export class LoanComponent implements OnInit {
     this.Api.Create(APIENUM.LON, {...this.firstFormGroup.value, ...this.secondFormGroup.value})
     .subscribe((res:any)=>{
       this.success=res.message
+      swal.fire({
+        title: res.message,position: "center",
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 3500,
+        showCloseButton: true 
+       })
     },err=>{
       this.error=err.error.message;
-
+      swal.fire({
+        title: err.error.message,position: "center",
+        icon: 'error',
+        showConfirmButton: false,
+        timer: 3500,
+        showCloseButton: true 
+       })
 
     },()=>{
       setTimeout(()=>{
