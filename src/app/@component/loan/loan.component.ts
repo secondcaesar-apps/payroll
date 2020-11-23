@@ -78,6 +78,11 @@ export class LoanComponent implements OnInit {
       })
 
     });
+    this.Api.populateGuarantor(data, APIENUM.LON)
+    .subscribe((res:any)=>{
+      this.Guarantors=res.records;
+    })
+
 
     this.Api.ReadOne(APIENUM.EMP, data)
     .subscribe((res:any)=>{
