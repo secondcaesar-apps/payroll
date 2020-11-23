@@ -22,11 +22,15 @@ export class LoanApprovalComponent implements OnInit {
   maxVisibleItems: number = 8;
   show: Boolean; 
   displaySide: Boolean = false;
-  Leave:FormGroup;
+  loan:FormGroup;
   error:any;
   leave:any=null;
   statusValue: string = '';
+  notes: Boolean = false;
   leaveHistory:any;
+  action: Boolean = true;
+  approve: Boolean = false;
+  reject: Boolean = false;
   @Input() title: string;
   success:any;
   constructor(
@@ -38,49 +42,42 @@ export class LoanApprovalComponent implements OnInit {
     this.loadEvent();
     // this.getAllLeave();
     // this.readLeave();
-    this.Leave= this._fb.group({
-      LeaveType:['',[Validators.required]],
-      StartDate:['',[Validators.required]],
-      EndDate:['',[Validators.required]],
-      Reason:['',[Validators.required]],
+    this.loan= this._fb.group({
+      Note:['',[Validators.required]],
     });
   }
 
-
-  get LeaveTypeName(){
-    return this.Leave.get('LeaveType');
-  }
-  get Reason(){
-    return this.Leave.get('Reason');
+  get Note(){
+    return this.loan.get('Note');
   }
   view(){
     this.show = !this.show ;
   }
 
-  createLeave(){
+  // createLeave(){
 
-    this.Leave.disable();
-    let value = {Status:"Pending",EmployeeID: sessionStorage.getItem('EmpID'),...this.Leave.value};
-    this.service.Create(APIENUM.LEAVE,value).subscribe((res:any)=>{
-      this.success=res.message
+  //   this.Leave.disable();
+  //   let value = {Status:"Pending",EmployeeID: sessionStorage.getItem('EmpID'),...this.Leave.value};
+  //   this.service.Create(APIENUM.LEAVE,value).subscribe((res:any)=>{
+  //     this.success=res.message
 
-   },err=>{
-     this.error=err.error.message;
-     this.Leave.enable();
+  //  },err=>{
+  //    this.error=err.error.message;
+  //    this.Leave.enable();
    
 
-   },()=>{
-     setTimeout(()=>{
-       this.success='';
-       this.error='';
-       this.Leave.reset();
-       this.Leave.enable();
-     },900)
+  //  },()=>{
+  //    setTimeout(()=>{
+  //      this.success='';
+  //      this.error='';
+  //      this.Leave.reset();
+  //      this.Leave.enable();
+  //    },900)
 
  
-   })
+  //  })
 
-  }
+  // }
 loadEvent(){
     let value = {EmployeeID :  sessionStorage.getItem('EmpID')
    
@@ -95,7 +92,7 @@ this.service.populateApprove(value, APIENUM.LON).subscribe((res:any)=>{
         this.previous = this.mdbTable.getDataSource();
   },err=>{
     this.error=err.error.message;
-    this.Leave.enable();
+    // this.Leave.enable();
           this.loading = false;
         this.error = true;
         this.messages = err.error.message;
@@ -106,8 +103,8 @@ this.service.populateApprove(value, APIENUM.LON).subscribe((res:any)=>{
     setTimeout(()=>{
       this.success='';
       this.error='';
-      this.Leave.reset();
-      this.Leave.enable();
+      // this.Leave.reset();
+      // this.Leave.enable();
     },900)
 
 
@@ -151,10 +148,71 @@ reademployee(el){
  
 }
  updateSalary(Id:any,el:any){
+  
+  this.reject = false;
    console.log(el)
-   let value={LoanID:Id, Status:el, Note:"Okay"};
+   if(this.Note.value === ''){
+    swal.fire({
+      title: "Please add comment",position: "center",
+      icon: 'warning',
+      showConfirmButton: false,
+      timer: 3500,
+      showCloseButton: true,
+  
+     })
+   }else{
+    this.action = false;
+    let value={LoanID:Id, Status:el, ...this.loan};
+    this.service.approveloan(APIENUM.LON,value).subscribe((res:any)=>{
+      this.approve = true;
+     this.success=res.message;
+     // swal.fire({
+     //   title: res.message,position: "center",
+     //   icon: 'success',
+     //   showConfirmButton: false,
+     //   timer: 3500,
+     //   showCloseButton: true,
+   
+     //  })
+ 
+    },err=>{
+     this.error=err.error.message;
+     // this.Leave.enable();
+     // swal.fire({
+     //   position: 'center',
+     //   icon: 'error',
+     //   title: err.error.message,
+     //   showConfirmButton: true,
+     //   timer: 3500,
+   
+     //  })
+ 
+   })
+ 
+ 
+   // this.loadEvent();
+ 
+   }
+   
+ }
+ updateSalarys(Id:any,el:any){
+   this.approve = false;
+  console.log(el)
+  console.log(this.Note.value)
+  if(this.Note.value === ''){
+ swal.fire({
+      title: "Please add comment",position: "center",
+      icon: 'warning',
+      showConfirmButton: false,
+      timer: 3500,
+      showCloseButton: true,
+  
+     })
+  }else{
+    this.action = false;
+   let value={LoanID:Id, Status:el, ...this.loan};
    this.service.approveloan(APIENUM.LON,value).subscribe((res:any)=>{
-
+    this.reject = true;
     this.success=res.message;
     // swal.fire({
     //   title: res.message,position: "center",
@@ -182,8 +240,9 @@ reademployee(el){
 
   // this.loadEvent();
 
- }
-
+  }
+  
+}
 //  readLeave(){
 //    this.service.Read(APIENUM.LEAVE).subscribe((res:any)=>{
 //      console.log(res);

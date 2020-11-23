@@ -63,8 +63,8 @@
               <thead>
                 <tr>
                    <th>{{headElements[0]}}</th>
-                    <th>{{headElements[1]}}</th>
-                    <th>{{headElements[2]}}</th>
+                    <th  style="text-align: right;">{{headElements[1]}}</th>
+                    <th  style="text-align: right;">{{headElements[2]}}</th>
                     <th>{{headElements[3]}}</th>
                     <th>{{headElements[4]}}</th>
                     <th>{{headElements[5]}}</th>
@@ -76,27 +76,44 @@
                         <th scope="row" style="cursor: pointer;">{{el.FirstName}} {{el.LastName}}</th>
                        
                           <td  style="text-align: right;">{{el.NetSalary  | currency:'₦':'symbol'}}</td>
-                          <td>{{el.LoanRequestAmount   | currency:'₦':'symbol'}}</td>            
+                          <td  style="text-align: right;">{{el.LoanRequestAmount   | currency:'₦':'symbol'}}</td>            
                           <td>{{el.Tenor}}</td>
                           <td>{{el.DateCreated | date}}</td>
                           <td>{{el.Status}}</td>
                           <td>
-                            <div *ngIf="success">
+                            <!-- <div *ngIf="success">
                               <p style="color: green">{{success}}</p>
                             </div>
                             <div  *ngIf="error">
                               <p style="color: red;">{{error}}</p>
-                            </div>
+                            </div> -->
         
-                            <div class="row"  *ngIf="!success ||!error">
+                            <!-- <div class="row"  *ngIf="!success ||!error">
                               <div class="col-md-6">
                                 <mdb-icon fas icon="check" style="color: rgb(110, 184, 0);" (click)="updateSalary(el.LoanID, 'Approved')" class="space"></mdb-icon>
                               </div>
                               <div class="col-md-6" *ngIf="!success || !error">
                                 <mdb-icon fas icon="times" style="color: red;"  (click)="updateSalary(el.LoanID, 'Rejected')" class="space"></mdb-icon>
                               </div>
+                            </div> -->
+                            <p *ngIf="approve" style="color: rgb(110, 184, 0);">Approved</p>
+                            <p *ngIf="reject"  style="color: red;">Rejected</p>
+                            <div *ngIf="action" id="hover">
+                            <button style="padding:0 8px 0 8px; background-color: skyblue;">Loan Action</button>
+                            <div id="popup"> 
+                              <form class="form" role="form" [formGroup]="loan" >
+                                <div class="form-group">
+                                  <div class="comment">
+                                  <textarea  formControlName="Note" placeholder="Comment" rows="4" cols="25" class="form-control"></textarea>
+                                </div>
+                                  <div class="row">
+                                    <div class='col-md-6'><button style="padding:0 8px 0 8px; background-color: rgb(110, 184, 0); color:white; cursor: pointer;" (click)="updateSalary(el.LoanID, 'Approved')">Approve </button></div>
+                                    <div class='col-md-6'><button style="padding:0 8px 0 8px; background-color: red; color:white; cursor: pointer;" (click)="updateSalarys(el.LoanID, 'Rejected')">Reject </button></div>
+                                  </div>
+                                </div>
+                              </form>    
+                            </div> 
                             </div>
-                         
                           </td>
                     </tr>
                   </tbody>
@@ -112,7 +129,7 @@
 
             <p *ngIf="!displaySide">Select a row to view it's details here</p>
           <div class="pre-body" *ngIf="displaySide">
-            <div class='row'>
+            <!-- <div class='row'>
               <p style="font-size: large;">Leave Info</p>
               <button mdbBtn type="button" color="primary" mdbWavesEffect>
                 <mdb-icon fas icon="magic" class="mr-1"></mdb-icon>{{leave.Status}}
@@ -146,7 +163,7 @@
                       </li>
                   </ul>
                    <button type="button" (click)="updateSalary('Approved')" mdbBtn color="primary" mdbWavesEffect>Approve</button>
-                 <button type="button"(click)="updateSalary('Rejected')"  mdbBtn color="danger" mdbWavesEffect>Reject</button>
+                 <button type="button"(click)="updateSalary('Rejected')"  mdbBtn color="danger" mdbWavesEffect>Reject</button> -->
       </div>
           <div class="body">
              <div class="row">
