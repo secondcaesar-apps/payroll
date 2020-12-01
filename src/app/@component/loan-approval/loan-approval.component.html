@@ -81,23 +81,8 @@
                           <td>{{el.DateCreated | date}}</td>
                           <td>{{el.Status}}</td>
                           <td>
-                            <!-- <div *ngIf="success">
-                              <p style="color: green">{{success}}</p>
-                            </div>
-                            <div  *ngIf="error">
-                              <p style="color: red;">{{error}}</p>
-                            </div> -->
-        
-                            <!-- <div class="row"  *ngIf="!success ||!error">
-                              <div class="col-md-6">
-                                <mdb-icon fas icon="check" style="color: rgb(110, 184, 0);" (click)="updateSalary(el.LoanID, 'Approved')" class="space"></mdb-icon>
-                              </div>
-                              <div class="col-md-6" *ngIf="!success || !error">
-                                <mdb-icon fas icon="times" style="color: red;"  (click)="updateSalary(el.LoanID, 'Rejected')" class="space"></mdb-icon>
-                              </div>
-                            </div> -->
-                            <p *ngIf="approve" style="color: rgb(110, 184, 0);">Approved</p>
-                            <p *ngIf="reject"  style="color: red;">Rejected</p>
+                            <!-- <p *ngIf="approve" style="color: rgb(110, 184, 0);">Approved</p>
+                            <p *ngIf="reject"  style="color: red;">Rejected</p> -->
                             <div *ngIf="action" id="hover">
                             <button style="padding:0 8px 0 8px; background-color: skyblue;">Loan Action</button>
                             <div id="popup"> 

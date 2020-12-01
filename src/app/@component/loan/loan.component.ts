@@ -1,6 +1,7 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { ModalDirective } from 'ng-uikit-pro-standard';
 import { ApiserviceService } from './../../@shared/apiservice.service';
+import { Router } from '@angular/router';
 import { APIENUM,UType } from 'src/app/@shared/enum';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import swal from 'sweetalert2';
@@ -28,6 +29,7 @@ export class LoanComponent implements OnInit {
   @ViewChild('basicModal', { static: true }) basicModal: ModalDirective;
   show: Boolean;
   constructor(
+    private router: Router,
     private Api: ApiserviceService,
     private _fb: FormBuilder
   ) {}
@@ -71,7 +73,7 @@ export class LoanComponent implements OnInit {
         DateOfResumption:[this.elements.JoiningDate],
         GuaranteedLoan:['',Validators.required],
         SalaryGroup:[this.elements.SalaryGroup],
-        NetSalary:['',Validators.required],
+        NetSalary:[this.elements.NetPay],
         Tenor:['',Validators.required],
         AccountNumber:[this.elements.Acct1AccountNumber],
         GuarantorID:['',Validators.required]
@@ -157,6 +159,7 @@ export class LoanComponent implements OnInit {
         timer: 3500,
         showCloseButton: true 
        })
+       this.router.navigate(['/main/loan-approval']);
     },err=>{
       this.error=err.error.message;
       swal.fire({
