@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, HostListener, Input } from '@angular/core
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum'
-import { MdbTableDirective } from 'ng-uikit-pro-standard';
+import { MdbTableDirective, ToastService } from 'ng-uikit-pro-standard';
 import swal from 'sweetalert2';
 
 @Component({
@@ -28,14 +28,15 @@ export class LoanApprovalComponent implements OnInit {
   statusValue: string = '';
   notes: Boolean = false;
   leaveHistory:any;
-  action: Boolean = true;
+  action: Boolean = false;
   approve: Boolean = false;
   reject: Boolean = false;
   @Input() title: string;
   success:any;
   constructor(
     private _fb:FormBuilder,
-    private service:ApiserviceService
+    private service:ApiserviceService,
+    private toast: ToastService
   ) { }
 
   ngOnInit() {
@@ -90,6 +91,10 @@ this.service.populateApprove(value, APIENUM.LON).subscribe((res:any)=>{
         this.mdbTable.setDataSource(this.elements);
         this.elements = this.mdbTable.getDataSource();
         this.previous = this.mdbTable.getDataSource();
+        this.action = true;
+        this.reject = false;
+        this.approve = false
+        this.toast.clear()
   },err=>{
     this.error=err.error.message;
     // this.Leave.enable();
@@ -147,53 +152,47 @@ reademployee(el){
  this.leave=el;
  
 }
- updateSalary(Id:any,el:any){
+updateSalary(Id:any,el:any){
   this.reject = false;
-   if(this.Note.value === ''){
-    swal.fire({
-      title: "Please add comment",position: "center",
-      icon: 'warning',
-      showConfirmButton: false,
-      timer: 3500,
-      showCloseButton: true,
-     })
-   }else{
-    let value={LoanID:Id, Status:el,Note:this.Note.value}; 
-    this.service.approveloan(APIENUM.LON,value).subscribe((res:any)=>{ 
-      console.log(res.message)
-     this.action = false;
-     this.approve = true;
-     this.success=res.message;
-     // swal.fire({
-     //   title: res.message,position: "center",
-     //   icon: 'success',
-     //   showConfirmButton: false,
-     //   timer: 3500,
-     //   showCloseButton: true,
-   
-     //  })
+ if(this.Note.value === ''){
+swal.fire({
+     title: "Please add comment",position: "center",
+     icon: 'warning',
+     showConfirmButton: false,
+     timer: 3500,
+     showCloseButton: true,
  
-    },(err:any)=>{
-      console.log(err.error)
-     this.error=err.error.message;
-     // this.Leave.enable();
-     // swal.fire({
-     //   position: 'center',
-     //   icon: 'error',
-     //   title: err.error.message,
-     //   showConfirmButton: true,
-     //   timer: 3500,
-   
-     //  })
+    })
+ }else{
+  let value={LoanID:Id, Status:el,Note:this.Note.value};
+  this.service.approvetrain(APIENUM.LON,value).subscribe((res:any)=>{
+   this.action = false;
+   this.approve = true;
+   this.reject = false
+   this.toast.success(res.message); 
+   this.loadEvent()
+   // swal.fire({
+   //   title: res.message,position: "center",
+   //   icon: 'success',
+   //   showConfirmButton: false,
+   //   timer: 3500,
+   //   showCloseButton: true,
  
-   })
- 
- 
-   // this.loadEvent();
- 
-   }
-   
+   //  })
+
+  },(err:any)=>{
+   this.error=err.error.message;
+   // this.Leave.enable();
+
+
+ })
+
+
+ // this.loadEvent();
+
  }
+ 
+}
  updateSalarys(Id:any,el:any){
    this.approve = false;
   console.log(el)
@@ -212,7 +211,10 @@ reademployee(el){
    this.service.approvetrain(APIENUM.LON,value).subscribe((res:any)=>{
     this.action = false;
     this.reject = true;
-    this.success=res.message;
+    this.approve = false
+    this.toast.success(res.message); 
+    this.loadEvent()
+
     // swal.fire({
     //   title: res.message,position: "center",
     //   icon: 'success',
