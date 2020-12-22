@@ -1,4 +1,4 @@
-<body class="black-skin">
+<body  *ngIf="!loading" class="black-skin">
 
   <header>
 
@@ -10,32 +10,34 @@
         </div>
         <div class="menu">
           <ul>
-          <!-- <li routerLink="dashboard" routerLinkActive="active"><a><i class="fa fa-home p-2"></i>Home</a></li> -->
+            <!-- <li routerLink="dashboard" routerLinkActive="active"><a><i class="fa fa-home p-2"></i>Home</a></li> -->
             <!-- <li routerLink="user-dahboard" routerLinkActive="active"><a> <i class="fa fa-calendar p-2"
                   aria-hidden="true"></i> Activities</a></li> -->
             <!-- <li routerLink="user-expense" routerLinkActive="active"><a> <i class="fa fa-cart-plus p-2"></i>Expense
                 Claim</a></li> -->
-            <li routerLink="user-profile" routerLinkActive="active"><a> <i class="fa fa-user p-2"></i>Profile</a></li>
-            <li routerLink="user-payroll" routerLinkActive="active"><a> <i class="fa fa-dollar-sign p-2"></i>
+            <li routerLink="user-profile" routerLinkActive="active"><a> My Profile</a>
+            </li>
+            <li routerLink="user-payroll" routerLinkActive="active"><a>
                 Payslip</a></li>
 
-            <li routerLink="loan-approval" routerLinkActive="active"><a> <i class="fa fa-users p-2"></i>Loan</a></li>
-            <li routerLink="user-leave" routerLinkActive="active"><a> <i class="fa fa-users p-2"></i>Leave</a></li>
-             <!-- <li routerLink="employee" routerLinkActive="active"><a><i class="fa fa-address-book p-2"></i>Employee</a>
+            <li routerLink="loan-approval" routerLinkActive="active"><a> Loan</a></li>
+            <li routerLink="user-leave" routerLinkActive="active"><a> Leave</a></li>
+            <!-- <li routerLink="employee" routerLinkActive="active"><a><i class="fa fa-address-book p-2"></i>Employee</a>
             </li> -->
             <!-- <li routerLink="assets" routerLinkActive="active"><a><i class="fa fa-object-group p-2"></i>Assets</a></li> -->
             <!-- <li routerLink="contact" routerLinkActive="active"><a> <i class="fa fa-phone-square p-2"></i>Contact</a>
             </li> -->
             <!-- <li routerLink="payroll" routerLinkActive="active"> <a mdbWavesEffect> <i
                   class="fa fa-book p-2"></i>Payroll</a></li> -->
-                  <!-- <li routerLink="training" routerLinkActive="active"><a><i class="fa fa-object-group p-2"></i>Training</a></li> -->
+            <!-- <li routerLink="training" routerLinkActive="active"><a><i class="fa fa-object-group p-2"></i>Training</a></li> -->
 
 
-            <li class="show"><a ><i class="fa fa-dollar-sign p-2"></i>Approval</a>
+            <li class="show"><a>Approval</a>
 
               <ul class="sub">
 
-                <li *ngFor="let item of approval"><a [routerLink]="item.route" routerLinkActive="active">   {{item.name}}</a></li>
+                <li *ngFor="let item of approval"><a [routerLink]="item.route" routerLinkActive="active">
+                    {{item.name}}</a></li>
 
 
               </ul>
@@ -45,7 +47,7 @@
 
               </ul>
             </li> -->
-           <!-- <li routerLink="yearlyreport" routerLinkActive="active"><a><i class="fa fa-cog p-2"></i>Report</a>
+            <!-- <li routerLink="yearlyreport" routerLinkActive="active"><a><i class="fa fa-cog p-2"></i>Report</a>
             </li> -->
             <!-- <li class="show"><a><i class="fa fa-cog p-2"></i>Settings</a>
 
@@ -57,14 +59,12 @@
               </ul>
             </li> -->
 
-            <li *ngFor="let item of menuArray" [routerLink]="item['MenuURL']" >
+            <li *ngFor="let item of menuArray" [routerLink]="item['MenuURL']">
 
-              <a *ngIf="item.MenuName!='Settings'"><i class="fa fa-cog p-2">
+              <a *ngIf="item.MenuName!='Settings'">{{item.MenuName}}</a>
 
-            </i>{{item.MenuName}}</a>
-
-           <!-- <a><i *ngIf="item.MenuName=='Settings'" class="fa fa-cog p-2"></i>Settings </a> -->
-            <!-- <ul class="sub" *ngIf="item.MenuName=='Settings'">
+              <!-- <a><i *ngIf="item.MenuName=='Settings'" class="fa fa-cog p-2"></i>Settings </a> -->
+              <!-- <ul class="sub" *ngIf="item.MenuName=='Settings'">
 
 
               <li *ngFor="let items of list"><a [routerLink]="items.route" > {{items.name}}</a>
@@ -73,16 +73,16 @@
             </ul> -->
 
 
-          </li>
-          <li class="show" *ngIf="settAound"><a><i class="fa fa-cog p-2"></i>Settings</a>
+            </li>
+            <li class="show" *ngIf="settAound"><a>Settings</a>
 
-            <ul class="sub">
+              <ul class="sub">
 
-              <li *ngFor="let item of list"><a [routerLink]="item.route" routerLinkActive="active"> {{item.name}}</a>
-              </li>
+                <li *ngFor="let item of list"><a [routerLink]="item.route" routerLinkActive="active"> {{item.name}}</a>
+                </li>
 
-            </ul>
-          </li>
+              </ul>
+            </li>
 
 
           </ul>
@@ -103,20 +103,20 @@
 
         <ul class="navbar-nav ml-auto">
 
-          <li class="nav-item" >
+          <li class="nav-item">
             <a class="nav-link waves-light" mdbWavesEffect>
-            Pending Request <span class="badge badge-danger ml-2 animated bounce " >0</span>
+              Pending Request <span class="badge badge-danger ml-2 animated bounce ">0</span>
             </a>
           </li>
 
 
           <li class="nav-item dropdown" dropdown>
             <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-              <mdb-icon fas icon="user"></mdb-icon> Profile<span class="caret"></span>
+               Profile<span class="caret"></span>
             </a>
             <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
               <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
-              <a class="dropdown-item waves-light" (click)=" logout()" mdbWavesEffect >Log out</a>
+              <a class="dropdown-item waves-light" (click)=" logout()" mdbWavesEffect>Log out</a>
             </div>
           </li>
 
@@ -144,4 +144,21 @@
 
 
 
+
+  <div *ngIf="loading" class="d-flex align-items-center justify-content-center" style="height: 350px">
+
+    Setting Up Menu Listing <mdb-spinner spinnerColor="red"></mdb-spinner>
+
+  </div>
+  <div *ngIf="error" class="d-flex align-items-center justify-content-center" style="height: 350px">
+
+    <div *ngIf="error" class="alert alert-danger text-center" role="alert">
+      {{error}} <a (click)="LoadMenu()" class="alert-link">Click to retry</a>
+
+      <div class="spinner-grow text-danger" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+  </div>
 

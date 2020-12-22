@@ -13,8 +13,10 @@ export class HomeComponent implements OnInit {
   list: { name: string; route: string; icon: string; }[];
   approval: { name: string; route: string; icon: string; }[];
   menuArray=[];
+  loading=false;
 
   settAound=false;
+  error: string;
 
 
   constructor(private service:ApiserviceService,private router:Router,private readonly joyrideService: JoyrideService ) { }
@@ -55,10 +57,13 @@ export class HomeComponent implements OnInit {
   }
 
   LoadMenu(){
+    this.loading=true;
+    this.error='';
     let MroleID=   sessionStorage.getItem('MRoleID')
 
     this.service.ReadOne(APIENUM.MENUG,{'RoleID':MroleID}).subscribe((res)=>{
        this.menuArray=res['records'];
+       this.loading=false;
   this.menuArray.filter((e:any)=>{
 
 
@@ -66,6 +71,15 @@ if( e['MenuName']=='Settings'){
 this.settAound= true;
 }
   })
+
+    },(err:any)=>{
+      if (err.status === 0 && err.error instanceof ProgressEvent) {
+        // A client-side or network error occurred. Handle it accordingly.
+        console.log('Client side error:', err.error);
+        this.error='Client side error:Please check your internet';
+      }else{
+        this.error=err.error.Error;
+      }
 
     })
   }

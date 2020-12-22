@@ -33,6 +33,11 @@ a {
     text-decoration: none; }
 
 /* ------------ Sidenav CSS ------------- */
+li:hover{
+  background: grey!important;
+  color: white !important;
+
+}
 #sidenav {
   position: fixed;
   width: 200px;
@@ -58,13 +63,13 @@ a {
     position: static; }
     #sidenav .menu ul {
       list-style: none;
-      background: #555;
+      background:#ff6500;
       padding: 10% 0;
       margin: 0; }
       #sidenav .menu ul li {
         padding: 6px 7%; }
         #sidenav .menu ul li.active {
-          border-left: solid 7px #ff6500 }
+          border-left: solid 7px white }
           #sidenav .menu ul li > ul .active {
             padding: 6px 3px;
             border-left: solid 7px #ff6500

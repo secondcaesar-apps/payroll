@@ -111,6 +111,12 @@ export class GeneratePayrollComponent implements OnInit {
     this.service.createPayslip(data).subscribe((res:any) => {
       this.success=res.message
       this.active= false;
+      setTimeout(()=>{
+        this.success='';
+        this._location.back();
+
+      },3000)
+
     }, (err: any) => {
       this.error = err.error.message;
         this.active= false;
