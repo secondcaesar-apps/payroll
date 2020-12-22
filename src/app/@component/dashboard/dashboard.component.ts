@@ -50,7 +50,6 @@ export class DashboardComponent implements OnInit {
     
     let values = {
       EmployeeID:this.WHOI
-
     }
     this.Api.employtrain(APIENUM.train, values)
     .subscribe((res:any)=>{

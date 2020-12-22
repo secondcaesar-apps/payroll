@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, HostListener, Input } from '@angular/core
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum'
-import { MdbTableDirective } from 'ng-uikit-pro-standard';
+import { MdbTableDirective, ToastService } from 'ng-uikit-pro-standard';
 import swal from 'sweetalert2';
 
 @Component({
@@ -22,65 +22,63 @@ export class LoanApprovalComponent implements OnInit {
   maxVisibleItems: number = 8;
   show: Boolean; 
   displaySide: Boolean = false;
-  Leave:FormGroup;
+  loan:FormGroup;
   error:any;
   leave:any=null;
   statusValue: string = '';
+  notes: Boolean = false;
   leaveHistory:any;
+  action: Boolean = false;
+  approve: Boolean = false;
+  reject: Boolean = false;
   @Input() title: string;
   success:any;
   constructor(
     private _fb:FormBuilder,
-    private service:ApiserviceService
+    private service:ApiserviceService,
+    private toast: ToastService
   ) { }
 
   ngOnInit() {
     this.loadEvent();
     // this.getAllLeave();
     // this.readLeave();
-    this.Leave= this._fb.group({
-      LeaveType:['',[Validators.required]],
-      StartDate:['',[Validators.required]],
-      EndDate:['',[Validators.required]],
-      Reason:['',[Validators.required]],
+    this.loan= this._fb.group({
+      Note:['',[Validators.required]],
     });
   }
 
-
-  get LeaveTypeName(){
-    return this.Leave.get('LeaveType');
-  }
-  get Reason(){
-    return this.Leave.get('Reason');
+  get Note(){
+    return this.loan.get('Note');
   }
   view(){
     this.show = !this.show ;
   }
 
-  createLeave(){
+  // createLeave(){
 
-    this.Leave.disable();
-    let value = {Status:"Pending",EmployeeID: sessionStorage.getItem('EmpID'),...this.Leave.value};
-    this.service.Create(APIENUM.LEAVE,value).subscribe((res:any)=>{
-      this.success=res.message
+  //   this.Leave.disable();
+  //   let value = {Status:"Pending",EmployeeID: sessionStorage.getItem('EmpID'),...this.Leave.value};
+  //   this.service.Create(APIENUM.LEAVE,value).subscribe((res:any)=>{
+  //     this.success=res.message
 
-   },err=>{
-     this.error=err.error.message;
-     this.Leave.enable();
+  //  },err=>{
+  //    this.error=err.error.message;
+  //    this.Leave.enable();
    
 
-   },()=>{
-     setTimeout(()=>{
-       this.success='';
-       this.error='';
-       this.Leave.reset();
-       this.Leave.enable();
-     },900)
+  //  },()=>{
+  //    setTimeout(()=>{
+  //      this.success='';
+  //      this.error='';
+  //      this.Leave.reset();
+  //      this.Leave.enable();
+  //    },900)
 
  
-   })
+  //  })
 
-  }
+  // }
 loadEvent(){
     let value = {EmployeeID :  sessionStorage.getItem('EmpID')
    
@@ -93,9 +91,13 @@ this.service.populateApprove(value, APIENUM.LON).subscribe((res:any)=>{
         this.mdbTable.setDataSource(this.elements);
         this.elements = this.mdbTable.getDataSource();
         this.previous = this.mdbTable.getDataSource();
+        this.action = true;
+        this.reject = false;
+        this.approve = false
+        this.toast.clear()
   },err=>{
     this.error=err.error.message;
-    this.Leave.enable();
+    // this.Leave.enable();
           this.loading = false;
         this.error = true;
         this.messages = err.error.message;
@@ -106,8 +108,8 @@ this.service.populateApprove(value, APIENUM.LON).subscribe((res:any)=>{
     setTimeout(()=>{
       this.success='';
       this.error='';
-      this.Leave.reset();
-      this.Leave.enable();
+      // this.Leave.reset();
+      // this.Leave.enable();
     },900)
 
 
@@ -150,12 +152,69 @@ reademployee(el){
  this.leave=el;
  
 }
- updateSalary(Id:any,el:any){
-   console.log(el)
-   let value={LoanID:Id, Status:el, Note:"Okay"};
-   this.service.approveloan(APIENUM.LON,value).subscribe((res:any)=>{
+updateSalary(Id:any,el:any){
+  this.reject = false;
+ if(this.Note.value === ''){
+swal.fire({
+     title: "Please add comment",position: "center",
+     icon: 'warning',
+     showConfirmButton: false,
+     timer: 3500,
+     showCloseButton: true,
+ 
+    })
+ }else{
+  let value={LoanID:Id, Status:el,Note:this.Note.value};
+  this.service.approvetrain(APIENUM.LON,value).subscribe((res:any)=>{
+   this.action = false;
+   this.approve = true;
+   this.reject = false
+   this.toast.success(res.message); 
+   this.loadEvent()
+   // swal.fire({
+   //   title: res.message,position: "center",
+   //   icon: 'success',
+   //   showConfirmButton: false,
+   //   timer: 3500,
+   //   showCloseButton: true,
+ 
+   //  })
 
-    this.success=res.message;
+  },(err:any)=>{
+   this.error=err.error.message;
+   // this.Leave.enable();
+
+
+ })
+
+
+ // this.loadEvent();
+
+ }
+ 
+}
+ updateSalarys(Id:any,el:any){
+   this.approve = false;
+  console.log(el)
+  console.log(this.Note.value)
+  if(this.Note.value === ''){
+ swal.fire({
+      title: "Please add comment",position: "center",
+      icon: 'warning',
+      showConfirmButton: false,
+      timer: 3500,
+      showCloseButton: true,
+  
+     })
+  }else{
+   let value={LoanID:Id, Status:el,Note:this.Note.value};
+   this.service.approvetrain(APIENUM.LON,value).subscribe((res:any)=>{
+    this.action = false;
+    this.reject = true;
+    this.approve = false
+    this.toast.success(res.message); 
+    this.loadEvent()
+
     // swal.fire({
     //   title: res.message,position: "center",
     //   icon: 'success',
@@ -165,25 +224,19 @@ reademployee(el){
   
     //  })
 
-   },err=>{
+   },(err:any)=>{
     this.error=err.error.message;
     // this.Leave.enable();
-    // swal.fire({
-    //   position: 'center',
-    //   icon: 'error',
-    //   title: err.error.message,
-    //   showConfirmButton: true,
-    //   timer: 3500,
-  
-    //  })
+
 
   })
 
 
   // this.loadEvent();
 
- }
-
+  }
+  
+}
 //  readLeave(){
 //    this.service.Read(APIENUM.LEAVE).subscribe((res:any)=>{
 //      console.log(res);

@@ -1,9 +1,10 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { ModalDirective } from 'ng-uikit-pro-standard';
 import { ApiserviceService } from './../../@shared/apiservice.service';
+import { Router } from '@angular/router';
 import { APIENUM,UType } from 'src/app/@shared/enum';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-loan',
   templateUrl: './loan.component.html',
@@ -28,6 +29,7 @@ export class LoanComponent implements OnInit {
   @ViewChild('basicModal', { static: true }) basicModal: ModalDirective;
   show: Boolean;
   constructor(
+    private router: Router,
     private Api: ApiserviceService,
     private _fb: FormBuilder
   ) {}
@@ -71,13 +73,18 @@ export class LoanComponent implements OnInit {
         DateOfResumption:[this.elements.JoiningDate],
         GuaranteedLoan:['',Validators.required],
         SalaryGroup:[this.elements.SalaryGroup],
-        NetSalary:['',Validators.required],
+        NetSalary:[this.elements.NetPay],
         Tenor:['',Validators.required],
         AccountNumber:[this.elements.Acct1AccountNumber],
         GuarantorID:['',Validators.required]
       })
 
     });
+    this.Api.populateGuarantor(data, APIENUM.LON)
+    .subscribe((res:any)=>{
+      this.Guarantors=res.records;
+    })
+
 
     this.Api.ReadOne(APIENUM.EMP, data)
     .subscribe((res:any)=>{
@@ -145,9 +152,23 @@ export class LoanComponent implements OnInit {
     this.Api.Create(APIENUM.LON, {...this.firstFormGroup.value, ...this.secondFormGroup.value})
     .subscribe((res:any)=>{
       this.success=res.message
+      swal.fire({
+        title: res.message,position: "center",
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 3500,
+        showCloseButton: true 
+       })
+       this.router.navigate(['/main/loan-approval']);
     },err=>{
       this.error=err.error.message;
-
+      swal.fire({
+        title: err.error.message,position: "center",
+        icon: 'error',
+        showConfirmButton: false,
+        timer: 3500,
+        showCloseButton: true 
+       })
 
     },()=>{
       setTimeout(()=>{
