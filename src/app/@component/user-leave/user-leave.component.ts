@@ -161,6 +161,7 @@ reademployee(el){
     this.success=res.message;
 
    },err=>{
+     console.log(err);
     this.error=err.error.message;
     this.Leave.enable();
 
