@@ -57,6 +57,7 @@ export class LoanComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   loading: boolean = true;
+  loadings=false;
   ngOnInit() {
       this.value =  sessionStorage.getItem('EmpID')
       let data = {EmployeeID:  sessionStorage.getItem('EmpID')}
@@ -148,6 +149,7 @@ export class LoanComponent implements OnInit {
   })
   }
   onSubmit() {
+    this.loadings=true;
     this.Api.Create(APIENUM.LON, {...this.firstFormGroup.value, ...this.secondFormGroup.value})
     .subscribe((res:any)=>{
       this.success=res.message
