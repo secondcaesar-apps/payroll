@@ -101,7 +101,7 @@ loadEvent(){
     this.error=err.error.message;
     this.Leave.enable();
           this.loading = false;
-        this.error = true;
+
         this.messages = err.error.message;
         this.message = true;
         this.elements = [];
