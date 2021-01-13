@@ -342,8 +342,11 @@
                                       accept the terms and conditions as evidenced by clicking the button below.</span><span
                                       style='font-size:14.0pt;font-family:"Bookman Old Style",serif'> &nbsp;</span></p>
                                       </div>   
-                                        <button mdbBtn  size="sm" color="primary" (click)="onSubmit()">I AGREE</button>
-                                        <button mdbBtn size="sm" color="secondary" (click)="stepper.previous()">BACK</button>
+                                        <button mdbBtn  size="sm" color="primary" *ngIf="!loadings" (click)="onSubmit()">I AGREE</button>
+                                        <button mdbBtn size="sm" color="secondary" *ngIf="!loadings" (click)="stepper.previous()">BACK</button>
+                                        <div *ngIf="loadings" class="spinner-border" role="status">
+                                          <span class="sr-only">Loading...</span>
+                                        </div>
                                     </mdb-step>
                                   </mdb-stepper>
                                 </div>

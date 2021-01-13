@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
       {name:'Designation',route:'settings/designation',icon:'fa fa-map fa-2x'},
       {name:'Calender',route:'settings/calender',icon:'fa fa-book fa-2x'},
       {name:'Workflow',route:'settings/workflow',icon:'fa fa-book fa-2x'},
+      {name:'Loan-Workflow',route:'settings/loan-workflow',icon:'fa fa-book fa-2x'},
       {name:'Menu Setup',route:'settings/menu',icon:'fa fa-book fa-2x'},
 
   ]
