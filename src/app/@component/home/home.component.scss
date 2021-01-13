@@ -40,6 +40,7 @@ li:hover{
 }
 #sidenav {
   position: fixed;
+  overflow: scroll;
   width: 200px;
   height: auto;
   top: 0;
@@ -821,6 +822,7 @@ bottom: 22%;
 
   /*   border radius */
   --radius: 0.2rem;
+  overflow-x: scroll;
 }
 
 *,
