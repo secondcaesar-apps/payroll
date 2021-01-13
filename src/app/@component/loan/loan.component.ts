@@ -148,7 +148,6 @@ export class LoanComponent implements OnInit {
   })
   }
   onSubmit() {
-
     this.Api.Create(APIENUM.LON, {...this.firstFormGroup.value, ...this.secondFormGroup.value})
     .subscribe((res:any)=>{
       this.success=res.message
