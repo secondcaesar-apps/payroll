@@ -162,6 +162,7 @@ export class LoanComponent implements OnInit {
        })
        this.router.navigate(['/main/loan-approval']);
     },err=>{
+      this.loadings=false;
       this.error=err.error.message;
       swal.fire({
         title: err.error.message,position: "center",
