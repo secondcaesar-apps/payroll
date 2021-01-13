@@ -2,7 +2,7 @@ import { ApiserviceService } from './../../../@shared/apiservice.service';
 import { Component, OnInit, ElementRef, HostListener, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MdbTableDirective, MdbTablePaginationComponent } from 'ng-uikit-pro-standard';
 import { APIENUM } from 'src/app/@shared/enum';
-import { FormGroup,FormBuilder, Validators } from '@angular/forms';
+import { FormGroup,FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-department',
@@ -27,7 +27,7 @@ export class DepartmentComponent implements OnInit {
     private _fb:FormBuilder,
     private Api:ApiserviceService
   ) { }
-  
+
   @HostListener('input') oninput() {
     this.mdbTablePagination.searchText = this.searchText;
   }
@@ -54,7 +54,7 @@ export class DepartmentComponent implements OnInit {
   });
   }
   get DepartmentValue(){
-    return this.Dept.get('DepartmentName');
+    return this.Dept.get('DepartmentName') as FormControl;
   }
   createDepartment(){
    this.Dept.disable();
@@ -81,12 +81,12 @@ export class DepartmentComponent implements OnInit {
   }
   searchItems() {
     const prev = this.mdbTable.getDataSource();
-  
+
     if (!this.searchText) {
       this.mdbTable.setDataSource(this.previous);
       this.elements = this.mdbTable.getDataSource();
     }
-  
+
     if (this.searchText) {
       this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
       this.mdbTable.setDataSource(prev);

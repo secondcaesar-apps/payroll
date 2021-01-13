@@ -23,18 +23,18 @@
               </div>
               <div class="col-sm-5">
                 <div class="dropdown" mdbDropdown>
-    
+
                   <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
                     mdbWavesEffect>
                     Status
                   </button>
-    
+
                   <div class="dropdown-menu dropdown-primary">
                     <button class="dropdown-item" href="#">All</button>
                     <button class="dropdown-item" href="#">Paid</button>
                     <button class="dropdown-item" href="#">Unpaid</button>
                   </div>
-    
+
                 </div>
               </div>
               <div class="col-sm-2">
@@ -43,11 +43,11 @@
                     mdbWavesEffect>
                     <mdb-icon fas icon="ellipsis-v"></mdb-icon>
                   </a>
-    
+
                   <div class="dropdown-menu dropdown-primary">
                     <a class="dropdown-item" (click)="view()" *ngIf="!show">Show details</a>
                     <a class="dropdown-item" (click)="view()" *ngIf="show">Hide details</a>
-    
+
                     <a class="dropdown-item" href="#">Refresh</a>
                   </div>
                 </div>
@@ -71,7 +71,7 @@
                 </tr>
               </thead>
                   <tbody>
-                    <tr *ngFor="let el of elements, let index =i">
+                    <tr *ngFor="let el of elements">
                       <th scope="row" (click)="basicModal.show()"  (click)="reademployee(el)" style="cursor: pointer;">{{el.TrainingName}}</th>
                       <td (click)="reademployee(el)" (click)="basicModal.show()" style="cursor: pointer;">{{el.Description}}</td>
                       <td>{{el.StartDate | date}}</td>
@@ -98,7 +98,7 @@
                 <mdb-icon fas icon="magic" class="mr-1"></mdb-icon>{{training.Status}}
               </button>
             </div>
-      
+
                    <ul class="list-group">
                     <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                       Training Name:
@@ -126,7 +126,7 @@
                     <textarea type="text" id="form7" class="md-textarea form-control" mdbInput></textarea>
                     <label for="form7">Basic textarea</label>
                   </div>
-                  
+
                    <button type="button" (click)="updateSalary('Approved')" mdbBtn color="primary" mdbWavesEffect>Approve</button>
                  <button type="button"(click)="updateSalary('Rejected')"  mdbBtn color="danger" mdbWavesEffect>Reject</button>
       </div>
@@ -134,7 +134,7 @@
              <div class="row">
 
              </div>
-          </div>     
+          </div>
      </div>
         </div>
       </div>
@@ -181,7 +181,7 @@
                     <textarea type="text" id="form7" class="md-textarea form-control" mdbInput></textarea>
                     <label for="form7">comment</label>
                   </div>
-                  
+
                    <button type="button" (click)="updateSalary('Approved')" mdbBtn color="primary" mdbWavesEffect>Approve</button>
                  <button type="button"(click)="updateSalary('Rejected')"  mdbBtn color="danger" mdbWavesEffect>Reject</button>
             </div>

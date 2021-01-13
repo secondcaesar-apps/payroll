@@ -2,7 +2,7 @@ import { Component, OnInit,  ViewChild, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { MdbTableDirective } from 'ng-uikit-pro-standard';
 import { APIENUM } from 'src/app/@shared/enum';
-import { FormGroup,FormBuilder, Validators } from '@angular/forms';
+import { FormGroup,FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 
 @Component({
@@ -88,10 +88,10 @@ export class RoleComponent implements OnInit {
    }
 
    get RoleName(){
-    return this.Role.get('RoleName');
+    return this.Role.get('RoleName')as FormControl;
   }
   get Description(){
-    return this.Role.get('Description');
+    return this.Role.get('Description')as FormControl;
   }
 
 

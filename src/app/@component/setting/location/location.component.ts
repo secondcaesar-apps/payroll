@@ -2,7 +2,7 @@ import { ApiserviceService } from './../../../@shared/apiservice.service';
 import { Component, OnInit, ElementRef, HostListener, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MdbTableDirective, MdbTablePaginationComponent } from 'ng-uikit-pro-standard';
 import { APIENUM } from 'src/app/@shared/enum';
-import { FormGroup,FormBuilder, Validators } from '@angular/forms';
+import { FormGroup,FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-location',
@@ -23,16 +23,16 @@ export class LocationComponent implements OnInit {
     Location:FormGroup;
     error:any;
     success:any;
-  
+
     constructor(
       private _fb:FormBuilder,
       private Api:ApiserviceService
     ) { }
-  
+
     @HostListener('input') oninput() {
       this.mdbTablePagination.searchText = this.searchText;
     }
-  
+
     ngOnInit() {
      this.load();
     }
@@ -53,17 +53,17 @@ export class LocationComponent implements OnInit {
           this.Location= this._fb.group({
       LocationsName:['',[Validators.required]],
       Address:['',[Validators.required]],
-     
+
     });
     }
     searchItems() {
       const prev = this.mdbTable.getDataSource();
-    
+
       if (!this.searchText) {
         this.mdbTable.setDataSource(this.previous);
         this.elements = this.mdbTable.getDataSource();
       }
-    
+
       if (this.searchText) {
         this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
         this.mdbTable.setDataSource(prev);
@@ -81,7 +81,7 @@ export class LocationComponent implements OnInit {
    },err=>{
      this.error=err.error.message;
      this.Location.enable();
-  
+
 
    },()=>{
      setTimeout(()=>{
@@ -90,15 +90,15 @@ export class LocationComponent implements OnInit {
        this.Location.reset();
        this.Location.enable();
      },500);
-     
+
    })
 
   }
 
   get LocationsName(){
-    return this.Location.get('LocationsName');
+    return this.Location.get('LocationsName')as FormControl;
   }
   get Address(){
-    return this.Location.get('Address');
+    return this.Location.get('Address') as FormControl;
   }
 }

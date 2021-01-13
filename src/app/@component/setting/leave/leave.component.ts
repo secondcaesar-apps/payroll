@@ -1,5 +1,5 @@
 import { Component, OnInit,  ViewChild, HostListener} from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum';
 @Component({
@@ -18,9 +18,9 @@ export class LeaveComponent implements OnInit {
   loading:Boolean=true;
   messages: string;
   maxVisibleItems: number = 8;
-  optionsSelect: { value: string; label: string; }[];
+  optionsSelect=[];
   constructor(
-    
+
     private _fb:FormBuilder,
     private Api:ApiserviceService
 
@@ -42,7 +42,7 @@ export class LeaveComponent implements OnInit {
       AllowedDesignations:['',[Validators.required]],
       Paid:['',[Validators.required]],
       Gender:['',[Validators.required]],
-     
+
     });
     this.Api.Read(APIENUM.LEAVETYPE)
     .subscribe((res:any)=>{
@@ -56,23 +56,23 @@ export class LeaveComponent implements OnInit {
   }
 
   get LeaveTypeName(){
-    return this.Leave.get('LeaveTypeName');
+    return this.Leave.get('LeaveTypeName')as FormControl;
   }
   get TotalDays(){
-    return this.Leave.get('TotalDays');
+    return this.Leave.get('TotalDays')as FormControl;
   }
 
   get AllowedDesignations(){
-    return this.Leave.get('AllowedDesignations');
+    return this.Leave.get('AllowedDesignations')as FormControl;
   }
 
   get Paid(){
-    return this.Leave.get('Paid');
+    return this.Leave.get('Paid')as FormControl;
   }
 
-  
+
   get Gender(){
-    return this.Leave.get('Gender');
+    return this.Leave.get('Gender')as FormControl;
   }
   createLeave(){
 
@@ -85,7 +85,7 @@ export class LeaveComponent implements OnInit {
    },err=>{
      this.error=err.error.message;
      this.Leave.enable();
-   
+
 
    },()=>{
      setTimeout(()=>{
@@ -96,7 +96,7 @@ export class LeaveComponent implements OnInit {
      },500);
      this.load();
 
- 
+
    })
 
   }

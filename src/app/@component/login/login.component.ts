@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum';
 import { Router } from '@angular/router';
@@ -27,11 +27,11 @@ Login: FormGroup;
     });
   }
   get Username(){
-    return this.Login.get('Username');
+    return this.Login.get('Username') as FormControl;
   }
 
   get Password(){
-    return this.Login.get('Password');
+    return this.Login.get('Password') as FormControl;
   }
 
    SignIn(){
@@ -53,7 +53,7 @@ Login: FormGroup;
     if (err.status === 0 && err.error instanceof ProgressEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.log('Client side error:', err.error);
-      this.error='Client side error:Please check your internet'; 
+      this.error='Client side error:Please check your internet';
     }else{
       this.error=err.error.Error;
     }

@@ -29,7 +29,6 @@
     "animate.css": "^3.7.2",
     "chart.js": "^2.5.0",
     "date-fns": "^2.9.0",
-
     "easy-pie-chart": "2.1.x",
     "file-saver": "^2.0.2",
     "fullcalendar": "^3.10.1",
@@ -41,6 +40,7 @@
     "moment": "^2.24.0",
     "ng-uikit-pro-standard": "file:ng-uikit-pro-standard-8.7.0.tgz",
     "ngx-joyride": "^2.2.10",
+    "ngx-quicklink": "^0.2.6",
     "ngx-skeleton-loader": "^1.2.2",
     "rxjs": "~6.4.0",
     "rxjs-compat": "^6.6.3",

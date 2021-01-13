@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MdbTableDirective } from 'ng-uikit-pro-standard';
 import { APIENUM } from 'src/app/@shared/enum';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
-import { Form, FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
+import { Form, FormBuilder, Validators, FormGroup, FormArray, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-salary-setup',
@@ -83,7 +83,7 @@ this.id =el.SalaryGroupID;
 
         this.addItem2(res.records[index], index);
       }
-     
+
 
     })
     this.Modal = true;
@@ -107,12 +107,12 @@ clear(){
       Name :['',[Validators.required]],
       Amount:['',[Validators.required]],
       Type:['',[Validators.required]],
-     
-     
+
+
     });
   }
 
-  
+
   get itemArray() {
     return this.Salary.get('SalaryComponent') as FormArray;
 }
@@ -123,13 +123,13 @@ clear(){
   }
 
   get SalaryGroupName(){
-    return this.Salary.get('SalaryGroupName');
+    return this.Salary.get('SalaryGroupName')as FormControl;
   }
 
   get LeaveDays(){
-    return this.Salary.get('LeaveDays');
+    return this.Salary.get('LeaveDays')as FormControl;
   }
- 
+
   removeItems(id) {
     this.itemArray.removeAt(id);
     this.Cart();
@@ -181,7 +181,7 @@ this.Api.Create(APIENUM.SAG,value).subscribe((res:any)=>{
   }
 
 
-  
+
   Cart(){
 
     let addtion =0;
@@ -199,7 +199,7 @@ else{
   reduction =  Amount +  reduction;
 }
 
-    
+
     }
 
     this.Total = addtion - reduction;
@@ -209,19 +209,19 @@ else{
 
 
     // let cal = this.itemArray.value;
-    
+
     // let smallTotal=0;
-    
+
     // for (let index = 0; index < cal.length; index++) {
     //   let Amount =parseInt(cal[index].Amount);
-     
+
     //   smallTotal= Amount +  smallTotal;
-    
+
     // }
-    
-    
+
+
     //this.Total = smallTotal;
-    
+
 
       }
 
@@ -230,7 +230,7 @@ else{
       }
 
 
-      
+
 
       load(){
         this.Api.Read(APIENUM.SAG)
@@ -241,13 +241,13 @@ else{
           this.elements = this.mdbTable.getDataSource();
           this.previous = this.mdbTable.getDataSource();
         })
-    
+
         this.Salary= this._fb.group({
           SalaryGroupName:['',[Validators.required]],
           LeaveDays :['',[Validators.required]],
           SalaryComponent:this._fb.array([this.createSalary()]),
-    
-         
+
+
         });
       }
       load2(){
@@ -259,14 +259,14 @@ else{
           this.elements = this.mdbTable.getDataSource();
           this.previous = this.mdbTable.getDataSource();
         })
-    
-        
+
+
       }
 
       addItem2(value,id){
-       
+
       this.itemArray.push(this.createSalary2(value,id));
-    
+
       }
 
 
@@ -275,8 +275,8 @@ else{
           Name :[value.Name,[Validators.required]],
           Amount:[value.Amount,[Validators.required]],
           Type:[value.Type,[Validators.required]],
-         
-         
+
+
         });
       }
 
@@ -289,27 +289,27 @@ else{
         this.Api.Update(APIENUM.SAG,value).subscribe((res:any)=>{
           this.success=res.message +`WITH TOTAL OF : ₦ ${this.Total}`;
           this.reset();
-        
+
         },err=>{
          this.error=err.error.message;
          this.reset();
-  
+
         },()=>{
-        
-      
+
+
         })
-       
-          
+
+
 }
 
 reset(){
        setTimeout(()=>{
           this.success='';
           this.error='';
-    
+
           this.Salary.enable();
         },1000);
         this.load2();
-        
+
 }
 }

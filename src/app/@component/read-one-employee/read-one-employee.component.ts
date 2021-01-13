@@ -28,14 +28,14 @@ export class ReadOneEmployeeComponent implements OnInit {
   image='../../../assets/profile_image.jpg';
   role:any;
   department:any;
-  edit: Boolean=false;
-  isDisabled:Boolean= false;
+  edit: boolean=false;
+  isDisabled:boolean= false;
   employees:any;
   designation:any;
   email: string="";
   increment: string="";
   previous: string="";
-  promo: Boolean=false
+  promo: boolean=false
   current: string="";
   pic: string="";
   Increment: any = [];
@@ -51,7 +51,7 @@ export class ReadOneEmployeeComponent implements OnInit {
     private _fb:FormBuilder,
     private route: Router,
     private _loc: Location
-    
+
   ) { }
 
   ngOnInit() {
@@ -177,7 +177,7 @@ export class ReadOneEmployeeComponent implements OnInit {
               console.log(res.records);
               this.promo = true
           this.Increment = res.records
-          
+
             },(err: any) => {
               this.increment = err.error.message;
             })
@@ -185,15 +185,15 @@ export class ReadOneEmployeeComponent implements OnInit {
         this.loadEvent();
     setTimeout(() => this.employee.disable(), 2000);
   }
-  
+
 
   loadEvent(){
 
     let event = [this.Api.Read(APIENUM.LOC),this.Api.Read(APIENUM.DEPT),this.Api.Read(APIENUM.EMP),this.Api.Read(APIENUM.SAG),this.Api.Read(APIENUM.DES),this.Api.Read(APIENUM.ROLE)]
-  
+
     forkJoin(event).subscribe((res:any)=>{
-      console.log(res); 
-  
+      console.log(res);
+
       this.location= res[0].records;
       this.department = res[1].records;
       this.employees=res[2].records;
@@ -208,35 +208,35 @@ export class ReadOneEmployeeComponent implements OnInit {
     this.employee.disable();
     let value = {Status:"Active",Avatar:this.image,...this.employee.value};
     this.Api.Update(APIENUM.EMP, value).subscribe((res:any)=>{
-  
-    
+
+
       swal.fire({
         title: res.message,position: "center",
         icon: 'success',
         showConfirmButton: false,
         timer: 3500,
         showCloseButton: true,
-    
+
        })
       this.employee.reset();
       this.employee.enable();
       this.image='../../../assets/profile_image.jpg';
-    
+
     },(err=>{
       this.employee.enable();
-  
-    
+
+
       swal.fire({
         position: 'center',
         icon: 'error',
         title: 'Something went wrong',
         showConfirmButton: true,
         timer: 3500,
-    
+
        })
-    
+
     }))
-  
+
   }
   onClick() {
     const fileUpload = this.fileUpload.nativeElement;

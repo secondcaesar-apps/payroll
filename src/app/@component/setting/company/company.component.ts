@@ -4,7 +4,7 @@ import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { map, catchError } from 'rxjs/operators';
 import { HttpEventType, HttpErrorResponse } from '@angular/common/http';
 import { of } from 'rxjs';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { APIENUM } from 'src/app/@shared/enum';
 import { environment } from 'src/environments/environment';
 
@@ -47,26 +47,26 @@ export class CompanyComponent  implements OnInit {
 
 
   get CompanyName() {
-    return this.Company.get('CompanyName');
+    return this.Company.get('CompanyName') as FormControl;
   }
 
   get Country() {
-    return this.Company.get('Country');
+    return this.Company.get('Country') as FormControl;
   }
 
   get CPName() {
-    return this.Company.get('CPName');
+    return this.Company.get('CPName') as FormControl;
   }
   get CPTelephoneNo() {
-    return this.Company.get('CPTelephoneNo');
+    return this.Company.get('CPTelephoneNo') as FormControl;
   }
 
   get ContactAddress() {
-    return this.Company.get('ContactAddress');
+    return this.Company.get('ContactAddress') as FormControl;
   }
 
  get CPEmail() {
-    return this.Company.get('CPEmail');
+    return this.Company.get('CPEmail') as FormControl;
   }
 
 
@@ -77,15 +77,15 @@ export class CompanyComponent  implements OnInit {
   createCompany(){
     this.Company.disable();
      let value = {Logo:this.image,...this.Company.value};
- 
+
      this.service.Create(APIENUM.COM,value).subscribe((res:any)=>{
         this.success=res.message
- 
+
      },err=>{
        this.error=err.error.message;
        this.Company.enable();
- 
- 
+
+
      },()=>{
        setTimeout(()=>{
          this.success='';
@@ -122,7 +122,7 @@ export class CompanyComponent  implements OnInit {
     });
   }
 
- 
+
 
 
   onClick() {
