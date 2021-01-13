@@ -34,6 +34,7 @@ export enum APIENUM{
     EVENT='event',
     PAYROLLM='salaryslip',
     WORKFLOWSETUP='workflowsetup',
+    LOANWORKFLOWSETUP='loanworkflowsetup',
     CHECK='salaryslip/checkmonth'
 }
 

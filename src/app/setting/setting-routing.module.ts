@@ -16,6 +16,7 @@ import { IncreComponent } from '../@component/setting/incre/incre.component';
 import { CalenderComponent } from '../@component/setting/calender/calender.component';
 import { WorkflowComponent } from '../@component/setting/workflow/workflow.component';
 import { MenuComponent } from '../@component/setting/menu/menu.component';
+import { LoanWorkflowComponent } from '../@component/setting/loan-workflow/loan-workflow.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
       { path: 'calender', component: CalenderComponent },
       { path: 'workflow', component: WorkflowComponent },
       { path: 'menu', component: MenuComponent },
+      { path: 'loan-workflow', component: LoanWorkflowComponent},
     ]
   },
 
