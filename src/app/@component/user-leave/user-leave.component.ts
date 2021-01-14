@@ -98,11 +98,11 @@ loadEvent(){
         this.elements = this.mdbTable.getDataSource();
         this.previous = this.mdbTable.getDataSource();
   },err=>{
-    this.error=err.error.message;
+
     this.Leave.enable();
           this.loading = false;
 
-        this.messages = err.error.message;
+
         this.message = true;
         this.elements = [];
 
