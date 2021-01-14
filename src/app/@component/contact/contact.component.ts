@@ -68,19 +68,19 @@ export class ContactComponent implements OnInit {
 
 
   get ContactName() {
-    return this.Contact.get('ContactName');
+    return this.Contact.get('ContactName') as FormControl;
   }
   get Description() {
-    return this.Contact.get('Description');
+    return this.Contact.get('Description') as FormControl;
   }
   get Email() {
-    return this.Contact.get('Email');
+    return this.Contact.get('Email') as FormControl;
   }
   get ContactNumber() {
-    return this.Contact.get('ContactNumber');
+    return this.Contact.get('ContactNumber') as FormControl;
   }
   get Service() {
-    return this.Contact.get('Service');
+    return this.Contact.get('Service')as FormControl;
   }
   createContact() {
     console.info(this.Contact.value);
@@ -125,7 +125,7 @@ export class ContactComponent implements OnInit {
   openDetails(el){
     if(this.show){
       this.displaySide = true;
-    } 
+    }
     console.log(el);
     this.statusValue = el.Status;
     this.contact = this._fb.group({
@@ -143,33 +143,33 @@ export class ContactComponent implements OnInit {
 
     this.contact.disable();
     this.service.Update(APIENUM.CON, this.contact.value).subscribe((res:any)=>{
-  
-    
+
+
       swal.fire({
         title: res.message,position: "center",
         icon: 'success',
         showConfirmButton: false,
         timer: 3500,
         showCloseButton: true,
-    
+
        })
       this.contact.enable();
-    
-    
+
+
     },(err=>{
       this.contact.enable();
-  
-    
+
+
       swal.fire({
         position: 'center',
         icon: 'error',
         title: err.error.message,
         showConfirmButton: true,
         timer: 3500,
-    
+
        })
-    
+
     }))
-  
+
   }
 }

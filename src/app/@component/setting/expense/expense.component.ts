@@ -2,7 +2,7 @@ import { ApiserviceService } from './../../../@shared/apiservice.service';
 import { Component, OnInit, ElementRef, HostListener, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MdbTableDirective, MdbTablePaginationComponent } from 'ng-uikit-pro-standard';
 import { APIENUM } from 'src/app/@shared/enum';
-import { FormGroup,FormBuilder, Validators } from '@angular/forms';
+import { FormGroup,FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-expense',
@@ -24,16 +24,16 @@ export class ExpenseComponent implements OnInit {
     Category:FormGroup;
     error:any;
     success:any;
-  
+
     constructor(
       private _fb:FormBuilder,
       private Api:ApiserviceService
     ) { }
-  
+
     @HostListener('input') oninput() {
       this.mdbTablePagination.searchText = this.searchText;
     }
-  
+
     ngOnInit() {
       this.load();
     }
@@ -55,18 +55,18 @@ export class ExpenseComponent implements OnInit {
         this.Category= this._fb.group({
     CategoryName:['',[Validators.required]],
     CategoryDescription:['',[Validators.required]],
-   
+
   });
 
     }
     searchItems() {
       const prev = this.mdbTable.getDataSource();
-    
+
       if (!this.searchText) {
         this.mdbTable.setDataSource(this.previous);
         this.elements = this.mdbTable.getDataSource();
       }
-    
+
       if (this.searchText) {
         this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
         this.mdbTable.setDataSource(prev);
@@ -83,7 +83,7 @@ export class ExpenseComponent implements OnInit {
    },err=>{
      this.error=err.error.message;
      this.Category.enable();
-   
+
 
    },()=>{
      setTimeout(()=>{
@@ -98,9 +98,9 @@ export class ExpenseComponent implements OnInit {
   }
 
   get CategoryName(){
-    return this.Category.get('CategoryName');
+    return this.Category.get('CategoryName') as FormControl;
   }
   get CategoryDescription(){
-    return this.Category.get('CategoryDescription');
+    return this.Category.get('CategoryDescription')as FormControl;
   }
 }

@@ -1,7 +1,7 @@
 import { ApiserviceService } from './../../../@shared/apiservice.service';
 import { Component, OnInit, ElementRef, HostListener, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MdbTableDirective, MdbTablePaginationComponent } from 'ng-uikit-pro-standard';
-import { FormGroup,FormBuilder, Validators } from '@angular/forms';
+import { FormGroup,FormBuilder, Validators, FormControl } from '@angular/forms';
 import { APIENUM } from 'src/app/@shared/enum';
 
 @Component({
@@ -23,7 +23,7 @@ export class DesignationComponent implements OnInit {
   Designation:FormGroup;
   error:any;
   success:any;
-  
+
   constructor(
     private _fb:FormBuilder,
     private Api:ApiserviceService
@@ -37,18 +37,18 @@ export class DesignationComponent implements OnInit {
     this.reload()
         this.Designation= this._fb.group({
       DesignationName:['',[Validators.required]],
-     
+
     });
   }
-  
+
   searchItems() {
     const prev = this.mdbTable.getDataSource();
-  
+
     if (!this.searchText) {
       this.mdbTable.setDataSource(this.previous);
       this.elements = this.mdbTable.getDataSource();
     }
-  
+
     if (this.searchText) {
       this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
       this.mdbTable.setDataSource(prev);
@@ -64,7 +64,7 @@ export class DesignationComponent implements OnInit {
    },err=>{
      this.error=err.error.message;
      this.Designation.enable();
-   
+
 
    },()=>{
      setTimeout(()=>{
@@ -74,13 +74,13 @@ export class DesignationComponent implements OnInit {
        this.Designation.enable();
      },500)
 
- 
+
    })
    this.reload();
   }
 
   get DesignationName(){
-    return this.Designation.get('DesignationName');
+    return this.Designation.get('DesignationName')as FormControl;
   }
 
   reload(){

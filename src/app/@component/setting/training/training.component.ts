@@ -62,12 +62,12 @@ export class TrainingComponent implements OnInit {
            label: this.Employee[i].FirstName + ' ' + this.Employee[i].LastName
            })
            this.optionsSelect = this.array;
-     } 
+     }
      console.log(this.optionsSelect);
 
     }, (err: any) => {
       this.toast.error(err.error.message);
-      
+
     })
     this.service.Read(APIENUM.train)
       .subscribe((res: any) => {
@@ -86,22 +86,22 @@ export class TrainingComponent implements OnInit {
 
 
   get TrainingName() {
-    return this.Training.get('TrainingName');
+    return this.Training.get('TrainingName')as FormControl;
   }
   get Description() {
-    return this.Training.get('Description');
+    return this.Training.get('Description') as FormControl;
   }
   get StartDate() {
-    return this.Training.get('StartDate');
+    return this.Training.get('StartDate') as FormControl;
   }
   get EndDate() {
-    return this.Training.get('EndDate');
+    return this.Training.get('EndDate') as FormControl;
   }
   get Employees() {
-    return this.Training.get('Employees');
+    return this.Training.get('Employees') as FormControl;
   }
   createTraining() {
- 
+
     this.Training.disable();
     let value = { ...this.Training.value, Employees: this.Training.value.Employees.toString()}
     console.info(value);
@@ -140,10 +140,10 @@ export class TrainingComponent implements OnInit {
   view() {
     this.show = !this.show;
   }
-  openDetails(el){                                                                                                  
+  openDetails(el){
     if(this.show){
       this.displaySide = true;
-    } 
+    }
     console.log(el);
     this.statusValue = el.Status;
     this.training = this._fb.group({
@@ -161,33 +161,33 @@ export class TrainingComponent implements OnInit {
 
     this.training.disable();
     this.service.Update(APIENUM.train, this.training.value).subscribe((res:any)=>{
-  
-    
+
+
       swal.fire({
         title: res.message,position: "center",
         icon: 'success',
         showConfirmButton: false,
         timer: 3500,
         showCloseButton: true,
-    
+
        })
       this.training.enable();
-    
-    
+
+
     },(err=>{
       this.training.enable();
-  
-    
+
+
       swal.fire({
         position: 'center',
         icon: 'error',
         title: err.error.message,
         showConfirmButton: true,
         timer: 3500,
-    
+
        })
-    
+
     }))
-  
+
   }
 }

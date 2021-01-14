@@ -1,5 +1,5 @@
 import { Component, OnInit,  ViewChild, HostListener  } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum';
 import { map } from 'rxjs/operators';
@@ -57,25 +57,25 @@ this.menuGroupApi()
 }
 
   get MenuName(){
-    return this.Menu.get('MenuName');
+    return this.Menu.get('MenuName') as FormControl;
   }
   get MenuURL(){
-    return this.Menu.get('MenuURL');
+    return this.Menu.get('MenuURL') as FormControl;
   }
   get MenuOrder(){
-    return this.Menu.get('MenuOrder');
+    return this.Menu.get('MenuOrder')as FormControl;
   }
   get MenuLevel(){
-    return this.Menu.get('MenuLevel');
+    return this.Menu.get('MenuLevel')as FormControl;
   }
   get ParentID(){
-    return this.Menu.get('ParentID');
+    return this.Menu.get('ParentID')as FormControl;
   }
   get ParentID2(){
-    return this.Menu.get('ParentID2');
+    return this.Menu.get('ParentID2')as FormControl;
   }
   get Description(){
-    return this.Menu.get('Description');
+    return this.Menu.get('Description')as FormControl;
   }
 
   createMenu(){

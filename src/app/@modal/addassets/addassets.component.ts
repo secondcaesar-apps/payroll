@@ -7,7 +7,7 @@ import { MDBModalRef } from 'ng-uikit-pro-standard';
   styleUrls: ['./addassets.component.scss']
 })
 export class AddassetsComponent implements OnInit {
-  optionsSelect: { value: string; label: string; }[];
+  optionsSelect=[];
 
   constructor(public modalRef: MDBModalRef) {}
 

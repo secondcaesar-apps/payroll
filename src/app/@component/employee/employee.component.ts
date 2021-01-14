@@ -7,7 +7,7 @@ import { MdbTableDirective } from 'ng-uikit-pro-standard';
 import { APIENUM } from 'src/app/@shared/enum';
 import swal from 'sweetalert2';
 import { SharedService } from 'src/app/@shared/shared/shared.service';
-import * as XLSX from 'xlsx'; 
+import * as XLSX from 'xlsx';
 
 import { ToastService } from 'ng-uikit-pro-standard';
 @Component({
@@ -17,13 +17,13 @@ import { ToastService } from 'ng-uikit-pro-standard';
 })
 export class EmployeeComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
-  elements = []    
+  elements = []
   headElements = ['ID', 'Firstname', 'Lastname', 'Email','Role', 'DepartmentName','LocationsName','DesignationName','Gender','SalaryGroupName','RoleName','MaritalStatus','Status',''];
-  error: Boolean = false;
+  error: boolean = false;
   searchText: string = '';
   previous: string;
-  message: Boolean=false;
-  loading:Boolean=true;
+  message: boolean=false;
+  loading:boolean=true;
   messages: string;
   location:any;
   role:any;
@@ -31,12 +31,12 @@ export class EmployeeComponent implements OnInit {
   employees:any;
   designation:any;
   salarygroup: any;
-  isDisabled:Boolean = true;
+  isDisabled:boolean = true;
   maxVisibleItems: number = 8;
   pic: string="";
-  show: Boolean; 
+  show: boolean;
   size;
-  displaySide: Boolean = false;
+  displaySide: boolean = false;
   constructor(
     private router: Router,
     private Api: ApiserviceService,
@@ -57,13 +57,13 @@ export class EmployeeComponent implements OnInit {
     this.initload();
   }
 
-  /*name of the excel-file which will be downloaded. */ 
-fileName= 'ExcelSheet.xlsx';  
+  /*name of the excel-file which will be downloaded. */
+fileName= 'ExcelSheet.xlsx';
 
-exportexcel(): void 
+exportexcel(): void
     {
-       /* table id is passed over here */   
-       let element = document.getElementById('tableSortExample'); 
+       /* table id is passed over here */
+       let element = document.getElementById('tableSortExample');
        const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
 
        /* generate workbook and add the worksheet */
@@ -72,7 +72,7 @@ exportexcel(): void
 
        /* save to file */
        XLSX.writeFile(wb, this.fileName);
-			
+
     }
   searchItems() {
     const prev = this.mdbTable.getDataSource();
@@ -102,7 +102,7 @@ exportexcel(): void
       this.shared.AddInfo(el)
       console.log(el)
     }
-    this.pic =el.Avatar;   
+    this.pic =el.Avatar;
     this.employee = this._fb.group({
       EmployeeID :[el.EmployeeID],
       FirstName :[el.FirstName, Validators.required],
@@ -128,43 +128,43 @@ exportexcel(): void
 
     this.employee.disable();
     this.Api.Update(APIENUM.EMP, this.employee.value).subscribe((res:any)=>{
-  
-    
+
+
       swal.fire({
         title: res.message,position: "center",
         icon: 'success',
         showConfirmButton: false,
         timer: 3500,
         showCloseButton: true,
-    
+
        })
       this.employee.reset();
       this.employee.enable();
       this.router.navigate(['/main/payroll'])
-    
+
     },(err=>{
       this.employee.enable();
-  
-    
+
+
       swal.fire({
         position: 'center',
         icon: 'error',
         title: 'Something went wrong',
         showConfirmButton: true,
         timer: 3500,
-    
+
        })
        this.router.navigate(['/main/payroll'])
     }))
-  
+
   }
   loadEvent(){
 
     let event = [this.Api.Read(APIENUM.LOC),this.Api.Read(APIENUM.DEPT),this.Api.Read(APIENUM.EMP),this.Api.Read(APIENUM.SAG),this.Api.Read(APIENUM.DES),this.Api.Read(APIENUM.ROLE)]
-  
+
     forkJoin(event).subscribe((res:any)=>{
       console.log(res);
-  
+
       this.location= res[0].records;
       this.department = res[1].records;
       this.employees=res[2].records;
@@ -185,21 +185,21 @@ exportexcel(): void
       confirmButtonText: 'Remove'
     }).then((result) => {
       if (result.value) {
-     
+
   this.Api.Delete(APIENUM.EMP,id).subscribe((res:any)=>{
     this.toastrService.error(` ${res.message}  `,'',{ opacity: 9 })
 
    this.loadEvent();
     this.initload();
-    
+
   },(err:any)=>{
     this.toastrService.error(` ${err.message}  `,'',{ opacity: 9 })
   })
 
- 
+
 
       }
-      
+
     })
 
 
@@ -213,8 +213,8 @@ exportexcel(): void
     .subscribe((res:any)=>{
       this.loading = false;
       this.elements=res.records;
-   
-     
+
+
       this.mdbTable.setDataSource(this.elements);
       this.elements = this.mdbTable.getDataSource();
       this.previous = this.mdbTable.getDataSource();
@@ -225,7 +225,7 @@ exportexcel(): void
       this.message = true;
       this.elements = [];
     })
-   
+
   }
-  
+
 }

@@ -40,6 +40,7 @@ li:hover{
 }
 #sidenav {
   position: fixed;
+  overflow: scroll;
   width: 200px;
   height: auto;
   top: 0;
@@ -63,13 +64,15 @@ li:hover{
     position: static; }
     #sidenav .menu ul {
       list-style: none;
-      background:#ff6500;
+
       padding: 10% 0;
       margin: 0; }
       #sidenav .menu ul li {
         padding: 6px 7%; }
         #sidenav .menu ul li.active {
-          border-left: solid 7px white }
+          border-left: solid 7px white ;
+        background-color: #ff6500;
+        }
           #sidenav .menu ul li > ul .active {
             padding: 6px 3px;
             border-left: solid 7px #ff6500
@@ -819,6 +822,7 @@ bottom: 22%;
 
   /*   border radius */
   --radius: 0.2rem;
+  overflow-x: scroll;
 }
 
 *,

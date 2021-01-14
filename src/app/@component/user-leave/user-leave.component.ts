@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, HostListener, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum'
 import { MdbTableDirective } from 'ng-uikit-pro-standard';
@@ -10,7 +10,7 @@ import { MdbTableDirective } from 'ng-uikit-pro-standard';
 })
 export class UserLeaveComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
-  elements = []    
+  elements = []
   headElements = ['Leave', 'Description','Start Date', 'End Date','Date Created', 'Status'];
   searchText: string = '';
   previous: string;
@@ -18,14 +18,14 @@ export class UserLeaveComponent implements OnInit {
   loading:Boolean=true;
   messages: string;
   maxVisibleItems: number = 8;
-  show: Boolean; 
+  show: Boolean;
   displaySide: Boolean = false;
   Leave:FormGroup;
   error:any;
   leave:any=null;
   statusValue: string = '';
   leaveHistory:any;
-  
+
   @Input() title: string;
   success:any;
   lType: any;
@@ -50,10 +50,10 @@ export class UserLeaveComponent implements OnInit {
 
 
   get LeaveTypeName(){
-    return this.Leave.get('LeaveType');
+    return this.Leave.get('LeaveType') as FormControl;
   }
   get Reason(){
-    return this.Leave.get('Reason');
+    return this.Leave.get('Reason') as FormControl;
   }
   view(){
     this.show = !this.show ;
@@ -70,7 +70,7 @@ export class UserLeaveComponent implements OnInit {
    },err=>{
      this.error=err.error.message;
      this.Leave.enable();
-   
+
 
    },()=>{
      setTimeout(()=>{
@@ -81,13 +81,13 @@ export class UserLeaveComponent implements OnInit {
      },900);
      this.loadEvent();
 
- 
+
    })
 
   }
 loadEvent(){
     let value = {EmployeeID : sessionStorage.getItem('EmpID')
-   
+
 }
   this.service.ReadLeave(APIENUM.LEAVE, value).subscribe((res:any)=>{
         this.loading = false;
@@ -101,7 +101,7 @@ loadEvent(){
     this.error=err.error.message;
     this.Leave.enable();
           this.loading = false;
-        this.error = true;
+
         this.messages = err.error.message;
         this.message = true;
         this.elements = [];
@@ -122,7 +122,7 @@ loadEvent(){
 
 //   //login user
 //   let value = {EmployeeID :  sessionStorage.getItem('EmpID')
-   
+
 // }
 //     this.service.Create(APIENUM.REPORT,value).subscribe((res:any)=>{
 //     this.loading = false;
@@ -152,7 +152,7 @@ searchItems() {
 reademployee(el){
  this.leave=el;
  this.displaySide=true;
- 
+
 }
  updateSalary(){
    let value={LeaveID:this.leave.LeaveID};
@@ -161,9 +161,10 @@ reademployee(el){
     this.success=res.message;
 
    },err=>{
+     console.log(err);
     this.error=err.error.message;
     this.Leave.enable();
-  
+
 
   },()=>{
     setTimeout(()=>{
@@ -188,7 +189,7 @@ reademployee(el){
     //  this.mdbTable.setDataSource(this.elements);
     //  this.elements = this.mdbTable.getDataSource();
     //  this.previous = this.mdbTable.getDataSource();
- 
+
    })
  }
 

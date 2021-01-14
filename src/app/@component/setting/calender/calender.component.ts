@@ -10,7 +10,7 @@ import {
   addHours
 } from 'date-fns';
 import { APIENUM } from 'src/app/@shared/enum';
-import { FormGroup,FormBuilder, Validators } from '@angular/forms';
+import { FormGroup,FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { IMyOptions } from 'ng-uikit-pro-standard';
 @Component({
@@ -47,7 +47,7 @@ export class CalenderComponent implements OnInit {
     })
     this.Cal= this._fb.group({
       EventTitle:['',[Validators.required]],
-    
+
       StartDate:['',[Validators.required]],
       EndDate:['',[Validators.required]],
 
@@ -55,25 +55,25 @@ export class CalenderComponent implements OnInit {
   }
 
   get EventTitle(){
-    return this.Cal.get('EventTitle');
+    return this.Cal.get('EventTitle') as FormControl;
   }
 
   get Color(){
-    return this.Cal.get('Color');
+    return this.Cal.get('Color') as FormControl;
   }
 
   get StartDate(){
-    return this.Cal.get('StartDate');
+    return this.Cal.get('StartDate') as FormControl;
   }
   get EndDate(){
-    return this.Cal.get('EndDate');
+    return this.Cal.get('EndDate')as FormControl;
   }
 
 
   createEvent(){
 
-    var colors= ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 
-'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red', 
+    var colors= ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green',
+'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red',
 'silver', 'teal', 'white', 'yellow'];
 
 this.getRandom(colors);
@@ -81,16 +81,16 @@ this.getRandom(colors);
 console.log(startOfDay(this.Cal.value.StartDate));
     this.Cal.disable();
      let value = {Status:"Active",StartDate:this.Cal.value.StartDate,EndDate:this.Cal.value.EndDate, Color:'red',EventTitle:this.Cal.value.EventTitle,};
- 
+
      this.Api.Create(APIENUM.EVENT,value).subscribe((res:any)=>{
         this.success=res.message;
         this.loadevent();
- 
+
      },err=>{
        this.error=err.error.message;
        this.Cal.enable();
- 
- 
+
+
      },()=>{
        setTimeout(()=>{
          this.success='';

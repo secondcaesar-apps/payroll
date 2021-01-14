@@ -29,7 +29,7 @@ export class AssetsComponent implements OnInit {
   loading: Boolean = true;
   messages: string;
   maxVisibleItems: number = 8;
-  show: Boolean; 
+  show: Boolean;
   displaySide: Boolean = false;
   statusValue: string  = '';
   constructor(
@@ -39,7 +39,7 @@ export class AssetsComponent implements OnInit {
     private _fb: FormBuilder,
     private router: Router,
     ) {}
-    
+
     @HostListener('input') oninput() {
       this.searchItems();
   }
@@ -80,30 +80,30 @@ export class AssetsComponent implements OnInit {
   }
   searchItems() {
     const prev = this.mdbTable.getDataSource();
-    
+
     if (this.searchText) {
       this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
       this.mdbTable.setDataSource(prev);
     }
   }
   get AssetName() {
-    return this.Asset.get('AssetName');
+    return this.Asset.get('AssetName')as FormControl;
   }
   get Description() {
-    return this.Asset.get('Description');
+    return this.Asset.get('Description')as FormControl;
   }
 
   get AssetType() {
-    return this.Asset.get('AssetType');
+    return this.Asset.get('AssetType')as FormControl;
   }
 
   get Location() {
-    return this.Asset.get('Location');
+    return this.Asset.get('Location')as FormControl;
   }
 
 
   get SerailNumber() {
-    return this.Asset.get('SerailNumber');
+    return this.Asset.get('SerailNumber')as FormControl;
   }
   getCheckboxesValue() {
     console.log('Checked value:', this.Asset.controls['checked'].value);
@@ -200,7 +200,7 @@ export class AssetsComponent implements OnInit {
 openDetails(el){
   if(this.show){
     this.displaySide = true;
-  } 
+  }
   this.statusValue = el.Status;
   this.asset = this._fb.group({
     AssetID :[el.AssetID],
@@ -218,31 +218,31 @@ updateAsset(){
   this.asset.disable();
   this.service.Update(APIENUM.ASS, this.asset.value).subscribe((res:any)=>{
 
-  
+
     swal.fire({
       title: res.message,position: "center",
       icon: 'success',
       showConfirmButton: false,
       timer: 3500,
       showCloseButton: true,
-  
+
      })
     this.asset.enable();
-  
-  
+
+
   },(err=>{
     this.asset.enable();
 
-  
+
     swal.fire({
       position: 'center',
       icon: 'error',
       title: 'Something went wrong',
       showConfirmButton: true,
       timer: 3500,
-  
+
      })
-  
+
   }))
 
 }

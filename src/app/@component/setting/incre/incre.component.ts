@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum';
 import { forkJoin } from 'rxjs';
@@ -66,43 +66,43 @@ this.load();
   }
 
   get EmployeeID(){
-    return this.Increment.get('EmployeeID');
+    return this.Increment.get('EmployeeID')as FormControl;
   }
 
 
   get Type(){
-    return this.Increment.get('Type');
+    return this.Increment.get('Type')as FormControl;
   }
 
 
   get SalaryGroup(){
-    return this.Increment.get('SalaryGroup');
+    return this.Increment.get('SalaryGroup')as FormControl;
   }
 
 
   get Description(){
-    return this.Increment.get('Description');
+    return this.Increment.get('Description')as FormControl;
   }
 
 
   get PreviousDsg(){
-    return this.Increment.get('PreviousDsg');
+    return this.Increment.get('PreviousDsg')as FormControl;
   }
 
 
   get CurrentDsg(){
-    return this.Increment.get('CurrentDsg');
+    return this.Increment.get('CurrentDsg')as FormControl;
   }
 
-  
+
   get IncrementPromotionDate(){
-    return this.Increment.get('IncrementPromotionDate');
+    return this.Increment.get('IncrementPromotionDate') as FormControl;
   }
 
 
 
   loadEvent(){
- 
+
     let event = [this.Api.Read(APIENUM.EMP),this.Api.Read(APIENUM.SAG),this.Api.Read(APIENUM.DES)];
 
 forkJoin(event).subscribe((res:any)=>{
@@ -127,7 +127,7 @@ forkJoin(event).subscribe((res:any)=>{
    },err=>{
      this.error=err.error.message;
      this.Increment.enable();
-   
+
 
    },()=>{
      setTimeout(()=>{
@@ -138,7 +138,7 @@ forkJoin(event).subscribe((res:any)=>{
      },500);
      this.load();
 
- 
+
    })
 
   }
