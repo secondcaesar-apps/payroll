@@ -15,11 +15,13 @@ import { StrengthPipe } from './@pipe/strength.pipe';
 import { ApiserviceService } from './@shared/apiservice.service';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    StrengthPipe
+    StrengthPipe,
+
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,7 @@ import { ApiserviceService } from './@shared/apiservice.service';
     AppRoutingModule,
    SharedModule,
   
+
   ],
   providers: [MDBSpinningPreloader,ApiserviceService, ],
   bootstrap: [AppComponent],

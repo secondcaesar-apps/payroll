@@ -1,0 +1,53 @@
+<div class="container">
+  <app-back></app-back>
+
+  <app-errors [error]="error">
+
+  </app-errors>
+
+  <app-success [success]="success">
+
+  </app-success>
+
+
+  <app-loader *ngIf="loading">
+
+  </app-loader>
+  <div *ngIf="!loading">
+    <form class="form p-3" novalidate [formGroup]="form" *ngIf="questions">
+      <div class="form-row">
+        <div *ngFor="let question of questions" class="col-lg-6 col-sm-12">
+
+          <app-question [question]="question" [form]="form"></app-question>
+
+        </div>
+      </div>
+
+
+      <div class="form-row mt-2" *ngIf="show">
+        <div *ngIf="loading3" class="spinner-border" role="status">
+          <span class="visually-hidden"></span>
+        </div>
+        <div class="col-1 mr-2">
+          <button *ngIf="!loading3" (click)="updateLeaveStatus('Approved')" class="btn btn-success"
+            type="submit">Approve</button>
+
+        </div>
+        <div class="col-1">
+          <button *ngIf="!loading3" (click)="updateLeaveStatus('Rejected')" class="btn btn-danger"
+            type="submit">Reject</button>
+
+        </div>
+        <div class="col-9">
+
+        </div>
+
+      </div>
+
+    </form>
+
+    <!-- <div *ngIf="payLoad" class="form-row">
+      <strong>Saved the following values</strong><br>{{payLoad}}
+    </div> -->
+  </div>
+</div>

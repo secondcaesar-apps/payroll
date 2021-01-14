@@ -82,10 +82,16 @@ export class ApiserviceService {
   }
 
 
-  Read(type: APIENUM) {
+  Read(type: APIENUM|string,value={}) {
 
 
-    return this._http.post(`${this.apiUrl}${type.toString()}/read.php`, {});
+    return this._http.post(`${this.apiUrl}${type.toString()}/read.php`, value);
+
+  }
+  Special(type: APIENUM|string,value={}) {
+
+
+    return this._http.post(`${this.apiUrl}${type.toString()}`, value);
 
   }
   Genderreport(type: APIENUM) {
@@ -100,6 +106,13 @@ export class ApiserviceService {
     return this._http.post(`${this.apiUrl}${type.toString()}/read_one.php`,data);
 
     }
+
+    ReadOneEmployee(type:APIENUM| string,data:any,){
+
+
+      return this._http.post(`${this.apiUrl}${type.toString()}/readoneemployee.php`,data);
+
+      }
       ReadLeave(type:APIENUM,data:any,){
 
 

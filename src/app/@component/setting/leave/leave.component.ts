@@ -9,6 +9,7 @@ import { APIENUM } from 'src/app/@shared/enum';
 })
 export class LeaveComponent implements OnInit {
  Leave:FormGroup;
+ loading2:boolean=false;
   error:any;
   success:any;
   elements = [];
@@ -19,6 +20,7 @@ export class LeaveComponent implements OnInit {
   messages: string;
   maxVisibleItems: number = 8;
   optionsSelect=[];
+  degisnator: any;
   constructor(
 
     private _fb:FormBuilder,
@@ -27,7 +29,7 @@ export class LeaveComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    this.reload();
    this.load();
   }
   load(){
@@ -75,14 +77,17 @@ export class LeaveComponent implements OnInit {
     return this.Leave.get('Gender')as FormControl;
   }
   createLeave(){
+    this.loading2=true;
 
     this.Leave.disable();
     let value = {Status:"Active",...this.Leave.value};
     this.Api.Create(APIENUM.LEAVETYPE,value).subscribe((res:any)=>{
+      this.loading2=false;
       this.success=res.message;
       this.load();
 
    },err=>{
+    this.loading2=false;
      this.error=err.error.message;
      this.Leave.enable();
 
@@ -99,6 +104,20 @@ export class LeaveComponent implements OnInit {
 
    })
 
+  }
+
+
+  reload(){
+    this.Api.Read(APIENUM.DES)
+    .subscribe((res:any)=>{
+      this.loading = false;
+      this.degisnator=res.records;
+
+    },(err:any)=>{
+      this.loading= false;
+      this.messages = err.error.message;
+
+    })
   }
 
 

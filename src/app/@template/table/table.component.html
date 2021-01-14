@@ -1,0 +1,72 @@
+<div class="container mt-3" style="overflow-y: auto" >
+  <div class="row">
+    <div class="col-12">
+      <h3 class="h3-responsive font-weight-bold">
+        <strong *ngIf="caption">
+          {{caption}}
+        </strong>
+      </h3>
+    </div>
+    <div class="col-12" *ngIf="tableShow" >
+      <app-searchbox (messageEmitter)='receiveMessage($event)'></app-searchbox>
+      <!-- <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+      placeholder="&#61442;  Start searching for a Trails"> -->
+
+    </div>
+    <div class="col-12">
+      <div class="table-responsive">
+
+        <table class="table table-striped">
+
+          <thead class="black white-text">
+            <tr>
+              <th *ngFor="let map of columnMaps">{{ map.header }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let record of records | search : searchText  ; let i = index"  [routerLink]="[routePage, records[i][settings[routerId].primaryKey],api,settings[routerId].primaryKey]" >
+              <td *ngFor="let map of columnMaps ">
+                 <span *ngIf="!map.currency && map.primaryKey!='Status'" >
+                  {{ record[map.primaryKey]  }}
+                 </span>
+
+                 <span *ngIf="map.currency" >
+                  {{ record[map.primaryKey]  | currency:'₦':'symbol' }}
+                 </span>
+                 <span *ngIf="map.primaryKey==='Status'" >
+                  <span *ngIf="record[map.primaryKey] ==='Pending'" class="badge badge-warning ml-1 p-2">{{ record[map.primaryKey]  }}</span>
+                  <span *ngIf="record[map.primaryKey] ==='Rejected'" class="badge badge-danger ml-1 p-2">{{ record[map.primaryKey]  }}</span>
+                  <span *ngIf="record[map.primaryKey] ==='Approved'" class="badge badge-success ml-1 p-2">{{ record[map.primaryKey]  }}</span>
+                 </span>
+
+
+                </td>
+          </tr>
+
+          </tbody>
+        </table>
+
+        <!-- <div class="d-flex justify-content-between p-2">
+          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshtable()">
+          </ngb-pagination>
+
+          <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshtable()">
+            <option [ngValue]="2">2 items per page</option>
+            <option [ngValue]="4">4 items per page</option>
+            <option [ngValue]="6">6 items per page</option>
+          </select>
+        </div> -->
+
+      </div>
+      <app-loader *ngIf="loading">
+
+      </app-loader>
+
+
+
+    </div>
+
+
+
+  </div>
+</div>
