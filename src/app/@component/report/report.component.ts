@@ -12,7 +12,7 @@ import swal from 'sweetalert2';
 })
 export class ReportComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
-  elements = []    
+  elements = []
   headElements = ['Employee Name', 'Descriptionzz','Start Date', 'End Date','DateCreated', 'Status'];
   searchText: string = '';
   previous: string;
@@ -20,7 +20,7 @@ export class ReportComponent implements OnInit {
   loading:Boolean=true;
   messages: string;
   maxVisibleItems: number = 8;
-  show: Boolean; 
+  show: Boolean;
   displaySide: Boolean = false;
   Leave:FormGroup;
   error:any;
@@ -67,7 +67,7 @@ export class ReportComponent implements OnInit {
    },err=>{
      this.error=err.error.message;
      this.Leave.enable();
-   
+
 
    },()=>{
      setTimeout(()=>{
@@ -77,15 +77,15 @@ export class ReportComponent implements OnInit {
        this.Leave.enable();
      },900)
 
- 
+
    })
 
   }
 loadEvent(){
     let value = {EmployeeID :  sessionStorage.getItem('EmpID')
-   
+
 }
-this.service.Create(APIENUM.REPORT,value).subscribe((res:any)=>{
+this.service.Read(APIENUM.LEAVEREPORT).subscribe((res:any)=>{
         this.loading = false;
         this.error = false;
         console.log(this.elements);
@@ -118,7 +118,7 @@ this.service.Create(APIENUM.REPORT,value).subscribe((res:any)=>{
 
 //   //login user
 //   let value = {EmployeeID :  sessionStorage.getItem('EmpID')
-   
+
 // }
 //     this.service.Create(APIENUM.REPORT,value).subscribe((res:any)=>{
 //     this.loading = false;
@@ -148,7 +148,7 @@ searchItems() {
 reademployee(el){
   this.displaySide=true;
  this.leave=el;
- 
+
 }
  updateSalary(el){
    console.log(el)
@@ -162,7 +162,7 @@ reademployee(el){
       showConfirmButton: false,
       timer: 3500,
       showCloseButton: true,
-  
+
      })
 
    },err=>{
@@ -174,7 +174,7 @@ reademployee(el){
       title: err.error.message,
       showConfirmButton: true,
       timer: 3500,
-  
+
      })
 
   })
@@ -191,7 +191,7 @@ reademployee(el){
 //     //  this.mdbTable.setDataSource(this.elements);
 //     //  this.elements = this.mdbTable.getDataSource();
 //     //  this.previous = this.mdbTable.getDataSource();
- 
+
 //    })
 //  }
 

@@ -23,18 +23,18 @@
               </div>
               <div class="col-sm-5">
                 <div class="dropdown" mdbDropdown>
-    
+
                   <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
                     mdbWavesEffect>
                     Status
                   </button>
-    
+
                   <div class="dropdown-menu dropdown-primary">
                     <button class="dropdown-item" href="#">All</button>
                     <button class="dropdown-item" href="#">Paid</button>
                     <button class="dropdown-item" href="#">Unpaid</button>
                   </div>
-    
+
                 </div>
               </div>
               <div class="col-sm-2">
@@ -43,11 +43,11 @@
                     mdbWavesEffect>
                     <mdb-icon fas icon="ellipsis-v"></mdb-icon>
                   </a>
-    
+
                   <div class="dropdown-menu dropdown-primary">
                     <a class="dropdown-item" (click)="view()" *ngIf="!show">Show details</a>
                     <a class="dropdown-item" (click)="view()" *ngIf="show">Hide details</a>
-    
+
                     <a class="dropdown-item" href="#">Refresh</a>
                   </div>
                 </div>
@@ -63,8 +63,8 @@
               <thead>
                 <tr>
                    <th>{{headElements[0]}}</th>
-                    <th  style="text-align: right;">{{headElements[1]}}</th>
-                    <th  style="text-align: right;">{{headElements[2]}}</th>
+                    <th  >{{headElements[1]}}</th>
+                    <th  >{{headElements[2]}}</th>
                     <th>{{headElements[3]}}</th>
                     <th>{{headElements[4]}}</th>
                     <th>{{headElements[5]}}</th>
@@ -74,9 +74,9 @@
                     <tr *ngFor="let el of elements">
                       <tr *ngFor="let el of elements; let i = index">
                         <th scope="row" style="cursor: pointer;">{{el.FirstName}} {{el.LastName}}</th>
-                       
-                          <td  style="text-align: right;">{{el.NetSalary  | currency:'₦':'symbol'}}</td>
-                          <td  style="text-align: right;">{{el.LoanRequestAmount   | currency:'₦':'symbol'}}</td>            
+
+                          <td  >{{el.NetSalary  | currency:'₦':'symbol'}}</td>
+                          <td  >{{el.LoanRequestAmount   | currency:'₦':'symbol'}}</td>
                           <td>{{el.Tenor}}</td>
                           <td>{{el.DateCreated | date}}</td>
                           <td>{{el.Status}}</td>
@@ -85,7 +85,7 @@
                             <p *ngIf="reject"  style="color: red;">Rejected</p> -->
                             <div *ngIf="action" id="hover">
                             <button style="padding:0 8px 0 8px; background-color: skyblue;">Loan Action</button>
-                            <div id="popup"> 
+                            <div id="popup">
                               <form class="form" role="form" [formGroup]="loan" >
                                 <div class="form-group">
                                   <div class="comment">
@@ -96,8 +96,8 @@
                                     <div class='col-md-6'><button style="padding:0 8px 0 8px; background-color: red; color:white; cursor: pointer;" (click)="updateSalarys(el.LoanID, 'Rejected')">Reject </button></div>
                                   </div>
                                 </div>
-                              </form>    
-                            </div> 
+                              </form>
+                            </div>
                             </div>
                           </td>
                     </tr>
@@ -120,7 +120,7 @@
                 <mdb-icon fas icon="magic" class="mr-1"></mdb-icon>{{leave.Status}}
               </button>
             </div>
-      
+
                    <ul class="list-group">
                     <li class="list-group-item form-group d-flex justify-content-between align-items-center">
                       Leave ID:
@@ -154,7 +154,7 @@
              <div class="row">
 
              </div>
-          </div>     
+          </div>
      </div>
         </div>
       </div>

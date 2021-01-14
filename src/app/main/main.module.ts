@@ -23,7 +23,7 @@ import { InterceptorServices } from '../@shared/intercept';
 import { UserDashboardComponent } from '../@component/user-dashboard/user-dashboard.component';
 import { UserProfileComponent } from '../@component/user-profile/user-profile.component';
 import { UserPayrollComponent } from '../@component/user-payroll/user-payroll.component';
-import { UserLeaveComponent } from '../@component/user-leave/user-leave.component';
+
 import { UserExpenseComponent } from '../@component/user-expense/user-expense.component';
 import { SharedService } from '../@shared/shared/shared.service';
 import { GeneratePayrollComponent } from '../@component/generate-payroll/generate-payroll.component';
@@ -40,8 +40,26 @@ import { TimelinelistComponent } from '../@component/timelinelist/timelinelist.c
 import { LoanComponent } from '../@component/loan/loan.component';
 import { ReadLoanComponent } from '../@component/read-loan/read-loan.component';
 import { LoanApprovalComponent } from '../@component/loan-approval/loan-approval.component';
+
+import { TableComponent } from '../@template/table/table.component';
+import { SearchboxComponent } from '../@template/searchbox/searchbox.component';
+import { LoaderComponent } from '../@template/loader/loader.component';
+import { SearchPipe } from '../@pipe/search.pipe';
+import { ErrorsComponent } from '../@template/errors/errors.component';
+import { SuccessComponent } from '../@template/success/success.component';
+import { ProcessformComponent } from '../@component/processform/processform.component';
+import { QuestionControlService } from '../@shared/control.service';
+import { BackComponent } from '../@component/back/back.component';
+import { BackDirective } from '../@directive/back.directive';
+import { DynamicFormComponent } from '../@component/dynamic-form/dynamic-form.component';
+import { UserLeaveComponent } from '../@component/LEAVES/user-leave/user-leave.component';
+import { CreateLeaveTabComponent } from '../@component/LEAVES/create-leave-tab/create-leave-tab.component';
+import { LeaveTabComponent } from '../@component/LEAVES/leave-tab/leave-tab.component';
+import { LeaveApprovalTabComponent } from '../@component/LEAVES/leave-approval-tab/leave-approval-tab.component';
+//import { BaseComponent } from '../@component/base/base.component';
+
 @NgModule({
-  declarations: [HomeComponent, DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent, ContactComponent, CreatecontactComponent, UserDashboardComponent, UserProfileComponent, UserPayrollComponent, UserLeaveComponent, UserExpenseComponent, GeneratePayrollComponent, ReportComponent, PayslipComponent, ControlComponent, FinanceComponent, CeoComponent, ApprovalComponent, TrainingComponent, TrainingApprovalComponent, TimelineComponent, TimelinelistComponent, LoanComponent, ReadLoanComponent, LoanApprovalComponent],
+  declarations: [DynamicFormComponent,BackDirective,BackComponent,SuccessComponent,ErrorsComponent,SearchPipe,LoaderComponent,SearchboxComponent,TableComponent,HomeComponent,DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent, ContactComponent, CreatecontactComponent, UserDashboardComponent, UserProfileComponent, UserPayrollComponent, UserLeaveComponent, UserExpenseComponent, GeneratePayrollComponent, ReportComponent, PayslipComponent, ControlComponent, FinanceComponent, CeoComponent, ApprovalComponent, TrainingComponent, TrainingApprovalComponent, TimelineComponent, TimelinelistComponent, LoanComponent, ReadLoanComponent, LoanApprovalComponent, LeaveApprovalTabComponent, LeaveTabComponent, CreateLeaveTabComponent, ProcessformComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
@@ -50,6 +68,7 @@ import { LoanApprovalComponent } from '../@component/loan-approval/loan-approval
   ],
   entryComponents: [AddassetsComponent],
   providers: [ApiserviceService,ToastService,
+    QuestionControlService,
     SharedService,
     {
       provide: HTTP_INTERCEPTORS,

@@ -13,6 +13,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { JoyrideModule } from 'ngx-joyride';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { JoyrideModule } from 'ngx-joyride';
     JoyrideModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgbModule,
 
 
     FormsModule,

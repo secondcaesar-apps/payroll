@@ -16,7 +16,6 @@ import { CreatecontactComponent } from '../@component/createcontact/createcontac
 import { UserDashboardComponent } from '../@component/user-dashboard/user-dashboard.component';
 import { UserExpenseComponent } from '../@component/user-expense/user-expense.component';
 import { UserPayrollComponent } from '../@component/user-payroll/user-payroll.component';
-import { UserLeaveComponent } from '../@component/user-leave/user-leave.component';
 import { UserProfileComponent } from '../@component/user-profile/user-profile.component';
 import { GeneratePayrollComponent } from '../@component/generate-payroll/generate-payroll.component';
 import { ReportComponent } from '../@component/report/report.component';
@@ -29,6 +28,8 @@ import { TrainingComponent } from '../@component/setting/training/training.compo
 import { TrainingApprovalComponent } from '../@component/training-approval/training-approval.component';
 import { LoanComponent } from '../@component/loan/loan.component';
 import { LoanApprovalComponent } from '../@component/loan-approval/loan-approval.component';
+import { ProcessformComponent } from '../@component/processform/processform.component';
+import { UserLeaveComponent } from '../@component/LEAVES/user-leave/user-leave.component';
 const routes: Routes = [
 
     {
@@ -41,7 +42,7 @@ const routes: Routes = [
         { path: 'payroll', component: PayrollComponent },
         { path: 'payroll-reports', component: ReportsalaryComponent },
         { path: 'assets', component: AssetsComponent },
-        { path: 'assets', component: AssetsComponent },
+       
         { path: 'create-employer', component: CreateEmployerComponent },
         { path: 'read-employer', component: ReadOneEmployeeComponent },
         { path: 'contact', component: ContactComponent },
@@ -63,6 +64,7 @@ const routes: Routes = [
         { path: 'yearlyreport', component: TimelinelistComponent },
         { path: 'loan', component: LoanComponent },
         { path: 'loan-approval', component: ReadLoanComponent },
+        { path: 'process/:id/:api/:value', component: ProcessformComponent },
         { path: 'loan-flow', component: LoanApprovalComponent },
         {
           path: 'settings',

@@ -1,0 +1,20 @@
+<button (click)="load()"  type="button" class="float-right reduce btn btn-warning"><mdb-icon fas icon="redo"></mdb-icon> </button>
+
+
+
+<eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Leave Approvals'" [settings]="projectSettings"
+  [routePage]="routePage" [searchText]="searchText" [loading]="loading"
+  [api]="apis"
+  >
+
+
+</eni-table>
+<div class="container">
+  <div *ngIf="error" class=" alert alert-danger text-center" role="alert">
+    {{error}} <a (click)="load()" class="alert-link">Click to retry</a>
+  </div>
+
+</div>
+
+
+

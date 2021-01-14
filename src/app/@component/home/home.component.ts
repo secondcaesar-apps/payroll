@@ -42,7 +42,8 @@ export class HomeComponent implements OnInit {
       {name:'Menu Setup',route:'settings/menu',icon:'fa fa-book fa-2x'},
 
   ]
-  this.approval =[ {name:'Loan Approval',route:'loan-flow',icon:'fa fa-book fa-2x'}, {name:'Leave Approval',route:'report',icon:'fa fa-home fa-2x'},
+  this.approval =[ {name:'Loan Approval',route:'loan-flow',icon:'fa fa-book fa-2x'},
+
   {name:'Payroll',route:'user-payroll',icon:'fa fa-home fa-2x'},
   {name:'Training Approval',route:'training-approval',icon:'fa fa-home fa-2x'},
 ]
@@ -77,6 +78,7 @@ this.settAound= true;
   })
 
     },(err:any)=>{
+      this.loading=false;
       if (err.status === 0 && err.error instanceof ProgressEvent) {
         // A client-side or network error occurred. Handle it accordingly.
         console.log('Client side error:', err.error);
