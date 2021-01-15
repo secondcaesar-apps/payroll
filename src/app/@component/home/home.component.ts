@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   error: string;
 
 
-  constructor(private service:ApiserviceService,private router:Router,private readonly joyrideService: JoyrideService ) { }
+  constructor(private service:ApiserviceService,private router:Router ) { }
 
   ngOnInit() {
   //  this.onClick();
