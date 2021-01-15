@@ -10,7 +10,6 @@
       <thead>
         <tr>
           <th>Employee Name</th>
-          <th>Loan Work flow Setup ID</th>
           <th>PWF Name</th>
           <th>level</th>
           <th>Status</th>
@@ -20,7 +19,6 @@
         <tr *ngFor="let el of elements; let i = index">
           <td data-title="Link">{{el.FirstName}} {{el.LastName}}
           </td>
-          <td data-title="ID">{{el.WorkflowSetupID}}</td>
           <td data-title="Name">{{el.PWFName}}</td>
 
           <td data-title="Link">{{el.level}}
@@ -85,7 +83,7 @@
               
               </select>
             </th>
-            <th> <input formControlName="level" nbInput name="quantity" type="number" class=""></th>
+            <th> <input formControlName="level" nbInput name="quantity" type="number" min="3" max="9" class=""></th>
             <th> 
               <select  formControlName="Status" class="mdb-select md-form colorful-select dropdown-primary">
             

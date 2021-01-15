@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { JoyrideService } from 'ngx-joyride';
+// import { JoyrideService } from 'ngx-joyride';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum';
 
@@ -55,11 +55,11 @@ export class HomeComponent implements OnInit {
     sessionStorage.clear();
     this.router.navigateByUrl('');
   }
-  onClick() {
-    this.joyrideService.startTour(
-      { steps: ['firstStep','dashboard','user-dahboard','user-expense','user-payroll','user-profile','user-leave','employee','assets','payroll','report']} // Your steps order
-    );
-  }
+  // onClick() {
+  //   this.joyrideService.startTour(
+  //     { steps: ['firstStep','dashboard','user-dahboard','user-expense','user-payroll','user-profile','user-leave','employee','assets','payroll','report']} // Your steps order
+  //   );
+  // }
 
   LoadMenu(){
     this.loading=true;
