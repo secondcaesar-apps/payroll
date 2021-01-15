@@ -14,7 +14,7 @@
         </span><a  *ngIf="error" style="color: red;" (click)="read('leavetype')">Retry</a></label>
             <select formControlName="LeaveType"  [ngClass]="{ 'is-invalid': submitted && T.LeaveType.errors }"
               class="browser-default custom-select mb-1">
-              <option disabled value="" selected>Choose Method</option>
+              <option disabled value="" selected>Select  Type</option>
               <option [ngValue]="item.LeaveTypeID"*ngFor="let item of baseItems; let i = index" value="">
                 {{ item.LeaveTypeName }}
               </option>
@@ -68,7 +68,7 @@
             <div *ngIf="loadings" class="spinner-border" role="status">
               <span class="visually-hidden"></span>
             </div>
-            <span *ngIf="!loadings">Quest Loan</span>
+            <span *ngIf="!loadings">Request Loan</span>
 
 
           </button>

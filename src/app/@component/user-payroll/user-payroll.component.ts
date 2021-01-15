@@ -41,7 +41,7 @@ PaymentMethod: string = '';
 PaymentDate: string = '';
 EmployeeStatus: string = '';
 SalarySlipID: string = '';
-EmployeeID: string = ''; 
+EmployeeID: string = '';
 Salaryslip:any;
 error_message: string="";
 errormsg: boolean = false
@@ -81,7 +81,7 @@ constructor(
     //   })
     // )
     let date = new Date().toJSON().slice(0, 10)
-  
+
     this.service.EmployeeSalaryRead({
       EmployeeID:  sessionStorage.getItem('EmpID')
     }, APIENUM.PAYROLLM)
@@ -101,21 +101,21 @@ constructor(
     })
 
   }
-  public captureScreen()    
-  {  
-    var data = document.getElementById('contentToConvert'); 
-    html2canvas(data).then(canvas => {       
-       // Few necessary setting options       
-        var imgWidth = 200;       
-        var pageHeight = 255;     
-        var imgHeight = canvas.height * imgWidth / canvas.width;     
+  public captureScreen()
+  {
+    var data = document.getElementById('contentToConvert');
+    html2canvas(data).then(canvas => {
+       // Few necessary setting options
+        var imgWidth = 200;
+        var pageHeight = 255;
+        var imgHeight = canvas.height * imgWidth / canvas.width;
         var heightLeft = imgHeight;
-        const contentDataURL = canvas.toDataURL('image/png')      
-        let pdf = new jspdf('p', 'mm', 'a4');  // A4 size page of PDF       
-         var position = 0;       
-          pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)     
-          pdf.save('pdf.pdf'); // Generated PDF      
-         });   
+        const contentDataURL = canvas.toDataURL('image/png')
+        let pdf = new jspdf('p', 'mm', 'a4');  // A4 size page of PDF
+         var position = 0;
+          pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+          pdf.save('pdf.pdf'); // Generated PDF
+         });
          }
 
     searchItems() {
