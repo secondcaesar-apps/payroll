@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { JoyrideModule } from 'ngx-joyride';
+// import { JoyrideModule } from 'ngx-joyride';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -20,7 +20,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
   imports: [
     CommonModule,
-    JoyrideModule.forRoot(),
+    // JoyrideModule.forRoot(),
     MDBBootstrapModulesPro.forRoot(),
     NgxSkeletonLoaderModule,
     FormsModule,
@@ -38,7 +38,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ], exports: [
     MDBBootstrapModulesPro,
     AgmCoreModule,
-    JoyrideModule,
     HttpClientModule,
     ReactiveFormsModule,
     NgbModule,

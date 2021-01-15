@@ -47,7 +47,6 @@ export class ApiserviceService {
     return this._http.post(`${this.apiUrl}${type.toString()}/approve.php`, data);
 
   }
-
   Create(type: APIENUM, data: any) {
 
 
@@ -60,15 +59,12 @@ export class ApiserviceService {
     return this._http.post(`${this.apiUrl}${type.toString()}/employeeapprove.php`, data);
 
   }
-
   BLnk(type: APIENUM, data: any) {
 
 
     return this._http.post(`${this.apiUrl}${type.toString()}`, data);
 
   }
-
-
   Login(type: APIENUM, data: any) {
 
 
@@ -76,17 +72,10 @@ export class ApiserviceService {
 
   }
   Update(type: APIENUM, data: any) {
-
     return this._http.post(`${this.apiUrl}${type.toString()}/update.php`, data);
-
   }
-
-
   Read(type: APIENUM|string,value={}) {
-
-
     return this._http.post(`${this.apiUrl}${type.toString()}/read.php`, value);
-
   }
   Special(type: APIENUM|string,value={}) {
 
@@ -234,8 +223,6 @@ export class ApiserviceService {
   App(type: APIENUM, data: any) {
     return this._http.post(`${this.apiUrl}${type.toString()}/approve.php`, data);
   }
-
-
   setUser(resp:any) {
     // sessionStorage.setItem('EmpID', resp.name);
     // sessionStorage.setItem('RoleID', resp.access_token);

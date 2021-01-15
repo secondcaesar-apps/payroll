@@ -42,7 +42,6 @@
     "moment": "^2.24.0",
     "ng-uikit-pro-standard": "file:ng-uikit-pro-standard-8.7.0.tgz",
     "ngx-bootstrap": "^6.2.0",
-    "ngx-joyride": "^2.2.10",
     "ngx-quicklink": "^0.2.6",
     "ngx-skeleton-loader": "^1.2.2",
     "rxjs": "~6.4.0",
