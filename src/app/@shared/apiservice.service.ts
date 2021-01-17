@@ -20,7 +20,7 @@ export class ApiserviceService {
   Approve(type: APIENUM, data: any) {
 
 
-    return this._http.post(this.apiUrl + 'leave/approve.php', data);
+    return this._http.post(`${this.apiUrl}${type.toString()}/approve.php`, data);
 
   }
   Approved(type: APIENUM, data: any) {
@@ -35,7 +35,7 @@ export class ApiserviceService {
     return this._http.post(`${this.apiUrl}${type.toString()}/readbyEmployeeID.php`, data);
 
   }
-  approvetrain(type: APIENUM, data: any) {
+  approvetrain(type: APIENUM|string, data: any) {
 
 
     return this._http.post(`${this.apiUrl}${type.toString()}/approve.php`, data);

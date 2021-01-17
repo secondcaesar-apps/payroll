@@ -22,9 +22,12 @@ export class HomeComponent implements OnInit {
   constructor(private service:ApiserviceService,private router:Router ) { }
 
   ngOnInit() {
-  //  this.onClick();
+  //  this.onClick(); yearlyreport
+  'yearlyreport'
     this.list =[
       {name:'Company',route:'settings/company',icon:'fa fa-home fa-2x'},
+      {name:'Payroll',route:'payroll',icon:'fa fa-home fa-2x'},
+      {name:'Payroll Approval',route:'Approvals',icon:'fa fa-home fa-2x'},
       {name:'Department',route:'settings/department',icon:'fa fa-laptop fa-2x'},
       {name:'Salary-group',route:'settings/salary-group',icon:'fa fa-list fa-2x'},
       {name:'Expense-setup',route:'settings/expense-setup',icon:'fa fa-list fa-2x'},
@@ -35,18 +38,17 @@ export class HomeComponent implements OnInit {
       {name:'Designation',route:'settings/designation',icon:'fa fa-map fa-2x'},
       {name:'Calender',route:'settings/calender',icon:'fa fa-book fa-2x'},
       {name:'Workflow',route:'settings/workflow',icon:'fa fa-book fa-2x'},
+      {name:'report',route:'yearlyreport',icon:'fa fa-book fa-2x'},
 
-      {name:'Loan-Workflow',route:'settings/loan-workflow',icon:'fa fa-book fa-2x'},
-      {name:'Workflow Approval',route:'Approvals',icon:'fa fa-home fa-2x'},
 
       {name:'Menu Setup',route:'settings/menu',icon:'fa fa-book fa-2x'},
 
-  ]
-  this.approval =[ {name:'Loan Approval',route:'loan-flow',icon:'fa fa-book fa-2x'},
+      // {name:'Training Approval',route:'training-approval',icon:'fa fa-home fa-2x'},
 
-  {name:'Payroll',route:'payroll',icon:'fa fa-home fa-2x'},
-  {name:'Training Approval',route:'training-approval',icon:'fa fa-home fa-2x'},
-]
+  ]
+  this.approval =[
+
+  ]
  this.LoadMenu();
   }
 
@@ -67,7 +69,7 @@ export class HomeComponent implements OnInit {
     let MroleID=   sessionStorage.getItem('MRoleID')
 
     this.service.ReadOne(APIENUM.MENUG,{'RoleID':MroleID}).subscribe((res)=>{
-       this.menuArray=res['records'];
+     //  this.menuArray=res['records'];
        this.loading=false;
   this.menuArray.filter((e:any)=>{
 

@@ -1,4 +1,4 @@
-<body   class="black-skin">
+<body class="black-skin">
 
   <header>
 
@@ -20,7 +20,8 @@
             <li routerLink="user-payroll" routerLinkActive="active"><a>
                 Payslip</a></li>
 
-            <li routerLink="loan-approval" routerLinkActive="active"><a> Loan</a></li>
+            <li routerLink="loan-approval" routerLinkActive="active"><a> Request Loan</a></li>
+            <li routerLink="loan-flow" routerLinkActive="active"><a> Loan Approval</a></li>
             <li routerLink="user-leave" routerLinkActive="active"><a> Leave</a></li>
             <!-- <li routerLink="employee" routerLinkActive="active"><a><i class="fa fa-address-book p-2"></i>Employee</a>
             </li> -->
@@ -32,7 +33,7 @@
             <!-- <li routerLink="training" routerLinkActive="active"><a><i class="fa fa-object-group p-2"></i>Training</a></li> -->
 
 
-            <li class="show"><a>Approval</a>
+            <!-- <li class="show"><a>Approval</a>
 
               <ul >
 
@@ -41,7 +42,7 @@
 
 
               </ul>
-            </li>
+            </li> -->
             <!--  <li class="show"><a><i class="fa fa-cog p-2"></i>Settings</a>
 
 
@@ -112,7 +113,7 @@
 
           <li class="nav-item dropdown" dropdown>
             <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-               Profile<span class="caret"></span>
+              Profile<span class="caret"></span>
             </a>
             <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
               <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
@@ -145,20 +146,19 @@
 
 
 
-  <div *ngIf="loading" class="d-flex align-items-center justify-content-center" style="height: 350px">
+<div *ngIf="loading" class="d-flex align-items-center justify-content-center" style="height: 350px">
 
-    Setting Up Menu Listing <mdb-spinner spinnerColor="red"></mdb-spinner>
+  Setting Up Menu Listing <mdb-spinner spinnerColor="red"></mdb-spinner>
 
-  </div>
-  <div *ngIf="error" class="d-flex align-items-center justify-content-center" style="height: 350px">
+</div>
+<div *ngIf="error" class="d-flex align-items-center justify-content-center" style="height: 350px">
 
-    <div *ngIf="error" class="alert alert-danger text-center" role="alert">
-      {{error}} <a (click)="LoadMenu()" class="alert-link">Click to retry</a>
+  <div *ngIf="error" class="alert alert-danger text-center" role="alert">
+    {{error}} <a (click)="LoadMenu()" class="alert-link">Click to retry</a>
 
-      <div class="spinner-grow text-danger" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
+    <div class="spinner-grow text-danger" role="status">
+      <span class="sr-only">Loading...</span>
     </div>
-
   </div>
 
+</div>

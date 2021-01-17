@@ -1,13 +1,6 @@
 <div class="container">
   <app-back></app-back>
 
-  <app-errors [error]="error">
-
-  </app-errors>
-
-  <app-success [success]="success">
-
-  </app-success>
 
 
   <app-loader *ngIf="loading">
@@ -24,7 +17,7 @@
       </div>
 
 
-      <div class="form-row mt-2" *ngIf="show">
+      <div class="form-row mt-2" >
         <div *ngIf="loading3" class="spinner-border" role="status">
           <span class="visually-hidden"></span>
         </div>
@@ -38,13 +31,21 @@
             type="submit">Reject</button>
 
         </div>
-        <div class="col-9">
+        <div class="col-8">
 
         </div>
 
       </div>
 
     </form>
+    <app-errors [error]="error">
+
+    </app-errors>
+
+    <app-success [success]="success">
+
+    </app-success>
+
 
     <!-- <div *ngIf="payLoad" class="form-row">
       <strong>Saved the following values</strong><br>{{payLoad}}
