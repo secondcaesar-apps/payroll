@@ -235,7 +235,7 @@ if(res['records'][0]){
 
       setTimeout(()=>{
        this.success="";
-       this.loading3= false;
+
        this.goBack();
 
      },2000)
