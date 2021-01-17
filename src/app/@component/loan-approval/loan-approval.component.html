@@ -1,15 +1,10 @@
-
+<!--
     <div class="padding">
       <div class="header">
         <div class="row">
           <div class="col-sm-4">
             <div class="form-group">
-              <!-- <button (click)="generatePayroll()" mdbBtn type="button" color="success" mdbWavesEffect>
-                <mdb-icon fab icon="google-play" class="space"></mdb-icon>Generate
-              </button> -->
-              <!-- <button mdbBtn type="button" (click)="newemployee()" color="default" mdbWavesEffect>
-                      <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
-                    </button> -->
+
                     <h5>Loan Approval</h5>
             </div>
           </div>
@@ -81,8 +76,7 @@
                           <td>{{el.DateCreated | date}}</td>
                           <td>{{el.Status}}</td>
                           <td>
-                            <!-- <p *ngIf="approve" style="color: rgb(110, 184, 0);">Approved</p>
-                            <p *ngIf="reject"  style="color: red;">Rejected</p> -->
+
                             <div *ngIf="action" id="hover">
                             <button style="padding:0 8px 0 8px; background-color: skyblue;">Loan Action</button>
                             <div id="popup">
@@ -114,41 +108,7 @@
 
             <p *ngIf="!displaySide">Select a row to view it's details here</p>
           <div class="pre-body" *ngIf="displaySide">
-            <!-- <div class='row'>
-              <p style="font-size: large;">Leave Info</p>
-              <button mdbBtn type="button" color="primary" mdbWavesEffect>
-                <mdb-icon fas icon="magic" class="mr-1"></mdb-icon>{{leave.Status}}
-              </button>
-            </div>
 
-                   <ul class="list-group">
-                    <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                      Leave ID:
-                      {{leave.LeaveID}}
-                    </li>
-                    <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                      Employee ID:
-                      {{leave.EmployeeID}}
-                    </li>
-                    <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                      Reason:
-                      {{leave.Reason}}
-                    </li>
-                    <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                      StartDate:
-                      {{leave.StartDate}}
-                    </li>
-                    <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                      EndDate:
-                    {{leave.EndDate}}
-                      </li>
-                      <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                        Status:
-                        {{leave.Status}}
-                      </li>
-                  </ul>
-                   <button type="button" (click)="updateSalary('Approved')" mdbBtn color="primary" mdbWavesEffect>Approve</button>
-                 <button type="button"(click)="updateSalary('Rejected')"  mdbBtn color="danger" mdbWavesEffect>Reject</button> -->
       </div>
           <div class="body">
              <div class="row">
@@ -174,34 +134,35 @@
           </button>
           <div class="modal-body">
             <div class="padding">
-      <!-- <ul class="list-group">
-                    <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                      Leave ID:
-                      {{leave.LeaveID}}
-                    </li>
-                    <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                      Employee ID:
-                      {{leave.EmployeeID}}
-                    </li>
-                    <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                      Reason:
-                      {{leave.Reason}}
-                    </li>
-                    <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                      StartDate:
-                      {{leave.StartDate}}
-                    </li>
-                    <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                      EndDate:
-                    {{leave.EndDate}}
-                      </li>
-                      <li class="list-group-item form-group d-flex justify-content-between align-items-center">
-                        Status:
-                        {{leave.Status}}
-                      </li>
-                  </ul> -->
+
             </div>
           </div>
         </div>
       </div>
+    </div> -->
+<div class="container">
+
+
+  <button (click)="load()"  type="button" class="float-right reduce btn btn-warning"><mdb-icon fas icon="redo"></mdb-icon> </button>
+
+
+
+  <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Loan Approvals'" [settings]="projectSettings"
+    [routePage]="routePage" [searchText]="searchText" [loading]="loading"
+    [api]="apis"
+    >
+
+
+  </eni-table>
+  <div class="container">
+    <div *ngIf="error" class=" alert alert-danger text-center" role="alert">
+      {{error}} <a (click)="load()" class="alert-link">Click to retry</a>
     </div>
+
+  </div>
+
+
+</div>
+
+
+

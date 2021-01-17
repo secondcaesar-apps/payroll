@@ -37,6 +37,13 @@
                   <span *ngIf="record[map.primaryKey] ==='Pending'" class="badge badge-warning ml-1 p-2">{{ record[map.primaryKey]  }}</span>
                   <span *ngIf="record[map.primaryKey] ==='Rejected'" class="badge badge-danger ml-1 p-2">{{ record[map.primaryKey]  }}</span>
                   <span *ngIf="record[map.primaryKey] ==='Approved'" class="badge badge-success ml-1 p-2">{{ record[map.primaryKey]  }}</span>
+
+                  <span *ngIf="record[map.primaryKey] ==='Generated'" class="badge badge-info ml-1 p-2">{{ record[map.primaryKey]  }}</span>
+                  <span *ngIf="record[map.primaryKey] ==='Updated'" class="badge badge-light ml-1 p-2">{{ record[map.primaryKey]  }}</span>
+                  <span *ngIf="record[map.primaryKey] ==='Deleted'" class="badge badge-danger ml-1 p-2">{{ record[map.primaryKey]  }}</span>
+
+
+                  <span *ngIf="record[map.primaryKey] ==='Proccessing'" class="badge badge-secondary ml-1 p-2">{{ record[map.primaryKey]  }}</span>
                  </span>
 
 

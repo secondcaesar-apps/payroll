@@ -6,6 +6,7 @@ import { QuestionControlService } from 'src/app/@shared/control.service';
 import { QuestionBase } from 'src/app/models/edit-base';
 import { TextboxQuestion } from 'src/app/models/edit-textbox';
 import { Location } from '@angular/common';
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-processform',
   templateUrl: './processform.component.html',
@@ -115,7 +116,7 @@ if(res['records'][0]){
           label: key,
           controlType: 'textbox',
           order: index,
-          value: value[key],
+          value: value[key]==null?'No value':value[key],
           required: true,
 
         }))
@@ -124,7 +125,7 @@ if(res['records'][0]){
       //this.myform
       this.loading=false;
       this.form = this.qcs.toFormGroup(this.questions);
-      if(this.form.value.Status=='Approved'|| this.form.value.Status=='Rejected'){
+      if(this.form.value.Status=='Rejected'){
   this.show=false;
       }else{
         this.show=true;
@@ -143,6 +144,10 @@ if(res['records'][0]){
         this.error = err.error.message;
       }
 
+      setTimeout(()=>{
+        this.error ='';
+      },2000)
+
 
 
 
@@ -154,41 +159,62 @@ if(res['records'][0]){
 
 
 
-  updateLeaveStatus(el){
-
-    this.loading3= true;
-
-    let value={[this.value]: this.id, Status:el};
-    this.api.Approve(this.apis,value).subscribe((res:any)=>{
-      this.loading3= false;
-     this.success=res.message;
+  async updateLeaveStatus(el){
 
 
-     setTimeout(()=>{
-      this.success="";
-      this.goBack();
-    },2000)
+    var value:any={[this.value]: this.id, Status:el};
+    if(this.value==='LoanID'){
 
-    },err => {
+    await swal.fire({
 
+  title: 'Enter Remark',
+  input: 'text',
 
-      this.loading3= false;
+  showCancelButton: true,
+  showCloseButton: true,
+  onClose:()=>{
+    swal.close();
+    console.log('close')
 
-      if (err.status === 0 && err.error instanceof ProgressEvent) {
-        // A client-side or network error occurred. Handle it accordingly.
-
-        this.error = 'Client side error:Please check your internet';
-      } else {
-        this.error = err.error.message;
-      }
-      setTimeout(()=>{
-        this.error="";
-      },2000)
+  },
 
 
+  inputValidator: (value) => {
+    if (!value) {
+      return 'You need to write something!'
+    }
+  }
+
+
+
+ }).then((result)=>{
+
+  if (result.value) {
+
+   value.Note=result.value;
+   this.processUpate(value);
+
+
+  } else {
+    // handle cancel
+    console.log(console.log('close'));
+  }
+ })
+
+//  if (Notes) {
+//  value.Note=Notes;
+// }
+
+
+
+    }else{
+
+      this.processUpate(value);
 
     }
-   )
+
+
+
 
 
 
@@ -198,5 +224,49 @@ if(res['records'][0]){
 
   goBack() {
     this.location.back();
+  }
+
+  processUpate(value){
+    this.loading3= true;
+    this.api.approvetrain(this.apis,value).subscribe((res:any)=>{
+
+      this.success=res.message;
+
+
+      setTimeout(()=>{
+       this.success="";
+       this.loading3= false;
+       this.goBack();
+
+     },2000)
+
+     },err => {
+
+
+
+
+       this.loading3= false;
+
+       if (err.status === 0 && err.error instanceof ProgressEvent) {
+         // A client-side or network error occurred. Handle it accordingly.
+
+         this.error = 'Client side error:Please check your internet';
+       } else {
+         this.error = err.error.message;
+       }
+       setTimeout(()=>{
+         this.error="";
+       },2000)
+
+
+
+     }
+    )
+
+
+
+
+
+
   }
 }
