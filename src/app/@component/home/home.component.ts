@@ -69,9 +69,12 @@ export class HomeComponent implements OnInit {
     let MroleID=   sessionStorage.getItem('MRoleID')
 
     this.service.ReadOne(APIENUM.MENUG,{'RoleID':MroleID}).subscribe((res)=>{
-     //  this.menuArray=res['records'];
+    // this.menuArray=res['records'];
+ console.log( res['records']);
+
        this.loading=false;
-  this.menuArray.filter((e:any)=>{
+       res['records'].filter((e:any)=>{
+    console.log(e);
 
 
 if( e['MenuName']=='Settings'){
