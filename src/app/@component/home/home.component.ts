@@ -19,9 +19,13 @@ export class HomeComponent implements OnInit {
   error: string;
 
 
-  constructor(private service:ApiserviceService,private router:Router ) { }
+  constructor(private service:ApiserviceService,private router:Router ) {
+    this.LoadMenu();
+   }
 
   ngOnInit() {
+
+    this.LoadMenu()
   //  this.onClick(); yearlyreport
   'yearlyreport'
     this.list =[
@@ -49,7 +53,7 @@ export class HomeComponent implements OnInit {
   this.approval =[
 
   ]
- this.LoadMenu();
+
   }
 
 
@@ -70,11 +74,11 @@ export class HomeComponent implements OnInit {
 
     this.service.ReadOne(APIENUM.MENUG,{'RoleID':MroleID}).subscribe((res)=>{
     // this.menuArray=res['records'];
- console.log( res['records']);
+
 
        this.loading=false;
        res['records'].filter((e:any)=>{
-    console.log(e);
+
 
 
 if( e['MenuName']=='Settings'){
