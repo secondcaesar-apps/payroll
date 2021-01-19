@@ -1,0 +1,10 @@
+<div class="">
+
+  <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Monthly Payroll Report'" [settings]="projectSettings"
+  [routePage]="routePage" [searchText]="''">
+</eni-table>
+
+</div>
+<app-loader *ngIf="loading">
+
+</app-loader>

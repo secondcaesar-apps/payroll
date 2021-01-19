@@ -27,7 +27,8 @@
             <tr *ngFor="let record of records | search : searchText  ; let i = index"  [routerLink]="[routePage, records[i][settings[routerId].primaryKey],api,settings[routerId].primaryKey]" >
               <td *ngFor="let map of columnMaps ">
                  <span *ngIf="!map.currency && map.primaryKey!='Status'" >
-                  {{ record[map.primaryKey]  }}
+
+                  <span>{{ record[map.primaryKey]   }}</span>
                  </span>
 
                  <span *ngIf="map.currency" >

@@ -62,13 +62,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let el of elements; let i = index">
-                    <td (click)="openDetails(el)" style="cursor: pointer;">{{el.Month}}</td>
-                    <td (click)="openDetails(el)" style="cursor: pointer;">{{el.TotalAmount | currency:'₦':'symbol'}}</td>
-                    <td (click)="openDetails(el)" style="cursor: pointer;">{{el.TotalCount}}</td>
-                    <td (click)="openDetails(el)" style="cursor: pointer;">{{el.PWFName}}</td>
-                    <td (click)="openDetails(el)" style="cursor: pointer;">{{el.LatestActor}}</td>
-                    <td>{{el.Status}}</td>
+                  <tr *ngFor="let el of elements; let i = index" >
+                    <td  (click)="route(el)"  style="cursor: pointer;">{{el.Month}}</td>
+                    <td  (click)="route(el)"  style="cursor: pointer;">{{el.TotalAmount | currency:'₦':'symbol'}}</td>
+                    <td  (click)="route(el)"  style="cursor: pointer;">{{el.TotalCount}}</td>
+                    <td  (click)="route(el)"  style="cursor: pointer;">{{el.PWFName}}</td>
+                    <td  (click)="route(el)"  style="cursor: pointer;">{{el.LatestActor}}</td>
+                    <td  (click)="route(el)">{{el.Status}}</td>
                 </tbody>
               </table>
               <div *ngIf="message" style="padding-left: 40%;">
