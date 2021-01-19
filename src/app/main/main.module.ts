@@ -56,10 +56,11 @@ import { UserLeaveComponent } from '../@component/LEAVES/user-leave/user-leave.c
 import { CreateLeaveTabComponent } from '../@component/LEAVES/create-leave-tab/create-leave-tab.component';
 import { LeaveTabComponent } from '../@component/LEAVES/leave-tab/leave-tab.component';
 import { LeaveApprovalTabComponent } from '../@component/LEAVES/leave-approval-tab/leave-approval-tab.component';
+import { MreportComponent } from '../@component/mreport/mreport.component';
 //import { BaseComponent } from '../@component/base/base.component';
 
 @NgModule({
-  declarations: [DynamicFormComponent,BackDirective,BackComponent,SuccessComponent,ErrorsComponent,SearchPipe,LoaderComponent,SearchboxComponent,TableComponent,HomeComponent,DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent, ContactComponent, CreatecontactComponent, UserDashboardComponent, UserProfileComponent, UserPayrollComponent, UserLeaveComponent, UserExpenseComponent, GeneratePayrollComponent, ReportComponent, PayslipComponent, ControlComponent, FinanceComponent, CeoComponent, ApprovalComponent, TrainingComponent, TrainingApprovalComponent, TimelineComponent, TimelinelistComponent, LoanComponent, ReadLoanComponent, LoanApprovalComponent, LeaveApprovalTabComponent, LeaveTabComponent, CreateLeaveTabComponent, ProcessformComponent],
+  declarations: [DynamicFormComponent,BackDirective,BackComponent,SuccessComponent,ErrorsComponent,SearchPipe,LoaderComponent,SearchboxComponent,TableComponent,HomeComponent,DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent, ContactComponent, CreatecontactComponent, UserDashboardComponent, UserProfileComponent, UserPayrollComponent, UserLeaveComponent, UserExpenseComponent, GeneratePayrollComponent, ReportComponent, PayslipComponent, ControlComponent, FinanceComponent, CeoComponent, ApprovalComponent, TrainingComponent, TrainingApprovalComponent, TimelineComponent, TimelinelistComponent, LoanComponent, ReadLoanComponent, LoanApprovalComponent, LeaveApprovalTabComponent, LeaveTabComponent, CreateLeaveTabComponent, ProcessformComponent, MreportComponent],
   imports: [
     CommonModule,
     MainRoutingModule,

@@ -30,6 +30,7 @@ import { LoanComponent } from '../@component/loan/loan.component';
 import { LoanApprovalComponent } from '../@component/loan-approval/loan-approval.component';
 import { ProcessformComponent } from '../@component/processform/processform.component';
 import { UserLeaveComponent } from '../@component/LEAVES/user-leave/user-leave.component';
+import { MreportComponent } from '../@component/mreport/mreport.component';
 const routes: Routes = [
 
     {
@@ -42,7 +43,7 @@ const routes: Routes = [
         { path: 'payroll', component: PayrollComponent },
         { path: 'payroll-reports', component: ReportsalaryComponent },
         { path: 'assets', component: AssetsComponent },
-       
+
         { path: 'create-employer', component: CreateEmployerComponent },
         { path: 'read-employer', component: ReadOneEmployeeComponent },
         { path: 'contact', component: ContactComponent },
@@ -66,6 +67,7 @@ const routes: Routes = [
         { path: 'loan-approval', component: ReadLoanComponent },
         { path: 'process/:id/:api/:value', component: ProcessformComponent },
         { path: 'loan-flow', component: LoanApprovalComponent },
+        { path: 'mreport/:id', component: MreportComponent },
         {
           path: 'settings',
           loadChildren: () => import('../setting/setting.module').then(m => m.SettingModule)
@@ -74,7 +76,7 @@ const routes: Routes = [
       ]
   },
 ]
-
+//MreportComponent
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

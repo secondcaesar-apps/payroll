@@ -21,7 +21,7 @@ export class TimelinelistComponent implements OnInit {
   success: any;
   elements = [];
   gender = [];
-  myForm1: FormGroup; 
+  myForm1: FormGroup;
   date: string = '';
   headElements = [ 'Month','Total Salary','Total No of employees','Designation','Employee Name','Status'];
   public modalRef: MDBModalRef
@@ -34,7 +34,7 @@ export class TimelinelistComponent implements OnInit {
   loadings: Boolean = true;
   messagess: string;
   maxVisibleItems: number = 8;
-  show: Boolean; 
+  show: Boolean;
   displaySide: Boolean = false;
   statusValue: string  = '';
   constructor(
@@ -44,7 +44,7 @@ export class TimelinelistComponent implements OnInit {
     private service: ApiserviceService,
     private router: Router,
     ) {}
-    
+
     @HostListener('input') oninput() {
       this.searchItems();
   }
@@ -92,7 +92,7 @@ let value = {
   }
   searchItems() {
     const prev = this.mdbTable.getDataSource();
-    
+
     if (this.searchText) {
       this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
       this.mdbTable.setDataSource(prev);
@@ -167,10 +167,7 @@ let value = {
     this.show = !this.show;
   }
 openDetails(el){
-  if(this.show){
-    this.displaySide = true;
-  } 
-  this.statusValue = el.Status;
+
 
      console.log(el);
 }
@@ -194,6 +191,26 @@ hitApi() {
           this.message = true;
           this.elements = [];
         })
-    }     
+    }
+
+    route(item){
+
+
+      var d = new Date().getFullYear().toString();
+       var years=this.myForm1.value['Year'].split('-')[0];
+
+let values=years==''?this.getMonthFromString(item.Month,d):this.myForm1.value['Year'];
+
+  this.router.navigate(['main/mreport/'+values]);
+
+
+    }
+
+     getMonthFromString(mon,year){
+
+      var months =  new Date(Date.parse(mon+1 +year)).getMonth()+1;
+
+      return year +"-"+  months  +"-"+"24";
+   }
 
 }
