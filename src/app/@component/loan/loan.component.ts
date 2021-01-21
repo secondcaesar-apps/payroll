@@ -50,6 +50,7 @@ export class LoanComponent implements OnInit {
   employee:FormGroup;
   location:any;
   role:any;
+  strUser: string =sessionStorage.getItem('EmpID');
   department:any;
   employees:any;
   designation:any;
@@ -87,7 +88,10 @@ export class LoanComponent implements OnInit {
     })
 
 
-    this.Api.ReadOne(APIENUM.EMP, data)
+    this.Api.ReadOne(APIENUM.EMP, {
+      EmployeeID: this.strUser
+  
+  })
     .subscribe((res:any)=>{
       this.Guarantor=res.records[0];
       this.Gname= this.Guarantor.FirstName +' '+ this.Guarantor.LastName
@@ -124,13 +128,13 @@ export class LoanComponent implements OnInit {
   }
   onFileChange(evt:any){
     const target: any = (evt.target);
-  var strUser = target.options[target.selectedIndex].value;
-
-  let data = {
-    EmployeeID: strUser
+  this.strUser = target.options[target.selectedIndex].value.split(': ')[1];
+console.log(this.strUser);
+let datas = {
+  EmployeeID: this.strUser
 
 }
-  this.Api.ReadOne(APIENUM.EMP, data)
+  this.Api.ReadOne(APIENUM.EMP, datas)
   .subscribe((res:any)=>{
     this.Guarantor=res.records[0];
     console.log(this.Guarantor)
