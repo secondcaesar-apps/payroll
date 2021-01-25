@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   'yearlyreport'
     this.list =[
       {name:'Company',route:'settings/company',icon:'fa fa-home fa-2x'},
+      {name:'Employee',route:'employee',icon:'fa fa-home fa-2x'},
       {name:'Payroll',route:'payroll',icon:'fa fa-home fa-2x'},
       {name:'Payroll Approval',route:'Approvals',icon:'fa fa-home fa-2x'},
       {name:'Department',route:'settings/department',icon:'fa fa-laptop fa-2x'},

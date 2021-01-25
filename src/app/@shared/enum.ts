@@ -36,7 +36,7 @@ export enum APIENUM{
     PAYROLLM='salaryslip',
     WORKFLOWSETUP='workflowsetup',
     LOANWORKFLOWSETUP='loanworkflowsetup',
-    CHECK='salaryslip/checkmonth'
+    CHECK='salaryslip/checkmonth.php'
 }
 
 export enum UType{
