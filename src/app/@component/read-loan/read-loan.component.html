@@ -58,8 +58,8 @@
               <th aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[0]">
                 {{headElements[0] | titlecase}}<mdb-icon fas icon="sort"></mdb-icon>
               </th>
-              <th style="text-align: right; cursor: pointer;">{{headElements[1]}}</th>
-              <th style="text-align: right; cursor: pointer;">{{headElements[2]}}</th>
+              <th >{{headElements[1]}}</th>
+              <th >{{headElements[2]}}</th>
               <th>{{headElements[3]}}</th>
               <th>{{headElements[4]}}</th>
             </tr>
@@ -67,9 +67,9 @@
           <tbody>
             <tr *ngFor="let el of elements; let i = index">
             <th scope="row" style="cursor: pointer;">{{el.FirstName}} {{el.LastName}}</th>
-           
-              <td  style="text-align: right;">{{el.NetSalary  | currency:'₦':'symbol'}}</td>
-              <td>{{el.LoanRequestAmount   | currency:'₦':'symbol'}}</td>            
+
+              <td >{{el.NetSalary  | currency:'₦':'symbol'}}</td>
+              <td>{{el.LoanRequestAmount   | currency:'₦':'symbol'}}</td>
               <td>{{el.Tenor}}</td>
               <td>{{el.DateCreated | date}}</td>
               <td>{{el.Status}}</td>
