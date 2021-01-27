@@ -36,9 +36,9 @@ TotalEarnings: number = 0;
   ) { }
 
   ngOnInit() {
-  
+
     if (this.shared.getInfo().value === null){
-      this.router.navigate(['/main/payroll']);
+      this.router.navigate(['/main/user-payroll']);
     } else{
       this.element = this.shared.getInfo().value
       this.service.ReadOne(APIENUM.PAYROLL, {
@@ -59,7 +59,7 @@ TotalEarnings: number = 0;
             this.TotalDeductions = parseInt(element.Amount) + this.TotalDeductions;
           }
         });
-        this.error_message = ""; 
+        this.error_message = "";
         this.errormsg = false;
       },(err: any) => {
         this.Salaryslip =[];
@@ -68,21 +68,21 @@ TotalEarnings: number = 0;
       })
     }
   }
-  public captureScreen()    
-  {  
-    var data = document.getElementById('contentToConvert'); 
-    html2canvas(data).then(canvas => {       
-       // Few necessary setting options       
-        var imgWidth = 220;       
-        var pageHeight = 255;     
-        var imgHeight = canvas.height * imgWidth / canvas.width;     
+  public captureScreen()
+  {
+    var data = document.getElementById('contentToConvert');
+    html2canvas(data,{useCORS: true}).then(canvas => {
+       // Few necessary setting options
+        var imgWidth = 220;
+        var pageHeight = 255;
+        var imgHeight = canvas.height * imgWidth / canvas.width;
         var heightLeft = imgHeight;
-        const contentDataURL = canvas.toDataURL('image/png')      
-        let pdf = new jspdf('p', 'mm', 'a4');  // A4 size page of PDF       
-         var position = 0;       
-          pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)     
-          pdf.save('pdf.pdf'); // Generated PDF      
-         });   
+        const contentDataURL = canvas.toDataURL('image/png')
+        let pdf = new jspdf('p', 'mm', 'a4');  // A4 size page of PDF
+         var position = 0;
+          pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+          pdf.save('pdf.pdf'); // Generated PDF
+         });
          }
          clculate(amount1, amount2){
           return amount1 - amount2

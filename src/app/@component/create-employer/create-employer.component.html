@@ -2,53 +2,53 @@
 
  <div class="padding">
   <div class="header row">
-    <div class="col-8"> 
+    <div class="col-8">
       <button mdbBtn type="button" (click)="back()"color="success" mdbWavesEffect>
         <mdb-icon fas icon="arrow-left" class="mr-1"></mdb-icon>Back
       </button>
     </div>
 </div>
-     <form [formGroup]="Employee"> 
+     <form [formGroup]="Employee">
    <div class="body">
-    <div *ngIf="success" class="alert alert-success col-12" role="alert">
-      {{success}}
-    </div>
-    <div *ngIf="error" class="alert alert-danger col-12" role="alert">
-     {{error}}
-    </div> 
+
      <div class="sectionA row">
-       <div class="col-8">    
+       <div class="col-8">
        <mdb-card>
            <div class="alert alert-primary" role="alert">
              <mdb-icon fas icon="info-circle"></mdb-icon> Basic Info
              </div>
            <mdb-card-body>
                <div class="form-row">
-               
+
                  <div class="form-group col-md-6">
                    <label for="inputEmail4">First Name</label>
                    <input mdbInput type="email" class="form-control" formControlName="FirstName" id="inputEmail4">
                  </div>
-               
+
                  <div class="form-group col-md-6">
                    <label for="inputPassword4">Last Name</label>
                    <input mdbInput type="text" formControlName="LastName" class="form-control" id="inputPassword4">
                  </div>
                </div>
                <div class="form-row">
-               
+
                    <div class="form-group col-md-6">
                      <label for="inputEmail4">Email</label>
                      <input mdbInput formControlName="Email" type="email" class="form-control" id="inputEmail4">
                    </div>
-                 
+
                    <div class="form-group col-md-6">
                        <label for="inputEmail4">Gender</label>
-                       <mdb-select formControlName="Gender"  [options]="optionsSelect" placeholder="Choose your Gender"></mdb-select>
+                       <mdb-select formControlName="Gender" class="form-control"  [options]="optionsSelect" placeholder="Choose your Gender"></mdb-select>
                    </div>
+
+                   <div class="form-group col-md-12">
+                    <label for="inputEmail4">DOB</label>
+                     <input class="form-control" type="date" formControlName="DOB"  />
+                     </div>
                  </div>
-                 <mdb-date-picker name="mydate" formControlName="DOB" [options]="myDatePickerOptions" [placeholder]="'Date of Birth'"
-                 required></mdb-date-picker>
+                 <!-- <mdb-date-picker name="mydate" formControlName="DOB" [options]="myDatePickerOptions" [placeholder]="'Date of Birth'"
+                 required></mdb-date-picker> -->
            </mdb-card-body>
        </mdb-card>
        </div>
@@ -67,98 +67,109 @@
        </div>
      </div>
      <div class="sectionB row">
-         <div class="col-12"> 
+         <div class="col-12">
              <mdb-card>
                  <div class="alert alert-danger" role="alert">
                      <mdb-icon fas icon="university"></mdb-icon> Company Relations
                  </div>
-                 <mdb-card-body>      
+                 <mdb-card-body>
                      <div class="form-row">
-                     
+
                        <div class="form-group col-md-6">
                          <label for="inputEmail4">Department</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
                          <select  formControlName="Department" class="browser-default custom-select">
-       
+
                           <option *ngFor="let item of department" [ngValue]="item.DepartmentID">{{item.DepartmentName}}</option>
-                        
+
                         </select>
                        </div>
-                     
+
                        <div class="form-group col-md-6">
                         <div class="row">
                           <div class="col-7">
                          <label for="inputPassword4">Designation</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
                          <select  formControlName="Designation" class="browser-default custom-select">
-      
+
                           <option *ngFor="let item of designation" [ngValue]="item.DesignationID">{{item.DesignationName}}</option>
-                        
+
                         </select>
                           </div>
                           <div class="col-5">
                             <label for="inputPassword4">Salary Group</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
                             <select  formControlName="SalaryGroup" class="browser-default custom-select">
-                          
+
                               <option *ngFor="let item of salarygroup" [ngValue]="item.SalaryGroupID">{{item.SalaryGroupName}}</option>
-                            
+
                             </select>
-                              </div> 
+                              </div>
                           </div>
                         </div>
                        </div>
                      <div class="form-row">
-                     
+
                          <div class="form-group col-md-6">
                            <label for="inputEmail4">Location</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
                            <select  formControlName="Location" class="browser-default custom-select">
 
                             <option *ngFor="let item of location" [ngValue]="item.LocationsID">{{item.LocationsName}}</option>
-                            
+
                             </select>
                          </div>
-                       
+
                          <div class="form-group col-md-6">
                            <div class="row">
                              <div class="col-7">
                                  <label for="inputEmail4">Reports to</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
                                  <select  formControlName="ReportsTO" class="browser-default custom-select">
-        
-                                  <option *ngFor="let item of employee" [ngValue]="item.EmployeeID">{{item.EmployeeID}}</option>
-                                
+
+                                  <option *ngFor="let item of employee" [ngValue]="item.EmployeeID">{{item.LastName}} {{item.FirstName}}</option>
+
                                 </select>
                              </div>
                              <div class="col-5">
                               <label for="inputEmail4">Role</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
                               <select  formControlName="Role" class="browser-default custom-select">
-                                
+
                                 <option *ngFor="let item of role" [ngValue]="item.RoleID">{{item.RoleName}}</option>
-                              
+
                               </select>
-                                 </div> 
+                                 </div>
                              </div>
                            </div>
-                         </div>  
+                         </div>
                  </mdb-card-body>
              </mdb-card>
          </div>
      </div>
    </div>
      </form>
+
+     <div *ngIf="success" class="alert alert-success col-12" role="alert">
+      {{success}}
+    </div>
+    <div *ngIf="error" class="alert alert-danger col-12" role="alert">
+     {{error}}
+    </div>
      <div class='footer'>
       <div class="row">
           <div class="col-6">
             <div class="float">
               <button mdbBtn type="button" (click)="createEmployee()" color="info" mdbWavesEffect>
-                Create
+
+                <span *ngIf="!loading" >Create</span>
+
+                <div *ngIf="loading"  class="spinner-grow text-danger" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
               </button>
             </div>
             </div>
               <div class="col-6">
-              <button mdbBtn type="button" color="danger" mdbWavesEffect>
-                Cancel
-              </button>       
+
               </div>
       </div>
+
+
   </div>
 
  </div>
- 

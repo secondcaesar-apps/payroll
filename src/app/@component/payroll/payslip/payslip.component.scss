@@ -3,3 +3,6 @@
   border-top: 1px solid rgba(229, 220, 220, 005);
   padding: 30px;
 }
+img {
+  -webkit-print-color-adjust: exact !important;
+}
