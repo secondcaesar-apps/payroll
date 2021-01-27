@@ -26,13 +26,16 @@
           <tbody>
             <tr *ngFor="let record of records | search : searchText  ; let i = index"  [routerLink]="[routePage, records[i][settings[routerId].primaryKey],api,settings[routerId].primaryKey]" >
               <td *ngFor="let map of columnMaps ">
-                 <span *ngIf="!map.currency && map.primaryKey!='Status'" >
+                 <span *ngIf=" !map.currency && map.primaryKey!='Status' && !map.date"   >
 
                   <span>{{ record[map.primaryKey]   }}</span>
                  </span>
 
                  <span *ngIf="map.currency" >
                   {{ record[map.primaryKey]  | currency:'₦':'symbol' }}
+                 </span>
+                 <span *ngIf="map.date" >
+                  {{ getDateTime(record[map.primaryKey]) }}
                  </span>
                  <span *ngIf="map.primaryKey==='Status'" >
                   <span *ngIf="record[map.primaryKey] ==='Pending'" class="badge badge-warning ml-1 p-2">{{ record[map.primaryKey]  }}</span>

@@ -57,6 +57,14 @@ export class LoanApprovalComponent extends BaseComponent implements OnInit {
 
     },
 
+    {
+
+      primaryKey:"DateCreated",
+      header:"Date",
+      date:true
+
+    },
+
 
 
     {
