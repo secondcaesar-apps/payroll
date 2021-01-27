@@ -79,6 +79,24 @@ constructor(private router:Router){
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 
+ getDateTime(createdOn: any) {
+    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    let day: any = new Date(createdOn).getDate();
+    day = day < 10 ? '0' + day : day;
+    let month = months[new Date(createdOn).getMonth()];
+    let year = new Date(createdOn).getFullYear();
+
+    let hours = new Date(createdOn).getHours();
+    let minutes: any = new Date(createdOn).getMinutes();
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    let strTime = hours + ':' + minutes + ' ' + ampm;
+
+    return `${day} ${month}, ${year}`;
+  }
+
 
 
 }
