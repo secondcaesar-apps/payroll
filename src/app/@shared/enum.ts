@@ -26,6 +26,8 @@ export enum APIENUM{
     SAG='salarygroup',
     FILE='Fileuploads/fileupload.php',
     APPROVELOAN='loan/populateapprove.php',
+    LOANEMPLOYEE='loan/employeeread',
+    LOANTIMELINE="loan/timelineread.php",
     LEAVEREPORT='leave/reporttoreaad.php',
     LEAVEAPPROVE='leave/approve.php',
     TRAINAPPROVE='training',

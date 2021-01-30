@@ -142,10 +142,18 @@ export class WorkflowComponent implements OnInit {
   createWorkflow() {
   //  console.log(this.WorkFlow.value)
     this.WorkFlow.disable();
+    this.elements=[];
 
     this.Api.Create(APIENUM.WORKFLOWSETUP, this.WorkFlow.value['Item']).subscribe((res: any) => {
       this.success = res.message;
-      this.loadevent();
+
+
+
+      this.Api.Read(APIENUM.WORKFLOWSETUP)
+      .subscribe((res: any) => {
+        this.loading = false;
+        this.elements = res.records;
+      })
 
 
     }, err => {

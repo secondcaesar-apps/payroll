@@ -269,4 +269,7 @@ if(res['records'][0]){
 
 
   }
+timelinepage(){
+  this.router.navigate(['main/timeline'+'/'+this.id+'/'+this.apis+'/'+this.value])
+}
 }
