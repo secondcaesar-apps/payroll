@@ -57,13 +57,6 @@ export class ReadLoanComponent extends BaseComponent implements OnInit {  data:a
       routerParams:true
 
     },
-    {
-      primaryKey: "LoanRequestAmount",
-      header: "Loan Amount",
-      currency:true
-
-
-    },
 
 
 

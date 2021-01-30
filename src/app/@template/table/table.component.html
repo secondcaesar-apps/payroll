@@ -1,4 +1,4 @@
-<div class="container mt-3" style="overflow-y: auto" >
+<div class="container-fluid mt-3" style="overflow-y: auto" >
   <div class="row">
     <div class="col-12">
       <h3 class="h3-responsive font-weight-bold">
@@ -48,6 +48,8 @@
 
 
                   <span *ngIf="record[map.primaryKey] ==='Proccessing'" class="badge badge-secondary ml-1 p-2">{{ record[map.primaryKey]  }}</span>
+                  <span *ngIf="record[map.primaryKey] =='Disbursement'" class="badge badge-dark ml-1 p-2">{{ record[map.primaryKey]  }}</span>
+                  <span *ngIf="record[map.primaryKey] =='Approved and Proccessing'" class="badge badge-dark ml-1 p-2">{{ record[map.primaryKey]  }}</span>
                  </span>
 
 
