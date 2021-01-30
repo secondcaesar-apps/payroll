@@ -17,7 +17,7 @@
           </div>
           <div *ngIf="error" class="alert alert-danger col-12" role="alert">
            {{error}}
-          </div> 
+          </div>
 </div>
 
 
@@ -26,21 +26,21 @@
     <div class="row" [formGroup]="payrollGenarte">
         <div class="col">
             <table id="tableSortExample" mdbTable class="z-depth-1" >
-              
+
                 <thead class="black white-text">
                     <tr>
                         <th aria-controls="tableSortExample" scope="col">EmployeeID<mdb-icon fas icon="sort">
                             </mdb-icon>
                         </th>
                         <th> Employee Name</th>
-                       
-                      
+
+
                         <th style="text-align: right;">Attendance</th>
                         <th style="text-align: right;">NetSalary</th>
-                
+
                         <th style="text-align: right;">TotalAmountDue</th>
                         <th style="text-align: right;"></th>
-               
+
 
 
                     </tr>
@@ -49,13 +49,13 @@
                     <tr [formGroupName]="i">
                         <td>{{item.value.EmployeeID}}</td>
                         <td  style="text-align: left;">{{item.value.FirstName }} {{item.value.LastName}}</td>
-                       
-                    
+
+
                         <td (click)="changeAttendance(i)" >
                             <p style="text-align: right;">{{item.value.Attendance}}</p>
                         </td>
                         <td style="text-align: right;">{{item.value.NetSalary  | currency:'₦':'symbol'}}</td>
-                       
+
                         <td style="text-align: right;">{{item.value.TotalAmountDue  | currency:'₦':'symbol'}}</td>
                         <th style="float: right;">
                             <mdb-icon (click)="removeItems(i)" fas icon="trash" class="mr-1 "></mdb-icon>

@@ -13,7 +13,7 @@ import { LoginComponent } from './@component/login/login.component';
 import { SharedModule } from './@shared/shared/shared.module';
 import { StrengthPipe } from './@pipe/strength.pipe';
 import { ApiserviceService } from './@shared/apiservice.service';
-
+import {ConnectionServiceModule,} from 'ng-connection-service';
 
 
 @NgModule({
@@ -28,7 +28,8 @@ import { ApiserviceService } from './@shared/apiservice.service';
     BrowserAnimationsModule,
     AppRoutingModule,
    SharedModule,
-  
+   ConnectionServiceModule
+
 
   ],
   providers: [MDBSpinningPreloader,ApiserviceService, ],
