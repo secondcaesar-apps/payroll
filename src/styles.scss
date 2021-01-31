@@ -46,6 +46,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+.bg-gradient{
+  filter: grayscale(100%);
+
+
+}
 
 table.table td, table.table th {
   padding: 7px!important;
