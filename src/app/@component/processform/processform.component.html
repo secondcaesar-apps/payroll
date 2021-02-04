@@ -25,16 +25,20 @@
         <div *ngIf="loading3" class="spinner-border" role="status">
           <span class="visually-hidden"></span>
         </div>
-        <div class="col-1 mr-2">
-          <button *ngIf="!loading3" (click)="updateLeaveStatus('Approved')" class="btn btn-success"
-            type="submit">Approve</button>
 
-        </div>
-        <div class="col-1">
-          <button *ngIf="!loading3" (click)="updateLeaveStatus('Rejected')" class="btn btn-danger"
+        <div *ngIf="!loading3" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+          <div class="btn-group mr-2" role="group" aria-label="Second group">
+
+            <button (click)="updateLeaveStatus('Approved')" class="btn btn-success"
+              type="submit">Approve</button>
+          </div>
+          <div class="btn-group" role="group" aria-label="Third group">
+            <button  (click)="updateLeaveStatus('Rejected')" class="btn btn-danger"
             type="submit">Reject</button>
+          </div>
+      </div>
 
-        </div>
         <div class="col-8">
 
         </div>
