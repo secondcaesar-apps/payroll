@@ -3,47 +3,37 @@
 
       <div id="demo">
             <div class="form-group">
-      
+
                     <button mdbBtn (click)="frame.show()" type="button" color="default" mdbWavesEffect>
                       <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
                     </button>
                   </div>
-          
+
             <div class="table-responsive-vertical shadow-z-1">
             <!-- Table starts here -->
-            <table id="table" class="table table-hover table-mc-light-blue">
-                <thead>
-                  <tr>
-                    <th>Role ID</th>
-                    <th>Role Name</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let el of elements; let i = index">
-                    <td data-title="ID">{{el.RoleID}}</td>
-                    <td data-title="Name">{{el.RoleName}}</td>
-                    <td data-title="Link">{{el.Description}}
-                    </td>
-                    <td data-title="Status">{{el.Status}}</td>
-                  </tr>
-                  <!-- <tr>
-                    <td data-title="ID">2</td>
-                    <td data-title="Name">Material Design Iconic Font</td>
-                    <td data-title="Link">
-                      <a href="https://codepen.io/zavoloklom/pen/uqCsB" target="_blank">Codepen</a>
-                      <a href="https://github.com/zavoloklom/material-design-iconic-font" target="_blank">GitHub</a>
-                    </td>
-                    <td data-title="Status">Completed</td>
-                  </tr> -->
-                 
-                </tbody>
-              </table>
+            <div class="container">
+
+              <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Role Setup'" [settings]="projectSettings"
+              [routePage]="routePage" [searchText]="searchText" [loading]="loading"
+              [api]="apis"
+              >
+
+
+            </eni-table>
+            <div class="container">
+              <div *ngIf="error" class=" alert alert-danger text-center" role="alert">
+                {{error}} <a (click)="load()" class="alert-link">Click to retry</a>
+              </div>
+
+            </div>
+
+
+            </div>
+
               <div *ngIf="message" style="padding-left: 40%;"><p>{{messages}}</p></div>
               <div *ngIf="loading"  class="item"><ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader></div>
                 </div>
-            
+
           </div>
 
 
@@ -53,7 +43,7 @@
        <div class="modal-dialog" role="document">
          <div class="modal-content">
            <div class="modal-header light-blue darken-3 text-center text-white">
-             
+
              <h4 class="modal-title w-100 font-weight-bold">Manage Role</h4>
              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
                <span aria-hidden="true">&times;</span>
@@ -70,31 +60,31 @@
                <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
                <input [formControl]="RoleName" type="text" id="form34" class="form-control" mdbInput mdbValidate>
                <label for="form34">Role Name </label>
-    
+
                <mdb-error *ngIf="RoleName.invalid && (RoleName.dirty||RoleName.touched)">
                  Invalid Input.
                </mdb-error>
-               
+
              </div>
              <div class="md-form mb-5">
                <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
                <input [formControl]="Description" type="text" id="form34" class="form-control" mdbInput mdbValidate>
                <label for="form34">Description </label>
-    
+
                <mdb-error *ngIf="Description.invalid && (Description.dirty||Description.touched)">
                  Invalid Input.
                </mdb-error>
-               
+
              </div>
-     
-            
-     
-     
-     
+
+
+
+
+
            </div>
            <div class="modal-footer d-flex justify-content-right">
                 <div class="btn-group" role="group" aria-label="Basic example">
-                        
+
                         <button mdbBtn type="button" color="info" [disabled]='Role.invalid' (click)="createRole()" class="waves-light mr-2" mdbWavesEffect>Create</button>
                         <button mdbBtn type="button" color="danger"  (click)="frame.hide()" class="waves-light" mdbWavesEffect>Cancel</button>
                     </div>
@@ -102,4 +92,3 @@
          </div>
        </div>
      </div>
-     

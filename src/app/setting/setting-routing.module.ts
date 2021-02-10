@@ -17,6 +17,7 @@ import { CalenderComponent } from '../@component/setting/calender/calender.compo
 import { WorkflowComponent } from '../@component/setting/workflow/workflow.component';
 import { MenuComponent } from '../@component/setting/menu/menu.component';
 import { LoanWorkflowComponent } from '../@component/setting/loan-workflow/loan-workflow.component';
+import { HolidayComponent } from '../@component/holiday/holiday.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,7 @@ const routes: Routes = [
       { path: 'workflow', component: WorkflowComponent },
       { path: 'menu', component: MenuComponent },
       { path: 'loan-workflow', component: LoanWorkflowComponent},
+      {path:'holiday',component:HolidayComponent}
     ]
   },
 

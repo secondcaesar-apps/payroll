@@ -41,27 +41,22 @@ import { LoanComponent } from '../@component/loan/loan.component';
 import { ReadLoanComponent } from '../@component/read-loan/read-loan.component';
 import { LoanApprovalComponent } from '../@component/loan-approval/loan-approval.component';
 
-import { TableComponent } from '../@template/table/table.component';
-import { SearchboxComponent } from '../@template/searchbox/searchbox.component';
-import { LoaderComponent } from '../@template/loader/loader.component';
-import { SearchPipe } from '../@pipe/search.pipe';
-import { ErrorsComponent } from '../@template/errors/errors.component';
-import { SuccessComponent } from '../@template/success/success.component';
+
 import { ProcessformComponent } from '../@component/processform/processform.component';
 import { QuestionControlService } from '../@shared/control.service';
-import { BackComponent } from '../@component/back/back.component';
-import { BackDirective } from '../@directive/back.directive';
-import { DynamicFormComponent } from '../@component/dynamic-form/dynamic-form.component';
+
+
 import { UserLeaveComponent } from '../@component/LEAVES/user-leave/user-leave.component';
 import { CreateLeaveTabComponent } from '../@component/LEAVES/create-leave-tab/create-leave-tab.component';
 import { LeaveTabComponent } from '../@component/LEAVES/leave-tab/leave-tab.component';
 import { LeaveApprovalTabComponent } from '../@component/LEAVES/leave-approval-tab/leave-approval-tab.component';
 import { MreportComponent } from '../@component/mreport/mreport.component';
 import { LoantimelineComponent } from '../@component/loantimeline/loantimeline.component';
+import { EditComponent } from '../@component/edit/edit.component';
 //import { BaseComponent } from '../@component/base/base.component';
 
 @NgModule({
-  declarations: [DynamicFormComponent,BackDirective,BackComponent,SuccessComponent,ErrorsComponent,SearchPipe,LoaderComponent,SearchboxComponent,TableComponent,HomeComponent,DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent, ContactComponent, CreatecontactComponent, UserDashboardComponent, UserProfileComponent, UserPayrollComponent, UserLeaveComponent, UserExpenseComponent, GeneratePayrollComponent, ReportComponent, PayslipComponent, ControlComponent, FinanceComponent, CeoComponent, ApprovalComponent, TrainingComponent, TrainingApprovalComponent, TimelineComponent, TimelinelistComponent, LoanComponent, ReadLoanComponent, LoanApprovalComponent, LeaveApprovalTabComponent, LeaveTabComponent, CreateLeaveTabComponent, ProcessformComponent, MreportComponent,LoantimelineComponent],
+  declarations: [HomeComponent,DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent, ContactComponent, CreatecontactComponent, UserDashboardComponent, UserProfileComponent, UserPayrollComponent, UserLeaveComponent, UserExpenseComponent, GeneratePayrollComponent, ReportComponent, PayslipComponent, ControlComponent, FinanceComponent, CeoComponent, ApprovalComponent, TrainingComponent, TrainingApprovalComponent, TimelineComponent, TimelinelistComponent, LoanComponent, ReadLoanComponent, LoanApprovalComponent, LeaveApprovalTabComponent, LeaveTabComponent, CreateLeaveTabComponent, ProcessformComponent, MreportComponent,LoantimelineComponent, EditComponent],
   imports: [
     CommonModule,
     MainRoutingModule,

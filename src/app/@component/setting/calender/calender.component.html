@@ -1,58 +1,34 @@
 
  <div class="form-group" id="demo">
-      
+
     <button mdbBtn (click)="frame.show()" type="button" color="default" mdbWavesEffect>
       <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New Event
     </button>
   </div>
-  <div class="table-responsive-vertical shadow-z-1" id="demo">
-    <!-- Table starts here -->
-    <table id="table" class="table table-hover table-mc-light-blue">
-        <thead>
-          <tr>
-            <th>Event ID</th>
-            <th>Event Title</th>
-            <th>Color</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let el of elements; let i = index">
-            <td data-title="Link">{{el.EventID}}
-            </td>
-            <td data-title="ID">{{el.EventTitle}}</td>
-            <td data-title="Name">{{el.Color}}</td>
+  <div class="container">
 
-            <td data-title="Link">{{el.StartDate | date}}
-            </td>
-            <td data-title="Link">{{el.EndDate | date}}
-            </td> 
+    <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Calender Setup'" [settings]="projectSettings"
+    [routePage]="routePage" [searchText]="searchText" [loading]="loading"
+    [api]="apis"
+    >
 
-            <td data-title="Status">{{el.Status}}</td>
-          </tr>
-          <!-- <tr>
-            <td data-title="ID">2</td>
-            <td data-title="Name">Material Design Iconic Font</td>
-            <td data-title="Link">
-              <a href="https://codepen.io/zavoloklom/pen/uqCsB" target="_blank">Codepen</a>
-              <a href="https://github.com/zavoloklom/material-design-iconic-font" target="_blank">GitHub</a>
-            </td>
-            <td data-title="Status">Completed</td>
-          </tr> -->
-         
-        </tbody>
-      </table>
-      <div *ngIf="message" style="padding-left: 40%;"><p>{{messages}}</p></div>
-      <div *ngIf="loading"  class="item"><ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader></div>
-        </div>
+
+  </eni-table>
+  <div class="container">
+    <div *ngIf="error" class=" alert alert-danger text-center" role="alert">
+      {{error}} <a (click)="loadevent()" class="alert-link">Click to retry</a>
+    </div>
+
+  </div>
+
+
+  </div>
   <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
   aria-labelledby="myModalLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">
  <div class="modal-content">
    <div class="modal-header light-blue darken-3 text-center text-white">
-     
+
      <h4 class="modal-title w-100 font-weight-bold">Manage Event</h4>
      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
        <span aria-hidden="true">&times;</span>
@@ -73,23 +49,22 @@
        <mdb-error *ngIf="EventTitle.invalid && (EventTitle.dirty||EventTitle.touched)">
          Invalid Input.
        </mdb-error>
-       
+
      </div>
 <div class="row">
     <div class="form-group col-md-6">
         <mdb-date-picker name="mydate" [formControl]="StartDate"  [placeholder]="'Start Date'"
         required></mdb-date-picker>
 
-        
-        
+
+
       </div>
       <div class="form-group col-md-6">
         <mdb-date-picker name="mydate" [formControl]="EndDate" [options]="myDatePickerOptions" [placeholder]="'End Date'"
         required></mdb-date-picker>
-    
+
       </div>
 </div>
-     
 
 
 
@@ -102,14 +77,15 @@
 
 
 
-    
+
+
 
 
 
    </div>
    <div class="modal-footer d-flex justify-content-right">
         <div class="btn-group" role="group" aria-label="Basic example">
-                
+
                 <button mdbBtn type="button" color="info" [disabled]='Cal.invalid' (click)="createEvent()" class="waves-light mr-2" mdbWavesEffect>Create</button>
                 <button mdbBtn type="button" color="danger"  (click)="frame.hide()" class="waves-light" mdbWavesEffect>Cancel</button>
             </div>

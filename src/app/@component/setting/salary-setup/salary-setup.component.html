@@ -22,57 +22,45 @@
             </div>
             <div class="col-sm-6">
               <div class="dropdown" mdbDropdown>
-  
+
                 <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
                   mdbWavesEffect>
                   Status
                 </button>
-  
+
                 <div class="dropdown-menu dropdown-primary">
                   <button class="dropdown-item" href="#">All</button>
                   <button class="dropdown-item" href="#">Active</button>
                   <button class="dropdown-item" href="#">Inactive</button>
                 </div>
-  
+
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="body">
-      <div class="row">
-        <div class="col">
-          <table id="tableSortExample" mdbTable class="z-depth-1 auto">
-            <thead class="black white-text">
-              <tr>
-                <th aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[0]">
-                  {{headElements[0] | titlecase}}<mdb-icon fas icon="sort"></mdb-icon>
-                </th>
-                <th style="text-align:right;">{{headElements[1]}}</th>
-                <th>{{headElements[2]}}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let el of elements; let i = index">
-                <th scope="row" (click)="SalaryCom(el)" (click)="basicModal.show()">{{el.SalaryGroupName}}</th>
-                <td (click)="SalaryCom(el)" style="text-align:right;">{{el.NetPay | currency:'₦':'symbol'}}</td>
-                <td>{{el.LeaveDays}}</td>
-  
-              </tr>
-            </tbody>
-          </table>
-          <div *ngIf="message" style="padding-left: 40%;">
-            <p>{{messages}}</p>
-          </div>
-          <div *ngIf="loading" class="item">
-            <ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader>
-          </div>
-        </div>
+    <div class="container">
+
+      <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Department Setup'" [settings]="projectSettings"
+      [routePage]="routePage" [searchText]="searchText" [loading]="loading"
+      [api]="apis"
+      >
+
+
+    </eni-table>
+    <div class="container">
+      <div *ngIf="error" class=" alert alert-danger text-center" role="alert">
+        {{error}} <a (click)="load()" class="alert-link">Click to retry</a>
       </div>
+
+    </div>
+
+
     </div>
   </div>
 </div>
+
 
 <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable  " role="document">
@@ -159,7 +147,7 @@
                           [formGroupName]="i">
                           <th> <input formControlName="Name" nbInput name="quantity" type="text" class=""></th>
                           <th> <input formControlName="Amount" nbInput name="quantity" type="number" class=""></th>
-                        
+
                           <th>
 
                             <select formControlName="Type" class="">
@@ -200,7 +188,7 @@
 
 
 
-      </div> 
+      </div>
     </div>
   </div>
 </div>
@@ -289,7 +277,7 @@
                           [formGroupName]="i">
                           <th> <input formControlName="Name" nbInput name="quantity" type="text" class=""></th>
                           <th> <input formControlName="Amount" nbInput name="quantity" type="number" class=""></th>
-                        
+
                           <th>
 
                             <select formControlName="Type" class="">
@@ -335,3 +323,4 @@
     </div>
   </div>
 </div>
+

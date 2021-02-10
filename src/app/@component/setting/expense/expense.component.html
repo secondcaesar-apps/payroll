@@ -1,25 +1,28 @@
 
  <div class="form-group" id="demo">
-      
+
         <button mdbBtn (click)="frame.show()" type="button" color="default" mdbWavesEffect>
           <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
         </button>
       </div>
-      <table mdbTable small="true" id="demo">
-            <thead>
-              <tr>
-                <th *ngFor="let head of headElements" scope="col">{{head}} </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr mdbTableCol *ngFor="let el of elements">
-                <th scope="row">{{el.CategoryID}}</th>
-                <td>{{el.CategoryName}}</td>
-            
-              
-              </tr>
-            </tbody>
-          </table>
+      <div class="container">
+
+        <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Expense Setup'" [settings]="projectSettings"
+        [routePage]="routePage" [searchText]="searchText" [loading]="loading"
+        [api]="apis"
+        >
+
+
+      </eni-table>
+      <div class="container">
+        <div *ngIf="error" class=" alert alert-danger text-center" role="alert">
+          {{error}} <a (click)="load()" class="alert-link">Click to retry</a>
+        </div>
+
+      </div>
+
+
+      </div>
       <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
       aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog" role="document">
@@ -44,7 +47,7 @@
            <mdb-error *ngIf="CategoryName.invalid && (CategoryName.dirty||CategoryName.touched)">
             Invalid Value.
           </mdb-error>
-           
+
          </div>
          <div class="md-form mb-5">
                 <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
@@ -54,14 +57,14 @@
                   Invalid Value.
                 </mdb-error>
               </div>
-        
- 
- 
- 
+
+
+
+
        </div>
        <div class="modal-footer d-flex justify-content-right">
             <div class="btn-group" role="group" aria-label="Basic example">
-                    
+
                     <button mdbBtnv [disabled]='Category.invalid' (click)="createCategory()" type="button" color="info" class="waves-light mr-2" color="info" mdbWavesEffect>Create</button>
                     <button mdbBtn type="button" color="danger"  (click)="frame.hide()" class="waves-light" mdbWavesEffect>Cancel</button>
                 </div>
@@ -69,4 +72,3 @@
      </div>
    </div>
  </div>
- 

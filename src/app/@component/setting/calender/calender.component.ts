@@ -13,16 +13,18 @@ import { APIENUM } from 'src/app/@shared/enum';
 import { FormGroup,FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { IMyOptions } from 'ng-uikit-pro-standard';
+import { BaseComponent } from '../../base/base.component';
+import { ColumnSetting } from 'src/app/models/layout.model';
 @Component({
   selector: 'app-calender',
   templateUrl: './calender.component.html',
   styleUrls: ['./calender.component.scss']
 })
-export class CalenderComponent implements OnInit {
+export class CalenderComponent extends BaseComponent implements OnInit  {
   messages: string;
   previous: string;
   message: Boolean=false;
-  loading:Boolean=true;
+
   elements: any = [];
   Cal:FormGroup;
   error:any;
@@ -30,21 +32,61 @@ export class CalenderComponent implements OnInit {
   public myDatePickerOptions: IMyOptions = {
     // Your options
   };
-  constructor(   private _fb:FormBuilder,private Api:ApiserviceService) { }
+  routePage = "../../edit";
+  apis = APIENUM.EVENT;
+  projectSettings: ColumnSetting[] = [
+    {
+      primaryKey: "Color",
+      header: "Color",
+
+    },
+
+    {
+      primaryKey: "EventID",
+      header: "Event ID",
+      routerParams: true
+
+    },
+    {
+      primaryKey: "EndDate",
+      header: "EndDate",
+
+
+    },
+    {
+      primaryKey: "StartDate",
+      header: "StartDate",
+
+
+    },
+    {
+      primaryKey: "EventTitle",
+      header: "Event Title",
+
+
+    },
+
+
+
+
+    {
+      primaryKey: "Status",
+      header: "Status",
+    }
+
+
+
+  ];
+  constructor(   private _fb:FormBuilder,private Api:ApiserviceService) {
+    super(Api)
+  }
 
   ngOnInit() {
     this.loadevent();
   }
   loadevent(){
-    this.Api.Read(APIENUM.EVENT)
-    .subscribe((res:any)=>{
-      this.loading = false;
-      this.elements=res.records;
-    }, (err: any) => {
-      this.loading = false;
-      this.messages = err.error.message;
-      this.message = true;
-    })
+    this.read(APIENUM.EVENT);
+
     this.Cal= this._fb.group({
       EventTitle:['',[Validators.required]],
 
@@ -117,3 +159,12 @@ console.log(startOfDay(this.Cal.value.StartDate));
   }
 
 }
+// Color: "yellow"
+// DateCreated: "2020-03-22 23:37:42"
+// EndDate: "1968-07-23 00:00:00"
+// EventID: "EV1900001"
+// EventTitle: "Segun Akintemi Birthday"
+// ID: "1"
+// PostedUser: "Admin"
+// StartDate: "1968-07-23 00:00:00"
+// Status: "Active"
