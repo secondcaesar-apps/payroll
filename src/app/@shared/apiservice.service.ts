@@ -140,62 +140,7 @@ export class ApiserviceService {
   }
   Delete(type: APIENUM, id: any) {
 
-    let value = {};
-
-    switch (type) {
-      case APIENUM.ASS:
-
-        value ={ 'AssetID':id};
-        break;
-      case APIENUM.CON:
-        value = 'ContactID';
-        break;
-      case APIENUM.COM:
-        value = 'CompanyID';
-        break;
-      case APIENUM.DES:
-        value = 'DesignationID';
-        break;
-      case APIENUM.CAT:
-        value = 'CategoryID';
-        break;
-      case APIENUM.DEPT:
-        value = 'DepartmentID';
-        break;
-
-      case APIENUM.LOC:
-        value = 'LocationsID';
-        break;
-      case APIENUM.MENU:
-        value = 'MenuID';
-        break;
-      case APIENUM.MENUG:
-        value = 'ID';
-        break;
-      case APIENUM.ROLE:
-
-        value ={ 'RoleID':id};
-        break;
-      case APIENUM.EMP:
-        value ={ 'EmployeeID':id};
-        break;
-
-      case APIENUM.EXP:
-        value = 'EmployeeID';
-        break;
-
-      case APIENUM.LOG:
-        value = 'AssetID';
-        break;
-    }
-
-
-
-
-
-
-
-    return this._http.post(`${this.apiUrl}${type}/delete.php`, value);
+    return this._http.post(`${this.apiUrl}${type}/delete.php`, id);
   }
 
   ImageUpload(F) {

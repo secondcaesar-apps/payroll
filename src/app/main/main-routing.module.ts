@@ -32,6 +32,7 @@ import { ProcessformComponent } from '../@component/processform/processform.comp
 import { UserLeaveComponent } from '../@component/LEAVES/user-leave/user-leave.component';
 import { MreportComponent } from '../@component/mreport/mreport.component';
 import { LoantimelineComponent } from '../@component/loantimeline/loantimeline.component';
+import { EditComponent } from '../@component/edit/edit.component';
 const routes: Routes = [
 
     {
@@ -67,6 +68,7 @@ const routes: Routes = [
         { path: 'loan', component: LoanComponent },
         { path: 'loan-approval', component: ReadLoanComponent },
         { path: 'process/:id/:api/:value', component: ProcessformComponent },
+        { path: 'edit/:id/:api/:value', component: EditComponent },
         { path: 'timeline/:id/:api/:value', component: LoantimelineComponent },
         { path: 'loan-flow', component: LoanApprovalComponent },
         { path: 'mreport/:id', component: MreportComponent },

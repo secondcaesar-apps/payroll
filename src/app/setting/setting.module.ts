@@ -23,11 +23,15 @@ import { CalenderComponent } from '../@component/setting/calender/calender.compo
 import { WorkflowComponent } from '../@component/setting/workflow/workflow.component';
 import { MenuComponent } from '../@component/setting/menu/menu.component';
 import { LoanWorkflowComponent } from '../@component/setting/loan-workflow/loan-workflow.component';
+import { HolidayComponent } from '../@component/holiday/holiday.component';
+
+
+
 
 
 
 @NgModule({
-  declarations: [HomeComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent, DesignationComponent, IncreComponent, CalenderComponent, WorkflowComponent, MenuComponent, LoanWorkflowComponent],
+  declarations: [HomeComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent, DesignationComponent, IncreComponent, CalenderComponent, WorkflowComponent, MenuComponent, LoanWorkflowComponent, HolidayComponent],
   imports: [
     CommonModule,
     SettingRoutingModule,

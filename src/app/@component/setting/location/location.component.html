@@ -1,25 +1,28 @@
 
  <div class="form-group" id="demo">
-      
+
         <button mdbBtn (click)="frame.show()" type="button" color="default" mdbWavesEffect>
           <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
         </button>
       </div>
-      <table mdbTable small="true" id="demo">
-            <thead>
-              <tr>
-                <th *ngFor="let head of headElements" scope="col">{{head}} </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr mdbTableCol *ngFor="let el of elements">
-                <th scope="row">{{el.LocationsName}}</th>
-                <td>{{el.Address}}</td>
-            
-              
-              </tr>
-            </tbody>
-          </table>
+      <div class="container">
+
+        <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Location Setup'" [settings]="projectSettings"
+        [routePage]="routePage" [searchText]="searchText" [loading]="loading"
+        [api]="apis"
+        >
+
+
+      </eni-table>
+      <div class="container">
+        <div *ngIf="error" class=" alert alert-danger text-center" role="alert">
+          {{error}} <a (click)="load()" class="alert-link">Click to retry</a>
+        </div>
+
+      </div>
+
+
+      </div>
       <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
       aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog" role="document">
@@ -37,7 +40,7 @@
         <div *ngIf="error" class="alert alert-danger" role="alert">
          {{error}}
         </div>
-           
+
          <div class="md-form mb-5">
            <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
            <input [formControl]="LocationsName" type="text" id="form34" class="form-control" mdbInput mdbValidate>
@@ -45,7 +48,7 @@
            <mdb-error *ngIf="LocationsName.invalid && (LocationsName.dirty||LocationsName.touched)">
             Invalid Location.
           </mdb-error>
-           
+
          </div>
          <div class="md-form mb-5">
                 <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
@@ -55,14 +58,14 @@
                   Invalid Address.
                 </mdb-error>
               </div>
-        
- 
- 
- 
+
+
+
+
        </div>
        <div class="modal-footer d-flex justify-content-right">
             <div class="btn-group" role="group" aria-label="Basic example">
-                    
+
                     <button mdbBtn type="button"  [disabled]='Location.invalid' (click)="createLocation()" color="info" class="waves-light mr-2" mdbWavesEffect>Create</button>
                     <button mdbBtn type="button" color="danger"  (click)="frame.hide()" class="waves-light" mdbWavesEffect>Cancel</button>
                 </div>
@@ -70,4 +73,3 @@
      </div>
    </div>
  </div>
- 

@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ɵConsole } from "@angular/core";
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum';
 
@@ -44,6 +44,7 @@ export class BaseComponent implements OnInit {
 
       .subscribe(
         (res: any) => {
+        //  console.log(res);
           this.loading = false;
           this.baseItems = res.records;
 

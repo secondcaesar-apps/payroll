@@ -46,7 +46,9 @@
                   <span *ngIf="record[map.primaryKey] ==='Updated'" class="badge badge-light ml-1 p-2">{{ record[map.primaryKey]  }}</span>
                   <span *ngIf="record[map.primaryKey] ==='Deleted'" class="badge badge-danger ml-1 p-2">{{ record[map.primaryKey]  }}</span>
 
-
+<span *ngIf="record[map.primaryKey] ==='InActive'" class="badge badge-danger ml-1 p-2">{{ record[map.primaryKey]  }}</span>
+                  <span *ngIf="record[map.primaryKey] ==='Inactive'" class="badge badge-danger ml-1 p-2">{{ record[map.primaryKey]  }}</span>
+<span *ngIf="record[map.primaryKey] ==='Active'" class="badge badge-info ml-1 p-2">{{ record[map.primaryKey]  }}</span>
                   <span *ngIf="record[map.primaryKey] ==='Proccessing'" class="badge badge-secondary ml-1 p-2">{{ record[map.primaryKey]  }}</span>
                   <span *ngIf="record[map.primaryKey] =='Disbursement'" class="badge badge-dark ml-1 p-2">{{ record[map.primaryKey]  }}</span>
                   <span *ngIf="record[map.primaryKey] =='Approved and Proccessing'" class="badge badge-dark ml-1 p-2">{{ record[map.primaryKey]  }}</span>

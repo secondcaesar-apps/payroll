@@ -23,6 +23,7 @@ export enum APIENUM{
     LOG='login',
     LON='loan',
     EMP='employee',
+    HOL='holiday',
     SAG='salarygroup',
     FILE='Fileuploads/fileupload.php',
     APPROVELOAN='loan/populateapprove.php',

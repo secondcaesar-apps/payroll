@@ -3,13 +3,15 @@ import { Component, OnInit, ElementRef, HostListener, AfterViewInit, ViewChild, 
 import { MdbTableDirective, MdbTablePaginationComponent } from 'ng-uikit-pro-standard';
 import { FormGroup,FormBuilder, Validators, FormControl } from '@angular/forms';
 import { APIENUM } from 'src/app/@shared/enum';
+import { BaseComponent } from '../../base/base.component';
+import { ColumnSetting } from 'src/app/models/layout.model';
 
 @Component({
   selector: 'app-designation',
   templateUrl: './designation.component.html',
   styleUrls: ['./designation.component.scss']
 })
-export class DesignationComponent implements OnInit {
+export class DesignationComponent extends BaseComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   @ViewChild(MdbTablePaginationComponent, { static: true }) mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild('row', { static: true }) row: ElementRef;
@@ -17,21 +19,47 @@ export class DesignationComponent implements OnInit {
   searchText: string = '';
   previous: string;
   message: Boolean=false;
-  loading:Boolean=true;
+
   messages: string;
   elements: any = [];
   Designation:FormGroup;
   error:any;
   success:any;
+  routePage = "../../edit";
+  apis = APIENUM.DES;
+  projectSettings: ColumnSetting[] = [
+    {
+      primaryKey: "DesignationName",
+      header: "DesignationName",
+
+    },
+
+    {
+      primaryKey: "DesignationID",
+      header: "DesignationID",
+      routerParams: true
+
+    },
+
+
+
+
+    {
+      primaryKey: "Status",
+      header: "Status",
+    }
+
+
+
+  ];
 
   constructor(
     private _fb:FormBuilder,
     private Api:ApiserviceService
-  ) { }
-
-  @HostListener('input') oninput() {
-    this.mdbTablePagination.searchText = this.searchText;
+  ) {
+    super(Api);
   }
+
 
   ngOnInit() {
     this.reload()
@@ -41,19 +69,7 @@ export class DesignationComponent implements OnInit {
     });
   }
 
-  searchItems() {
-    const prev = this.mdbTable.getDataSource();
 
-    if (!this.searchText) {
-      this.mdbTable.setDataSource(this.previous);
-      this.elements = this.mdbTable.getDataSource();
-    }
-
-    if (this.searchText) {
-      this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
-      this.mdbTable.setDataSource(prev);
-    }
-  }
   createDesignation(){
     this.Designation.disable();
     let value = {Status:"Active",...this.Designation.value};
@@ -84,18 +100,8 @@ export class DesignationComponent implements OnInit {
   }
 
   reload(){
-    this.Api.Read(APIENUM.DES)
-    .subscribe((res:any)=>{
-      this.loading = false;
-      this.elements=res.records;
-      this.mdbTable.setDataSource(this.elements);
-      this.elements = this.mdbTable.getDataSource();
-      this.previous = this.mdbTable.getDataSource();
-    },(err:any)=>{
-      this.loading= false;
-      this.messages = err.error.message;
-      this.message = true;
-    })
+    this.read(APIENUM.DES)
+
   }
 
 }

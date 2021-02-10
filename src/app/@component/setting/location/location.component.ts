@@ -3,13 +3,15 @@ import { Component, OnInit, ElementRef, HostListener, AfterViewInit, ViewChild, 
 import { MdbTableDirective, MdbTablePaginationComponent } from 'ng-uikit-pro-standard';
 import { APIENUM } from 'src/app/@shared/enum';
 import { FormGroup,FormBuilder, Validators, FormControl } from '@angular/forms';
+import { ColumnSetting } from 'src/app/models/layout.model';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-location',
   templateUrl: './location.component.html',
   styleUrls: ['./location.component.scss']
 })
-export class LocationComponent implements OnInit {
+export class LocationComponent extends BaseComponent implements OnInit {
     @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
     @ViewChild(MdbTablePaginationComponent, { static: true }) mdbTablePagination: MdbTablePaginationComponent;
     @ViewChild('row', { static: true }) row: ElementRef;
@@ -17,39 +19,71 @@ export class LocationComponent implements OnInit {
     searchText: string = '';
     previous: string;
     message: Boolean=false;
-    loading:Boolean=true;
     messages: string;
     elements: any = [];
     Location:FormGroup;
     error:any;
     success:any;
+    routePage = "../../edit";
+  apis = APIENUM.LOC;
+  projectSettings: ColumnSetting[] = [
+    {
+      primaryKey: "Address",
+      header: "Address",
+
+    },
+
+    {
+      primaryKey: "LocationsID",
+      header: "LocationsID",
+      routerParams: true
+
+    },
+    {
+      primaryKey: "LocationsName",
+      header: "LocationsName",
+      // routerParams:true
+
+    },
+
+
+
+
+    {
+
+      primaryKey: "DateCreated",
+      header: "Date",
+      date: true
+
+    },
+
+
+
+    {
+      primaryKey: "Status",
+      header: "Status",
+    }
+
+
+
+  ];
 
     constructor(
       private _fb:FormBuilder,
       private Api:ApiserviceService
-    ) { }
-
-    @HostListener('input') oninput() {
-      this.mdbTablePagination.searchText = this.searchText;
+    ) {
+      super(Api);
     }
+
+
 
     ngOnInit() {
      this.load();
     }
 
     load(){
-      this.Api.Read(APIENUM.LOC)
-        .subscribe((res:any)=>{
-          this.loading = false;
-          this.elements=res.records;
-          this.mdbTable.setDataSource(this.elements);
-          this.elements = this.mdbTable.getDataSource();
-          this.previous = this.mdbTable.getDataSource();
-        },(err:any)=>{
-          this.loading= false;
-          this.messages = err.error.message;
-          this.message = true;
-        })
+      this.read(APIENUM.LOC)
+
           this.Location= this._fb.group({
       LocationsName:['',[Validators.required]],
       Address:['',[Validators.required]],
