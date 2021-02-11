@@ -79,6 +79,7 @@ export class BaseComponent implements OnInit {
       .subscribe(
         (res: any) => {
           this.loading = false;
+          console.log(res);
           this.baseItems = res.records;
 
 

@@ -19,7 +19,7 @@ import { ColumnSetting } from 'src/app/models/layout.model';
   selector: "eni-table",
   templateUrl: "./table.component.html",
   styleUrls: ["./table.component.scss"],
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableComponent implements OnChanges {
   @HostBinding("attr.class") class = "col-md-9 ml-sm-auto col-lg-10 pt-3 px-4";
@@ -38,7 +38,7 @@ export class TableComponent implements OnChanges {
 
   routerId: any='';
 
-  page = 1;
+  page = 0;
   pageSize = 2;
   collectionSize = this.records.length;
 
@@ -69,6 +69,8 @@ constructor(private router:Router){
   }
   receiveMessage($event:any) {
     this.searchText = $event;
+
+
   }
 
   ngAfterContentChecked() {}
@@ -97,6 +99,13 @@ constructor(private router:Router){
     return `${day} ${month}, ${year}`;
   }
 
+  search(v1,v2,v3,v4){
+   this.router.navigate(['main/'+v1,v2,v3,v4])
 
+  }
+  trackByFn(index, item) {
+    this.page=index
+    return index; // or item.id
+  }
 
 }

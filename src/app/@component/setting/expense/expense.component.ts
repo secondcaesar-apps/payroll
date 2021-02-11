@@ -95,19 +95,7 @@ export class ExpenseComponent extends BaseComponent implements OnInit {
   });
 
     }
-    searchItems() {
-      const prev = this.mdbTable.getDataSource();
 
-      if (!this.searchText) {
-        this.mdbTable.setDataSource(this.previous);
-        this.elements = this.mdbTable.getDataSource();
-      }
-
-      if (this.searchText) {
-        this.elements = this.mdbTable.searchLocalDataBy(this.searchText);
-        this.mdbTable.setDataSource(prev);
-      }
-    }
 
   createCategory(){
     this.Category.disable();
