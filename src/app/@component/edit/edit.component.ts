@@ -7,6 +7,7 @@ import { QuestionBase } from 'src/app/models/edit-base';
 import { TextboxQuestion } from 'src/app/models/edit-textbox';
 import { Location } from '@angular/common';
 import { DropdownQuestion } from 'src/app/models/edit-dropdown';
+import { DateboxQuestion } from 'src/app/models/edit-date';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -126,7 +127,7 @@ if(res['records'][0]){
 
       for (const key of Object.keys(value)) {
 
-        if(key !== 'DateCreated' && key !='Status' && key!='Gender'){
+        if(key !== 'DateCreated' && key !='Status' && key!='Gender' && !key.includes("Date")){
           this.questions.push(new TextboxQuestion({
             key: key,
             label: key,
@@ -139,7 +140,25 @@ if(res['records'][0]){
 
           }))
           index++;
-        }else{
+        }
+        else if(key.includes("Date") && key !== 'DateCreated'){
+ console.log('key')
+          this.questions.push(new DateboxQuestion({
+            key: key,
+            label: key,
+            controlType: 'date',
+            order: index,
+            value: value[key],
+            required: true,
+            type:'date'
+           // status:(key.toString()=='PostedUser'|| key.toString()=='ID')?true:null
+
+
+          }))
+          index++;
+
+        }
+        else{
           if(key !== 'DateCreated' && key=='Status' || key=='Gender'){
             this.questions.push(
               new DropdownQuestion({

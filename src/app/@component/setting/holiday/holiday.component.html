@@ -1,0 +1,90 @@
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+
+    </div>
+
+    <div class="col-6">
+      <button mdbBtn (click)="frame.show()" type="button" color="default" mdbWavesEffect>
+        <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
+      </button>
+    </div>
+  </div>
+
+  <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Holiday'" [settings]="projectSettings"
+  [routePage]="routePage" [searchText]="searchText" [loading]="loading"
+  [api]="apis"
+  >
+
+
+</eni-table>
+<div class="container">
+  <div *ngIf="error" class=" alert alert-danger text-center" role="alert">
+    {{error}} <a (click)="load()" class="alert-link">Click to retry</a>
+  </div>
+
+</div>
+
+
+</div>
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+ <div class="modal-header black darken-3 text-center text-white">
+   <h4 class="modal-title w-100 font-weight-bold">Holiday Setup</h4>
+   <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+ <div class="modal-body mx-3">
+  <div *ngIf="success" class="alert alert-success" role="alert">
+    {{success}}
+  </div>
+  <div *ngIf="errors" class="alert alert-danger" role="alert">
+   {{errors}}
+  </div>
+   <div class="md-form mb-5" >
+     <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+     <input  [formControl]="HolidayName" type="text" id="form34" class="form-control" mdbInput mdbValidate>
+     <label for="form34">Holiday Name </label>
+     <mdb-error *ngIf="HolidayName.invalid && (HolidayName.dirty||HolidayName.touched)">
+      Invalid Value.
+    </mdb-error>
+
+   </div>
+   <div class="md-form mb-5">
+          <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+          <input [formControl]="Description" type="text" id="form34" class="form-control" mdbInput mdbValidate>
+          <label for="form34">Description </label>
+          <mdb-error *ngIf="Description.invalid && (Description.dirty||Description.touched)">
+            Invalid Value.
+          </mdb-error>
+        </div>
+
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+          <input [formControl]="HolidayDate" type="date" id="form34" class="form-control" mdbInput mdbValidate>
+          <label for="form34">HolidayDate </label>
+          <mdb-error *ngIf="HolidayDate.invalid && (HolidayDate.dirty||HolidayDate.touched)">
+            Invalid Value.
+          </mdb-error>
+        </div>
+
+
+
+
+ </div>
+ <div class="modal-footer d-flex justify-content-right">
+      <div class="btn-group" role="group" aria-label="Basic example">
+
+              <button mdbBtn [disabled]='Holiday.invalid' (click)="create()" type="button" color="success" class="waves-light mr-2 p-2"  mdbWavesEffect>Create</button>
+              <button mdbBtn type="button" color="danger"  (click)="frame.hide()" class="waves-light" mdbWavesEffect>Cancel</button>
+          </div>
+ </div>
+</div>
+</div>
+</div>

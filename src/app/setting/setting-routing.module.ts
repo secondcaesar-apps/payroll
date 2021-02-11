@@ -17,7 +17,8 @@ import { CalenderComponent } from '../@component/setting/calender/calender.compo
 import { WorkflowComponent } from '../@component/setting/workflow/workflow.component';
 import { MenuComponent } from '../@component/setting/menu/menu.component';
 import { LoanWorkflowComponent } from '../@component/setting/loan-workflow/loan-workflow.component';
-import { HolidayComponent } from '../@component/holiday/holiday.component';
+import { HolidayComponent } from '../@component/setting/holiday/holiday.component';
+//import { HolidayComponent } from '../../@component/holiday/holiday.component';
 
 
 const routes: Routes = [

@@ -33,6 +33,9 @@ import { UserLeaveComponent } from '../@component/LEAVES/user-leave/user-leave.c
 import { MreportComponent } from '../@component/mreport/mreport.component';
 import { LoantimelineComponent } from '../@component/loantimeline/loantimeline.component';
 import { EditComponent } from '../@component/edit/edit.component';
+import { CreateLeaveTabComponent } from '../@component/LEAVES/create-leave-tab/create-leave-tab.component';
+import { LeaveTabComponent } from '../@component/LEAVES/leave-tab/leave-tab.component';
+import { LeaveApprovalTabComponent } from '../@component/LEAVES/leave-approval-tab/leave-approval-tab.component';
 const routes: Routes = [
 
     {
@@ -45,7 +48,10 @@ const routes: Routes = [
         { path: 'payroll', component: PayrollComponent },
         { path: 'payroll-reports', component: ReportsalaryComponent },
         { path: 'assets', component: AssetsComponent },
-
+        // { path: 'cl', component: CreateLeaveTabComponent },
+        // { path: 'ml', component: LeaveTabComponent },
+        // { path: 'al', component: LeaveApprovalTabComponent },
+//
         { path: 'create-employer', component: CreateEmployerComponent },
         { path: 'read-employer', component: ReadOneEmployeeComponent },
         { path: 'contact', component: ContactComponent },
