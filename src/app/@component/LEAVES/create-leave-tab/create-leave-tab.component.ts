@@ -30,8 +30,8 @@ export class CreateLeaveTabComponent extends BaseComponent implements OnInit {
 
 
 
-    this.read(APIENUM.LEAVETYPE)
-
+   // this.read(APIENUM.LEAVETYPE)
+    this.read(APIENUM.USERLEAVETYPE)
     this.Leave = this._fb.group({
       LeaveType: ['', [Validators.required]],
       StartDate: ['', [Validators.required]],
