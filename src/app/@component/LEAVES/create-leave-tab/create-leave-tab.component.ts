@@ -199,7 +199,7 @@ res.records.forEach(element => {
 
 if(element.HolidayDate.toString()==value.toString()){
 
-  if(paramter=='EndDate'){
+  if(paramter=='StartDate'){
     this.holiday_array.push(element.HolidayDate)
   }
 
