@@ -14,26 +14,20 @@
       <div class="col-sm-8">
         <div class="row float-right">
           <div class="col-sm-5">
-            <div class="md-form">
+                     <div class="md-form">
               <input mdbInput class="mr-1 search-input" type="text" placeholder="Search" aria-label="Search" id="search"
                 [(ngModel)]="searchText">
             </div>
           </div>
           <div class="col-sm-5">
-            <div class="dropdown" mdbDropdown>
 
-              <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
+             <button mdbBtn color="primary" class="waves-light" type="button"
+             (click)="captureScreen()"
                 mdbWavesEffect>
-                Status
+                Download
               </button>
 
-              <div class="dropdown-menu dropdown-primary">
-                <button class="dropdown-item" href="#">All</button>
-                <button class="dropdown-item" href="#">Paid</button>
-                <button class="dropdown-item" href="#">Unpaid</button>
-              </div>
-
-            </div>
+ 
           </div>
           <div class="col-sm-2">
             <div class="btn-group" mdbDropdown>
@@ -54,8 +48,24 @@
       </div>
     </div>
   </div>
-  <div class="body">
-    <div class="row">
+
+  <div class="body" >
+    <div class="row float-right" [formGroup]="myForm2">
+            <div class="col-md-6">
+              <label>Start Date</label>
+              <input class="form-control" type="text" onfocus="(this.type='date')"  formControlName="StartDate"  (change)="load()"  placeholder="Date From" id="date">
+            </div>
+            <div  class="col-md-6">
+              <label>End Date</label>
+              <input placeholder="Date To" class="form-control" type="text" onfocus="(this.type='date')" (change)="load()" formControlName="EndDate" id="date">
+            </div>
+      </div>
+   <div id="export">
+    <span style='font-size:12.0pt;font-family:"Times New Roman",serif;
+    mso-fareast-font-family:"Times New Roman";mso-no-proof:yes'>
+    <img  style="-webkit-print-color-adjust:exact;" class="mr-5"width=150 height=100 src="assets/logo.png" v:shapes="Picture_x0020_1">
+  </span>
+    <div class="row" >
       <div class="col">
         <table id="tableSortExample" mdbTable class="z-depth-1">
           <thead>
@@ -166,5 +176,6 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </div>
