@@ -5,6 +5,7 @@ import { APIENUM } from 'src/app/@shared/enum';
 import { FormGroup,FormBuilder, Validators, FormControl } from '@angular/forms';
 import { BaseComponent } from '../../base/base.component';
 import { ColumnSetting } from 'src/app/models/layout.model';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-department',
@@ -66,27 +67,41 @@ export class DepartmentComponent extends BaseComponent implements OnInit {
 
   ];
   Dept: FormGroup;
+  emp: any;
   constructor(public api: ApiserviceService, public fb:FormBuilder){
     super(api);
   }
 
   ngOnInit() {
-this.load()
+this.load();
+this.api.Read(APIENUM.EMP)
+.pipe(
+  map((res: any) => res.records)
+)
+.subscribe((res: any) => {
+
+  this.emp = res;
+});
   }
   load(){
  //   let value = {EmployeeID :  sessionStorage.getItem('EmpID')}
   this.read(APIENUM.DEPT);
   this.Dept= this.fb.group({
-    DepartmentName:['',[Validators.required]]
+    DepartmentName:['',[Validators.required]],
+    DepartmentHead:['',[Validators.required]]
   });
   }
 
    get DepartmentValue(){
     return this.Dept.get('DepartmentName') as FormControl;
   }
+  get DepartmentHead(){
+    return this.Dept.get('DepartmentHead') as FormControl;
+  }
   createDepartment(){
    this.Dept.disable();
     let value = {Status:"Active",...this.Dept.value};
+
 
     this.api.Create(APIENUM.DEPT,value).subscribe((res:any)=>{
        this.success=res.message;

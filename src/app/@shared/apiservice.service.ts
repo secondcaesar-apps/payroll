@@ -120,6 +120,11 @@ export class ApiserviceService {
     return this._http.post(`${this.apiUrl}${type.toString()}/yearlyreport.php`, data);
 
   }
+  Cancle(data: any, type: APIENUM| string) {
+    return this._http.post(`${this.apiUrl}${type.toString()}`, data);
+
+
+  }
  EmployeeSalaryRead(data: any, type: APIENUM) {
 
 

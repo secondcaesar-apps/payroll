@@ -38,7 +38,18 @@
            </mdb-error>
 
          </div>
+<div class="form-group col-md-12">
+  <label  for="inputEmail4">DepartmentHead</label>
 
+  <select  [formControl]="DepartmentHead" class="browser-default custom-select">
+
+    <option *ngFor="let item of emp" [ngValue]="item.EmployeeID">{{item.FirstName}} {{item.LastName}}</option>
+
+  </select>
+  <mdb-error *ngIf="DepartmentHead.invalid && (DepartmentHead.dirty||DepartmentHead.touched)">
+    Invalid Input.
+  </mdb-error>
+</div>
 
 
 

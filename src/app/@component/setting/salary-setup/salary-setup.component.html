@@ -42,7 +42,7 @@
     </div>
     <div class="container">
 
-      <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Department Setup'" [settings]="projectSettings"
+      <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Salary Setup'" [settings]="projectSettings"
       [routePage]="routePage" [searchText]="searchText" [loading]="loading"
       [api]="apis"
       >
@@ -62,8 +62,9 @@
 </div>
 
 
-<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable  " role="document">
+<div mdbModal #basicModal="mdbModal" class="modal fade bottom" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+  aria-hidden="true">
+  <div  class="modal-dialog modal-dialog-scrollable " role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
@@ -71,7 +72,7 @@
         </button>
         <h4 class="modal-title w-100" id="myModalLabel">Salary group Update</h4>
       </div>
-      <div class="modal-body mx-3"  [formGroup]="Salary">
+      <div class="modal-body mx-3" style="overflow-y: auto" [formGroup]="Salary">
         <div *ngIf="success" class="alert alert-success" role="alert">
           {{success}}
         </div>
@@ -193,10 +194,10 @@
   </div>
 </div>
 
-<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+<div style="overflow-y: auto"  mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
   aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog  modal-lg" role="document" [formGroup]="Salary">
-    <div class="modal-content">
+  <div style="overflow-y: auto"  class="modal-dialog  modal-lg modal-dialog-scrollable " role="document" [formGroup]="Salary">
+    <div style="overflow-y: auto"  class="modal-content">
       <div class="modal-header black darken-3 text-center text-white">
         <h4 class="modal-title w-100 font-weight-bold">Manage Salary</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">

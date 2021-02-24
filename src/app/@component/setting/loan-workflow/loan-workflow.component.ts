@@ -33,7 +33,7 @@ export class LoanWorkflowComponent implements OnInit {
     private Api: ApiserviceService
   ) {
     this.WorkFlow = this._fb.group({
-    
+
       Item:this._fb.array([this.createWorkflows2('','')]),
 
     });
@@ -42,7 +42,7 @@ export class LoanWorkflowComponent implements OnInit {
   ngOnInit() {
   this.loadevent();
 
-    
+
   }
 
   loadevent(){
@@ -59,7 +59,7 @@ export class LoanWorkflowComponent implements OnInit {
 
         this.addItem23(res.records[index], index);
       }
-      
+
   this.itemArray.removeAt(0);
     }, (err: any) => {
       this.loading = false;
@@ -71,7 +71,7 @@ export class LoanWorkflowComponent implements OnInit {
       map((res: any) => res.records)
     )
     .subscribe((res: any) => {
-      console.log(res);
+   
       this.emp = res;
     });
   }
@@ -86,7 +86,7 @@ export class LoanWorkflowComponent implements OnInit {
       EmployeeID: ['', [Validators.required]],
       level: ['', [Validators.required]],
       Status: ["Active"]
-      
+
 
     });
   };
@@ -96,7 +96,7 @@ export class LoanWorkflowComponent implements OnInit {
       EmployeeID: [value.EmployeeID, [Validators.required]],
       level: [value.level, [Validators.required]],
       Status: [value.Status, [Validators.required]],
-      
+
 
     });
   };
@@ -111,7 +111,7 @@ export class LoanWorkflowComponent implements OnInit {
       this.itemArray.push(this.createWorkflows2(value, id));
       //this.itemArray.removeAt(0);
     }
-  
+
   searchItems() {
     const prev = this.mdbTable.getDataSource();
 
@@ -142,10 +142,14 @@ export class LoanWorkflowComponent implements OnInit {
   createWorkflow() {
   //  console.log(this.WorkFlow.value)
     this.WorkFlow.disable();
-   
+
     this.Api.Create(APIENUM.LOANWORKFLOWSETUP, this.WorkFlow.value['Item']).subscribe((res: any) => {
       this.success = res.message;
-   
+      this.Api.Read(APIENUM.LOANWORKFLOWSETUP)
+      .subscribe((res: any) => {
+        this.loading = false;
+        this.elements = res.records;});
+
 
     }, err => {
       this.error = err.error.message;
@@ -158,10 +162,10 @@ export class LoanWorkflowComponent implements OnInit {
         this.error = '';
       //  this.WorkFlow.reset();
         this.WorkFlow.enable();
-        
-    
+
+
       }, 500);
-    
+
 
 
     })
@@ -174,7 +178,7 @@ export class LoanWorkflowComponent implements OnInit {
   }
 
 load(){
-  
+
 }
 
 }
