@@ -32,6 +32,11 @@ loaded: boolean = false
 show: Boolean;
 displaySide: Boolean = false;
 date: string = '';
+d = new Date();
+dates = this.d.getDate();
+month = this.d.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
+year = this.d.getFullYear();
+months = this.d.getMonth()
 myForm1: FormGroup;
 Month: string = '';
 statusValue: string = '';
@@ -50,7 +55,21 @@ constructor(
   private service: ApiserviceService,
   private fb: FormBuilder,
   private shared: SharedService,
-) { }
+) { 
+  var dateStr =(this.year + "-" + this.month + "-" + this.dates).toString();
+
+  if(this.months === 0){
+    this.months = 12;
+    this.year  = this.d.getFullYear() -1;
+    var dateSt = (this.year + "-" + this.months + "-" + this.dates).toString();
+  } else {
+    var dateSt =(this.year + "-" + this.months + "-" + this.dates).toString();
+  }
+  this.myForm1 = this.fb.group({
+    StartDate: [dateSt, Validators.required],
+    EndDate: [dateStr, Validators.required]
+  });
+}
     @HostListener('input') oninput() {
     this.searchItems();
   }
@@ -59,9 +78,7 @@ constructor(
   }
 
   load(){
-    this.myForm1 = this.fb.group({
-      Month: [this.date, Validators.required]
-    });
+
     // .pipe(
     //   map((values: any) => {
     //     this.date = values;
@@ -83,7 +100,7 @@ constructor(
     let date = new Date().toJSON().slice(0, 10)
 
     this.service.EmployeeSalaryRead({
-      EmployeeID:  sessionStorage.getItem('EmpID')
+      EmployeeID:  sessionStorage.getItem('EmpID'), ...this.myForm1.value
     }, APIENUM.PAYROLLM)
     .subscribe((res: any) => {
       this.loading = false;
@@ -116,9 +133,9 @@ constructor(
           pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
           pdf.save('pdf.pdf'); // Generated PDF
          });
-         }
+  }
 
-    searchItems() {
+  searchItems() {
     const prev = this.mdbTable.getDataSource();
 
     if (!this.searchText) {
@@ -131,90 +148,17 @@ constructor(
       this.mdbTable.setDataSource(prev);
     }
   }
-view() {
-  this.show = !this.show;
-}
-newemployee() {
-  this.router.navigate(['/main/create-employer'])
-}
-reademployee() {
-  this.router.navigate(['/main/read-employer'])
-}
-// openDetails(el) {
-//   if (this.show) {
-//     this.displaySide = true;
 
-//   }
-//   this.service.ReadOne(APIENUM.PAYROLL, {
-//     SalarySlipID: el.SalarySlipID
-//   })
-//   .subscribe((res: any) => {
-//     console.log(res.records);
-//     this.Salaryslip =res.records
-//     this.error_message = "";
-//     this.errormsg = false;
-//   },(err: any) => {
-//     this.Salaryslip =[];
-//     this.error_message = err.error.message;
-//     this.errormsg = true;
-//   })
-//   this.statusValue = el.Status;
-//   this.NetSalary = el.NetSalary;
-//   this.SalaryGroup = el.SalaryGroup;
-//   this.PaymentMethod = el.PaymentMethod;
-//   this.PaymentDate = el.PaymentDate;
-//   this.EmployeeStatus = el.EmployeeStatus
-//   this.EmployeeID = el.EmployeeID;
-//   this.SalarySlipID = el.SalarySlipID;
-//   this.Month = el.Month;
-
-// }
-
-openDetails(el) {
-  if (this.show) {
-    this.displaySide = true;
-    this.statusValue = el.Status;
-    this.NetSalary = el.NetSalary;
-    this.SalaryGroup = el.SalaryGroup;
-    this.PaymentMethod = el.PaymentMethod;
-    this.PaymentDate = el.PaymentDate;
-    this.EmployeeStatus = el.EmployeeStatus
-    this.EmployeeID = el.EmployeeID;
-    this.SalarySlipID = el.SalarySlipID;
-    this.Month = el.Month;
-
-    this.service.ReadOne(APIENUM.PAYROLL, {
-      SalarySlipID: el.SalarySlipID
-    })
-    .subscribe((res: any) => {
-      console.log(res.records);
-      this.Salaryslip =res.records
-      this.error_message = "";
-      this.errormsg = false;
-    },(err: any) => {
-      this.Salaryslip =[];
-      this.error_message = err.error.message;
-      this.errormsg = true;
-    })
-  } else {
-    this.router.navigate(['/main/payslip']);
-    this.shared.AddInfo(el)
+  view() {
+    this.show = !this.show;
   }
-}
-generatePayroll() {
-  this.router.navigate(['/main/generate-payroll']);
-}
 
+  newemployee() {
+    this.router.navigate(['/main/create-employer'])
+  }
 
-
+  reademployee() {
+    this.router.navigate(['/main/read-employer'])
+  }
+  
 }
-// this.service.ReadOne(APIENUM.PAYROLL, {
-//   SalarySlipID: el.SalarySlipID
-// })
-// .subscribe((res: any) => {
-//   console.log(res.records);
-//   this.name = res.records[0].Name;
-//   this.name1 = res.records[1].Name;
-//   this.amount = res.records[0].Amount;
-//   this.amount1 = res.records[1].Amount;
-// })
