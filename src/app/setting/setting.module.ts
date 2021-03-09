@@ -24,6 +24,7 @@ import { WorkflowComponent } from '../@component/setting/workflow/workflow.compo
 import { MenuComponent } from '../@component/setting/menu/menu.component';
 import { LoanWorkflowComponent } from '../@component/setting/loan-workflow/loan-workflow.component';
 import { HolidayComponent } from '../@component/setting/holiday/holiday.component';
+import { SettingComponent } from '../@component/setting/setting.component';
 //import { HolidayComponent } from '../@component/holiday/holiday.component';
 
 
@@ -32,10 +33,11 @@ import { HolidayComponent } from '../@component/setting/holiday/holiday.componen
 
 
 @NgModule({
-  declarations: [HomeComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent, DesignationComponent, IncreComponent, CalenderComponent, WorkflowComponent, MenuComponent, LoanWorkflowComponent, HolidayComponent],
+  declarations: [HomeComponent,SettingComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent, DesignationComponent, IncreComponent, CalenderComponent, WorkflowComponent, MenuComponent, LoanWorkflowComponent, HolidayComponent],
   imports: [
     CommonModule,
     SettingRoutingModule,
+
     SharedModule
   ],providers:[ApiserviceService,{
     provide:HTTP_INTERCEPTORS,

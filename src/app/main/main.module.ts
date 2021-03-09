@@ -62,6 +62,7 @@ import { DisplayComponent } from '../@component/display/display.component';
     CommonModule,
     MainRoutingModule,
     SharedModule,
+    
     ToastModule.forRoot(),
   ],
   entryComponents: [AddassetsComponent],

@@ -44,7 +44,8 @@ SalarySlipID: string = '';
 EmployeeID: string = '';
 Salaryslip:any;
 error_message: string="";
-errormsg: boolean = false
+errormsg: boolean = false;
+myForm2=new FormGroup({});
 constructor(
   private router: Router,
   private service: ApiserviceService,
