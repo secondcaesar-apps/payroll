@@ -72,7 +72,7 @@ export class UserProfileComponent implements OnInit {
     this.value =  sessionStorage.getItem('EmpID')
           let data = {
             EmployeeID:  sessionStorage.getItem('EmpID')
-            
+
       }
           this.Api.ReadOne(APIENUM.EMP, data)
           .subscribe((res:any)=>{
@@ -87,14 +87,14 @@ export class UserProfileComponent implements OnInit {
             Email:[this.elements.Email,Validators.required],
             Gender:[this.elements.Gender, Validators.required],
             DOB:[this.elements.DOB,Validators.required],
-            Department:[{ value: this.elements.Department, disabled: true },Validators.required],
+            Department:[this.elements.Department,Validators.required],
             Designation:[this.elements.Designation, Validators.required],
             Location:[this.elements.Location,Validators.required],
             ReportsTO:[this.elements.ReportsTO,Validators.required],
-            ProbationEndDate:[{ value: this.elements.ProbationEndDate, disabled: true },Validators.required],
-            JoiningDate:[{ value: this.elements.JoiningDate, disabled: true },Validators.required],
+            ProbationEndDate:[this.elements.ProbationEndDate,Validators.required],
+            JoiningDate:[this.elements.JoiningDate,Validators.required],
             MaritalStatus:[this.elements.MaritalStatus,Validators.required],
-            ExitDate:[{ value: this.elements.ExitDate, disabled: true },Validators.required],
+            ExitDate:[this.elements.ExitDate,Validators.required],
             Status:[this.elements.Status,Validators.required],
             SalaryGroup:[this.elements.SalaryGroup,Validators.required],
             Role:[this.elements.Role,Validators.required],
@@ -170,7 +170,7 @@ export class UserProfileComponent implements OnInit {
             Facebookusername:[this.elements.Facebookusername,Validators.required],
             Twitterusername:[this.elements.Twitterusername,Validators.required],
             LinkedInusername:[this.elements.LinkedInusername,Validators.required],
-             }); 
+             });
              this.Api.EmployeeRead(APIENUM.INCR, {
               EmployeeID: this.elements.EmployeeID
             })
@@ -178,7 +178,7 @@ export class UserProfileComponent implements OnInit {
               console.log(res.records);
               this.promo = true
           this.Increment = res.records
-          
+
             },(err: any) => {
               this.increment = err.error.message;
             })
@@ -192,11 +192,11 @@ export class UserProfileComponent implements OnInit {
 // setTimeout(() => this.employee.disable(), 2000);
   }
 
- 
+
   loadEvent(){
 
     let event = [this.Api.Read(APIENUM.LOC),this.Api.Read(APIENUM.DEPT),this.Api.Read(APIENUM.EMP),this.Api.Read(APIENUM.SAG),this.Api.Read(APIENUM.DES),this.Api.Read(APIENUM.ROLE)]
-  
+
     forkJoin(event).subscribe((res:any)=>{
       this.location= res[0].records;
       this.department = res[1].records;
@@ -213,38 +213,40 @@ export class UserProfileComponent implements OnInit {
   }
   createemployee(){
 
-    
+
     let value = {Status:"Active",Avatar:this.image,...this.employee.value};
     this.Api.Update(APIENUM.EMP, value).subscribe((res:any)=>{
-  
-    
+
+
       swal.fire({
         title: res.message,position: "center",
         icon: 'success',
         showConfirmButton: false,
         timer: 3500,
         showCloseButton: true,
-    
+
        })
       this.employee.reset();
       this.employee.enable();
-    
-    
+
+      this.ngOnInit();
+
+
     },(err=>{
       this.employee.enable();
-  
-    
+
+
       swal.fire({
         position: 'center',
         icon: 'error',
         title: err.error.message,
         showConfirmButton: true,
         timer: 3500,
-    
+
        })
-    
+
     }))
-  
+
   }
 
   CanEdit(){
