@@ -237,12 +237,12 @@ export class SalarySetupComponent extends BaseComponent implements OnInit {
 
     for (let index = 0; index < cal.length; index++) {
       if (cal[index].Type == 'Credit') {
-        let Amount = parseInt(cal[index].Amount);
+        let Amount = parseFloat(cal[index].Amount);
         addtion = Amount + addtion;
 
       }
       else {
-        let Amount = parseInt(cal[index].Amount);
+        let Amount = parseFloat(cal[index].Amount);
         reduction = Amount + reduction;
       }
 
@@ -251,7 +251,7 @@ export class SalarySetupComponent extends BaseComponent implements OnInit {
 
     this.Total = addtion - reduction;
 
-    console.log(this.Total);
+
 
 
 
@@ -324,7 +324,7 @@ export class SalarySetupComponent extends BaseComponent implements OnInit {
     this.Cart();
     this.Salary.disable();
     let value = { Status: "Active", NetPay: this.Total, ...this.Salary.value, SalaryGroupID: this.id };
-    console.log(value);
+
     this.Api.Update(APIENUM.SAG, value).subscribe((res: any) => {
       this.success = res.message + `WITH TOTAL OF : ₦ ${this.Total}`;
       this.reset();

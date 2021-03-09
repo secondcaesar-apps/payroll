@@ -213,9 +213,12 @@ export class UserProfileComponent implements OnInit {
   }
   createemployee(){
 
+    this.loading=true;
+
 
     let value = {Status:"Active",Avatar:this.image,...this.employee.value};
     this.Api.Update(APIENUM.EMP, value).subscribe((res:any)=>{
+      this.loading=false;
 
 
       swal.fire({
@@ -233,6 +236,7 @@ export class UserProfileComponent implements OnInit {
 
 
     },(err=>{
+      this.loading=false;
       this.employee.enable();
 
 
