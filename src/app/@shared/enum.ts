@@ -14,6 +14,7 @@ export enum APIENUM{
     INCR='incrementpromotion',
     MENU='menu',
     LEAVE='leave',
+    SQ='surveyquestion',
     MENUG='menugroup',
     train='training',
     trainpending='training/pendingapprove.php',

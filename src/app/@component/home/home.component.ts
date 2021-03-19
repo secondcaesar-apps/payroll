@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
       {name:'holiday',route:'settings/holiday',icon:'fa fa-book fa-2x'},
       {name:'Menu Setup',route:'settings/menu',icon:'fa fa-book fa-2x'},
 
-      // {name:'Training Approval',route:'training-approval',icon:'fa fa-home fa-2x'},
+     {name:'survery',route:'settings/survery',icon:'fa fa-home fa-2x'},
 
   ]
   this.approval =[

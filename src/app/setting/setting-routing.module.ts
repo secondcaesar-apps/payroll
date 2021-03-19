@@ -18,6 +18,7 @@ import { WorkflowComponent } from '../@component/setting/workflow/workflow.compo
 import { MenuComponent } from '../@component/setting/menu/menu.component';
 import { LoanWorkflowComponent } from '../@component/setting/loan-workflow/loan-workflow.component';
 import { HolidayComponent } from '../@component/setting/holiday/holiday.component';
+import { SurveryComponent } from '../@component/setting/survery/survery.component';
 //import { HolidayComponent } from '../../@component/holiday/holiday.component';
 
 
@@ -41,7 +42,10 @@ const routes: Routes = [
       { path: 'workflow', component: WorkflowComponent },
       { path: 'menu', component: MenuComponent },
       { path: 'loan-workflow', component: LoanWorkflowComponent},
-      {path:'holiday',component:HolidayComponent}
+      {path:'holiday',component:HolidayComponent},
+      {path:'survery',component:SurveryComponent}
+
+
     ]
   },
 
