@@ -5,37 +5,31 @@ import { ColumnSetting } from 'src/app/models/layout.model';
 import { BaseComponent } from '../../base/base.component';
 
 @Component({
-  selector: 'app-survery-read',
-  templateUrl: './survery-read.component.html',
-  styleUrls: ['./survery-read.component.scss']
+  selector: 'app-survery-rating-read',
+  templateUrl: './survery-rating-read.component.html',
+  styleUrls: ['./survery-rating-read.component.scss']
 })
-export class SurveryReadComponent extends BaseComponent implements OnInit {
+export class SurveryRatingReadComponent extends BaseComponent implements OnInit {
 
   routePage ="../edit";
-  apis='surveyquestion'
+  apis='surveyrating'
   projectSettings: ColumnSetting[] = [
 
+
     {
-      primaryKey: "Title",
-      header: "Title",
+      primaryKey: "Name",
+      header: "Name",
 
     },
     {
-      primaryKey: "Description",
-      header: "Description",
-
-    },
-    {
-      primaryKey: "DepartmentID",
-      header: "DepartmentID",
-      // routerParams:true
+      primaryKey: "Weight",
+      header: "Weight",
 
     },
     {
       primaryKey: "ID",
       header: "ID",
       routerParams:true
-
 
 
 
@@ -51,7 +45,7 @@ export class SurveryReadComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.read(APIENUM.SQ);
+    this.read(APIENUM.RT);
   }
 
 }

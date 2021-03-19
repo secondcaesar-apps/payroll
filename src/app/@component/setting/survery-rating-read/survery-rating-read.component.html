@@ -1,6 +1,6 @@
 <div class="container">
 
-  <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Questionaire'" [settings]="projectSettings"
+  <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Ratings'" [settings]="projectSettings"
   [routePage]="routePage" [searchText]="searchText" [loading]="loading"
   [api]="apis"
   >
@@ -12,6 +12,7 @@
 
 <div class="container">
   <div *ngIf="error" class=" container alert alert-danger text-center" role="alert">
-    {{error}} <a (click)="read('surveyquestion')" class="alert-link">Click to retry</a>
+    {{error}} <a (click)="read('surveyrating')" class="alert-link">Click to retry</a>
   </div>
 </div>
+

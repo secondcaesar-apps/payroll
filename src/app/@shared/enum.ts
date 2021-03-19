@@ -39,6 +39,7 @@ export enum APIENUM{
     POPULATEPAYROLL='salaryslip/populatepayroll.php',
     CREATEPAYROLL='/salaryslip/create.php',
     EVENT='event',
+    RT='surveyrating',
     PAYROLLM='salaryslip',
     WORKFLOWSETUP='workflowsetup',
     LOANWORKFLOWSETUP='loanworkflowsetup',
