@@ -10,6 +10,7 @@ import { QuestionBase } from 'src/app/models/edit-base';
 export class DynamicFormComponent  {
   @Input() question: QuestionBase<any>=new QuestionBase();
   @Input() form: FormGroup| any;
+  @Input() status: boolean=false;
   get isValid() { return this.form.controls[this.question.key]; }
 }
 

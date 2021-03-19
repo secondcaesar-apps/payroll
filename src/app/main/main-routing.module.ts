@@ -36,6 +36,7 @@ import { EditComponent } from '../@component/edit/edit.component';
 import { CreateLeaveTabComponent } from '../@component/LEAVES/create-leave-tab/create-leave-tab.component';
 import { LeaveTabComponent } from '../@component/LEAVES/leave-tab/leave-tab.component';
 import { LeaveApprovalTabComponent } from '../@component/LEAVES/leave-approval-tab/leave-approval-tab.component';
+import { DisplayComponent } from '../@component/display/display.component';
 const routes: Routes = [
 
     {
@@ -74,6 +75,7 @@ const routes: Routes = [
         { path: 'loan', component: LoanComponent },
         { path: 'loan-approval', component: ReadLoanComponent },
         { path: 'process/:id/:api/:value', component: ProcessformComponent },
+        { path: 'display/:id/:api/:value', component: DisplayComponent },
         { path: 'edit/:id/:api/:value', component: EditComponent },
         { path: 'timeline/:id/:api/:value', component: LoantimelineComponent },
         { path: 'loan-flow', component: LoanApprovalComponent },

@@ -8,11 +8,18 @@ import { AuthGuard } from './_guards/auth.guard';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'main', redirectTo: 'main/dashboard', pathMatch: 'full' },
+  // {
+  //   path: 'main',
+  //   canActivate: [AuthGuard],
+  //   loadChildren: () =>  {return MainModule;},
+
+  // },
   {
-    path: 'main',
+    path:'main',
+    loadChildren:'./main/main.module#MainModule',
     canActivate: [AuthGuard],
-    loadChildren: () =>  {return MainModule;},
     data:{preload:true}
+
   },
   { path: 'main/settings', redirectTo: 'main/settings/company', pathMatch: 'full',data:{preload:true} },
 ];

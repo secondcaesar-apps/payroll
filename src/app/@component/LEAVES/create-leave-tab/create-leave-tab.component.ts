@@ -33,7 +33,7 @@ export class CreateLeaveTabComponent extends BaseComponent implements OnInit {
    // this.read(APIENUM.LEAVETYPE)
     this.read(APIENUM.USERLEAVETYPE)
     this.Leave = this._fb.group({
-      LeaveType: ['', [Validators.required]],
+      LeaveType: ['', []],
       StartDate: ['', [Validators.required]],
       EndDate: ['', [Validators.required]],
       Reason: ['', [Validators.required]],
@@ -83,8 +83,7 @@ export class CreateLeaveTabComponent extends BaseComponent implements OnInit {
 
   html:
     `Total Leave Day Available:<strong>${this.availabledays}</strong> <br/>` +
-    `Total Leave Day Requested:<strong>${this.bdays}</strong> <br/>` +
-    `Available days for  Leave Type:<strong>${this.leavetypedate}</strong> <br/>` ,
+    `Total Leave Day Requested:<strong>${this.bdays}</strong> <br/>`  ,
 
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
@@ -92,7 +91,7 @@ export class CreateLeaveTabComponent extends BaseComponent implements OnInit {
     confirmButtonText: 'Request Leave'
 }).then((res)=>{
   if (res.isConfirmed){
-    if(this.availabledays>=this.bdays){
+    if(this.availabledays>=this.bdays && this.bdays!=0 ){
       this.createLeave()
     }else{
       swal.fire('Sorry you don\'t have enough leave days');
@@ -199,7 +198,7 @@ res.records.forEach(element => {
 
 if(element.HolidayDate.toString()==value.toString()){
 
-  if(paramter=='EndDate'){
+  if(paramter=='StartDate'){
     this.holiday_array.push(element.HolidayDate)
   }
 

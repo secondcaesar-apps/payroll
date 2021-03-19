@@ -27,6 +27,10 @@
   font-style:normal;
   /* font-weight:500 */
 /*}*/
+.modal-dialog .modal-content .modal-header {
+
+  overflow: scroll !important;
+}
 @font-face {
   font-family: 'Circular';
   src: url('assets/font/Circular-Book.eot') format('embedded-opentype'),

@@ -3,7 +3,7 @@
 
   <div [ngSwitch]="question.controlType" >
 
-    <input [readonly]="question.status" class="form-control" *ngSwitchCase="'textbox'" [formControlName]="question.key"
+    <input [readonly]="question.status || status" class="form-control" *ngSwitchCase="'textbox'" [formControlName]="question.key"
             [id]="question.key" [type]="question.type">
 
             <input  class="form-control" *ngSwitchCase="'date'" [formControlName]="question.key"

@@ -24,6 +24,10 @@ import { WorkflowComponent } from '../@component/setting/workflow/workflow.compo
 import { MenuComponent } from '../@component/setting/menu/menu.component';
 import { LoanWorkflowComponent } from '../@component/setting/loan-workflow/loan-workflow.component';
 import { HolidayComponent } from '../@component/setting/holiday/holiday.component';
+import { SettingComponent } from '../@component/setting/setting.component';
+import { SurveryComponent } from '../@component/setting/survery/survery.component';
+import { SurveryAddComponent } from '../@component/setting/survery-add/survery-add.component';
+import { SurveryReadComponent } from '../@component/setting/survery-read/survery-read.component';
 //import { HolidayComponent } from '../@component/holiday/holiday.component';
 
 
@@ -32,10 +36,11 @@ import { HolidayComponent } from '../@component/setting/holiday/holiday.componen
 
 
 @NgModule({
-  declarations: [HomeComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent, DesignationComponent, IncreComponent, CalenderComponent, WorkflowComponent, MenuComponent, LoanWorkflowComponent, HolidayComponent],
+  declarations: [HomeComponent,SettingComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent, DesignationComponent, IncreComponent, CalenderComponent, WorkflowComponent, MenuComponent, LoanWorkflowComponent, HolidayComponent, SurveryComponent, SurveryAddComponent, SurveryReadComponent],
   imports: [
     CommonModule,
     SettingRoutingModule,
+
     SharedModule
   ],providers:[ApiserviceService,{
     provide:HTTP_INTERCEPTORS,

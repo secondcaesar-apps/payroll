@@ -12,8 +12,8 @@ import { BaseComponent } from '../../base/base.component';
 })
 export class LeaveTabComponent extends BaseComponent implements OnInit {
 
-  routePage ="";
-  apis='customer'
+  routePage ="../display";
+  apis='leave'
   projectSettings: ColumnSetting[] = [
 
     {
@@ -46,6 +46,10 @@ export class LeaveTabComponent extends BaseComponent implements OnInit {
     {
       primaryKey: "Reason",
       header: "Reason",
+    },
+    {
+      primaryKey: "LeaveDays",
+      header: "Leave Days",
     },
     {
       primaryKey: "StartDate",

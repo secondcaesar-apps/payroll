@@ -24,10 +24,11 @@ import { BackComponent } from 'src/app/@component/back/back.component';
 import { ErrorsComponent } from 'src/app/@template/errors/errors.component';
 import { SuccessComponent } from 'src/app/@template/success/success.component';
 import { RouterModule } from '@angular/router';
+import { BaseComponent } from 'src/app/@component/base/base.component';
 
 
 @NgModule({
-  declarations: [DynamicFormComponent,SearchPipe,TableComponent,SearchboxComponent,LoaderComponent,BackDirective,BackComponent,SuccessComponent, ErrorsComponent],
+  declarations: [BaseComponent,DynamicFormComponent,SearchPipe,TableComponent,SearchboxComponent,LoaderComponent,BackDirective,BackComponent,SuccessComponent, ErrorsComponent],
 
 
   imports: [
@@ -57,7 +58,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     NgbModule,
 
-
+    BaseComponent,
     FormsModule,
     NgxSkeletonLoaderModule,
     CalendarModule,

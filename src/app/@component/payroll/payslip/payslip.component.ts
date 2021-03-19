@@ -51,12 +51,12 @@ TotalEarnings: number = 0;
           if(element.Type === "Credit"){
             this.earnings = true;
               this.Salaryslipcredit.push(element)
-              this.TotalEarnings = parseInt(element.Amount) + this.TotalEarnings;
+              this.TotalEarnings = parseFloat(element.Amount) + this.TotalEarnings;
               console.log(this.TotalEarnings);
           } else {
             this.deductions = true;
             this.Salaryslipdebit.push(element)
-            this.TotalDeductions = parseInt(element.Amount) + this.TotalDeductions;
+            this.TotalDeductions = parseFloat(element.Amount) + this.TotalDeductions;
           }
         });
         this.error_message = "";
