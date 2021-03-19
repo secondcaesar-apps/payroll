@@ -56,7 +56,7 @@ constructor(
   private service: ApiserviceService,
   private fb: FormBuilder,
   private shared: SharedService,
-) { 
+) {
   var dateStr =(this.year + "-" + this.month + "-" + this.dates).toString();
 
   if(this.months === 0){
@@ -77,7 +77,40 @@ constructor(
   ngOnInit() {
    this.load();
   }
+  openDetails(el) {
+    if (this.show) {
+      this.displaySide = true;
+      this.statusValue = el.Status;
+      this.NetSalary = el.NetSalary;
+      this.SalaryGroup = el.SalaryGroup;
+      this.PaymentMethod = el.PaymentMethod;
+      this.PaymentDate = el.PaymentDate;
+      this.EmployeeStatus = el.EmployeeStatus
+      this.EmployeeID = el.EmployeeID;
+      this.SalarySlipID = el.SalarySlipID;
+      this.Month = el.Month;
 
+      this.service.ReadOne(APIENUM.PAYROLL, {
+        SalarySlipID: el.SalarySlipID
+      })
+      .subscribe((res: any) => {
+        console.log(res.records);
+        this.Salaryslip =res.records
+        this.error_message = "";
+        this.errormsg = false;
+      },(err: any) => {
+        this.Salaryslip =[];
+        this.error_message = err.error.message;
+        this.errormsg = true;
+      })
+    } else {
+      this.router.navigate(['/main/payslip']);
+      this.shared.AddInfo(el)
+    }
+  }
+  generatePayroll() {
+    this.router.navigate(['/main/generate-payroll']);
+  }
   load(){
 
     // .pipe(
@@ -161,5 +194,5 @@ constructor(
   reademployee() {
     this.router.navigate(['/main/read-employer'])
   }
-  
+
 }
