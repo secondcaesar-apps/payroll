@@ -28,6 +28,9 @@ import { SettingComponent } from '../@component/setting/setting.component';
 import { SurveryComponent } from '../@component/setting/survery/survery.component';
 import { SurveryAddComponent } from '../@component/setting/survery-add/survery-add.component';
 import { SurveryReadComponent } from '../@component/setting/survery-read/survery-read.component';
+import { SurveryRatingComponent } from '../@component/setting/survery-rating/survery-rating.component';
+import { SurveryRatingReadComponent } from '../@component/setting/survery-rating-read/survery-rating-read.component';
+import { SurveryRatingAddComponent } from '../@component/setting/survery-rating-add/survery-rating-add.component';
 //import { HolidayComponent } from '../@component/holiday/holiday.component';
 
 
@@ -36,7 +39,7 @@ import { SurveryReadComponent } from '../@component/setting/survery-read/survery
 
 
 @NgModule({
-  declarations: [HomeComponent,SettingComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent, DesignationComponent, IncreComponent, CalenderComponent, WorkflowComponent, MenuComponent, LoanWorkflowComponent, HolidayComponent, SurveryComponent, SurveryAddComponent, SurveryReadComponent],
+  declarations: [HomeComponent,SettingComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent, DesignationComponent, IncreComponent, CalenderComponent, WorkflowComponent, MenuComponent, LoanWorkflowComponent, HolidayComponent, SurveryComponent, SurveryAddComponent, SurveryReadComponent, SurveryRatingComponent, SurveryRatingReadComponent, SurveryRatingAddComponent],
   imports: [
     CommonModule,
     SettingRoutingModule,

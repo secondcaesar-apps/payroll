@@ -19,6 +19,7 @@ import { MenuComponent } from '../@component/setting/menu/menu.component';
 import { LoanWorkflowComponent } from '../@component/setting/loan-workflow/loan-workflow.component';
 import { HolidayComponent } from '../@component/setting/holiday/holiday.component';
 import { SurveryComponent } from '../@component/setting/survery/survery.component';
+import { SurveryRatingComponent } from '../@component/setting/survery-rating/survery-rating.component';
 //import { HolidayComponent } from '../../@component/holiday/holiday.component';
 
 
@@ -43,8 +44,9 @@ const routes: Routes = [
       { path: 'menu', component: MenuComponent },
       { path: 'loan-workflow', component: LoanWorkflowComponent},
       {path:'holiday',component:HolidayComponent},
-      {path:'survery',component:SurveryComponent}
-
+      {path:'survery',component:SurveryComponent},
+      {path:'rating',component:SurveryRatingComponent}
+//SurveryRatingComponent
 
     ]
   },

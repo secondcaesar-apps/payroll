@@ -1,0 +1,29 @@
+<div class="padding">
+
+  <ngb-tabset [destroyOnHide]="false">
+    <ngb-tab id="ml" title="Read Ratings">
+      <ng-template ngbTabContent>
+        <app-survery-rating-read></app-survery-rating-read>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab  id="cl" >
+      <ng-template ngbTabTitle>Create Ratings Question</ng-template>
+      <ng-template ngbTabContent>
+
+
+<app-survery-rating-add>
+
+</app-survery-rating-add>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="al" title="Analytics"  [disabled]="false">
+      <ng-template ngbTabContent>
+
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+
+
+</div>
+
+

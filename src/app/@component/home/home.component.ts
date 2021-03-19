@@ -51,6 +51,7 @@ export class HomeComponent implements OnInit {
       {name:'Menu Setup',route:'settings/menu',icon:'fa fa-book fa-2x'},
 
      {name:'survery',route:'settings/survery',icon:'fa fa-home fa-2x'},
+     {name:'rating',route:'settings/rating',icon:'fa fa-home fa-2x'},
 
   ]
   this.approval =[
