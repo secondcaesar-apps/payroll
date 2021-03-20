@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum';
+import { SharedService } from 'src/app/@shared/shared/shared.service';
 import { ColumnSetting } from 'src/app/models/layout.model';
 import { BaseComponent } from '../../base/base.component';
 
@@ -40,11 +41,18 @@ export class SurveryRatingReadComponent extends BaseComponent implements OnInit 
 
   ];
 
-  constructor(public api: ApiserviceService){
+  constructor(private shared: SharedService,public api: ApiserviceService){
     super(api);
   }
 
   ngOnInit() {
+    this.shared.getInfo().subscribe((res)=>{
+      console.log(res);
+      if(res){
+        this.read(APIENUM.RT);
+      }
+    })
+
     this.read(APIENUM.RT);
   }
 
