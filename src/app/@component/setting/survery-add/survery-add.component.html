@@ -1,1 +1,80 @@
-<p>survery-add works!</p>
+<app-errors  [error]="errors">
+
+</app-errors>
+<app-success [success]="success">
+
+</app-success>
+ <form class="form p-3 mt-3" [formGroup]="Survery">
+  <div class="form-row m-4">
+    <div class="col-lg-12 col-sm-12">
+
+
+
+      <div class="form-group">
+        <label>Department Name* <span  class="ml-2" *ngIf="error">
+         {{error}}
+        </span><a  *ngIf="error" style="color: red;" (click)="read('department')">Retry</a></label>
+            <select  formControlName="DepartmentID"  [ngClass]="{ 'is-invalid': submitted && T.DepartmentID.errors }"
+              class="browser-default custom-select mb-1">
+              <option disabled value="" selected>Select  Department</option>
+              <option [value]="item.DepartmentID"*ngFor="let item of baseItems; let i = index" value="">
+                {{ item.DepartmentName }}
+              </option>
+            </select>
+            <div *ngIf="submitted && T.DepartmentID.errors" class="invalid-feedback mb-1">
+              <div *ngIf="T.DepartmentID.errors.required">
+                Please provide a  Department.
+              </div>
+            </div>
+      </div>
+
+
+      </div>
+
+      <div class="col-lg-12 col-sm-12">
+
+        <label>Title*</label>
+        <input type="text"  formControlName="Title" id="start" class="form-control" name="trip-start"
+          value="Title" [ngClass]="{ 'is-invalid': submitted && T.Title.errors }" />
+        <div *ngIf="submitted && T.Title.errors" class="invalid-feedback mb-1">
+          <div *ngIf="T.Title.errors.required">
+            Please provide Title .
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 col-sm-12">
+
+        <label>Description*</label>
+
+
+          <textarea type="text"  formControlName="Description" id="start" class="form-control" name="trip-start"
+          value="Description" [ngClass]="{ 'is-invalid': submitted && T.Description.errors }">
+
+          </textarea>
+        <div *ngIf="submitted && T.Description.errors" class="invalid-feedback mb-1">
+          <div *ngIf="T.Description.errors.required">
+            Please provide Description .
+          </div>
+        </div>
+      </div>
+
+
+
+
+        <div class="col-lg-12 mt-5">
+          <button type="button" class="btn btn-success" (click)="validate()">
+            <div *ngIf="loadings" class="spinner-border" role="status">
+              <span class="visually-hidden"></span>
+            </div>
+            <span *ngIf="!loadings">Survery</span>
+
+
+          </button>
+
+        </div>
+
+
+
+      </div>
+</form>
+
