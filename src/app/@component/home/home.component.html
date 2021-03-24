@@ -24,6 +24,7 @@
             <li routerLink="loan-flow" routerLinkActive="active"><a> Loan Approval</a></li>
             <li routerLink="user-leave" routerLinkActive="active"><a> Leave</a></li>
             <li routerLink="training-approval" routerLinkActive="active"><a> training</a></li>
+            <li routerLink="survey" routerLinkActive="active"><a> Survey</a></li>
             <!-- <li routerLink="employee" routerLinkActive="active"><a><i class="fa fa-address-book p-2"></i>Employee</a>
             </li>  training-->
             <!-- <li routerLink="assets" routerLinkActive="active"><a><i class="fa fa-object-group p-2"></i>Assets</a></li> -->
@@ -147,11 +148,7 @@
 
 
 
-<div *ngIf="loading" class="d-flex align-items-center justify-content-center" style="height: 350px">
 
-  Setting Up Menu Listing <mdb-spinner spinnerColor="red"></mdb-spinner>
-
-</div>
 <div *ngIf="error" class="d-flex align-items-center justify-content-center" style="height: 350px">
 
   <div *ngIf="error" class="alert alert-danger text-center" role="alert">

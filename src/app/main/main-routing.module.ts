@@ -37,6 +37,7 @@ import { CreateLeaveTabComponent } from '../@component/LEAVES/create-leave-tab/c
 import { LeaveTabComponent } from '../@component/LEAVES/leave-tab/leave-tab.component';
 import { LeaveApprovalTabComponent } from '../@component/LEAVES/leave-approval-tab/leave-approval-tab.component';
 import { DisplayComponent } from '../@component/display/display.component';
+import { SurveyComponent } from '../@component/survey/survey.component';
 const routes: Routes = [
 
     {
@@ -79,6 +80,8 @@ const routes: Routes = [
         { path: 'edit/:id/:api/:value', component: EditComponent },
         { path: 'timeline/:id/:api/:value', component: LoantimelineComponent },
         { path: 'loan-flow', component: LoanApprovalComponent },
+        { path: 'survey', component: SurveyComponent },
+        //SurveyComponent
         { path: 'mreport/:id', component: MreportComponent },
         {
           path: 'settings',

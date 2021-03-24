@@ -1,0 +1,57 @@
+<div class="container mt-5">
+
+  <div class="row">
+    <div class="col-12 card z-depth-1">
+      <div class="row p-3 m-4">
+
+
+
+        <div class="col-6 ">
+
+          <!-- <input type="date" (change)="saverange($event)" class="form-control" /> -->
+
+          <select (change)="qselect($event,'Y')" class="form-control">
+            <!-- <option [value]="dates" selected  >{{dates}}</option> -->
+            <option disabled value="null" selected>YEAR</option>
+            <option *ngFor="let i of D" >
+              {{i}}
+            </option>
+
+          </select>
+        </div>
+        <div class="col-6 ">
+
+          <!-- <input type="date" (change)="saverange($event)" class="form-control" /> -->
+
+          <select (change)="qselect($event,'Q')" class="form-control">
+            <option disabled value="null" selected>QUARTER</option>
+            <!-- <option [value]="QT" selected  >{{QT}}</option> -->
+            <option *ngFor="let i of q" >
+              {{i}}
+            </option>
+
+          </select>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Analytics'" [settings]="projectSettings"
+  [routePage]="routePage" [searchText]="searchText" [loading]="loading"
+  [api]="apis"
+  >
+
+
+</eni-table>
+
+
+
+<div class="container">
+  <div *ngIf="error" class=" container alert alert-danger text-center" role="alert">
+    {{error}} <a (click)="read('readbyperiod')" class="alert-link">Click to retry</a>
+  </div>
+</div>
+

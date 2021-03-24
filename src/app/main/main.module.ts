@@ -54,15 +54,17 @@ import { MreportComponent } from '../@component/mreport/mreport.component';
 import { LoantimelineComponent } from '../@component/loantimeline/loantimeline.component';
 import { EditComponent } from '../@component/edit/edit.component';
 import { DisplayComponent } from '../@component/display/display.component';
+import { SurveryComponent } from '../@component/setting/survery/survery.component';
+import { SurveyComponent } from '../@component/survey/survey.component';
 //import { BaseComponent } from '../@component/base/base.component';
 
 @NgModule({
-  declarations: [HomeComponent,DisplayComponent,DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent, ContactComponent, CreatecontactComponent, UserDashboardComponent, UserProfileComponent, UserPayrollComponent, UserLeaveComponent, UserExpenseComponent, GeneratePayrollComponent, ReportComponent, PayslipComponent, ControlComponent, FinanceComponent, CeoComponent, ApprovalComponent, TrainingComponent, TrainingApprovalComponent, TimelineComponent, TimelinelistComponent, LoanComponent, ReadLoanComponent, LoanApprovalComponent, LeaveApprovalTabComponent, LeaveTabComponent, CreateLeaveTabComponent, ProcessformComponent, MreportComponent,LoantimelineComponent, EditComponent],
+  declarations: [HomeComponent,DisplayComponent,DashboardComponent, EmployeeComponent, PayrollComponent, BasicsalaryComponent, ManagesalaryComponent, ReportsalaryComponent, AssetsComponent, CreateEmployerComponent, AddassetsComponent, ReadOneEmployeeComponent, ContactComponent, CreatecontactComponent, UserDashboardComponent, UserProfileComponent, UserPayrollComponent, UserLeaveComponent, UserExpenseComponent, GeneratePayrollComponent, ReportComponent, PayslipComponent, ControlComponent, FinanceComponent, CeoComponent, ApprovalComponent, TrainingComponent, TrainingApprovalComponent, TimelineComponent, TimelinelistComponent, LoanComponent, ReadLoanComponent, LoanApprovalComponent, LeaveApprovalTabComponent, LeaveTabComponent, CreateLeaveTabComponent, ProcessformComponent, MreportComponent,LoantimelineComponent, EditComponent,SurveyComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
     SharedModule,
-    
+
     ToastModule.forRoot(),
   ],
   entryComponents: [AddassetsComponent],
