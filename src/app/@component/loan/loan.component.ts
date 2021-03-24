@@ -90,7 +90,7 @@ export class LoanComponent implements OnInit {
 
     this.Api.ReadOne(APIENUM.EMP, {
       EmployeeID: this.strUser
-  
+
   })
     .subscribe((res:any)=>{
       this.Guarantor=res.records[0];
@@ -127,8 +127,8 @@ export class LoanComponent implements OnInit {
 
   }
   onFileChange(evt:any){
-    const target: any = (evt.target);
-  this.strUser = target.options[target.selectedIndex].value.split(': ')[1];
+    console.log(evt.target.value);
+  this.strUser = evt.target.value;
 console.log(this.strUser);
 let datas = {
   EmployeeID: this.strUser
@@ -162,7 +162,7 @@ let datas = {
         icon: 'success',
         showConfirmButton: false,
         timer: 3500,
-        showCloseButton: true 
+        showCloseButton: true
        })
        this.router.navigate(['/main/loan-approval']);
     },err=>{
@@ -173,7 +173,7 @@ let datas = {
         icon: 'error',
         showConfirmButton: false,
         timer: 3500,
-        showCloseButton: true 
+        showCloseButton: true
        })
 
     },()=>{
