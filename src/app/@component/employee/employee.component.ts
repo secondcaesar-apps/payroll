@@ -186,7 +186,7 @@ exportexcel(): void
     }).then((result) => {
       if (result.value) {
 
-  this.Api.Delete(APIENUM.EMP,id).subscribe((res:any)=>{
+  this.Api.Delete(APIENUM.EMP,{'EmployeeID':id}).subscribe((res:any)=>{
     this.toastrService.error(` ${res.message}  `,'',{ opacity: 9 })
 
    this.loadEvent();

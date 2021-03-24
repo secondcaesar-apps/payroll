@@ -98,7 +98,7 @@
           <!-- <input type="date" (change)="saverange($event)" class="form-control" /> -->
 
           <select (change)="qselect($event,'Y')" class="form-control">
-            <option [value]="dates" selected  >{{dates}}</option>
+            <option value="null" selected  >Pick Year</option>
             <option *ngFor="let i of D" >
               {{i}}
             </option>
@@ -110,8 +110,8 @@
           <!-- <input type="date" (change)="saverange($event)" class="form-control" /> -->
 
           <select (change)="qselect($event,'Q')" class="form-control">
-            <!-- <option disabled value="null" selected>Select</option> -->
-            <option [value]="QT" selected  >{{QT}}</option>
+            <option disabled value="null" selected>Pick Quater</option>
+
             <option *ngFor="let i of q" >
               {{i}}
             </option>

@@ -22,12 +22,12 @@ export class SurveyComponent implements OnInit {
   loadings: boolean;
   dates = new Date().getFullYear();
 
-  q = ['Q2','Q3','Q4'];
+  q = ['Q1','Q2','Q3','Q4'];
   D= [];
-  QT='Q1';
+  QT;
   year: any= this.dates;
   constructor(private _fb: FormBuilder, private api: ApiserviceService) {
- this.D = [this.dates-2,this.dates-1,this.dates+1,this.dates+2];
+ this.D = [this.dates-2,this.dates-1,this.dates,this.dates+1,this.dates+2];
 
   }
 

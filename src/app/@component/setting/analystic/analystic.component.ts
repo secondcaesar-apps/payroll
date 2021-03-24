@@ -31,7 +31,7 @@ export class AnalysticComponent extends BaseComponent implements OnInit {
       primaryKey: "Rating",
       header: "Rating",
       routerParams:true,
-      currency:true
+
 
 
 
