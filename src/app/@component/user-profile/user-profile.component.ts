@@ -80,6 +80,7 @@ export class UserProfileComponent implements OnInit {
             this.elements=res.records[0];
             this.email = this.elements.Email;
             this.pic=this.elements.Avatar
+            localStorage.setItem('SalaryGroup',this.elements.SalaryGroup);
             this.employee = this._fb.group({
             EmployeeID:[this.elements.EmployeeID],
             FirstName:[this.elements.FirstName, Validators.required],

@@ -103,6 +103,7 @@ exportexcel(): void
       console.log(el)
     }
     this.pic =el.Avatar;
+    sessionStorage.setItem('SalaryGroup',el.SalaryGroup);
     this.employee = this._fb.group({
       EmployeeID :[el.EmployeeID],
       FirstName :[el.FirstName, Validators.required],
