@@ -32,6 +32,7 @@ import { SurveryRatingComponent } from '../@component/setting/survery-rating/sur
 import { SurveryRatingReadComponent } from '../@component/setting/survery-rating-read/survery-rating-read.component';
 import { SurveryRatingAddComponent } from '../@component/setting/survery-rating-add/survery-rating-add.component';
 import { AnalysticComponent } from '../@component/setting/analystic/analystic.component';
+import { FeebackComponent } from '../@component/setting/feeback/feeback.component';
 //import { HolidayComponent } from '../@component/holiday/holiday.component';
 
 
@@ -40,7 +41,7 @@ import { AnalysticComponent } from '../@component/setting/analystic/analystic.co
 
 
 @NgModule({
-  declarations: [HomeComponent,SettingComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent, DesignationComponent, IncreComponent, CalenderComponent, WorkflowComponent, MenuComponent, LoanWorkflowComponent, HolidayComponent, SurveryComponent, SurveryAddComponent, SurveryReadComponent, SurveryRatingComponent, SurveryRatingReadComponent, SurveryRatingAddComponent, AnalysticComponent],
+  declarations: [HomeComponent,SettingComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent, DesignationComponent, IncreComponent, CalenderComponent, WorkflowComponent, MenuComponent, LoanWorkflowComponent, HolidayComponent, SurveryComponent, SurveryAddComponent, SurveryReadComponent, SurveryRatingComponent, SurveryRatingReadComponent, SurveryRatingAddComponent, AnalysticComponent, FeebackComponent],
   imports: [
     CommonModule,
     SettingRoutingModule,

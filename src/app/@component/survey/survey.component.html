@@ -84,18 +84,18 @@
       <div class="row p-3 m-4">
 
 
-        <div class="col-6 w-100">
+        <div class="col-12 w-100">
 
           <select  (change)="onselectCode($event.target)" class="form-control"  >
-            <option disabled value="null" selected>Pick Department</option>
+            <option  value="null" selected>Pick Department</option>
             <option *ngFor="let item of dept" [value]="item.DepartmentID">{{item.DepartmentName}}</option>
 
           </select>
 
         </div>
-        <div class="col-3 ">
+        <!-- <div class="col-3 ">
 
-          <!-- <input type="date" (change)="saverange($event)" class="form-control" /> -->
+
 
           <select (change)="qselect($event,'Y')" class="form-control">
             <option value="null" selected  >Pick Year</option>
@@ -104,10 +104,10 @@
             </option>
 
           </select>
-        </div>
-        <div class="col-3 ">
+        </div> -->
+        <!-- <div class="col-3 ">
 
-          <!-- <input type="date" (change)="saverange($event)" class="form-control" /> -->
+
 
           <select (change)="qselect($event,'Q')" class="form-control">
             <option disabled value="null" selected>Pick Quater</option>
@@ -117,7 +117,7 @@
             </option>
 
           </select>
-        </div>
+        </div> -->
 
       </div>
 
@@ -125,11 +125,7 @@
 
   </div>
 
-  <div *ngIf="loadings" class="d-flex align-items-center justify-content-center" style="height: 350px">
 
-    loading question <mdb-spinner spinnerColor="red"></mdb-spinner>
-
-  </div>
 <div [formGroup]="admin">
   <div *ngIf="t" class="row mt-5 mb-4" formArrayName="Item">
 
@@ -179,7 +175,7 @@
         <div *ngIf="submitted && this.itemArray.controls[i]?.get('RatingID')?.errors?.required"
         class="invalid-feedback mb-1">
         <div *ngIf="this.itemArray.controls[i]?.get('RatingID')?.errors?.required">
-          Please provide  Rating .
+          Please provide  rating .
         </div>
       </div>
         </div>
@@ -188,19 +184,40 @@
 
     </div>
 
-    <div class="col-lg-12 mt-5">
-      <button type="button" class="btn btn-success" (click)="MakeBili()">
-        <div *ngIf="loading" class="spinner-border" role="status">
-          <span class="visually-hidden"></span>
-        </div>
-        <span *ngIf="!loading">Submit</span>
 
 
-      </button>
+  </div>
+</div>
+<div *ngIf="t"  class="row">
+  <div class="col-lg-12 mt-3">
+<label>Additional Feedback</label>
+    <textarea  formControlName="Feedback" [ngClass]="{ 'is-invalid': submitted && T.Feedback.errors }" class="form-control" >
 
+    </textarea>
+    <div *ngIf="submitted && T.Feedback.errors" class="invalid-feedback mb-1">
+      <div *ngIf="T.Feedback.errors.required">
+        Please provide Feedback .
+      </div>
+
+      <span *ngIf="admin.get('Feedback').hasError('whitespace')">
+         cannot contain whitespace
+    </span>
     </div>
 
   </div>
+
+  <div class="col-lg-12 mt-5">
+    <button type="button" class="btn btn-success" (click)="MakeBili()">
+      <div *ngIf="loading" class="spinner-border" role="status">
+        <span class="visually-hidden"></span>
+      </div>
+      <span *ngIf="!loading">Submit</span>
+
+
+    </button>
+
+  </div>
+
 </div>
 
 

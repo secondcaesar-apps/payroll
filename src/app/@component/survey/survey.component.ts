@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum';
 
@@ -24,7 +24,11 @@ export class SurveyComponent implements OnInit {
 
   q = ['Q1','Q2','Q3','Q4'];
   D= [];
+ month = new Date().getMonth();
+quarter = ['Q1', 'Q2', 'Q3', 'Q4'].map((_, i, a) => a[Math.floor(this.month / 3 + 1 + i) % 4])[3];
+quarters='Q1';
   QT;
+
   year: any= this.dates;
   constructor(private _fb: FormBuilder, private api: ApiserviceService) {
  this.D = [this.dates-2,this.dates-1,this.dates,this.dates+1,this.dates+2];
@@ -34,13 +38,15 @@ export class SurveyComponent implements OnInit {
   setForm(){
     this.admin = this._fb.group({
 
+      Feedback:[null,[Validators.required,noWhitespaceValidator]],
+
       Item: this._fb.array([this.Admin('', '')]),
 
     });
   }
 
   ngOnInit() {
-
+ this.dept=null;
     this.  setForm();
     this.getDepartment();
 
@@ -81,7 +87,7 @@ export class SurveyComponent implements OnInit {
       this.loadings=false;
       if (err.status === 0 && err.error instanceof ProgressEvent) {
         // A client-side or network error occurred. Handle it accordingly.
-        console.log('Client side error:', err.error);
+
         this.error='Client side error:Please check your internet';
       }else{
         this.error=err.error.Error;
@@ -142,7 +148,7 @@ saverange(event){
   };
 
   changeGender(e) {
-    console.log(e.target.value);
+
   }
   scrollTo(el: any): void {
     if (el) {
@@ -161,10 +167,10 @@ saverange(event){
   MakeBili() {
     this.submitted = true;
 
- console.log(this.admin.value);
 
 
-    if ( this.itemArray.invalid) {
+
+    if ( this.admin.invalid) {
       this.submitted = true;
 
      this.scrollToError();
@@ -177,9 +183,16 @@ saverange(event){
     }
   }
 
+  get T() {
+    return this.admin.controls;
+  }
+
   getDepartment(){
-    this.api.Read(APIENUM.EMP).subscribe((res:any)=>{
-      console.log(res);
+    this.dept=[];
+    this.api.Special(APIENUM.SD,{'Period':this.quarters+"-"+this.year}).subscribe((res:any)=>{
+
+
+
 
       this.dept= res.records;
 
@@ -196,12 +209,12 @@ this.did=value['value'];
 
 if( this.did!=null){
 
-  if(this.QT!=null && this.year!=null){
 
-    let result = this.QT+"-"+this.year;
+
+    let result = this.quarters+"-"+this.year;
     this.date= result;
     this.getQuestion(this.did);
-  }
+
 }
 
 
@@ -230,7 +243,7 @@ if( this.did!=null){
         } else {
           this.submitted = false;
 
-          this.api.Create(APIENUM.SS,this.admin.value['Item']).subscribe((res:any)=>{
+          this.api.Create(APIENUM.SS,{...this.admin.value,DepartmentID:this.did,Period: this.date}).subscribe((res:any)=>{
             this.loading=false;
             this.success=res.message;
             this.t=null;
@@ -238,6 +251,7 @@ if( this.did!=null){
             this.dept=null;
             this.  setForm();
             this.ngOnInit();
+            this.getDepartment();
          this.date=date;
 
     this.admin.reset();
@@ -294,7 +308,20 @@ let val= event.target.value;
         }
 
 
-       // console.log(event.target.value);
+
 
       }
+}
+
+
+import { AbstractControl } from '@angular/forms';
+export function removeSpaces(control: AbstractControl) {
+  if (control && control.value && !control.value.replace(/\s/g, '').length) {
+    control.setValue('');
+  }
+  return null;
+}
+export function noWhitespaceValidator(control: FormControl) {
+  const isSpace = (control.value || '').match(/\s/g);
+  return isSpace ? {'whitespace': true} : null;
 }

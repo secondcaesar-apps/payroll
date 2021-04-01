@@ -1,162 +1,149 @@
-<body class="black-skin">
+<input type="checkbox" name="" id="sidebar-toggle">
+<div class="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-flex">
+      <img src="" alt="" width="30px" />
 
-  <header>
+      <div class="brand-icons">
+        <!-- <span class="las la-bell"></span>
+        <span class="las la-user-circle"></span> -->
+      </div>
+    </div>
+  </div>
 
-    <div id="sidenav">
-      <div class="wrapper">
-        <div class="logo">
-          <a>HRM</a>
-          <a class="nav-icon pull-right"><i class="fa fa-bars"></i></a>
-        </div>
-        <div class="menu">
-          <ul>
-            <!-- <li routerLink="dashboard" routerLinkActive="active"><a><i class="fa fa-home p-2"></i>Home</a></li> -->
-            <!-- <li routerLink="user-dahboard" routerLinkActive="active"><a> <i class="fa fa-calendar p-2"
-                  aria-hidden="true"></i> Activities</a></li> -->
-            <!-- <li routerLink="user-expense" routerLinkActive="active"><a> <i class="fa fa-cart-plus p-2"></i>Expense
-                Claim</a></li> -->
-            <li routerLink="user-profile" routerLinkActive="active"><a> My Profile</a>
-            </li>
-            <li routerLink="user-payroll" routerLinkActive="active"><a>
-                Payslip</a></li>
+  <div class="sidebar-main mt-2">
 
-            <li routerLink="loan-approval" routerLinkActive="active"><a> Request Loan</a></li>
-            <li routerLink="loan-flow" routerLinkActive="active"><a> Loan Approval</a></li>
-            <li routerLink="user-leave" routerLinkActive="active"><a> Leave</a></li>
-            <li routerLink="training-approval" routerLinkActive="active"><a> training</a></li>
-            <li routerLink="survey" routerLinkActive="active"><a> Survey</a></li>
-            <!-- <li routerLink="employee" routerLinkActive="active"><a><i class="fa fa-address-book p-2"></i>Employee</a>
-            </li>  training-->
-            <!-- <li routerLink="assets" routerLinkActive="active"><a><i class="fa fa-object-group p-2"></i>Assets</a></li> -->
-            <!-- <li routerLink="contact" routerLinkActive="active"><a> <i class="fa fa-phone-square p-2"></i>Contact</a>
-            </li> -->
-            <!-- <li routerLink="payroll" routerLinkActive="active"> <a mdbWavesEffect> <i
-                  class="fa fa-book p-2"></i>Payroll</a></li> -->
-            <!-- <li routerLink="training" routerLinkActive="active"><a><i class="fa fa-object-group p-2"></i>Training</a></li> -->
+    <div class="sidebar-user">
+      <img src="{{pic}}"  alt="">
 
-
-            <!-- <li class="show"><a>Approval</a>
-
-              <ul >
-
-                <li *ngFor="let item of approval"><a [routerLink]="item.route" routerLinkActive="active">
-                    {{item.name}}</a></li>
-
-
-              </ul>
-            </li> -->
-            <!--  <li class="show"><a><i class="fa fa-cog p-2"></i>Settings</a>
-
-
-              </ul>
-            </li> -->
-            <!-- <li routerLink="yearlyreport" routerLinkActive="active"><a><i class="fa fa-cog p-2"></i>Report</a>
-            </li> -->
-            <!-- <li class="show"><a><i class="fa fa-cog p-2"></i>Settings</a>
-
-              <ul class="sub">
-
-                <li *ngFor="let item of list"><a [routerLink]="item.route" routerLinkActive="active"> {{item.name}}</a>
-                </li>
-
-              </ul>
-            </li> -->
-
-            <li *ngFor="let item of menuArray" [routerLink]="item['MenuURL']">
-
-              <a *ngIf="item.MenuName!='Settings'">{{item.MenuName}}</a>
-
-              <!-- <a><i *ngIf="item.MenuName=='Settings'" class="fa fa-cog p-2"></i>Settings </a> -->
-              <!-- <ul class="sub" *ngIf="item.MenuName=='Settings'">
-
-
-              <li *ngFor="let items of list"><a [routerLink]="items.route" > {{items.name}}</a>
-              </li>
-
-            </ul> -->
-
-
-            </li>
-            <li class="show" *ngIf="settAound"><a>Settings</a>
-
-              <ul class="">
-
-                <li *ngFor="let item of list"><a [routerLink]="item.route" routerLinkActive="active"> {{item.name}}</a>
-                </li>
-
-              </ul>
-            </li>
-
-
-          </ul>
-        </div>
+      <div>
+        <h3>{{lastname}} {{firstname}}</h3>
+        <h3>{{Email}}</h3>
       </div>
     </div>
 
+<div class="sidebar-menu">
+  <div class="menu-head">
+    <span>My Menu</span>
 
+  </div>
 
+  <ul>
+    <li><a routerLink="user-profile" routerLinkActive="active">
+      <span class="las la-user-circle">
 
-    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-grey s mb-0" [containerInside]="false">
+      </span>
+      Profile
+    </a></li>
+    <li><a routerLink="user-payroll" routerLinkActive="active">
+      <span class="las la-chart-pie">
 
-      <mdb-navbar-brand><a class="navbar-brand" style="color: #555;" href="#"></a></mdb-navbar-brand>
+      </span>
+      Payslip
+    </a></li>
+    <li><a routerLink="loan-approval" routerLinkActive="active">
+      <span class="las la-wallet">
 
+      </span>
+      Request Loan
+    </a></li>
+    <li><a routerLink="loan-flow" routerLinkActive="active">
+      <span class="las la-hand-holding-usd">
 
-      <links>
+      </span>
+      Loan Approval
+    </a></li>
+    <li><a routerLink="user-leave" routerLinkActive="active">
+      <span class="las la-luggage-cart">
 
+      </span>
+      Leave
+    </a></li>
+    <li><a routerLink="survey" routerLinkActive="active">
+      <span class="las la-poll">
 
-        <ul class="navbar-nav ml-auto">
+      </span>
+      Survey
+    </a></li>
+  </ul>
+  <div *ngIf="settAound" class="menu-head">
+    <span>Settings</span>
 
-          <li class="nav-item">
-            <a class="nav-link waves-light" mdbWavesEffect>
-              Pending Request <span class="badge badge-danger ml-2 animated bounce ">0</span>
-            </a>
-          </li>
+  </div>
 
+  <ul *ngIf="settAound">
+    <li *ngFor="let item of list"><a  [routerLink]="item.route" routerLinkActive="active">
+      <span [class]="item.icon">
 
-          <li class="nav-item dropdown" dropdown>
-            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-              Profile<span class="caret"></span>
-            </a>
-            <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-              <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
-              <a class="dropdown-item waves-light" (click)=" logout()" mdbWavesEffect>Log out</a>
-            </div>
-          </li>
+      </span>
+      {{item.name}}
+    </a></li>
+    <!-- <li><a href="">
+      <span class="las la-list">
 
-        </ul>
+      </span>
+      Employees
+    </a></li>
+    <li><a href="">
+      <span class="las la-balance-scale">
 
-      </links>
+      </span>
+      Survery
+    </a></li>
+    <li><a href="">
+      <span class="las la-chart-bar">
 
+      </span>
+      More
+    </a></li>
+    <li><a href="">
+      <span class="las la-shopping-cart">
 
-    </mdb-navbar>
+      </span>
+      Ecommerce
+    </a></li>
+    <li><a href="">
+      <span class="las la-check-circle">
 
+      </span>
+      MailBox
+    </a></li> -->
+  </ul>
 
+</div>
+    <div>
 
+    </div>
+  </div>
+
+</div>
+<div class="main-content">
+  <header>
+
+    <div class="menu-toggle">
+      <label for="sidebar-toggle">
+        <span class="las la-bars"></span>
+      </label>
+    </div>
+
+    <div class="header-icons">
+      <!-- <span class="las la-search"></span>
+      <span class="las la-bookmark"></span> -->
+      <span (click)=" logout()" class="las la-sign-in-alt"></span>
+
+    </div>
   </header>
+  <main>
 
 
-  <!--Main layout-->
-  <main class="">
-
-    <router-outlet></router-outlet>
-
-  </main>
-  <!--/Main layout-->
-
-</body>
-
-
-
-
-
-<div *ngIf="error" class="d-flex align-items-center justify-content-center" style="height: 350px">
-
-  <div *ngIf="error" class="alert alert-danger text-center" role="alert">
-    {{error}} <a (click)="LoadMenu()" class="alert-link">Click to retry</a>
-
-    <div class="spinner-grow text-danger" role="status">
+  <div *ngIf="share.isloading | async"    class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
       <span class="sr-only">Loading...</span>
     </div>
   </div>
 
+
+      <router-outlet></router-outlet>
+
+  </main>
 </div>

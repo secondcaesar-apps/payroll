@@ -3,6 +3,7 @@
 
 export enum APIENUM {
   ASS = 'asset',
+  SVP='survey/feedbackbyperiod',
   CON = 'contact',
   COM = 'company',
   CAT = 'category',
@@ -27,6 +28,7 @@ export enum APIENUM {
   LOG = 'login',
   LON = 'loan',
   EMP = 'employee',
+  SD='survey/readdepartment.php',
   HOL = 'holiday',
   SAG = 'salarygroup',
   FILE = 'Fileuploads/fileupload.php',
