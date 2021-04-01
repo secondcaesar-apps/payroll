@@ -38,7 +38,7 @@ quarters='Q1';
   setForm(){
     this.admin = this._fb.group({
 
-      Feedback:[null,[Validators.required,noWhitespaceValidator]],
+      Feedback:[null,[Validators.required]],
 
       Item: this._fb.array([this.Admin('', '')]),
 
