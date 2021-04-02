@@ -28,6 +28,8 @@ export class LoanComponent implements OnInit {
   ];
   @ViewChild('basicModal', { static: true }) basicModal: ModalDirective;
   show: Boolean;
+  val = Array(19).fill(0).map((x,i)=>i);
+
   constructor(
     private router: Router,
     private Api: ApiserviceService,
@@ -51,6 +53,7 @@ export class LoanComponent implements OnInit {
   location:any;
   role:any;
   strUser: string =sessionStorage.getItem('EmpID');
+  salayid=   localStorage.getItem('SalaryGroup');
   department:any;
   employees:any;
   designation:any;
@@ -60,9 +63,12 @@ export class LoanComponent implements OnInit {
   loading: boolean = true;
   loadings=false;
   ngOnInit() {
+    console.log(this.salayid);
       this.value =  sessionStorage.getItem('EmpID')
       let data = {EmployeeID:  sessionStorage.getItem('EmpID')}
+      this.  getTenor();
       this.Api.ReadOne(APIENUM.EMP, data)
+
       .subscribe((res:any)=>{
         this.elements=res.records[0];
         this.name= this.elements.FirstName +' '+ this.elements.LastName
@@ -90,7 +96,7 @@ export class LoanComponent implements OnInit {
 
     this.Api.ReadOne(APIENUM.EMP, {
       EmployeeID: this.strUser
-  
+
   })
     .subscribe((res:any)=>{
       this.Guarantor=res.records[0];
@@ -127,8 +133,8 @@ export class LoanComponent implements OnInit {
 
   }
   onFileChange(evt:any){
-    const target: any = (evt.target);
-  this.strUser = target.options[target.selectedIndex].value.split(': ')[1];
+    console.log(evt.target.value);
+  this.strUser = evt.target.value;
 console.log(this.strUser);
 let datas = {
   EmployeeID: this.strUser
@@ -162,7 +168,7 @@ let datas = {
         icon: 'success',
         showConfirmButton: false,
         timer: 3500,
-        showCloseButton: true 
+        showCloseButton: true
        })
        this.router.navigate(['/main/loan-approval']);
     },err=>{
@@ -173,7 +179,7 @@ let datas = {
         icon: 'error',
         showConfirmButton: false,
         timer: 3500,
-        showCloseButton: true 
+        showCloseButton: true
        })
 
     },()=>{
@@ -182,6 +188,17 @@ let datas = {
         this.error='';
       },800)
     })
+  }
+
+
+  getTenor(){
+    this.Api.ReadOne(APIENUM.SAG,{'SalaryGroupID':this.salayid}).subscribe((res:any)=>{
+
+      if(parseFloat('311279')<=parseFloat(res.records[0]['NetPay'])){
+        this.val=Array(25).fill(0).map((x,i)=>i);
+        console.log(parseFloat(res.records[0]['NetPay']));
+      }
+    });
   }
 
 

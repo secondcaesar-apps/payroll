@@ -9,7 +9,8 @@ const EXCEL_EXTENSION = '.xlsx';
   providedIn: 'root'
 })
 export class SharedService {
-  private  _Info:BehaviorSubject<any> = new BehaviorSubject(null); 
+  private  _Info:BehaviorSubject<any> = new BehaviorSubject(null);
+  public isloading:BehaviorSubject<boolean>= new BehaviorSubject(false);
   constructor() { }
 
   // public exportAsExcelFile(json: any[], excelFileName: string): void {
@@ -24,15 +25,17 @@ export class SharedService {
   // }
 
   AddInfo(info){
-   
+
     this._Info.next(info);
-      
+
   }
 
   getInfo(){
 
       return  this._Info;
-    
-      
+
+
   }
+
+  
 }

@@ -1,0 +1,235 @@
+<!-- <div class="container mt-5">
+  <div class="row">
+
+
+    <div class="col-12">
+      <h3 class="h3-responsive font-weight-bold">
+        <strong>
+         Admin
+        </strong>
+      </h3>
+    </div>
+
+    <div class="col-12">
+      <table class="table table-striped table-hover mt-5"  [formGroup]="admin">
+
+        <thead class="black white-text">
+          <tr>
+            <th>QuestionID</th>
+            <th>RatingID</th>
+
+            <th></th>
+
+          </tr>
+
+        </thead>
+        <tbody formArrayName="Item">
+          <tr mdbTableCol *ngFor="let item of itemArray['controls']; let i = index;"
+            [formGroupName]="i">
+            <th>
+
+              <input formControlName="Title" readonly   />
+
+
+              <div *ngIf="submitted && this.itemArray.controls[i]?.get('QuestionID')?.errors?.required"
+              class="invalid-feedback mb-1">
+              <div *ngIf="this.itemArray.controls[i]?.get('QuestionID')?.errors?.required">
+                Please provide  QuestionID .
+              </div>
+            </div>
+            </th>
+            <th>
+
+              <div *ngIf="submitted && this.itemArray.controls[i]?.get('RatingID')?.errors?.required"
+              class="invalid-feedback mb-1">
+              <div *ngIf="this.itemArray.controls[i]?.get('RatingID')?.errors?.required">
+                Please provide  RatingID .
+              </div>
+            </div>
+
+            </th>
+
+
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="col-lg-12 mt-5">
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+
+
+
+</div> -->
+
+<!-- <app-errors  [error]="error">
+
+</app-errors>
+<app-success [success]="success"> -->
+
+<div class="container mt-5" [formGroup]="admin" *ngIf="show"  >
+
+
+  <h4>Survey</h4>
+
+  <div class="row">
+    <div class="col-12 card z-depth-1">
+      <div class="row p-3 m-4">
+
+
+        <div class="col-12 w-100">
+
+          <select  (change)="onselectCode($event.target)" class="form-control"  >
+            <option  value="null" selected>Pick Department</option>
+            <option *ngFor="let item of dept" [value]="item.DepartmentID">{{item.DepartmentName}}</option>
+
+          </select>
+
+        </div>
+        <!-- <div class="col-3 ">
+
+
+
+          <select (change)="qselect($event,'Y')" class="form-control">
+            <option value="null" selected  >Pick Year</option>
+            <option *ngFor="let i of D" >
+              {{i}}
+            </option>
+
+          </select>
+        </div> -->
+        <!-- <div class="col-3 ">
+
+
+
+          <select (change)="qselect($event,'Q')" class="form-control">
+            <option disabled value="null" selected>Pick Quater</option>
+
+            <option *ngFor="let i of q" >
+              {{i}}
+            </option>
+
+          </select>
+        </div> -->
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+<div [formGroup]="admin">
+  <div *ngIf="t" class="row mt-5 mb-4" formArrayName="Item">
+
+
+    <div class="col-12 card mb-3 z-depth-1" *ngFor="let item of itemArray['controls']; let i = index;"
+      [formGroupName]="i">
+      <div class="row p-3 m-4 ">
+
+
+        <div class="col-6 w-100">
+
+          {{i+1}}.
+         {{t[i]?.Title }}
+
+          <!-- <textarea formControlName="Title" readonly class="form-control">
+
+    </textarea> -->
+
+<!--
+            <div *ngFor="let item of answer">
+              <div class="row m-3">
+        <div class="col-12">
+          <div class="custom-control custom-radio d-block">
+            <input type="radio" formControlName="RatingID" class="form-control" [value]="true" id="{{item.RatingID}}" name="RatingID"
+            (change)="changeGender($event)">
+            <label class="custom-control-label" for="defaultUnchecked">{{item.Name}}</label>
+          </div>
+        </div>
+
+
+
+            </div>
+
+          </div> -->
+
+        </div>
+
+        <div class="col-6">
+
+          <select formControlName="RatingID"
+          class="form-control browser-default custom-select mb-1" [ngClass]="{ 'is-invalid': submitted && this.itemArray.controls[i]?.get('RatingID')?.errors?.required }">
+          <option disabled value="null" selected>Select Answer</option>
+          <option [value]="item.ID" *ngFor="let item of answer">
+            {{ item.Name }}
+          </option>
+        </select>
+        <div *ngIf="submitted && this.itemArray.controls[i]?.get('RatingID')?.errors?.required"
+        class="invalid-feedback mb-1">
+        <div *ngIf="this.itemArray.controls[i]?.get('RatingID')?.errors?.required">
+          Please provide  rating .
+        </div>
+      </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+  </div>
+</div>
+<div *ngIf="t"  class="row">
+  <div class="col-lg-12 mt-3">
+<label>Additional Feedback</label>
+    <textarea  formControlName="Feedback" [ngClass]="{ 'is-invalid': submitted && T.Feedback.errors }" class="form-control" >
+
+    </textarea>
+    <div *ngIf="submitted && T.Feedback.errors" class="invalid-feedback mb-1">
+      <div *ngIf="T.Feedback.errors.required">
+        Please provide Feedback .
+      </div>
+
+
+    </div>
+
+  </div>
+
+  <div class="col-lg-12 mt-5">
+    <button type="button" class="btn btn-success" (click)="MakeBili()">
+      <div *ngIf="loading" class="spinner-border" role="status">
+        <span class="visually-hidden"></span>
+      </div>
+      <span *ngIf="!loading">Submit</span>
+
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<div class="mt-5">
+  <app-errors  [error]="error">
+
+  </app-errors>
+  <app-success [success]="success"></app-success>
+</div>
+
+
+</div>
+<div class="container"  *ngIf="!show">
+
+  <h4 class="text-center">Survey Closed</h4>
+
+</div>

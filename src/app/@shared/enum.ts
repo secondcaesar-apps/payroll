@@ -3,6 +3,7 @@
 
 export enum APIENUM {
   ASS = 'asset',
+  SVP='survey/feedbackbyperiod',
   CON = 'contact',
   COM = 'company',
   CAT = 'category',
@@ -16,6 +17,7 @@ export enum APIENUM {
   MENU = 'menu',
   LEAVE = 'leave',
   SQ = 'surveyquestion',
+  SQR='survey/readbyperiod',
   MENUG = 'menugroup',
   train = 'training',
   trainpending = 'training/pendingapprove.php',
@@ -26,6 +28,7 @@ export enum APIENUM {
   LOG = 'login',
   LON = 'loan',
   EMP = 'employee',
+  SD='survey/readdepartment.php',
   HOL = 'holiday',
   SAG = 'salarygroup',
   FILE = 'Fileuploads/fileupload.php',
@@ -41,6 +44,7 @@ export enum APIENUM {
   CREATEPAYROLL = '/salaryslip/create.php',
   EVENT = 'event',
   RT = 'surveyrating',
+  SS='survey',
   PAYROLLM = 'salaryslip',
   WORKFLOWSETUP = 'workflowsetup',
   LOANWORKFLOWSETUP = 'loanworkflowsetup',

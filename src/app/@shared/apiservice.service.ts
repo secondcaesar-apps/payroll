@@ -182,9 +182,7 @@ export class ApiserviceService {
     const expirationDate = helper.getTokenExpirationDate(resp);
     const isExpired = helper.isTokenExpired(resp);
 
-    console.log(isExpired);
-
-    console.log( decodedToken.data);
+   
 
      sessionStorage.setItem('EmpID', decodedToken.data.EmployeeID);
 
