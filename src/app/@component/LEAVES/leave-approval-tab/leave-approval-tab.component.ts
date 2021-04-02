@@ -49,12 +49,13 @@ export class LeaveApprovalTabComponent extends BaseComponent implements OnInit {
     {
       primaryKey: "StartDate",
       header: "Start Date",
-
+      date:true
 
     },
     {
       primaryKey: "EndDate",
       header: "End Date",
+      date:true
 
 
     },

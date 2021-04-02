@@ -46,6 +46,46 @@ export class HomeComponent implements OnInit {
    }
 
   ngOnInit() {
+
+    this.share.getInfo().subscribe((res)=>{
+
+      if(res){
+        this. getUsser();
+        this.LoadMenu()
+      //  this.onClick(); yearlyreport
+      'yearlyreport'
+        this.list =[
+          {name:'Company',route:'settings/company',icon:'las la-home'},
+          {name:'Employee',route:'employee',icon:'fa fa-users fa-2x'},
+          {name:'Payroll',route:'payroll',icon:'fa fa-list fa-2x'},
+          {name:'Payroll Approval',route:'Approvals',icon:'las la-comments-dollar'},
+          {name:'Department',route:'settings/department',icon:'fa fa-laptop fa-2x'},
+          {name:'Salary-group',route:'settings/salary-group',icon:'las la-file-invoice-dollar'},
+          {name:'Expense-setup',route:'settings/expense-setup',icon:'las la-shopping-cart'},
+          {name:'Leave-setup',route:'settings/leave-setup',icon:'las la-globe'},
+          {name:'Increment',route:'settings/increment',icon:'las la-plus'},
+          {name:'Roles',route:'settings/roles',icon:'las la-user-tag'},
+          {name:'Location',route:'settings/location',icon:'las la-map'},
+          {name:'Designation',route:'settings/designation',icon:'las la-dumbbell'},
+          {name:'Calender',route:'settings/calender',icon:'las la-calendar'},
+          {name:'Workflow',route:'settings/workflow',icon:'las la-network-wired'},
+          {name:'report',route:'yearlyreport',icon:'las la-file-alt'},
+          {name:'Loan-workflow',route:'settings/loan-workflow',icon:'las la-wallet'},
+          {name:'Trainning setup',route:'training',icon:'las la-random'},
+
+          {name:'holiday',route:'settings/holiday',icon:'las la-plane-arrival'},
+          {name:'Menu Setup',route:'settings/menu',icon:'las la-stream'},
+
+         {name:'survey',route:'settings/survery',icon:'las la-poll'},
+         {name:'rating',route:'settings/rating',icon:'las la-star'},
+
+      ]
+      this.approval =[
+
+      ]
+      }
+    })
+
  this. getUsser();
     this.LoadMenu()
   //  this.onClick(); yearlyreport

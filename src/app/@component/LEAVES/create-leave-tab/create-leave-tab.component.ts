@@ -5,6 +5,7 @@ import { APIENUM } from 'src/app/@shared/enum';
 import { BaseComponent } from '../../base/base.component';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { SharedService } from 'src/app/@shared/shared/shared.service';
 @Component({
   selector: 'app-create-leave-tab',
   templateUrl: './create-leave-tab.component.html',
@@ -21,7 +22,7 @@ export class CreateLeaveTabComponent extends BaseComponent implements OnInit {
   presentdate= new Date().toISOString().toString().split('T')[0];
   holiday_array: any=[];
 
-  constructor(private _fb: FormBuilder,public api: ApiserviceService,public router:Router) {
+  constructor(private _fb: FormBuilder,public api: ApiserviceService,public router:Router,private shared: SharedService,) {
     super(api);
 
   }
@@ -33,7 +34,7 @@ export class CreateLeaveTabComponent extends BaseComponent implements OnInit {
    // this.read(APIENUM.LEAVETYPE)
     this.read(APIENUM.USERLEAVETYPE)
     this.Leave = this._fb.group({
-      LeaveType: ['', []],
+      LeaveType: ['', [Validators.required]],
       StartDate: ['', [Validators.required]],
       EndDate: ['', [Validators.required]],
       Reason: ['', [Validators.required]],
@@ -121,6 +122,7 @@ export class CreateLeaveTabComponent extends BaseComponent implements OnInit {
     this.api.Create(APIENUM.LEAVE,value).subscribe((res:any)=>{
       this.loadings=false;
       this.success=res.message;
+      this.shared.AddInfo('true');
       this.Leave.reset();
       this.Leave.enable();
       setTimeout(()=>{
@@ -156,6 +158,8 @@ export class CreateLeaveTabComponent extends BaseComponent implements OnInit {
     this.Leave.valueChanges.subscribe(val => {
 
       if(val){
+
+
         if(val.StartDate!=""){
 
           this.checkWeekends(val.StartDate,"StartDate")
@@ -165,11 +169,40 @@ export class CreateLeaveTabComponent extends BaseComponent implements OnInit {
           this.checkWeekends(val.EndDate,"EndDate")
 
          }
+
+        // if(this.checkSevendays(val)){
+
+
+        // }else{
+        //   swal.fire('Leave can\'t be fixed for next seven days')
+        // }
+
       }else{
 
       }
 
     });
+  }
+
+
+  checkSevendays(value,p){
+    var today = new Date();
+    var nextWeek =Date.parse(new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7).toDateString()) ;
+
+    //If nextWeek is smaller (earlier) than the value of the input date, alert...
+    if (nextWeek <  Date.parse(new Date(value).toDateString())){
+
+      return false;
+    }else{
+      this.Leave.patchValue({
+        [p]:""
+      });
+
+
+        return true;
+
+    }
+
   }
 
 
@@ -190,7 +223,13 @@ checkWeekends(value,paramter){
 
       swal.fire('Weekends not allowed')
 
-}else{
+}
+
+else if(this.checkSevendays(value,paramter)){
+  swal.fire('Leave can\'t be fixed for next seven days');
+}
+
+else{
 
 
   this.api.Read(APIENUM.HOL).subscribe((res:any)=>{
@@ -298,7 +337,7 @@ ChangingValue(event){
 
  this.baseItems.find(o => {
 
-  if(o.LeaveTypeID==event.target.value.split(":")[1].trim()){
+  if(o.LeaveTypeID==event.target.value.split(":")[1]){
 
 
     this.leavetypedate=o.TotalDays;

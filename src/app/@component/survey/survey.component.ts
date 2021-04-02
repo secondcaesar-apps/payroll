@@ -9,6 +9,8 @@ import { APIENUM } from 'src/app/@shared/enum';
   styleUrls: ['./survey.component.scss']
 })
 export class SurveyComponent implements OnInit {
+
+  show=false;
   admin: FormGroup;
   loading:any;
   submitted: boolean;
@@ -25,8 +27,8 @@ export class SurveyComponent implements OnInit {
   q = ['Q1','Q2','Q3','Q4'];
   D= [];
  month = new Date().getMonth();
-quarter = ['Q1', 'Q2', 'Q3', 'Q4'].map((_, i, a) => a[Math.floor(this.month / 3 + 1 + i) % 4])[3];
-quarters='Q1';
+quarters = ['Q1', 'Q2', 'Q3', 'Q4'].map((_, i, a) => a[Math.floor(this.month / 3 + 1 + i) % 4])[3];
+quarter='Q1';
   QT;
 
   year: any= this.dates;

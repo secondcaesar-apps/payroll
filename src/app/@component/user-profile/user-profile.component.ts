@@ -221,7 +221,7 @@ export class UserProfileComponent implements OnInit {
     this.Api.Update(APIENUM.EMP, value).subscribe((res:any)=>{
       this.loading=false;
 
-
+this.shared.AddInfo('true');
       swal.fire({
         title: res.message,position: "center",
         icon: 'success',

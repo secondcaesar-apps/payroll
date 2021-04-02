@@ -74,7 +74,7 @@
 </app-errors>
 <app-success [success]="success"> -->
 
-<div class="container mt-5" [formGroup]="admin"  >
+<div class="container mt-5" [formGroup]="admin" *ngIf="show"  >
 
 
   <h4>Survey</h4>
@@ -228,4 +228,8 @@
 
 
 </div>
+<div class="container"  *ngIf="!show">
 
+  <h4 class="text-center">Survey Closed</h4>
+
+</div>

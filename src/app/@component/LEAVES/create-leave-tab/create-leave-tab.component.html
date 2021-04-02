@@ -17,7 +17,7 @@
             <select (change)="ChangingValue($event)" formControlName="LeaveType"  [ngClass]="{ 'is-invalid': submitted && T.LeaveType.errors }"
               class="browser-default custom-select mb-1">
               <option disabled value="" selected>Select  Type</option>
-              <option [ngValue]="item.LeaveTypeID"*ngFor="let item of baseItems; let i = index" value="">
+              <option [value]="item.LeaveTypeID"*ngFor="let item of baseItems; let i = index" value="">
                 {{ item.LeaveTypeName }}
               </option>
             </select>

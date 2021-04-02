@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum';
+import { SharedService } from 'src/app/@shared/shared/shared.service';
 import { ColumnSetting } from 'src/app/models/layout.model';
 import { BaseComponent } from '../../base/base.component';
 
@@ -16,22 +17,8 @@ export class LeaveTabComponent extends BaseComponent implements OnInit {
   apis='leave'
   projectSettings: ColumnSetting[] = [
 
-    {
-      primaryKey: "DateCreated",
-      header: "DateCreated",
-
-    },
-    {
-      primaryKey: "FirstName",
-      header: "First Name",
-
-    },
-    {
-      primaryKey: "LastName",
-      header: "Last Name",
 
 
-    },
     {
       primaryKey: "LeaveID",
       header: "LeaveID",
@@ -54,6 +41,13 @@ export class LeaveTabComponent extends BaseComponent implements OnInit {
     {
       primaryKey: "StartDate",
       header: "Start Date",
+      date:true
+
+    },
+    {
+      primaryKey: "EndDate",
+      header: "End Date",
+      date:true
 
     },
     {
@@ -65,11 +59,18 @@ export class LeaveTabComponent extends BaseComponent implements OnInit {
 
   ];
 
-  constructor(public api: ApiserviceService){
+  constructor(public api: ApiserviceService,private shared: SharedService,){
     super(api);
   }
 
   ngOnInit() {
+    this.shared.getInfo().subscribe((res)=>{
+
+      if(res){
+        this.readonEmp(APIENUM.LEAVE);
+      }
+    })
+
     this.readonEmp(APIENUM.LEAVE);
   }
 
