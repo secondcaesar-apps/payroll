@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum';
 import { SharedService } from 'src/app/@shared/shared/shared.service';
-
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit {
    }
 
   ngOnInit() {
+
 
     this.share.getInfo().subscribe((res)=>{
 
