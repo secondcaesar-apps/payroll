@@ -30,12 +30,13 @@ jobs:
       - name: copy file via ssh key
         uses: appleboy/scp-action@master
         env:
-          host: 66.70.202.147
-          username: root
-          port: 2810
-          password: Safety_101!
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password:  ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+
         with:
-          source: "./dist/your-angular-app-name/payroll"
+          source: "./dist/payroll"
           target: "/var/www/html/"
           strip_components: 3 # this is important
 #ssh -p 2810 root@66.70.202.147
