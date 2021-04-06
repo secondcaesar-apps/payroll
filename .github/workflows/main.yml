@@ -35,7 +35,7 @@ jobs:
           PORT: 2810
           PASSWORD: Safety_101!
         with:
-          source: "./dist/payroll"
+          source: "*"
           target: "/var/www/html/"
           strip_components: 2 # this is important
 #ssh -p 2810 root@66.70.202.147
