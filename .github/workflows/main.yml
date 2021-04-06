@@ -36,5 +36,5 @@ jobs:
           password: Safety_101!
           source: "./dist/payroll"
           target: "/var/www/html/"
-          strip_components: 3 # this is important
+          strip_components: 2 # this is important
 #ssh -p 2810 root@66.70.202.147
