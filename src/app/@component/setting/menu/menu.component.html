@@ -1,0 +1,237 @@
+<div class="form-group" id="demo">
+
+    <button mdbBtn (click)="frame.show()" type="button" color="default" mdbWavesEffect>
+        <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New Menu
+    </button>
+    <button mdbBtn (click)="frames.show()" type="button" color="default" mdbWavesEffect>
+        <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New Menu-group
+    </button>
+</div>
+
+<div class="table-responsive-vertical shadow-z-1" id="demo">
+    <!-- Table starts here -->
+    <table id="table" class="table table-hover table-mc-light-blue">
+        <thead>
+            <tr>
+                <th>Menu ID</th>
+                <th>Menu Name</th>
+                <th>Menu URL</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let el of elements; let i = index">
+                <td data-title="Link">{{el.MenuID}}
+                </td>
+                <td data-title="ID">{{el.MenuName}}</td>
+                <td data-title="Name">{{el.MenuURL}}</td>
+
+                <td data-title="Link">{{el.Description}}
+                </td>
+                <td data-title="Status">{{el.Status}}</td>
+            </tr>
+            <!-- <tr>
+            <td data-title="ID">2</td>
+            <td data-title="Name">Material Design Iconic Font</td>
+            <td data-title="Link">
+              <a href="https://codepen.io/zavoloklom/pen/uqCsB" target="_blank">Codepen</a>
+              <a href="https://github.com/zavoloklom/material-design-iconic-font" target="_blank">GitHub</a>
+            </td>
+            <td data-title="Status">Completed</td>
+          </tr> -->
+
+        </tbody>
+    </table>
+    <div *ngIf="message" style="padding-left: 40%;">
+        <p>{{messages}}</p>
+    </div>
+    <div *ngIf="loading" class="item">
+        <ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader>
+    </div>
+</div>
+
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header light-blue darken-3 text-center text-white">
+
+                <h4 class="modal-title w-100 font-weight-bold">Manage Menu</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div *ngIf="success" class="alert alert-success" role="alert">
+                    {{success}}
+                </div>
+                <div *ngIf="error" class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+
+                <div class="row">
+
+
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Menu Name</label>
+                        <input [formControl]="MenuName" mdbInput type="text" class="form-control">
+                        <mdb-error *ngIf="MenuName.invalid && (MenuName.dirty||MenuName.touched)">
+                            Invalid Input.
+                        </mdb-error>
+                    </div>
+
+
+
+
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Menu URL</label>
+                        <input [formControl]="MenuURL" mdbInput type="text" class="form-control">
+
+                        <mdb-error *ngIf="MenuURL.invalid && (MenuURL.dirty||MenuURL.touched)">
+                            Invalid Input.
+                        </mdb-error>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Menu Order</label>
+                        <input [formControl]="MenuOrder" mdbInput type="text" class="form-control">
+
+                        <mdb-error *ngIf="MenuOrder.invalid && (MenuOrder.dirty||MenuOrder.touched)">
+                            Invalid Input.
+                        </mdb-error>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Menu Level</label>
+                        <input [formControl]="MenuLevel" mdbInput type="text" class="form-control">
+
+                        <mdb-error *ngIf="MenuLevel.invalid && (MenuLevel.dirty||MenuLevel.touched)">
+                            Invalid Input.
+                        </mdb-error>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">ParentID</label>
+                        <input [formControl]="ParentID" mdbInput type="text" class="form-control">
+
+                        <mdb-error *ngIf="ParentID.invalid && (ParentID.dirty||ParentID.touched)">
+                            Invalid Input.
+                        </mdb-error>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">ParentID2</label>
+                        <input [formControl]="ParentID2" mdbInput type="text" class="form-control">
+
+                        <mdb-error *ngIf="ParentID2.invalid && (ParentID2.dirty||ParentID2.touched)">
+                            Invalid Input.
+                        </mdb-error>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="inputPassword4">Description</label>
+                        <textarea  [formControl]="Description" type="text" id="form107" class="md-textarea form-control" rows="5" mdbInput></textarea>
+
+                        <mdb-error *ngIf="Description.invalid && (Description.dirty||Description.touched)">
+                          Invalid Value.
+                        </mdb-error>
+
+                      </div>
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+            <div class="modal-footer d-flex justify-content-right">
+                <div class="btn-group" role="group" aria-label="Basic example">
+
+
+                    <button mdbBtn type="button" [disabled]="Menu.invalid" color="info" (click)="createMenu()"
+                        class="waves-light mr-2" mdbWavesEffect>Create</button>
+                    <button mdbBtn type="button" color="danger" (click)="frame.hide()" class="waves-light"
+                        mdbWavesEffect>Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div mdbModal #frames="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true" >
+    <div class="modal-dialog" role="document" [formGroup]="MenuG">
+        <div class="modal-content">
+            <div class="modal-header light-blue darken-3 text-center text-white">
+
+                <h4 class="modal-title w-100 font-weight-bold">Manage Menu-Group</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frames.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div *ngIf="success" class="alert alert-success" role="alert">
+                    {{success}}
+                </div>
+                <div *ngIf="error" class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+
+                <div class="row">
+
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">ROLE NAME</label>
+                        <select   formControlName="RoleID" class="browser-default custom-select">
+
+                          <option *ngFor="let item of role" [ngValue]="item.RoleID">{{item.RoleName}}</option>
+
+                        </select>
+                    </div>
+
+
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">MENU NAME</label>
+                        <select   formControlName="MenuID" class="browser-default custom-select">
+
+                          <option *ngFor="let item of menu" [ngValue]="item.MenuID">{{item.MenuName}}</option>
+
+                        </select>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+            <div class="modal-footer d-flex justify-content-right">
+                <div class="btn-group" role="group" aria-label="Basic example">
+
+
+                    <button mdbBtn type="button"  color="info" (click)="createMenuG()"
+                        class="waves-light mr-2" mdbWavesEffect>Create</button>
+                    <button mdbBtn type="button" color="danger" (click)="frames.hide()" class="waves-light"
+                        mdbWavesEffect>Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

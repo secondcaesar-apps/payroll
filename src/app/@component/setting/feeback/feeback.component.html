@@ -1,0 +1,29 @@
+
+
+<div class="container-fluid pt-3 px-4" style="overflow-y: auto" >
+<div class="row">
+  <div class="mx-5 col-md-12 ml-sm-auto col-lg-12 ">
+
+    <h3 class="h3-responsive font-weight-bold">
+      <strong >
+        Feedback
+      </strong>
+    </h3>
+    <!-- <strong >
+      {{baseItems?.length}} Response
+    </strong> -->
+    <div *ngFor="let item of baseItems"  class="mt-2">
+      <div class="alert alert-secondary pt-2 " role="alert">
+      {{item.Feedback}}   <small class="float-right"> {{item.DepartmentName}}</small>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+
+
+

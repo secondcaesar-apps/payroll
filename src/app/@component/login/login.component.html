@@ -1,1 +1,54 @@
-<p>login works!</p>
+
+<div class="container">
+  <div class="forms-container">
+    <div class="signin-signup">
+      <form  class="sign-in-form" (keyup.enter)="SignIn()">
+
+        <div *ngIf="error" class="alert alert-danger" role="alert">
+          {{error}}
+         </div>
+        <h2 class="title">Sign in</h2>
+        <div class="input-field">
+          <i class="fas fa-user"></i>
+          <input  [formControl]="Username" type="text" placeholder="Username" />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-lock"></i>
+          <input  [formControl]="Password"  type="password" placeholder="Password" />
+        </div>
+        <input *ngIf="!loading" type="submit"  [disabled]="Login.invalid" (click)="SignIn()" value="Login" class="btn solid" />
+
+
+
+
+
+
+
+        <div *ngIf="loading" class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+
+        <p class="social-text">Reset Password?</p>
+
+      </form>
+
+    </div>
+  </div>
+
+  <div class="panels-container">
+    <div class="panel left-panel">
+      <div class="content mt-5">
+        <h3>PageHRM: Cloud HR Management Solution</h3>
+        <p>
+          Payroll Management Hassle free! Generate payroll in a single click. Review and edit salary components at your ease.
+        </p>
+        <!-- <button class="btn transparent" id="sign-up-btn mb-4">
+          Sign up
+        </button> -->
+      </div>
+      <img src="http://66.70.202.147/payroll/assets/bo.svg" class="image" alt="" />
+    </div>
+
+  </div>
+</div>
+

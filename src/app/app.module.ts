@@ -11,19 +11,28 @@ import { AppRoutingModule } from './app-routing.module';
 import { MDBSpinningPreloader, MDBBootstrapModulesPro, ToastModule } from 'ng-uikit-pro-standard';
 import { LoginComponent } from './@component/login/login.component';
 import { SharedModule } from './@shared/shared/shared.module';
+import { StrengthPipe } from './@pipe/strength.pipe';
+import { ApiserviceService } from './@shared/apiservice.service';
+import {ConnectionServiceModule,} from 'ng-connection-service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    StrengthPipe,
+
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-   SharedModule
+   SharedModule,
+   ConnectionServiceModule
+
+
   ],
-  providers: [MDBSpinningPreloader],
+  providers: [MDBSpinningPreloader,ApiserviceService, ],
   bootstrap: [AppComponent],
   schemas:      [ NO_ERRORS_SCHEMA ]
 })

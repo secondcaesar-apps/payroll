@@ -1,0 +1,135 @@
+<div class="form-group" id="demo">
+
+    <button mdbBtn (click)="frame.show()" type="button" color="default" mdbWavesEffect>
+      <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
+    </button>
+  </div>
+  <div class="container">
+
+    <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Leave Type Setup'" [settings]="projectSettings"
+    [routePage]="routePage" [searchText]="searchText" [loading]="loading"
+    [api]="apis"
+    >
+
+
+  </eni-table>
+  <div class="container">
+    <div *ngIf="error" class=" alert alert-danger text-center" role="alert">
+      {{error}} <a (click)="load()" class="alert-link">Click to retry</a>
+    </div>
+
+  </div>
+
+
+  </div>
+
+  <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document"  [formGroup]="Leave">
+     <div class="modal-content">
+       <div class="modal-header light-blue darken-3 text-center text-white">
+
+         <h4 class="modal-title w-100 font-weight-bold">Manage Leave</h4>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body mx-3">
+        <div *ngIf="success" class="alert alert-success" role="alert">
+          {{success}}
+        </div>
+        <div *ngIf="error" class="alert alert-danger" role="alert">
+         {{error}}
+        </div>
+
+        <div class="row">
+
+
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Leave Type</label>
+                <input [formControl]="LeaveTypeName" mdbInput type="text" class="form-control" >
+                <mdb-error *ngIf="LeaveTypeName.invalid && (LeaveTypeName.dirty||LeaveTypeName.touched)">
+                    Invalid Input.
+                  </mdb-error>
+            </div>
+
+
+               <div class="form-group col-md-6">
+                 <label for="inputEmail4">Total Days</label>
+                 <input [formControl]="TotalDays" mdbInput type="number" class="form-control" >
+                 <mdb-error *ngIf="TotalDays.invalid && (TotalDays.dirty||TotalDays.touched)">
+                     Invalid Input.
+                   </mdb-error>
+             </div>
+
+             <div class="form-group col-md-6">
+              <label>Paid Leave</label>
+
+
+                <div class="form-check">
+
+                  <input type="radio" class="form-check-input" id="materialUnchecked2" value="YES"
+                  formControlName="Paid" name="Paid">
+                  <label class="form-check-label" for="materialUnchecked2">YES</label>
+                </div>
+
+                <div class="form-check">
+                  <input type="radio" class="form-check-input" id="materialChecked2" value="NO"
+                  formControlName="Paid" name="Paid">
+                  <label class="form-check-label" for="materialChecked2">NO</label>
+                </div>
+
+
+
+            </div>
+
+            <div class="form-group col-md-6">
+              <label  for="inputEmail4">Allowed Designations</label>
+              <select  [formControl]="AllowedDesignations" class="browser-default custom-select">
+                <option selected disabled>Select Country</option>
+                <option *ngFor="let item of degisnator" [ngValue]="item.DesignationID">{{item.DesignationName}}</option>
+
+              </select>
+          </div>
+
+
+
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Gender</label>
+                <mdb-select [formControl]="Gender"  [options]="optionsSelect" placeholder="Choose your Gender"></mdb-select>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+       </div>
+       <div class="modal-footer d-flex justify-content-right">
+            <div class="btn-group" role="group" aria-label="Basic example">
+
+
+    <button mdbBtn   type="button" [disabled]="Leave.invalid" color="info" (click)="createLeave()" class="waves-light mr-2" mdbWavesEffect>
+
+
+      <div *ngIf="loading2" class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <span *ngIf="!loading2" >
+        Create
+      </span></button>
+                    <button mdbBtn type="button" color="danger"  (click)="frame.hide()" class="waves-light" mdbWavesEffect>Cancel</button>
+                </div>
+       </div>
+     </div>
+    </div>
+    </div>

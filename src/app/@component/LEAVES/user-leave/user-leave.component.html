@@ -1,0 +1,28 @@
+
+<div class="padding">
+
+  <ngb-tabset (tabChange)="onTabChange($event)"[destroyOnHide]="false">
+    <ngb-tab id="ml" title="My Leave">
+      <ng-template ngbTabContent>
+        <app-leave-tab></app-leave-tab>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab  id="cl" >
+      <ng-template ngbTabTitle>Request Leave</ng-template>
+      <ng-template ngbTabContent>
+        <app-create-leave-tab></app-create-leave-tab>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="al" title="Approval"  [disabled]="false">
+      <ng-template ngbTabContent>
+      <app-leave-approval-tab>
+
+      </app-leave-approval-tab>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+
+
+</div>
+
+

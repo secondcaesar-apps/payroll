@@ -1,146 +1,149 @@
+<input type="checkbox" name="" id="sidebar-toggle">
+<div class="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-flex">
+      <img src="" alt="" width="30px" />
 
-  <body class="fixed-sn cyan-skin">
-
-    <!--Double navigation-->
-    <header>
-
-<!-- Sidebar navigation -->
-<mdb-side-nav #sidenav class="fixed" [fixed]="true">
-  <!-- Logo -->
-  <li>
-    <div class="logo-wrapper waves-light">
-      <a href="#"><img src="https://pagefinancials.com/static/img/logo.png" class="img-fluid flex-center"></a>
+      <div class="brand-icons">
+        <!-- <span class="las la-bell"></span>
+        <span class="las la-user-circle"></span> -->
+      </div>
     </div>
-  </li>
-  <!--/. Logo -->
-  <!--Social-->
-  <li>
-   
-  </li>
-  <!--/Social-->
-  <!--Search Form-->
-  <li>
-    <form class="search-form" role="search">
-      <div class="form-group md-form waves-light" mdbWavesEffect>
-        <input type="text" class="form-control" placeholder="Search">
+  </div>
+
+  <div class="sidebar-main mt-2">
+
+    <div class="sidebar-user">
+      <img src="{{pic}}"  alt="">
+
+      <div>
+        <h3>{{lastname}} {{firstname}}</h3>
+        <h3>{{Email}}</h3>
       </div>
-    </form>
-  </li>
-  <!--/.Search Form-->
-  <!-- Side navigation links -->
-  <li>
-    <ul class="collapsible collapsible-accordion">
-      <mdb-accordion [multiple]="false" aria-multiselectable="false">
+    </div>
 
-            <mdb-accordion-item class="no-collase">
-                    <mdb-accordion-item-head routerLink="dashboard" routerLinkActive="active" mdbWavesEffect><i class="fas fa-home"></i>Dashboard
-                    </mdb-accordion-item-head>
-                    <mdb-accordion-item-body></mdb-accordion-item-body>
-                  </mdb-accordion-item>
-                  <mdb-accordion-item class="no-collase">
-                        <mdb-accordion-item-head routerLink="employee" routerLinkActive="active" mdbWavesEffect><i
-                          class="far fa-hand-pointer"></i>Employee
-                        </mdb-accordion-item-head>
-                        <mdb-accordion-item-body></mdb-accordion-item-body>
-                      </mdb-accordion-item>
+<div class="sidebar-menu">
+  <div class="menu-head">
+    <span>My Menu</span>
 
-        <!-- Collapsible link -->
-        <mdb-accordion-item>
-          <mdb-accordion-item-head mdbWavesEffect><mdb-icon fas icon="money-bill"></mdb-icon> Payroll
-          </mdb-accordion-item-head>
-          <mdb-accordion-item-body>
-            <ul>
-              <li><a routerLink="basic-salary" routerLinkActive="active" 
-                     mdbWavesEffect>Basic Salary</a></li>
-              <li><a routerLink="payroll" routerLinkActive="active" 
-                     mdbWavesEffect>Manage</a></li>
-                     <li><a routerLink="payroll-reports" routerLinkActive="active" 
-                        mdbWavesEffect>Report</a></li>
-            </ul>
-          </mdb-accordion-item-body>
-        </mdb-accordion-item>
+  </div>
 
-        <!-- Simple link -->
-       
+  <ul>
+    <li><a routerLink="user-profile" routerLinkActive="active">
+      <span class="las la-user-circle">
 
-        <!-- Collapsible link -->
-        <mdb-accordion-item>
-          <mdb-accordion-item-head mdbWavesEffect><mdb-icon far icon="eye"></mdb-icon> Collapsible menu 2
-          </mdb-accordion-item-head>
-          <mdb-accordion-item-body>
-            <ul>
-              <li><a routerLink="/example-route-3" routerLinkActive="active" href="#"
-                     mdbWavesEffect>Link 1</a></li>
-              <li><a routerLink="/example-route-4" routerLinkActive="active" href="#"
-                     mdbWavesEffect>Link 2</a></li>
-            </ul>
-          </mdb-accordion-item-body>
-        </mdb-accordion-item>
+      </span>
+      Profile
+    </a></li>
+    <li><a routerLink="user-payroll" routerLinkActive="active">
+      <span class="las la-chart-pie">
 
-        <!-- Simple link -->
-        <mdb-accordion-item class="no-collase">
-          <mdb-accordion-item-head routerLink="/example-route-5" routerLinkActive="active" mdbWavesEffect><i
-            class="far fa-gem"></i> Simple link 2
-          </mdb-accordion-item-head>
-          <mdb-accordion-item-body></mdb-accordion-item-body>
-        </mdb-accordion-item>
+      </span>
+      Payslip
+    </a></li>
+    <li><a routerLink="loan-approval" routerLinkActive="active">
+      <span class="las la-wallet">
 
-      </mdb-accordion>
-    </ul>
-  </li>
-  <!--/. Side navigation links -->
-  <div class="sidenav-bg mask-strong"></div>
-</mdb-side-nav>
-<!--/. Sidebar navigation -->
-      <!--/. Sidebar navigation -->
-      <!-- Navbar -->
-     <!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark  lighten-1" [containerInside]="true">
+      </span>
+      Request Loan
+    </a></li>
+    <li><a routerLink="loan-flow" routerLinkActive="active">
+      <span class="las la-hand-holding-usd">
 
-    <div class="">
-    
-      </div>
-    <mdb-navbar-brand class="float-right">
-            <a (click)="sidenav.toggle()" data-activates="slide-out" class="button-collapse mr-5"><i class="fas fa-bars"></i></a>
-        <a class="navbar-brand" href="#">PagePayRoll</a></mdb-navbar-brand>
-  
-    <!-- Collapsible content -->
-    <links>
-  
-      <!-- Links -->
-     
-      <!-- Links -->
-  
-      <ul class="navbar-nav ml-auto nav-flex-icons float-right">
-        <li class="nav-item">
-          <a class="nav-link">1 <mdb-icon fas icon="envelope"></mdb-icon></a>
-        </li>
-        <li class="nav-item avatar dropdown" dropdown>
-          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-            <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" alt="" class="img-fluid rounded-circle z-depth-0"></a>
-          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-            <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
-          </div>
-        </li>
-      </ul>
-    </links>
-    <!-- Collapsible content -->
-  
-  </mdb-navbar>
-  <!--/.Navbar-->
-      <!-- /.Navbar -->
-    </header>
-    <!--/.Double navigation-->
+      </span>
+      Loan Approval
+    </a></li>
+    <li><a routerLink="user-leave" routerLinkActive="active">
+      <span class="las la-luggage-cart">
 
-    <!--Main layout-->
-    <main>
+      </span>
+      Leave
+    </a></li>
+    <li><a routerLink="survey" routerLinkActive="active">
+      <span class="las la-poll">
 
-            <router-outlet></router-outlet>
+      </span>
+      Survey
+    </a></li>
+  </ul>
+  <div *ngIf="settAound" class="menu-head">
+    <span>Settings</span>
 
-    </main>
-    <!--/Main layout-->
+  </div>
 
-   
+  <ul *ngIf="settAound">
+    <li *ngFor="let item of list"><a  [routerLink]="item.route" routerLinkActive="active">
+      <span [class]="item.icon">
 
-  </body>
+      </span>
+      {{item.name}}
+    </a></li>
+    <!-- <li><a href="">
+      <span class="las la-list">
+
+      </span>
+      Employees
+    </a></li>
+    <li><a href="">
+      <span class="las la-balance-scale">
+
+      </span>
+      Survery
+    </a></li>
+    <li><a href="">
+      <span class="las la-chart-bar">
+
+      </span>
+      More
+    </a></li>
+    <li><a href="">
+      <span class="las la-shopping-cart">
+
+      </span>
+      Ecommerce
+    </a></li>
+    <li><a href="">
+      <span class="las la-check-circle">
+
+      </span>
+      MailBox
+    </a></li> -->
+  </ul>
+
+</div>
+    <div>
+
+    </div>
+  </div>
+
+</div>
+<div class="main-content">
+  <header>
+
+    <div class="menu-toggle">
+      <label for="sidebar-toggle">
+        <span class="las la-bars"></span>
+      </label>
+    </div>
+
+    <div class="header-icons">
+      <!-- <span class="las la-search"></span>
+      <span class="las la-bookmark"></span> -->
+      <span (click)=" logout()" class="las la-sign-in-alt"></span>
+
+    </div>
+  </header>
+  <main>
+
+
+  <div *ngIf="share.isloading | async"    class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+
+      <router-outlet></router-outlet>
+
+  </main>
+</div>

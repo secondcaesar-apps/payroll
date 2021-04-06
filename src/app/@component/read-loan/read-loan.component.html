@@ -1,0 +1,69 @@
+<div class="padding">
+  <div class="header">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <!-- <button (click)="generatePayroll()" mdbBtn type="button" color="success" mdbWavesEffect>
+            <mdb-icon fab icon="google-play" class="space"></mdb-icon>Generate
+          </button> -->
+          <!-- <button mdbBtn type="button" (click)="captureScreen() " color="default" mdbWavesEffect>
+                  <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>Open PDF
+                </button> -->
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="row float-right">
+          <div class="col-sm-5">
+            <div class="md-form">
+
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="dropdown" mdbDropdown>
+
+              <button (click)="requestLoan()" mdbBtn color="primary" class="waves-light" type="button"
+                mdbWavesEffect>
+                Request Loan
+              </button>
+
+
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="btn-group" mdbDropdown>
+              <a mdbDropdownToggle mdbBtn floating="true" size="sm" gradient="blue" class="dropdown-toggle waves-light"
+                mdbWavesEffect>
+                <mdb-icon fas icon="ellipsis-v"></mdb-icon>
+              </a>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+
+
+    <button (click)="load()"  type="button" class="float-right reduce btn btn-warning"><mdb-icon fas icon="redo"></mdb-icon> </button>
+
+
+
+    <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Request Loan'" [settings]="projectSettings"
+      [routePage]="routePage" [searchText]="searchText" [loading]="loading"
+      [api]="apis"
+      >
+
+
+    </eni-table>
+    <div class="container">
+      <div *ngIf="error" class=" alert alert-danger text-center" role="alert">
+        {{error}} <a (click)="load()" class="alert-link">Click to retry</a>
+      </div>
+
+    </div>
+
+  </div>

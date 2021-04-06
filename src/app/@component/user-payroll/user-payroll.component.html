@@ -1,0 +1,181 @@
+<div class="padding">
+  <div class="header">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <!-- <button (click)="generatePayroll()" mdbBtn type="button" color="success" mdbWavesEffect>
+            <mdb-icon fab icon="google-play" class="space"></mdb-icon>Generate
+          </button> -->
+          <!-- <button mdbBtn type="button" (click)="captureScreen() " color="default" mdbWavesEffect>
+                  <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>Open PDF
+                </button> -->
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="row float-right">
+          <div class="col-sm-5">
+                     <div class="md-form">
+              <input mdbInput class="mr-1 search-input" type="text" placeholder="Search" aria-label="Search" id="search"
+                [(ngModel)]="searchText">
+            </div>
+          </div>
+          <div class="col-sm-5">
+
+             <button mdbBtn color="primary" class="waves-light" type="button"
+             (click)="captureScreen()"
+                mdbWavesEffect>
+                Download
+              </button>
+
+ 
+          </div>
+          <div class="col-sm-2">
+            <div class="btn-group" mdbDropdown>
+              <a mdbDropdownToggle mdbBtn floating="true" size="sm" gradient="blue" class="dropdown-toggle waves-light"
+                mdbWavesEffect>
+                <mdb-icon fas icon="ellipsis-v"></mdb-icon>
+              </a>
+
+              <div class="dropdown-menu dropdown-primary">
+                <a class="dropdown-item" (click)="view()" *ngIf="!show">Show details</a>
+                <a class="dropdown-item" (click)="view()" *ngIf="show">Hide details</a>
+
+                <a class="dropdown-item" href="#">Refresh</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="body" >
+    <div class="row float-right" [formGroup]="myForm1">
+            <div class="col-md-6">
+              <label>Start Date</label>
+              <input class="form-control" type="text" onfocus="(this.type='date')"  formControlName="StartDate"  (change)="load()"  placeholder="Date From" id="date">
+            </div>
+            <div  class="col-md-6">
+              <label>End Date</label>
+              <input placeholder="Date To" class="form-control" type="text" onfocus="(this.type='date')" (change)="load()" formControlName="EndDate" id="date">
+            </div>
+      </div>
+   <div id="export">
+    <span style='font-size:12.0pt;font-family:"Times New Roman",serif;
+    mso-fareast-font-family:"Times New Roman";mso-no-proof:yes'>
+    <img  style="-webkit-print-color-adjust:exact;" class="mr-5"width=150 height=100 src="assets/logo.png" v:shapes="Picture_x0020_1">
+  </span>
+    <div class="row" >
+      <div class="col">
+        <table id="tableSortExample" mdbTable class="z-depth-1">
+          <thead>
+            <tr>
+              <th aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[0]">
+                {{headElements[0] | titlecase}}<mdb-icon fas icon="sort"></mdb-icon>
+              </th>
+              <th >{{headElements[1]}}</th>
+              <th >{{headElements[2]}}</th>
+              <th>{{headElements[3]}}</th>
+              <th>{{headElements[4]}}</th>
+              <th>{{headElements[5]}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let el of elements; let i = index">
+            <th scope="row" (click)="openDetails(el)"style="cursor: pointer;">{{el.PaymentDate | date}}</th>
+              <td (click)="openDetails(el)"style="cursor: pointer;" >{{el.NetSalary  | currency:'₦':'symbol'}}</td>
+              <td (click)="openDetails(el)" >{{el.TotalAmountDue  | currency:'₦':'symbol'}}</td>
+              <td>{{el.PaymentMethod}}</td>
+              <td>{{el.Attendance}}</td>
+              <td><button mdbBtn type="button" color="primary" style="padding:3px; margin:0;" mdbWavesEffect>
+                  <mdb-icon fas icon="credit-card" class="mr-1"></mdb-icon>{{el.Status}}
+                </button></td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="message" style="padding-left: 40%;">
+          <p>{{messages}}</p>
+        </div>
+        <div *ngIf="loading" class="item">
+          <ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="col-4 line" *ngIf="show" id="contentToConvert">
+        <p *ngIf="!displaySide">Select a row to view it's details here</p>
+        <div class="pre-body" *ngIf="displaySide">
+          <p style="font-size: large;">{{EmployeeID}}</p>
+          <button mdbBtn type="button" color="primary" mdbWavesEffect>
+            <mdb-icon fas icon="magic" class="mr-1"></mdb-icon>{{statusValue}}
+          </button>
+          <ul class="list-group">
+            <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+              Salary Slip ID:
+              <p style="padding-left: 50px;">{{SalarySlipID}}</p>
+            </li>
+            <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+              Salary Group:
+              <p style="padding-left: 50px;">{{SalaryGroup}}</p>
+            </li>
+            <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+              Month:
+              <p style="padding-left: 50px;">{{Month | date}}</p>
+            </li>
+            <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+              Payment Method:
+              <p style="padding-left: 50px;">{{PaymentMethod}}</p>
+            </li>
+            <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+              Payment Date:
+              <p style="padding-left: 50px;">{{PaymentDate | date}}</p>
+            </li>
+            <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+              Employee Status:
+              <p style="padding-left: 50px;">{{EmployeeStatus}}</p>
+            </li>
+
+<!-- <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+  Name:
+  {{}}
+</li>
+<li class="list-group-item form-group d-flex justify-content-between align-items-center">
+  Type:
+  {{SalaryGroup}}
+</li>
+<li class="list-group-item form-group d-flex justify-content-between align-items-center">
+  Month:
+  {{Month}}
+</li>
+<li class="list-group-item form-group d-flex justify-content-between align-items-center">
+  Payment Method:
+  {{PaymentMethod}}
+</li>
+<li class="list-group-item form-group d-flex justify-content-between align-items-center">
+  Payment Date:
+  {{PaymentDate}}
+</li>
+<li class="list-group-item form-group d-flex justify-content-between align-items-center">
+  Employee Status:
+  {{EmployeeStatus}}
+</li> -->
+          </ul>
+          <div style="padding:20px;">
+          <h6>Salary Details</h6>
+          <p *ngIf="errormsg">{{error_message}}</p>
+          <ul class="list-group">
+            <li class="list-group-item form-group d-flex justify-content-between align-items-center" *ngFor="let slip of Salaryslip">
+              {{slip.Name}}:
+              <p style="padding-left: 50px; color: green;">{{slip.Amount  | currency:'₦':'symbol'}}</p>
+            </li>
+          </ul>
+        </div>
+        </div>
+        <div class="body">
+          <div class="row">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

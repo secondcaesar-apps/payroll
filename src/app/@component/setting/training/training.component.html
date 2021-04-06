@@ -1,0 +1,239 @@
+<div class="padding">
+  <div class="header">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <button mdbBtn type="button" color="success" mdbWavesEffect>
+            <mdb-icon fas icon="envelope" class="mr-1"></mdb-icon>Invite
+          </button>
+          <button mdbBtn type="button" (click)="frame.show()" color="default" mdbWavesEffect>
+            <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
+          </button>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="row float-right">
+          <div class="col-sm-5">
+            <div class="md-form">
+              <input mdbInput class="mr-1 search-input" type="text" placeholder="Search" aria-label="Search" id="search"
+                [(ngModel)]="searchText">
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="dropdown" mdbDropdown>
+
+              <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
+                mdbWavesEffect>
+                Status
+              </button>
+
+              <div class="dropdown-menu dropdown-primary">
+                <button class="dropdown-item" href="#">All</button>
+                <button class="dropdown-item" href="#">Paid</button>
+                <button class="dropdown-item" href="#">Unpaid</button>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="btn-group" mdbDropdown>
+              <a mdbDropdownToggle mdbBtn floating="true" size="sm" gradient="blue" class="dropdown-toggle waves-light"
+                mdbWavesEffect>
+                <mdb-icon fas icon="ellipsis-v"></mdb-icon>
+              </a>
+
+              <div class="dropdown-menu dropdown-primary">
+                <a class="dropdown-item" (click)="view()" *ngIf="!show">Show details</a>
+                <a class="dropdown-item" (click)="view()" *ngIf="show">Hide details</a>
+
+                <a class="dropdown-item" href="#">Refresh</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="row">
+      <div class="col">
+        <table id="tableSortExample" mdbTable class="z-depth-1">
+          <thead>
+            <tr>
+              <th aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[0]">
+                {{headElements[0] | titlecase}}<mdb-icon fas icon="sort"></mdb-icon>
+              </th>
+              <th>{{headElements[1]}}</th>
+              <th>{{headElements[2]}}</th>
+              <th>{{headElements[3]}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let el of elements; let i = index">
+              <td (click)="openDetails(el)" style="cursor: pointer;">{{el.TrainingName}}</td>
+              <td>{{el.Description}}</td>
+              <td>{{el.StartDate}}</td>
+              <td>{{el.EndDate}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="message" style="padding-left: 40%;">
+          <p>{{messages}}</p>
+        </div>
+        <div *ngIf="loading" class="item">
+          <ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="col-4 line" *ngIf="show">
+        <div class="pre-body">
+          <p *ngIf="!displaySide">Select a row to view it's details here</p>
+          <form [formGroup]="training">
+            <div class="pre-body" *ngIf="displaySide">
+              <p style="font-size: large;">Contact Info</p>
+              <button mdbBtn type="button" color="primary" mdbWavesEffect>
+                <mdb-icon fas icon="magic" class="mr-1"></mdb-icon>{{statusValue}}
+              </button>
+              <ul class="list-group">
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  ContactName
+                  <input type="text"  formControlName="ContactName" mdbInput>
+                </li>
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  Description
+                  <input type="text"  formControlName="Description" mdbInput>
+                </li>
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  Email
+                  <input type="text"  formControlName="Email" mdbInput>
+                </li>
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  ContactNumber
+                  <input type="text"  formControlName="ContactNumber" mdbInput>
+                </li>
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  Service
+                    <input type="text"  formControlName="Service" mdbInput>
+                  </li>
+                  <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  Status
+                    <input type="text"  formControlName="Status" mdbInput>
+                  </li>
+              </ul>
+           <button mdbBtn type="button" size="lg" color="success" mdbWavesEffect (click)="updateContact()">
+             <mdb-icon fas icon="pencil-alt"></mdb-icon>Update
+           </button>
+         </div>
+       </form>
+        </div>
+        <div class="body">
+          <div class="row">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header light-blue darken-3 text-center text-white">
+
+        <h4 class="modal-title w-100 font-weight-bold">Manage Training</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div *ngIf="success" class="alert alert-success" role="alert">
+          {{success}}
+        </div>
+        <div *ngIf="error" class="alert alert-danger" role="alert">
+          {{error}}
+        </div>
+
+
+        <div class="body">
+          <div class="sectionA row">
+            <div class="col">
+
+              <form>
+
+                <div class="form-row">
+
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Training Name</label>
+                    <input [formControl]="TrainingName" mdbInput type="text" class="form-control" id="inputEmail4">
+                    <mdb-error *ngIf="TrainingName.invalid && (TrainingName.dirty||TrainingName.touched)">
+                      Invalid Input.
+                    </mdb-error>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Employes</label>
+                    <mdb-select [options]="optionsSelect" [formControl]="Employees" [multiple]="true" [highlightFirst]="false" placeholder="Choose your option"></mdb-select>
+                    <mdb-error *ngIf="Employees.invalid && (Employees.dirty||Employees.touched)">
+                      Invalid Input.
+                    </mdb-error>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">StartDate</label>
+                    <input [formControl]="StartDate" mdbInput type="date" class="form-control" id="inputStartDate4">
+                    <mdb-error *ngIf="StartDate.invalid && (StartDate.dirty||StartDate.touched)">
+                      Invalid Input.
+                    </mdb-error>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">EndDate</label>
+                    <input [formControl]="EndDate" mdbInput type="date" class="form-control" id="inputEmail4">
+                    <mdb-error *ngIf="EndDate.invalid && (EndDate.dirty||EndDate.touched)">
+                      Invalid Input.
+                    </mdb-error>
+                  </div>
+
+
+
+                  <div class="form-group col-md-12">
+                    <label for="inputPassword4">Description</label>
+                    <textarea [formControl]="Description" type="text" id="form107" class="md-textarea form-control"
+                      rows="5" mdbInput></textarea>
+                    <mdb-error *ngIf="Description.invalid && (Description.dirty||Description.touched)">
+                      Invalid Input.
+                    </mdb-error>
+                  </div>
+                </div>
+
+
+
+
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
+      </div>
+
+
+      <div class="modal-footer d-flex justify-content-right">
+        <div class="btn-group" role="group" aria-label="Basic example">
+
+          <button mdbBtn type="button" color="info" [disabled]='Training.invalid' (click)="createTraining()"
+            class="waves-light mr-2" mdbWavesEffect>Create</button>
+          <button mdbBtn type="button" color="danger" (click)="frame.hide()" class="waves-light"
+            mdbWavesEffect>Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

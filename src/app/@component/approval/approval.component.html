@@ -1,0 +1,146 @@
+<div class="padding">
+  <div class="header">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <!-- <button (click)="generatePayroll()" mdbBtn type="button" color="success" mdbWavesEffect>
+            <mdb-icon fab icon="google-play" class="space"></mdb-icon>Generate
+          </button> -->
+          <!-- <button mdbBtn type="button" (click)="newemployee()" color="default" mdbWavesEffect>
+                  <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
+                </button> -->
+                <h5>Payroll Approval</h5>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="row float-right">
+          <div class="col-sm-6">
+            <div class="md-form">
+              <input mdbInput class="mr-1" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="searchText"
+                class="form-control" id="search" mdbInput>
+            </div>
+          </div>
+          <div class="col-sm-6" [formGroup]="myForm1">
+            <div class="md-form" style="margin-top: 38px;">
+              <input type="date"  [placeholder]="'Select Payroll Month'"formControlName="Month" (change)="hitApi()">
+            </div>
+          </div>
+          <!-- <mdb-date-picker name="mydate" formControlName="DOB" [options]="myDatePickerOptions" [(ngModel)]="date" [placeholder]="Date"
+                required></mdb-date-picker> -->
+        </div>
+      </div>
+      <!-- <div class="col-sm-8">
+        <div class="row float-right">
+          <div class="col-sm-5">
+            <div class="md-form">
+              <input mdbInput class="mr-1 search-input" type="text" placeholder="Search" aria-label="Search" id="search"
+                [(ngModel)]="searchText">
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="dropdown" mdbDropdown>
+
+              <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
+                mdbWavesEffect>
+                Status
+              </button>
+
+              <div class="dropdown-menu dropdown-primary">
+                <button class="dropdown-item" href="#">All</button>
+                <button class="dropdown-item" href="#">Paid</button>
+                <button class="dropdown-item" href="#">Unpaid</button>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="btn-group" mdbDropdown>
+              <a mdbDropdownToggle mdbBtn floating="true" size="sm" gradient="blue" class="dropdown-toggle waves-light"
+                mdbWavesEffect>
+                <mdb-icon fas icon="ellipsis-v"></mdb-icon>
+              </a>
+
+              <div class="dropdown-menu dropdown-primary">
+                <a class="dropdown-item" (click)="view()" *ngIf="!show">Show details</a>
+                <a class="dropdown-item" (click)="view()" *ngIf="show">Hide details</a>
+
+                <a class="dropdown-item" href="#">Refresh</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+  <div class="body">
+    <div class="row">
+      <div class="col">
+        <h4>Approve payroll for {{dated | date:'MMMM y'}}</h4>
+        <table id="tableSortExample" mdbTable class="z-depth-1">
+          <thead>
+            <tr>
+              <th>
+                {{headElements[0]}}
+              </th>
+              <th>{{headElements[1]}}</th>
+              <th style="text-align: right;" >{{headElements[2]}}</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let el of elements; let i = index">
+              <th scope="row"  style="cursor: pointer;">{{el.id}}{{el.id}}{{el.FirstName}} {{el.LastName}}</th>
+              <td  style="cursor: pointer;">{{el.SalaryGroupName}}</td>
+              <td   style="text-align: right;cursor: pointer;">{{el.TotalAmountDue  | currency:'₦':'symbol'}}</td>
+
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="message" style="padding-left: 40%;">
+          <p>{{messages}}</p>
+        </div>
+        <button *ngIf="!message" type="button" (click)="updateSalary('Approved')" mdbBtn color="primary" mdbWavesEffect>Approve</button>
+        <button *ngIf="!message" type="button"(click)="updateSalary('Rejected')"  mdbBtn color="danger" mdbWavesEffect>Reject</button> 
+        <div *ngIf="loading" class="item">
+          <ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="col-4 line" *ngIf="show">
+
+        <p *ngIf="!displaySide">Select a row to view it's details here</p>
+      <div class="pre-body" *ngIf="displaySide">
+        <div class='row'>
+          <p style="font-size: large;">Employee Salary Details</p>
+          <button mdbBtn type="button" color="primary" mdbWavesEffect>
+            <mdb-icon fas icon="magic" class="mr-1"></mdb-icon>{{leave.Status}}
+          </button>
+        </div>
+  
+               <ul class="list-group">
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  Employee ID:
+                  {{leave.EmployeeID}}
+                </li>
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  Paydate:
+                  {{leave.Month}}
+                </li>
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  Net salary:
+                  {{leave.NetSalary}}
+                </li>
+                  <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                    Attendance:
+                    {{leave.Attendance}}
+                  </li>
+              </ul>
+               <!-- <button type="button" (click)="updateSalary('Approved')" mdbBtn color="primary" mdbWavesEffect>Approve</button>
+             <button type="button"(click)="updateSalary('Rejected')"  mdbBtn color="danger" mdbWavesEffect>Reject</button> -->
+  </div>
+      <div class="body">
+         <div class="row">
+
+         </div>
+      </div>     
+ </div>
+    </div>
+  </div>
+</div>

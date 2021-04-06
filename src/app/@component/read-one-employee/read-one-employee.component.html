@@ -1,0 +1,806 @@
+<div class="padding"> 
+  <button mdbBtn type="button" (click)="back()" color="success" mdbWavesEffect>
+    <mdb-icon fas icon="angle-double-left"></mdb-icon>Back
+ </button>
+</div>
+<div class="row padding "> 
+    <div class="col-3  line">
+        <mdb-card>
+            <div class="alert alert-success" role="alert">
+                <mdb-icon far icon="grin"></mdb-icon> Photo
+              </div>
+            <mdb-card-body>
+                <div class="col-1">
+                <input type="image" src="{{pic}}" width=200px height=200px >
+                <button mdbBtn type="button" size="lg" color="success" (click)='CanEdit()' mdbWavesEffect>
+                    <mdb-icon fas icon="pencil-alt"></mdb-icon>Edit
+                  </button>
+                  </div>
+            </mdb-card-body>
+        </mdb-card>
+          <mdb-card>
+            <mdb-card-body>
+                <div>
+                    <h6>Contact Information</h6>
+                <p><mdb-icon class="space"  fas icon="envelope"></mdb-icon>{{email}}</p>
+                  </div>
+            </mdb-card-body>
+          </mdb-card>
+    </div>
+    <div class="col">
+      <form [formGroup]="employee">
+        <div class="pre-body">
+           <mdb-accordion [multiple]="false">
+         <mdb-accordion-item [collapsed]="false">
+           <mdb-accordion-item-head><h6><mdb-icon class="space" fas icon="user"></mdb-icon>Basic Information</h6></mdb-accordion-item-head>
+           <mdb-accordion-item-body>
+               <!-- <ul class="list-group">
+                   <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                     FirstName
+                     <input type="text"  formControlName="FirstName" mdbInput [disabled]="isDisabled">
+                   </li>
+                   <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                     Lastname
+                     <input type="text"  formControlName="LastName" mdbInput [disabled]="isDisabled">
+                   </li>
+                   <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                     Email Address
+                     <input type="text"  formControlName="Email" mdbInput [disabled]="isDisabled">
+                   </li>
+                   <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                     Gender
+                       <input type="text"  formControlName="Gender" mdbInput [disabled]="isDisabled">
+                     </li>
+                     <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                     Date of Birth
+                       <input type="text"  formControlName="DOB" mdbInput [disabled]="isDisabled">
+                     </li>
+                 </ul> -->
+                 <div class="sectionA row">
+                  <div class="col-8">    
+                  <mdb-card>
+                      <div class="alert alert-primary" role="alert">
+                        <mdb-icon fas icon="info-circle"></mdb-icon> Basic Info
+                        </div>
+                      <mdb-card-body>
+                          
+                          <div class="form-row">
+                          
+                            <div class="form-group col-md-6">
+                              <label for="inputEmail4">First Name</label>
+                              <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="FirstName" id="inputEmail4">
+                            </div>
+                          
+                            <div class="form-group col-md-6">
+                              <label for="inputPassword4">Last Name</label>
+                              <input mdbInput [disabled]="isDisabled" type="text" formControlName="LastName" class="form-control" id="inputPassword4">
+                            </div>
+                          </div>
+                          <div class="form-row">
+                          
+                              <div class="form-group col-md-6">
+                                <label for="inputEmail4">Email</label>
+                                <input mdbInput [disabled]="isDisabled" formControlName="Email" type="email" class="form-control" id="inputEmail4">
+                              </div>
+                            
+                              <div class="form-group col-md-6">
+                                  <label for="inputEmail4">Gender</label>
+                                  <input type="text"  formControlName="Gender" class="form-control" id="inputEmail4" mdbInput [disabled]="isDisabled">
+                              </div>
+                            </div>
+                            <mdb-date-picker name="mydate" formControlName="DOB" [options]="myDatePickerOptions" [placeholder]="'Date of Birth'"
+                            required></mdb-date-picker>
+                      </mdb-card-body>
+                  </mdb-card>
+                  </div>
+                  <div class="col-4">
+                      <mdb-card>
+                          <div class="alert alert-success" role="alert">
+                              <mdb-icon far icon="grin"></mdb-icon> Photo
+                            </div>
+                          <mdb-card-body>
+                            <div class="col-1">
+                              <input (click)="onClick()" type="image" [src]="image" src="{{pic}}" width=258px height=258x >
+                              <input type="file"  #fileUpload id="fileUpload" name="fileUpload" formControlName="Avatar" accept="image/*" style="display:none;" />
+                                </div>
+                          </mdb-card-body>
+                      </mdb-card>
+                  </div>
+                </div>
+           </mdb-accordion-item-body>
+         </mdb-accordion-item>
+       
+         <mdb-accordion-item>
+           <mdb-accordion-item-head><h6><mdb-icon class="space"  fas icon="university"></mdb-icon>Company Relations</h6></mdb-accordion-item-head>
+           <mdb-accordion-item-body>
+            <div class="sectionB row">
+              <div class="col-12"> 
+                  <mdb-card>
+                      <div class="alert alert-danger" role="alert">
+                          <mdb-icon fas icon="university"></mdb-icon> Company Relations
+                      </div>
+                      <mdb-card-body>      
+                          <div class="form-row">
+                          
+                            <div class="form-group col-md-6">
+                              <label for="inputEmail4">Department</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
+                              <select  formControlName="Department" class="browser-default custom-select">
+            
+                               <option *ngFor="let item of department" [ngValue]="item.DepartmentID">{{item.DepartmentName}}</option>
+                             
+                             </select>
+                            </div>
+                          
+                            <div class="form-group col-md-6">
+                             <div class="row">
+                               <div class="col-7">
+                              <label for="inputPassword4">Designation</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
+                              <select  formControlName="Designation" class="browser-default custom-select">
+           
+                               <option *ngFor="let item of designation" [ngValue]="item.DesignationID">{{item.DesignationName}}</option>
+                             
+                             </select>
+                               </div>
+                               <div class="col-5">
+                                 <label for="inputPassword4">Salary Group</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
+                                 <select  formControlName="SalaryGroup" class="browser-default custom-select">
+                               
+                                   <option *ngFor="let item of salarygroup" [ngValue]="item.SalaryGroupID">{{item.SalaryGroupName}}</option>
+                                 
+                                 </select>
+                                   </div> 
+                               </div>
+                             </div>
+                            </div>
+                          <div class="form-row">
+                          
+                              <div class="form-group col-md-6">
+                                <label for="inputEmail4">Location</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
+                                <select  formControlName="Location" class="browser-default custom-select">
+     
+                                 <option *ngFor="let item of location" [ngValue]="item.LocationsID">{{item.LocationsName}}</option>
+                                 
+                                 </select>
+                              </div>
+                            
+                              <div class="form-group col-md-6">
+                                <div class="row">
+                                  <div class="col-7">
+                                      <label for="inputEmail4">Reports to</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
+                                      <select  formControlName="ReportsTO" class="browser-default custom-select">
+             
+                                       <option *ngFor="let item of employees" [ngValue]="item.EmployeeID">{{item.FirstName}} {{item.LastName}}</option>
+                                     
+                                     </select>
+                                  </div>
+                                  <div class="col-5">
+                                   <label for="inputEmail4">Role</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
+                                   <select  formControlName="Role" class="browser-default custom-select">
+                                     
+                                     <option *ngFor="let item of role" [ngValue]="item.RoleID">{{item.RoleName}}</option>
+                                   
+                                   </select>
+                                      </div> 
+                                  </div>
+                                </div>
+                              </div>  
+                              <div class="alert alert-secondary" role="alert">
+                                <mdb-icon fas icon="info-circle"></mdb-icon> Status
+                                </div>
+                                <div class="form-row">   
+                                   <div class="form-group col-md-6">
+                                  <label for="inputPassword4">Marital Status</label>
+                                  <mdb-select [options]="marriageSelect" formControlName="MaritalStatus" placeholder="Choose your option"></mdb-select>
+                                </div>
+                                 
+                                  <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Probation End Date</label>
+                                    <mdb-date-picker name="mydate" formControlName="ProbationEndDat" [options]="myDatePickerOptions" [placeholder]="'Probation End Date'"
+                                    required></mdb-date-picker>
+                                  </div>
+                                
+                                </div>
+                                <div class="form-row">
+                                   
+                                  <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Joining Date</label>
+                                    <mdb-date-picker name="mydate" formControlName="JoiningDate" [options]="myDatePickerOptions" [placeholder]="'Joining Date'"
+                                    required></mdb-date-picker>
+                                  </div>
+                                
+                                  <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Exit Date</label>
+                                    <mdb-date-picker name="mydate" formControlName="ExitDate" [options]="myDatePickerOptions" [placeholder]="'Exit Date'"
+                                    required></mdb-date-picker>
+                                  </div>
+                                </div>
+                      </mdb-card-body>
+                  </mdb-card>
+              </div>
+          </div>
+           </mdb-accordion-item-body>
+         </mdb-accordion-item>
+       
+         <mdb-accordion-item>
+           <mdb-accordion-item-head><h6><mdb-icon class="space"  fas icon="phone-square"></mdb-icon>Contact Information</h6></mdb-accordion-item-head>
+           <mdb-accordion-item-body>
+               <!-- <ul class="list-group">
+                   <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                     Mobile Phone
+                     <input type="text"  formControlName="ContactNumber" mdbInput [disabled]="isDisabled">
+                   </li>
+                   <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                       Emergency Contact Number
+                     <input type="text"  formControlName="EmergencyContactNumber" mdbInput [disabled]="isDisabled">
+                   </li>
+                   <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                      Emergency Contact Person
+                     <input type="text"  formControlName="EmergencyContactPerson" mdbInput [disabled]="isDisabled">
+                   </li>
+                   <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                       Address
+                       <input type="text"  formControlName="Address" mdbInput [disabled]="isDisabled">
+                     </li>
+                 </ul> -->
+                 <div class="sectionB row">
+                  <div class="col-12"> 
+                      <mdb-card>
+                          <div class="alert alert-success" role="alert">
+                              <mdb-icon fas icon="university"></mdb-icon> Contact Information
+                          </div>
+                          <mdb-card-body>      
+                              <div class="form-row">
+                              
+                                <div class="form-group col-md-6">
+                                  <label for="inputEmail4">Mobile Phone</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
+                                  <input type="text"  formControlName="ContactNumber" class="form-control" id="inputEmail4" mdbInput [disabled]="isDisabled">
+                                </div>
+                              
+                                <div class="form-group col-md-6">
+
+                                  <label for="inputPassword4">Emergency Contact Number</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
+                                  <input type="text"  formControlName="EmergencyContactNumber" class="form-control" id="inputEmail4" mdbInput [disabled]="isDisabled" >
+                                </div>
+                                </div>
+                              <div class="form-row">
+                              
+                                  <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Emergency Contact Person</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
+                                    <input type="text"  formControlName="EmergencyContactPerson" class="form-control" id="inputEmail4" mdbInput [disabled]="isDisabled">
+                                  </div>
+                                
+                                  <div class="form-group col-md-6">
+                                          <label for="inputEmail4">Address</label><mdb-icon class="space" fas icon="question-circle">  </mdb-icon>
+                                          <input type="text"  formControlName="Address" class="form-control" id="inputEmail4" mdbInput [disabled]="isDisabled">
+                                    </div>
+                                  </div>  
+                          </mdb-card-body>
+                      </mdb-card>
+                  </div>
+              </div>
+           </mdb-accordion-item-body>
+         </mdb-accordion-item>
+         
+         <mdb-accordion-item>
+          <mdb-accordion-item-head><h6><mdb-icon class="space"  fas icon="university"></mdb-icon>Documents</h6></mdb-accordion-item-head>
+          <mdb-accordion-item-body>
+            <div>          
+                <div class="alert alert-primary" role="alert">
+              <mdb-icon fas icon="info-circle"></mdb-icon> Document Numbers
+              </div>
+            <div class="form-row">
+               
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Driving License Number</label>
+                <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="DrivingLicenseNumber" id="inputEmail4">
+              </div>
+            
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">PAN Number</label>
+                <input mdbInput [disabled]="isDisabled" type="text" formControlName="PANNumber" class="form-control" id="inputPassword4">
+              </div>
+            </div>
+            <div class="form-row">
+               
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Aadha Number/SSN</label>
+                <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="AadharNumber_SSN" id="inputEmail4">
+              </div>
+            
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Voter ID Number</label>
+                <input mdbInput [disabled]="isDisabled" type="text" formControlName="VoterIDNumber" class="form-control" id="inputPassword4">
+              </div>
+            </div>
+          <div>          
+            <div class="alert alert-secondary" role="alert">
+          <mdb-icon fas icon="info-circle"></mdb-icon> Document Copies
+          </div>
+        <div class="form-row">
+           
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Driving License</label>
+            <input mdbInput [disabled]="isDisabled" type="file" class="form-control" formControlName="DrivingLicense" id="inputEmail4">
+          </div>
+        
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">PAN Card</label>
+            <input mdbInput [disabled]="isDisabled" type="file" formControlName="PANCard" class="form-control" id="inputPassword4">
+          </div>
+        </div>
+        <div class="form-row">
+           
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Aadhar/SSN</label>
+            <input mdbInput [disabled]="isDisabled" type="file" class="form-control" formControlName="Aadhar_SSN" id="inputEmail4">
+          </div>
+        
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">VoterID</label>
+            <input mdbInput [disabled]="isDisabled" type="file" formControlName="VoterID" class="form-control" id="inputPassword4">
+          </div>
+        </div>
+      </div>         
+        <div class="alert alert-danger" role="alert">
+      <mdb-icon fas icon="info-circle"></mdb-icon> Company Documents
+      </div>
+    <div class="form-row">
+       
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Offer Letter</label>
+        <input mdbInput [disabled]="isDisabled" type="file" class="form-control" formControlName="OfferLetter" id="inputEmail4">
+      </div>
+    
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Joining Letter</label>
+        <input mdbInput [disabled]="isDisabled" type="file" formControlName="JoiningLetter" class="form-control" id="inputPassword4">
+      </div>
+    </div>
+    <div class="form-row">
+       
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Contract</label>
+        <input mdbInput [disabled]="isDisabled" type="file" class="form-control" formControlName="Contract" id="inputEmail4">
+      </div>
+    
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Resume</label>
+        <input mdbInput [disabled]="isDisabled" type="file" formControlName="Resume" class="form-control" id="inputPassword4">
+      </div>
+    </div>
+    <div class="form-row">
+       
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Relieving letter</label>
+        <input mdbInput [disabled]="isDisabled" type="file" class="form-control" formControlName="Relievingletter" id="inputEmail4">
+      </div>
+    
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Experience Letter</label>
+        <input mdbInput [disabled]="isDisabled" type="file" formControlName="ExperienceLetter" class="form-control" id="inputPassword4">
+      </div>
+    </div>
+  </div>
+          </mdb-accordion-item-body>
+        </mdb-accordion-item>
+      
+        <mdb-accordion-item>
+          <mdb-accordion-item-head><h6><mdb-icon class="space"  fas icon="phone-square"></mdb-icon>Bank Details</h6></mdb-accordion-item-head>
+          <mdb-accordion-item-body>
+            <div class="alert alert-success" role="alert">
+              <mdb-icon fas icon="info-circle"></mdb-icon> Bank Details
+              </div>
+            <div class="form-row">
+               
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Primary Bank Account</label>
+                <mdb-select [options]="optionsSelect" formControlName="PrimaryBankAccount" placeholder="Choose your option"></mdb-select>
+              </div>
+            
+            </div>
+            <div class="alert alert-primary" role="alert">
+              <mdb-icon fas icon="info-circle"></mdb-icon> Account 1
+              </div>
+              <div class="form-row">
+               
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Account Type</label>
+                  <mdb-select [options]="accountSelect" formControlName="Acct1AccountType" placeholder="Choose your option"></mdb-select>
+                </div>
+              
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Account Holder Name</label>
+                  <input mdbInput [disabled]="isDisabled" type="text" formControlName="Acct1AccountHolderName" class="form-control" id="inputPassword4">
+                </div>
+              </div>
+            <div class="form-row">
+               
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Account Number</label>
+                <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="Acct1AccountNumber" id="inputEmail4">
+              </div>
+            
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Bank Code</label>
+                <input mdbInput [disabled]="isDisabled" type="text" formControlName="Acct1BankCode" class="form-control" id="inputPassword4">
+              </div>
+            </div>
+            <div class="form-row">
+               
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Bank Name</label>
+                <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="Acct1BankName" id="inputEmail4">
+              </div>
+            
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Bank Branch</label>
+                <input mdbInput [disabled]="isDisabled" type="text" formControlName="Acct1BankBranch" class="form-control" id="inputPassword4">
+              </div>
+            </div>
+            <div class="alert alert-primary" role="alert">
+              <mdb-icon fas icon="info-circle"></mdb-icon> Account 2
+              </div>
+              <div class="form-row">
+               
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Account Type</label>
+                  <mdb-select [options]="accountSelect" formControlName="Acct2AccountType" placeholder="Choose your option"></mdb-select>
+                </div>
+              
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Account Holder Name</label>
+                  <input mdbInput [disabled]="isDisabled" type="text" formControlName="Acct2AccountHolderName" class="form-control" id="inputPassword4">
+                </div>
+              </div>
+              <div class="form-row">
+                 
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Account Number</label>
+                  <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="Acct2AccountNumber" id="inputEmail4">
+                </div>
+              
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Bank Code</label>
+                  <input mdbInput [disabled]="isDisabled" type="text" formControlName="Acct2BankCode" class="form-control" id="inputPassword4">
+                </div>
+              </div>
+              <div class="form-row">
+                 
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Bank Name</label>
+                  <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="Acct2BankName" id="inputEmail4">
+                </div>
+              
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Bank Branch</label>
+                  <input mdbInput [disabled]="isDisabled" type="text" formControlName="Acct2BankBranch" class="form-control" id="inputPassword4">
+                </div>
+              </div>
+          </mdb-accordion-item-body>
+        </mdb-accordion-item>
+
+        <mdb-accordion-item>
+          <mdb-accordion-item-head><h6><mdb-icon class="space"  fas icon="university"></mdb-icon>Qualifications</h6></mdb-accordion-item-head>
+          <mdb-accordion-item-body>
+            <div class="alert alert-danger" role="alert">
+              <mdb-icon fas icon="info-circle"></mdb-icon> Graduation
+              </div>
+
+            <div class="form-row">
+               
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">School/University</label>
+                <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="GradSchoolUniversity" id="inputEmail4">
+              </div>
+            
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Start Date</label>
+                <input mdbInput [disabled]="isDisabled" type="text" formControlName="GradStartDate" class="form-control" id="inputPassword4">
+              </div>
+            </div>
+            <div class="form-row">
+               
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">End Date</label>
+                <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="GradEndDate" id="inputEmail4">
+              </div>
+            
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Details</label>
+                <input mdbInput [disabled]="isDisabled" type="text" formControlName="GradDetails" class="form-control" id="inputPassword4">
+              </div>
+            </div>
+            <div class="alert alert-secondary" role="alert">
+              <mdb-icon fas icon="info-circle"></mdb-icon> Post Graduation
+              </div>
+              <div class="form-row">
+               
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">School/University</label>
+                  <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="PGSchoolUniversity" id="inputEmail4">
+                </div>
+              
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Start Date</label>
+                  <input mdbInput [disabled]="isDisabled" type="text" formControlName="PGStartDate" class="form-control" id="inputPassword4">
+                </div>
+              </div>
+              <div class="form-row">
+                 
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">End Date</label>
+                  <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="PGEndDate" id="inputEmail4">
+                </div>
+              
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Details</label>
+                  <input mdbInput [disabled]="isDisabled" type="text" formControlName="PGDetails" class="form-control" id="inputPassword4">
+                </div>
+              </div>
+              <div class="alert alert-secondary" role="alert">
+                <mdb-icon fas icon="info-circle"></mdb-icon> Doctorate
+                </div>
+                <div class="form-row">
+               
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">School/University</label>
+                    <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="DoctorateSchoolUniversity" id="inputEmail4">
+                  </div>
+                
+                  <div class="form-group col-md-6">
+                    <label for="inputPassword4">Start Date</label>
+                    <input mdbInput [disabled]="isDisabled" type="text" formControlName="DoctorateStartDate" class="form-control" id="inputPassword4">
+                  </div>
+                </div>
+                <div class="form-row">
+                   
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">End Date</label>
+                    <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="DoctorateEndDate" id="inputEmail4">
+                  </div>
+                
+                  <div class="form-group col-md-6">
+                    <label for="inputPassword4">Details</label>
+                    <input mdbInput [disabled]="isDisabled" type="text" formControlName="DoctorateDetails" class="form-control" id="inputPassword4">
+                  </div>
+                </div>
+              <div class="alert alert-danger" role="alert">
+                <mdb-icon fas icon="info-circle"></mdb-icon> Certification/Courses
+                </div>
+                <div class="form-row">
+                   
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Details</label>
+                    <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="CertificationsCoursesDetails" id="inputEmail4">
+                  </div>
+              
+                </div>
+
+          </mdb-accordion-item-body>
+        </mdb-accordion-item>
+      
+        <mdb-accordion-item>
+          <mdb-accordion-item-head><h6><mdb-icon class="space"  fas icon="phone-square"></mdb-icon>Work Experience</h6></mdb-accordion-item-head>
+          <mdb-accordion-item-body>
+            <div class="alert alert-secondary" role="alert">
+              <mdb-icon fas icon="info-circle"></mdb-icon> Work Experience 1
+              </div>
+              <div class="form-row">
+               
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Company Name</label>
+                  <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="WE1CompanyName" id="inputEmail4">
+                </div>
+              
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Designation</label>
+                  <input mdbInput [disabled]="isDisabled" type="text" formControlName="WE1Designation" class="form-control" id="inputPassword4">
+                </div>
+              </div>
+              <div class="form-row">
+                 
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">From</label>
+                  <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="WE1From" id="inputEmail4">
+                </div>
+              
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">To</label>
+                  <input mdbInput [disabled]="isDisabled" type="text" formControlName="WE1To" class="form-control" id="inputPassword4">
+                </div>
+              </div>
+              <div class="form-row">
+                   
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Details</label>
+                  <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="WE1Details" id="inputEmail4">
+                </div>
+            
+              </div>
+              <div class="alert alert-secondary" role="alert">
+                <mdb-icon fas icon="info-circle"></mdb-icon> Work Experience 2
+                </div>
+                <div class="form-row">
+                 
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Company Name</label>
+                    <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="WE2CompanyName" id="inputEmail4">
+                  </div>
+                
+                  <div class="form-group col-md-6">
+                    <label for="inputPassword4">Designation</label>
+                    <input mdbInput [disabled]="isDisabled" type="text" formControlName="WE2Designation" class="form-control" id="inputPassword4">
+                  </div>
+                </div>
+                <div class="form-row">
+                   
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">From</label>
+                    <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="WE2From" id="inputEmail4">
+                  </div>
+                
+                  <div class="form-group col-md-6">
+                    <label for="inputPassword4">To</label>
+                    <input mdbInput [disabled]="isDisabled" type="text" formControlName="WE2To" class="form-control" id="inputPassword4">
+                  </div>
+                </div>
+                <div class="form-row">
+                     
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Details</label>
+                    <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="WE2Details" id="inputEmail4">
+                  </div>
+              
+                </div>
+                <div class="alert alert-secondary" role="alert">
+                  <mdb-icon fas icon="info-circle"></mdb-icon> Work Experience 3
+                  </div>
+                  <div class="form-row">
+                   
+                    <div class="form-group col-md-6">
+                      <label for="inputEmail4">Company Name</label>
+                      <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="WE3CompanyName" id="inputEmail4">
+                    </div>
+                  
+                    <div class="form-group col-md-6">
+                      <label for="inputPassword4">Designation</label>
+                      <input mdbInput [disabled]="isDisabled" type="text" formControlName="WE3Designation" class="form-control" id="inputPassword4">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                     
+                    <div class="form-group col-md-6">
+                      <label for="inputEmail4">From</label>
+                      <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="WE3From" id="inputEmail4">
+                    </div>
+                  
+                    <div class="form-group col-md-6">
+                      <label for="inputPassword4">To</label>
+                      <input mdbInput [disabled]="isDisabled" type="text" formControlName="WE3To" class="form-control" id="inputPassword4">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                       
+                    <div class="form-group col-md-6">
+                      <label for="inputEmail4">Details</label>
+                      <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="WE3Details" id="inputEmail4">
+                    </div>
+                
+                  </div>
+                  <div class="alert alert-secondary" role="alert">
+                    <mdb-icon fas icon="info-circle"></mdb-icon> Other Work Experiences
+                    </div>
+                    <div class="form-row">
+                         
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Details</label>
+                        <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="OtherWEsDetails" id="inputEmail4">
+                      </div>
+                  
+                    </div>
+          </mdb-accordion-item-body>
+        </mdb-accordion-item>
+
+        <mdb-accordion-item>
+          <mdb-accordion-item-head><h6><mdb-icon class="space"  fas icon="phone-square"></mdb-icon>Immigration</h6></mdb-accordion-item-head>
+          <mdb-accordion-item-body>
+            <div class="alert alert-secondary" role="alert">
+              <mdb-icon fas icon="info-circle"></mdb-icon> Passport
+              </div>
+              <div class="form-row">
+               
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Number</label>
+                  <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="PassportNumber" id="inputEmail4">
+                </div>
+              
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Issue Date</label>
+                  <input mdbInput [disabled]="isDisabled" type="text" formControlName="PassportIssueDate" class="form-control" id="inputPassword4">
+                </div>
+              </div>
+              <div class="form-row">
+                 
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Expiry Date</label>
+                  <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="PassportExpiryDate" id="inputEmail4">
+                </div>
+              
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Scan Copy</label>
+                  <input mdbInput [disabled]="isDisabled" type="file" formControlName="PassportScanCopy" class="form-control" id="inputPassword4">
+                </div>
+              </div>
+              <div class="alert alert-secondary" role="alert">
+                <mdb-icon fas icon="info-circle"></mdb-icon> Visa
+                </div>
+                <div class="form-row">
+                 
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Number</label>
+                    <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="VisaNumber" id="inputEmail4">
+                  </div>
+                
+                  <div class="form-group col-md-6">
+                    <label for="inputPassword4">Issue Date</label>
+                    <input mdbInput [disabled]="isDisabled" type="text" formControlName="VisaIssueDate" class="form-control" id="inputPassword4">
+                  </div>
+                </div>
+                <div class="form-row">
+                   
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Expiry Date</label>
+                    <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="VisaExpiryDate" id="inputEmail4">
+                  </div>
+                
+                  <div class="form-group col-md-6">
+                    <label for="inputPassword4">Scan Copy</label>
+                    <input mdbInput [disabled]="isDisabled" type="file" formControlName="VisaScanCopy" class="form-control" id="inputPassword4">
+                  </div>
+                </div>
+          </mdb-accordion-item-body>
+        </mdb-accordion-item>
+
+        <mdb-accordion-item>
+          <mdb-accordion-item-head><h6><mdb-icon class="space"  fas icon="phone-square"></mdb-icon>Social Network</h6></mdb-accordion-item-head>
+          <mdb-accordion-item-body>
+            <div class="alert alert-secondary" role="alert">
+              <mdb-icon fas icon="info-circle"></mdb-icon> Social Network
+              </div>
+              <div class="form-row">
+               
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Slack username</label>
+                  <input mdbInput [disabled]="isDisabled" type="email" class="form-control" formControlName="Slackusername" id="inputEmail4">
+                </div>
+              
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Facebook username</label>
+                  <input mdbInput [disabled]="isDisabled" type="text" formControlName="Facebookusername" class="form-control" id="inputPassword4">
+                </div>
+              </div>
+              <div class="form-row">
+                 
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Twitter username</label>
+                  <input mdbInput
+                  
+                  type="email" class="form-control" formControlName="Twitterusername" id="inputEmail4">
+                </div>
+              
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">LinkedIn username</label>
+                  <input mdbInput [disabled]="isDisabled" type="file" formControlName="LinkedInusername" class="form-control" id="inputPassword4">
+                </div>
+              </div>
+          </mdb-accordion-item-body>
+        </mdb-accordion-item>
+
+       </mdb-accordion>
+       <button mdbBtn type="button" size="lg" color="success" mdbWavesEffect (click)="createemployee()" *ngIf='edit'>
+         <mdb-icon fas icon="pencil-alt"></mdb-icon>Update
+       </button>
+     </div>
+   </form>
+    </div>
+</div>

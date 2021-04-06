@@ -1,0 +1,64 @@
+
+<mdb-card>
+
+        <mdb-card-header class="peach-gradient white-text text-left py-1 pt-3">
+          <h6>
+            <strong> Basic Info</strong>
+          </h6>
+        </mdb-card-header>
+      
+      
+        <!--Card content-->
+        <mdb-card-body class="px-lg-5 pt-0">
+      <!-- Extended default form grid -->
+<form>
+  <!-- Grid row -->
+  <div class="form-row mt-5">
+    <!-- Default input -->
+    <div class="form-group col-md-4">
+        <label for="inputEmail4">Asset Name</label>
+      <input mdbInput type="text" class="form-control" id="inputEmail4">
+    
+    </div>
+    <!-- Default input -->
+    <div class="form-group col-md-4">
+        <label for="inputPassword4">Asset Type</label>
+      <input mdbInput type="text" class="form-control" id="inputPassword4" >
+    
+    </div>
+    <div class="form-group col-md-4">
+        <label for="inputPassword4">Serial Number</label>
+      <input mdbInput type="text" class="form-control" id="inputPassword4">
+   
+    </div>
+  </div>
+  <div class="form-row mt-1">
+      <div class="form-group col">
+          <label for="inputPassword4">Description</label>
+          <textarea type="text" id="form107" class="md-textarea form-control" rows="5" mdbInput></textarea>
+     
+      </div>
+    </div>
+    <div class="form-row mt-4 mb-4 ">
+        <div class="col-md-6">
+          <mdb-select [options]="optionsSelect" [multiple]="true"  label="Location"></mdb-select>
+        </div>
+        <div  class="col-md-6">
+           
+<mdb-checkbox [checked]="true">Status</mdb-checkbox>
+        </div>
+      </div>
+      <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+          <button mdbBtn type="button" color="info" class="waves-light" mdbWavesEffect>Create</button>
+          <button mdbBtn type="button"  (click)="close()" color="danger" class="waves-light" mdbWavesEffect>Cancel</button>
+      
+        
+      </div>
+
+</form>
+<!-- Extended default form grid -->
+      
+        </mdb-card-body>
+      
+      </mdb-card>
+   

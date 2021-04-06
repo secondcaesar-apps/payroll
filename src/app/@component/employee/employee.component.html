@@ -1,1 +1,198 @@
-<p>employee works!</p>
+<div class="padding">
+  <div class="header"> 
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+              <button mdbBtn type="button" (click)="exportexcel()" color="success" mdbWavesEffect>
+                <mdb-icon fas icon="envelope" class="mr-1"></mdb-icon>Generate Excel 
+              </button>
+              <button mdbBtn type="button" (click)="newemployee()" color="default" mdbWavesEffect>
+                <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
+              </button>
+            </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="row float-right">
+            <div class="col-sm-5">
+              <div class="md-form">
+                <input mdbInput class="mr-1 search-input" type="text" placeholder="Search" aria-label="Search" id="search"
+                  [(ngModel)]="searchText">
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <div class="dropdown" mdbDropdown>
+  
+                <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
+                  mdbWavesEffect>
+                  Status
+                </button>
+  
+                <div class="dropdown-menu dropdown-primary">
+                  <button class="dropdown-item" href="#">All</button>
+                  <button class="dropdown-item" href="#">Paid</button>
+                  <button class="dropdown-item" href="#">Unpaid</button>
+                </div>
+  
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="btn-group" mdbDropdown>
+                <a mdbDropdownToggle mdbBtn floating="true" size="sm" gradient="blue" class="dropdown-toggle waves-light"
+                  mdbWavesEffect>
+                  <mdb-icon fas icon="ellipsis-v"></mdb-icon>
+                </a>
+  
+                <div class="dropdown-menu dropdown-primary">
+                  <a class="dropdown-item" (click)="view()" *ngIf="!show">Show details</a>
+                  <a class="dropdown-item" (click)="view()" *ngIf="show">Hide details</a>
+  
+                  <a class="dropdown-item" href="#">Refresh</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="body">
+      <div class="row">
+        <div class="col">
+            <table id="tableSortExample" mdbTable class="z-depth-1">
+                <thead>
+                  <tr >
+                      <th *ngFor="let item of headElements" aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="item">{{item| titlecase}}<mdb-icon fas icon="sort"></mdb-icon></th>
+                      
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let el of elements; let i = index;">
+                    <th scope="row" (click)="reademployee(el)" style="cursor: pointer;">{{el.EmployeeID}}</th>
+                    <td (click)="reademployee(el)"style="cursor: pointer;">{{el.FirstName}}</td>
+                    <td>{{el.LastName}}</td>
+                    <td>{{el.Email}}</td>
+                    <td>{{el.RoleName}}</td>
+                    <td>{{el.DepartmentName}}</td>
+                    <td>{{el.LocationsName}}</td>
+                    <td>{{el.DesignationName}}</td>
+                    <td>{{el.Gender}}</td>
+                    <td>{{el.SalaryGroupName}}</td>
+                    <td>{{el.RoleName}}</td>
+                    <td>{{el.MaritalStatus}}</td>
+                    <td>{{el.Status}}</td>
+                    <td><button type="button" (click)="removeEmp(el.EmployeeID)" mdbBtn color="danger" mdbWavesEffect>Remove</button></td>
+                  </tr>
+                </tbody>
+            </table>
+            <div *ngIf="message" style="padding-left: 40%;"><p>{{messages}}</p></div>
+            <div *ngIf="loading"  class="item"><ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader></div>
+        </div>
+        <div class="col-4 line" *ngIf="show">
+          <p *ngIf="!displaySide" >Select a row to view it's details here</p>
+          <form [formGroup]="employee">
+             <div class="pre-body" *ngIf="displaySide">
+             <input style="padding-left: 70px; padding-right: 30px;"type="image" src="{{pic}}"width=400px height=300px >
+            <mdb-accordion [multiple]="false">
+              <mdb-accordion-item [collapsed]="false">
+                <mdb-accordion-item-head><h6><mdb-icon class="space" fas icon="user"></mdb-icon>Basic Information</h6></mdb-accordion-item-head>
+                <mdb-accordion-item-body>
+                    <ul class="list-group">
+                        <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                          FirstName
+                          <input type="text"  formControlName="FirstName" mdbInput [disabled]="isDisabled">
+                        </li>
+                        <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                          Lastname
+                          <input type="text"  formControlName="LastName" mdbInput [disabled]="isDisabled">
+                        </li>
+                        <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                          Email Address
+                          <input type="text"  formControlName="Email" mdbInput [disabled]="isDisabled">
+                        </li>
+                        <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                          Gender
+                            <input type="text"  formControlName="Gender" mdbInput [disabled]="isDisabled">
+                          </li>
+                          <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                          Date of Birth
+                            <input type="text"  formControlName="DOB" mdbInput [disabled]="isDisabled">
+                          </li>
+                      </ul>
+                </mdb-accordion-item-body>
+              </mdb-accordion-item>
+            
+              <mdb-accordion-item>
+                <mdb-accordion-item-head><h6><mdb-icon class="space"  fas icon="university"></mdb-icon>Company Relations</h6></mdb-accordion-item-head>
+                <mdb-accordion-item-body>
+                    <ul class="list-group">
+                      <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                        Department
+                          <input type="text"  formControlName="Department" mdbInput [disabled]="isDisabled">
+                        </li>
+                        <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                          Designation
+                          <input type="text"  formControlName="Designation" mdbInput [disabled]="isDisabled">
+                        </li>
+                        <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                          Location
+                            <input type="text"  formControlName="Location" mdbInput [disabled]="isDisabled">
+                          </li>
+                          <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                            Reports To
+                            <input type="text"  formControlName="ReportsTO" mdbInput [disabled]="isDisabled">
+                          </li>
+                          <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                            Salary Group
+                              <input type="text"  formControlName="SalaryGroup" mdbInput [disabled]="isDisabled">
+                            </li>
+                            <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                              Role
+                              <input type="text"  formControlName="Role" mdbInput [disabled]="isDisabled">
+                            </li>
+                          <!-- <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                             Joining date
+                            <input type="text"  formControlName= mdbInput [disabled]="isDisabled">
+                          </li>
+                          <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                              Work Duration
+                             <input type="text"  formControlName= mdbInput [disabled]="isDisabled">
+                           </li> -->
+                      </ul>
+                </mdb-accordion-item-body>
+              </mdb-accordion-item>
+            
+              <mdb-accordion-item>
+                <mdb-accordion-item-head><h6><mdb-icon class="space"  fas icon="phone-square"></mdb-icon>Contact Information</h6></mdb-accordion-item-head>
+                <mdb-accordion-item-body>
+                    <ul class="list-group">
+                        <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                          Mobile Phone
+                          <input type="text"  formControlName="ContactNumber" mdbInput [disabled]="isDisabled">
+                        </li>
+                        <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                            Emergency Contact Number
+                          <input type="text"  formControlName="EmergencyContactNumber" mdbInput [disabled]="isDisabled">
+                        </li>
+                        <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                           Emergency Contact Person
+                          <input type="text"  formControlName="EmergencyContactPerson" mdbInput [disabled]="isDisabled">
+                        </li>
+                        <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                            Address
+                            <input type="text"  formControlName="Address" mdbInput [disabled]="isDisabled">
+                          </li>
+                      </ul>
+                </mdb-accordion-item-body>
+              </mdb-accordion-item>
+            </mdb-accordion>
+          </div>
+        </form>
+             <div class="body">
+                <div class="row">
+
+                </div>
+             </div>     
+        </div>
+      </div> 
+  </div>
+</div>
+ 

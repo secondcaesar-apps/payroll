@@ -1,0 +1,120 @@
+<div class="form-group" id='demo'>
+      
+  <button mdbBtn (click)="frame.show()" type="button" color="default" mdbWavesEffect>
+    <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>Loan WorkFlow
+  </button>
+</div>
+<div class="table-responsive-vertical shadow-z-1" id="demo">
+  <!-- Table starts here -->
+  <table id="table" class="table table-hover table-mc-light-blue">
+      <thead>
+        <tr>
+          <th>Employee Name</th>
+          <th>PWF Name</th>
+          <th>level</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let el of elements; let i = index">
+          <td data-title="Link">{{el.FirstName}} {{el.LastName}}
+          </td>
+          <td data-title="Name">{{el.PWFName}}</td>
+
+          <td data-title="Link">{{el.level}}
+          </td>
+          <td data-title="Status">{{el.Status}}</td>
+        </tr>
+        <!-- <tr>
+          <td data-title="ID">2</td>
+          <td data-title="Name">Material Design Iconic Font</td>
+          <td data-title="Link">
+            <a href="https://codepen.io/zavoloklom/pen/uqCsB" target="_blank">Codepen</a>
+            <a href="https://github.com/zavoloklom/material-design-iconic-font" target="_blank">GitHub</a>
+          </td>
+          <td data-title="Status">Completed</td>
+        </tr> -->
+       
+      </tbody>
+    </table>
+    <div *ngIf="message" style="padding-left: 40%;"><p>{{messages}}</p></div>
+    <div *ngIf="loading"  class="item"><ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader></div>
+      </div>
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+   <div class="modal-content">
+     <div class="modal-header light-blue darken-3 text-center text-white">
+       
+       <h4 class="modal-title w-100 font-weight-bold">Loan WorkFlow</h4>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <div class="modal-body mx-3">
+      <div *ngIf="success" class="alert alert-success" role="alert">
+        {{success}}
+      </div>
+      <div *ngIf="error" class="alert alert-danger" role="alert">
+       {{error}}
+      </div>
+      <table mdbTable  [formGroup]="WorkFlow">
+        <caption>
+          <button (click)="addItem()"  class="float-right" type="button" color="success">
+           Add new
+          </button>
+        </caption>
+        <thead>
+          <tr>
+            <th>PWFNAME</th>
+            <th>EMPLOYEE Name</th>
+            <th>Level</th>
+            <th>Status</th>
+          </tr>
+          
+        </thead>
+        <tbody formArrayName="Item">
+          <tr mdbTableCol *ngFor="let item of WorkFlow.get('Item')['controls']; let i = index;"
+            [formGroupName]="i">
+            <th> <input formControlName="PWFName" nbInput name="quantity" type="text" class=""></th>
+            <th> 
+              <select  formControlName="EmployeeID" class="mdb-select md-form colorful-select dropdown-primary">
+            
+                <option *ngFor="let item of emp" [ngValue]="item.EmployeeID">{{item.FirstName}} {{item.LastName}}</option>
+              
+              </select>
+            </th>
+            <th> <input formControlName="level" nbInput name="quantity" type="number" min="3" max="9" class=""></th>
+            <th> 
+              <select  formControlName="Status" class="mdb-select md-form colorful-select dropdown-primary">
+            
+                <option *ngFor="let item of  status" [ngValue]="item">{{item}}</option>
+              
+              </select>
+            </th>
+            <th>
+              <mdb-icon (click)="removeItems(i)" fas icon="trash" class="mr-1"></mdb-icon>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+  
+  
+  
+  
+  
+      
+  
+  
+  
+     </div>
+     <div class="modal-footer d-flex justify-content-right">
+          <div class="btn-group" role="group" aria-label="Basic example">
+                  
+
+  <button mdbBtn type="button" [disabled]="WorkFlow.invalid" color="info" (click)="createWorkflow()" class="waves-light mr-2" mdbWavesEffect>Create</button>
+                  <button mdbBtn type="button" color="danger"  (click)="frame.hide()" class="waves-light" mdbWavesEffect>Cancel</button>
+              </div>
+     </div>
+   </div>
+  </div>
+  </div>

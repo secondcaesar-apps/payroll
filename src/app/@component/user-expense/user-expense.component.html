@@ -1,0 +1,347 @@
+<div class="padding">
+  <div class="header"> 
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+              <button mdbBtn type="button" mdbWavesEffect  (click)="frame.show()" type="button" color="success">
+                <mdb-icon fas icon="donate"></mdb-icon>
+              Claims
+              </button>
+              <!-- <button mdbBtn type="button" (click)="newemployee()" color="default" mdbWavesEffect>
+                <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>New
+              </button> -->
+            </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="row float-right">
+            <div class="col-sm-5">
+              <div class="md-form">
+                <input mdbInput class="mr-1 search-input" type="text" placeholder="Search" aria-label="Search" id="search"
+                  [(ngModel)]="searchText">
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <div class="dropdown" mdbDropdown>
+  
+                <button mdbDropdownToggle mdbBtn color="primary" class="dropdown-toggle waves-light" type="button"
+                  mdbWavesEffect>
+                  Status
+                </button>
+  
+                <div class="dropdown-menu dropdown-primary">
+                  <button class="dropdown-item" href="#">All</button>
+                  <button class="dropdown-item" href="#">Paid</button>
+                  <button class="dropdown-item" href="#">Unpaid</button>
+                </div>
+  
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="btn-group" mdbDropdown>
+                <a mdbDropdownToggle mdbBtn floating="true" size="sm" gradient="blue" class="dropdown-toggle waves-light"
+                  mdbWavesEffect>
+                  <mdb-icon fas icon="ellipsis-v"></mdb-icon>
+                </a>
+  
+                <div class="dropdown-menu dropdown-primary">
+                  <a class="dropdown-item" (click)="view()" *ngIf="!show">Show details</a>
+                  <a class="dropdown-item" (click)="view()" *ngIf="show">Hide details</a>
+  
+                  <a class="dropdown-item" href="#">Refresh</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="body">
+      <div class="row">
+        <div class="col">
+            <table id="tableSortExample" mdbTable class="z-depth-1">
+                <thead>
+                  <tr>
+                      <th aria-controls="tableSortExample" scope="col" [mdbTableSort]="elements" [sortBy]="headElements[0]">{{headElements[0] | titlecase}}<mdb-icon fas icon="sort"></mdb-icon></th>
+                      <th>{{headElements[1]}}</th>
+                      <th>{{headElements[2]}}</th>
+                      <th>{{headElements[3]}}</th>
+                      <th>{{headElements[4]}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let el of elements; let i = index">
+                    <th scope="row" (click)="readExpense(el)" (click)="basicModal.show()" style="cursor: pointer;">{{el.ExpenseID}}</th>
+                    <td (click)="readExpense(el)" (click)="basicModal.show()" style="cursor: pointer;">{{el.CategoryName}}</td>
+                    <td>{{el.Amount  | currency:'₦':'symbol'}}</td>
+                    <td>{{ el.BillDate | date:'medium' }} </td>
+                    <td>{{el.Status}}</td>
+                  </tr>
+                </tbody>
+            </table>
+            <div *ngIf="message" style="padding-left: 40%;">
+              <p>{{messages}}</p>
+            </div>
+            <div *ngIf="loading" class="item">
+              <ngx-skeleton-loader count="7" appearance="line "> </ngx-skeleton-loader>
+            </div>
+        </div>
+        <div class="col-4 line" *ngIf="show">
+  
+               <p *ngIf="!displaySide">Select a row to view it's details here</p>
+             <div class="pre-body" *ngIf="displaySide">
+              <p style="font-size: large;">Expense Info</p>
+              <button mdbBtn type="button" color="primary" mdbWavesEffect>
+                <mdb-icon fas icon="magic" class="mr-1"></mdb-icon>{{statusValue}}
+              </button>
+              <ul class="list-group">
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  Title:
+                  {{Title}}
+                </li>
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  Description:
+                  {{Description}}
+                </li>
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  Merchant:
+                  {{Merchant}}
+                </li>
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  Amount:
+                  {{Amount  | currency:'₦':'symbol'}}
+                </li>
+                <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                  BillDate:
+                {{BillDate | date:'medium' }}
+                  </li>
+                  <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                    Category:
+                    {{Category}}
+                  </li>
+              </ul>
+         </div>
+             <div class="body">
+                <div class="row">
+
+                </div>
+             </div>     
+        </div>
+      </div> 
+  </div>
+</div>
+ 
+
+
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header light-blue darken-3 text-center text-white">
+
+        <h4 class="modal-title w-100 font-weight-bold">Manage Expense</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div *ngIf="success" class="alert alert-success" role="alert">
+          {{success}}
+        </div>
+        <div *ngIf="error" class="alert alert-danger" role="alert">
+          {{error}}
+        </div>
+
+
+        <div class="body">
+          <div class="sectionA row">
+            <div class="col">
+
+              
+
+                <div class="form-row"  [formGroup]="Expense">
+
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Title</label>
+                    <input formControlName="Title" mdbInput type="text" class="form-control" id="inputEmail4">
+                    <mdb-error *ngIf="Titles.invalid && (Titles.dirty||Titles.touched)">
+                      Invalid Input.
+                    </mdb-error>
+                  </div>
+
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Category</label>
+                    <select  formControlName="Category" class="browser-default custom-select">
+
+                     <option *ngFor="let item of cat" [ngValue]="item.CategoryID">{{item.CategoryName}}</option>
+                     
+                     </select>
+                  </div>
+
+                  <div class="form-group col-md-12">
+                    <label for="inputPassword4">Description</label>
+                    <textarea formControlName="Description" type="text" id="form107" class="md-textarea form-control"
+                      rows="5" mdbInput></textarea>
+                    <mdb-error *ngIf="Descriptions.invalid && (Descriptions.dirty||Descriptions.touched)">
+                      Invalid Input.
+                    </mdb-error>
+                  </div>
+                
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Amount</label>
+                    <input  formControlName="Amount" mdbInput type="number" class="form-control" id="inputEmail4">
+                    <mdb-error *ngIf="Amounts.invalid && (Amounts.dirty||Amounts.touched)">
+                      Invalid Input.
+                    </mdb-error>
+                  </div>
+   
+                  <div class="form-group col-md-6">
+                    <mdb-date-picker name="mydate" formControlName="BillDate"  [placeholder]="'Billing Date'"
+                    required></mdb-date-picker>
+                    
+                  </div>
+                
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Receipts</label>
+                    <input formControlName="Receipt" mdbInput type="text" class="form-control" id="inputEmail4">
+                    <mdb-error *ngIf="Receipts.invalid && (Receipts.dirty||Receipts.touched)">
+                      Invalid Input.
+                    </mdb-error>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Payment Method</label>
+                    <input formControlName="PaymentMethod" mdbInput type="text" class="form-control" id="inputEmail4">
+                    <mdb-error *ngIf="PaymentMethods.invalid && (PaymentMethods.dirty||PaymentMethods.touched)">
+                      Invalid Input.
+                    </mdb-error>
+                  </div>
+                  
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Merchant</label>
+                    <input formControlName="Merchant" mdbInput type="text" class="form-control" id="inputEmail4">
+                    <mdb-error *ngIf="Merchants.invalid && (Merchants.dirty||Merchants.touched)">
+                      Invalid Input.
+                    </mdb-error>
+                  </div>
+                  
+                  
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Category</label>
+                  <select  formControlName="Rotation" class="browser-default custom-select">
+
+                   <option *ngFor="let item of bio" [ngValue]="item">{{item}}</option>
+                   
+                   </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Day</label>
+                  <input formControlName="Day" mdbInput type="number" class="form-control" id="inputEmail4">
+                  <mdb-error *ngIf="Day.invalid && (Day.dirty||Day.touched)">
+                    Invalid Input.
+                  </mdb-error>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Types</label>
+                  <select  formControlName="Type" class="browser-default custom-select">
+
+                   <option *ngFor="let item of types" [ngValue]="item">{{item}}</option>
+                   
+                   </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Status</label>
+                  <select  formControlName="Status" class="browser-default custom-select">
+
+                   <option *ngFor="let item of status" [ngValue]="item">{{item}}</option>
+                   
+                   </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Employee</label>
+                  <select  formControlName="EmployeeID" class="browser-default custom-select">
+
+                   <option *ngFor="let item of emp" [ngValue]="item.EmployeeID">{{item.Email}}</option>
+                   
+                   </select>
+                </div>
+                </div>
+
+
+
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
+      </div>
+
+
+      <div class="modal-footer d-flex justify-content-right">
+        <div class="btn-group" role="group" aria-label="Basic example">
+
+          <button mdbBtn type="button" color="info" [disabled]='Expense.invalid' (click)="createExpense()"
+            class="waves-light mr-2" mdbWavesEffect>Create</button>
+          <button mdbBtn type="button" color="danger" (click)="frame.hide()" class="waves-light"
+            mdbWavesEffect>Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Expense claims Information</h4>
+      </div>
+      <button mdbBtn type="button" color="primary" mdbWavesEffect>
+        <mdb-icon fas icon="magic" class="mr-1"></mdb-icon>{{statusValue}}
+      </button>
+      <div class="modal-body">
+        <div class="padding">
+          <ul class="list-group">
+            <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+              Title:
+              {{Title}}
+            </li>
+            <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+              Description:
+              {{Description}}
+            </li>
+            <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+              Merchant:
+              {{Merchant}}
+            </li>
+            <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+              Amount:
+              {{Amount  | currency:'₦':'symbol'}}
+            </li>
+            <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+              BillDate:
+            {{BillDate | date:'medium' }}
+              </li>
+              <li class="list-group-item form-group d-flex justify-content-between align-items-center">
+                Category:
+                {{Category}}
+              </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

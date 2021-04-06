@@ -1,0 +1,9 @@
+<div class="container">
+  <app-back></app-back>
+
+  <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Loan TimeLine'" [settings]="projectSettings"
+  [routePage]="routePage" [searchText]="searchText" [loading]="loading"
+  [api]="apis"
+
+  ></eni-table>
+</div>
