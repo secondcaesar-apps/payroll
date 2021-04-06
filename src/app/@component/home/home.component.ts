@@ -77,7 +77,7 @@ export class HomeComponent implements OnInit {
           {name:'holiday',route:'settings/holiday',icon:'las la-plane-arrival'},
           {name:'Menu Setup',route:'settings/menu',icon:'las la-stream'},
 
-         {name:'survey',route:'settings/survery',icon:'las la-poll'},
+         {name:'Internal Survey',route:'settings/survery',icon:'las la-poll'},
          {name:'rating',route:'settings/rating',icon:'las la-star'},
 
       ]
@@ -113,7 +113,7 @@ export class HomeComponent implements OnInit {
       {name:'holiday',route:'settings/holiday',icon:'las la-plane-arrival'},
       {name:'Menu Setup',route:'settings/menu',icon:'las la-stream'},
 
-     {name:'survey',route:'settings/survery',icon:'las la-poll'},
+     {name:'Internal Survey',route:'settings/survery',icon:'las la-poll'},
      {name:'rating',route:'settings/rating',icon:'las la-star'},
 
   ]

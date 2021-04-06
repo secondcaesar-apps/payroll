@@ -1,4 +1,4 @@
-import { Component, OnInit,  Input, ChangeDetectionStrategy, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum';
 import { SharedService } from 'src/app/@shared/shared/shared.service';
@@ -6,42 +6,45 @@ import { ColumnSetting } from 'src/app/models/layout.model';
 import { BaseComponent } from '../../base/base.component';
 
 @Component({
-  selector: 'app-feeback',
-  templateUrl: './feeback.component.html',
-  styleUrls: ['./feeback.component.scss'],
-
+  selector: 'app-sscorebyperiod',
+  templateUrl: './sscorebyperiod.component.html',
+  styleUrls: ['./sscorebyperiod.component.scss']
 })
-export class FeebackComponent extends BaseComponent implements OnChanges {
+export class SscorebyperiodComponent extends BaseComponent implements OnChanges {
   @Input() dateValue: any =null;
   routePage ="../edit";
-  apis=APIENUM.SVP;
+  apis=APIENUM.SSCORE;
   q = ['Q1','Q2','Q3','Q4'];
 
   dates = new Date().getFullYear();
   year: any= this.dates;
   D = [this.dates-2,this.dates-1,this.dates,this.dates+1,this.dates+2];
   projectSettings: ColumnSetting[] = [
-    {
-      primaryKey: "ID",
-      header: "ID",
-      routerParams:true,
-    },
+
+    // {
+    //   primaryKey: "DepartmentID",
+    //   header: "Department ID",
+
+    // },
 
     {
       primaryKey: "DepartmentName",
-      header: "Department Name",
+      header: "DepartmentName",
+      routerParams:true,
 
     },
     {
-      primaryKey: "Feedback",
-      header: "Feed back",
+      primaryKey: "Score",
+      header: "Score",
+      percent:true
 
     },
 
 
 
-    // DepartmentName: "Customer Engagement"
-    // Rating: "60.0000"
+
+    // DepartmentName: "Customer Engagement"5
+    // Rating: "60.0000" Score
 
 
   ];
@@ -83,20 +86,13 @@ export class FeebackComponent extends BaseComponent implements OnChanges {
     this.shared.getInfo().subscribe((res)=>{
 
       if(res){
-        this.special(APIENUM.SVP,id);
+        this.special(APIENUM.SSCORE,id);
       }
     })
-    this.special(APIENUM.SVP,id);
+    this.special(APIENUM.SSCORE,id);
 
   }
 
 
 
 }
-// DateCreated: "2021-03-18 12:16:13"
-// DepartmentID: "DPT1900009"
-// Description: ""
-// ID: "1"
-// PostedUser: "Admin"
-// Status: "Active"
-// Title: "Staff Are Clear In Their Verbal And Written Communication"

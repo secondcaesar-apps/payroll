@@ -1,6 +1,23 @@
 <div class="container mt-5">
 
+  <div class="container mb-3 bt-3">
+    <div *ngIf="error" class=" container alert alert-danger text-center" role="alert">
+      {{error}} <a (click)="read('readbyperiod')" class="alert-link">Click to retry</a>
+    </div>
+  </div>
+
   <div class="row">
+    <div class="col-12">
+      <button *ngIf="!loadings"  mdbBtn color="primary" class="waves-light float-right" type="button"
+      (click)="captureScreen()"
+         mdbWavesEffect>
+         Download
+       </button>
+
+       <div *ngIf="loadings" class="spinner-border float-right mb-2" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
     <div class="col-12 card z-depth-1">
       <div class="row p-3 m-4">
 
@@ -13,7 +30,7 @@
           <select (change)="qselect($event,'Y')" class="form-control">
             <!-- <option [value]="dates" selected  >{{dates}}</option> -->
             <option disabled value="null" selected>YEAR</option>
-            <option *ngFor="let i of D" >
+            <option *ngFor="let i of D">
               {{i}}
             </option>
 
@@ -26,7 +43,7 @@
           <select (change)="qselect($event,'Q')" class="form-control">
             <option disabled value="null" selected>QUARTER</option>
             <!-- <option [value]="QT" selected  >{{QT}}</option> -->
-            <option *ngFor="let i of q" >
+            <option *ngFor="let i of q">
               {{i}}
             </option>
 
@@ -39,24 +56,47 @@
 
   </div>
 
-  <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Analytics'" [settings]="projectSettings"
-  [routePage]="routePage" [searchText]="searchText" [loading]="loading"
-  [api]="apis"
-  >
+  <div id="contentToConvert">
+    <div class="row mt-5 mb-3">
+      <div class="col-12  py-5 px-5">
 
 
-</eni-table>
+        <app-sdashboard [dateValue]="passDate">
+
+        </app-sdashboard>
+      </div>
+    </div>
+    <div class="row mt-5 mb-3">
+      <div class="col-12 card z-depth-1 py-5 px-5">
 
 
+        <app-sscorebyperiod [dateValue]="passDate">
 
-<div class="container">
-  <div *ngIf="error" class=" container alert alert-danger text-center" role="alert">
-    {{error}} <a (click)="read('readbyperiod')" class="alert-link">Click to retry</a>
+        </app-sscorebyperiod>
+      </div>
+    </div>
+    <div class="row mt-3 mb-3">
+      <div class="col-12 card z-depth-1">
+        <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Employee'" [settings]="projectSettings"
+          [routePage]="routePage" [searchText]="searchText" [loading]="loading" [api]="apis" [tableShow]="false" >
+
+
+        </eni-table>
+      </div>
+    </div>
+
+    <div class="row mt-5 mb-3">
+      <div class="col-12 card z-depth-1 py-5 px-5">
+
+
+        <app-feeback [dateValue]="passDate">
+
+        </app-feeback>
+      </div>
+    </div>
+
   </div>
+
 </div>
 
-
-
-<app-feeback>
-
-</app-feeback>
+<!-- app-sscorebyperiod -->

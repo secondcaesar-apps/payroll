@@ -22,7 +22,7 @@ import { ColumnSetting } from 'src/app/models/layout.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableComponent implements OnChanges {
-  @HostBinding("attr.class") class = "col-md-9 ml-sm-auto col-lg-10 pt-3 px-4";
+  @HostBinding("attr.class") class = "col-md-12 ml-sm-auto col-lg-12 pt-3 px-4";
   @Input() records: any[] =[];
   @Input() api: string ='';
   @Input() caption: string ='';

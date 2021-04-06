@@ -29,11 +29,14 @@
             <tr *ngFor="let record of (records | search : searchText);let i=index;"   >
               <td *ngFor="let map of columnMaps  " (click)="search(routePage,record[settings[routerId].primaryKey],api, settings[routerId].primaryKey)">
 
-                 <span *ngIf=" !map.currency && map.primaryKey!='Status' && !map.date"   >
+                 <span *ngIf=" !map.percent && !map.currency && map.primaryKey!='Status' && !map.date"   >
 
                   <span >{{ record[map.primaryKey]   }}</span>
                  </span>
 
+                 <span *ngIf="map.percent"  >
+                  {{ record[map.primaryKey]  |number }} %
+                 </span>
                  <span *ngIf="map.currency"  >
                   {{ record[map.primaryKey]  | currency:'₦':'symbol' }}
                  </span>

@@ -1,4 +1,4 @@
-import { Component, OnInit,  Input, ChangeDetectionStrategy, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum';
 import { SharedService } from 'src/app/@shared/shared/shared.service';
@@ -6,15 +6,14 @@ import { ColumnSetting } from 'src/app/models/layout.model';
 import { BaseComponent } from '../../base/base.component';
 
 @Component({
-  selector: 'app-feeback',
-  templateUrl: './feeback.component.html',
-  styleUrls: ['./feeback.component.scss'],
-
+  selector: 'app-sdashboard',
+  templateUrl: './sdashboard.component.html',
+  styleUrls: ['./sdashboard.component.scss']
 })
-export class FeebackComponent extends BaseComponent implements OnChanges {
+export class SdashboardComponent extends BaseComponent implements OnChanges {
   @Input() dateValue: any =null;
   routePage ="../edit";
-  apis=APIENUM.SVP;
+  apis=APIENUM.SDASH;
   q = ['Q1','Q2','Q3','Q4'];
 
   dates = new Date().getFullYear();
@@ -22,30 +21,27 @@ export class FeebackComponent extends BaseComponent implements OnChanges {
   D = [this.dates-2,this.dates-1,this.dates,this.dates+1,this.dates+2];
   projectSettings: ColumnSetting[] = [
     {
-      primaryKey: "ID",
-      header: "ID",
+      primaryKey: "DistinctEmployee",
+      header: "Distinct Employee",
       routerParams:true,
     },
 
     {
-      primaryKey: "DepartmentName",
-      header: "Department Name",
-
-    },
-    {
-      primaryKey: "Feedback",
-      header: "Feed back",
+      primaryKey: "TotalEmployee",
+      header: "Total Employee",
 
     },
 
 
 
-    // DepartmentName: "Customer Engagement"
+
+    // DepartmentName: "Customer Engagement"5
     // Rating: "60.0000"
 
 
   ];
   QT: any;
+  list: any;
 
 
 
@@ -80,23 +76,18 @@ export class FeebackComponent extends BaseComponent implements OnChanges {
 
   getPeriod(id){
 
-    this.shared.getInfo().subscribe((res)=>{
+    // this.shared.getInfo().subscribe((res)=>{
 
-      if(res){
-        this.special(APIENUM.SVP,id);
-      }
-    })
-    this.special(APIENUM.SVP,id);
+    //   if(res){
+    //     this.special(APIENUM.SDASH,id);
+    //   }
+    // })
+    this.api.Special(APIENUM.SDASH,id).subscribe((res:any)=>{
+ this.list= res.records[0];
+    });
 
   }
 
 
 
 }
-// DateCreated: "2021-03-18 12:16:13"
-// DepartmentID: "DPT1900009"
-// Description: ""
-// ID: "1"
-// PostedUser: "Admin"
-// Status: "Active"
-// Title: "Staff Are Clear In Their Verbal And Written Communication"

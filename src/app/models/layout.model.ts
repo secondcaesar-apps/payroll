@@ -6,5 +6,6 @@ export class ColumnSetting {
   action?:Function;
   routerParams?:boolean=false;
   currency?:boolean=false;
+  percent?:boolean=false;
   date?:boolean=false;
 }
