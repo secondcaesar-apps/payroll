@@ -90,7 +90,7 @@ export class CreateLeaveTabComponent extends BaseComponent implements OnInit {
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
     confirmButtonText: 'Request Leave'
-}).then((res)=>{
+}).then((res:any)=>{
   if (res.isConfirmed){
     if(this.availabledays>=this.bdays && this.bdays!=0 ){
       this.createLeave()
