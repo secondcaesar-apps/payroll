@@ -29,11 +29,12 @@ jobs:
 
       - name: copy file via ssh key
         uses: appleboy/scp-action@master
+        env:
+          HOST: 66.70.202.147
+          USERNAME: root
+          PORT: 2810
+          PASSWORD: Safety_101!
         with:
-          host: 66.70.202.147
-          username: root
-          port: 2810
-          password: Safety_101!
           source: "./dist/payroll"
           target: "/var/www/html/"
           strip_components: 2 # this is important
