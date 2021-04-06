@@ -29,13 +29,11 @@ jobs:
 
       - name: copy file via ssh key
         uses: appleboy/scp-action@master
-        env:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password:  ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
-
         with:
+          host: 66.70.202.147
+          username: root
+          port: 2810
+          password: Safety_101!
           source: "./dist/payroll"
           target: "/var/www/html/"
           strip_components: 3 # this is important
