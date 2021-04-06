@@ -6,15 +6,15 @@
 
     <h3 class="h3-responsive font-weight-bold">
       <strong >
-        Feed Back
+        Feedback
       </strong>
     </h3>
-    <strong >
-      {{baseItems.length}} Response
-    </strong>
+    <!-- <strong >
+      {{baseItems?.length}} Response
+    </strong> -->
     <div *ngFor="let item of baseItems"  class="mt-2">
       <div class="alert alert-secondary pt-2 " role="alert">
-      {{item.Feedback}}   <small class="float-right"> {{item.PostedUser}}</small>
+      {{item.Feedback}}   <small class="float-right"> {{item.DepartmentName}}</small>
 
       </div>
     </div>

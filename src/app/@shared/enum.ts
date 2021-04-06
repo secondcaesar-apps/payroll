@@ -3,7 +3,9 @@
 
 export enum APIENUM {
   ASS = 'asset',
-  SVP='survey/feedbackbyperiod',
+  SVP='survey/feedbackbyperiod.php',
+  SDASH='survey/dashboard.php',
+  SSCORE='survey/scorebyperiod.php',
   CON = 'contact',
   COM = 'company',
   CAT = 'category',
@@ -17,7 +19,7 @@ export enum APIENUM {
   MENU = 'menu',
   LEAVE = 'leave',
   SQ = 'surveyquestion',
-  SQR='survey/readbyperiod',
+  SQR='survey/distinctemployeebyperiod.php',
   MENUG = 'menugroup',
   train = 'training',
   trainpending = 'training/pendingapprove.php',

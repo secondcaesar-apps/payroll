@@ -35,7 +35,7 @@
                  </span>
 
                  <span *ngIf="map.percent"  >
-                  {{ record[map.primaryKey]  |percent }}
+                  {{ record[map.primaryKey]  |number }} %
                  </span>
                  <span *ngIf="map.currency"  >
                   {{ record[map.primaryKey]  | currency:'₦':'symbol' }}

@@ -1,0 +1,47 @@
+
+
+<!-- <div class="container">
+
+  <div class="row mt-3 mb-3">
+    <div class="col-12 ">
+      <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Distinct Employee'" [settings]="projectSettings"
+        [routePage]="routePage" [searchText]="searchText" [loading]="loading" [api]="apis" [tableShow]="false" >
+
+
+      </eni-table>
+    </div>
+  </div>
+
+
+</div> -->
+
+
+
+  <div class="row" *ngIf="list" >
+    <div class="col-6">
+      <div class="circle-tile ">
+        <a ><div class="circle-tile-heading dark-blue"><i class="fa fa-users fa-fw fa-3x"></i></div></a>
+        <div class="circle-tile-content dark-blue">
+          <div class="circle-tile-description text-faded"> Total Employee</div>
+          <div class="circle-tile-number text-faded "> {{list.TotalEmployee}}</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div class="circle-tile ">
+        <a ><div class="circle-tile-heading red"><i class="fa fa-users fa-fw fa-3x"></i></div></a>
+        <div class="circle-tile-content red">
+          <div class="circle-tile-description text-faded"> Total Participants </div>
+          <div class="circle-tile-number text-faded ">{{list.DistinctEmployee}}</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+

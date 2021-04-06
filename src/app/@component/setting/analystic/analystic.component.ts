@@ -29,10 +29,22 @@ export class AnalysticComponent extends BaseComponent implements OnInit {
     },
 
     {
-      primaryKey: "Rating",
-      header: "Rating",
-      percent:true,
+      primaryKey: "FullName",
+      header: "Full Name",
+
+
+
+
+
+
+
+    },
+    {
+      primaryKey: "EmployeeID",
+      header: "Employee ID",
       routerParams: true,
+
+
 
 
 
@@ -40,8 +52,12 @@ export class AnalysticComponent extends BaseComponent implements OnInit {
 
     }
 
+
     // DepartmentName: "Customer Engagement"
-    // Rating: "60.0000"
+    // Rating: "60.0000" DepartmentName: "Personal & Business Lending  "
+// Email: "hardecx@yahoo.com"
+// EmployeeID: "EMP1900016"
+// FullName: "Oluyemi Bamiro"
 
 
   ];
@@ -103,19 +119,28 @@ export class AnalysticComponent extends BaseComponent implements OnInit {
      this.loadings = true;
     var data = document.getElementById('contentToConvert');
     html2canvas(data).then(canvas => {
-       // Few necessary setting options
-        var imgWidth = 200;
-        var pageHeight = 255;
-        var imgHeight = canvas.height * imgWidth / canvas.width;
-        var heightLeft = imgHeight;
-        const contentDataURL = canvas.toDataURL('image/png')
-        let pdf = new jspdf('p', 'mm', 'a4');  // A4 size page of PDF
-         var position = 0;
-          pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
-          pdf.save('pdf.pdf'); // Generated PDF
-          this.loadings = false;
-         });
-  }
+      // Few necessary setting options
+      var imgWidth = 200;
+      var pageHeight = 298;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
+      const imgData = canvas.toDataURL('image/jpeg', 0.3 )
+      var doc =  new jspdf('p', 'mm');
+      var position = 0;
+
+      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        doc.addPage();
+        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+      this.loadings = false;
+         doc.save('report.pdf'); // Generated PDF
+        });
+
+}
 
 }
 // DateCreated: "2021-03-18 12:16:13"

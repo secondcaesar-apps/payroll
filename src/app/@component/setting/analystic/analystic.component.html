@@ -57,9 +57,27 @@
   </div>
 
   <div id="contentToConvert">
+    <div class="row mt-5 mb-3">
+      <div class="col-12  py-5 px-5">
+
+
+        <app-sdashboard [dateValue]="passDate">
+
+        </app-sdashboard>
+      </div>
+    </div>
+    <div class="row mt-5 mb-3">
+      <div class="col-12 card z-depth-1 py-5 px-5">
+
+
+        <app-sscorebyperiod [dateValue]="passDate">
+
+        </app-sscorebyperiod>
+      </div>
+    </div>
     <div class="row mt-3 mb-3">
       <div class="col-12 card z-depth-1">
-        <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Ratings'" [settings]="projectSettings"
+        <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Employee'" [settings]="projectSettings"
           [routePage]="routePage" [searchText]="searchText" [loading]="loading" [api]="apis" [tableShow]="false" >
 
 
@@ -76,6 +94,9 @@
         </app-feeback>
       </div>
     </div>
+
   </div>
 
 </div>
+
+<!-- app-sscorebyperiod -->
