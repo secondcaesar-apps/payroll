@@ -35,6 +35,7 @@ import { AnalysticComponent } from '../@component/setting/analystic/analystic.co
 import { FeebackComponent } from '../@component/setting/feeback/feeback.component';
 import { SdashboardComponent } from '../@component/setting/sdashboard/sdashboard.component';
 import { SscorebyperiodComponent } from '../@component/setting/sscorebyperiod/sscorebyperiod.component';
+import { SdepartmentComponent } from '../@component/setting/sdepartment/sdepartment.component';
 //import { HolidayComponent } from '../@component/holiday/holiday.component';
 
 
@@ -43,7 +44,7 @@ import { SscorebyperiodComponent } from '../@component/setting/sscorebyperiod/ss
 
 
 @NgModule({
-  declarations: [HomeComponent,SettingComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent, DesignationComponent, IncreComponent, CalenderComponent, WorkflowComponent, MenuComponent, LoanWorkflowComponent, HolidayComponent, SurveryComponent, SurveryAddComponent, SurveryReadComponent, SurveryRatingComponent, SurveryRatingReadComponent, SurveryRatingAddComponent, AnalysticComponent, FeebackComponent, SdashboardComponent, SscorebyperiodComponent],
+  declarations: [HomeComponent,SettingComponent, DepartmentComponent, SalaryComponent, CompanyComponent, SalarySetupComponent, ExpenseComponent, LeaveComponent, SalarycreateComponent, RoleComponent, RolecreateComponent, LocationComponent, DesignationComponent, IncreComponent, CalenderComponent, WorkflowComponent, MenuComponent, LoanWorkflowComponent, HolidayComponent, SurveryComponent, SurveryAddComponent, SurveryReadComponent, SurveryRatingComponent, SurveryRatingReadComponent, SurveryRatingAddComponent, AnalysticComponent, FeebackComponent, SdashboardComponent, SscorebyperiodComponent, SdepartmentComponent],
   imports: [
     CommonModule,
     SettingRoutingModule,

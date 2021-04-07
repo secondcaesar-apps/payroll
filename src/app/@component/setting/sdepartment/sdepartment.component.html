@@ -1,0 +1,118 @@
+<h5>Department Scoring</h5>
+
+<div class="row" *ngFor="let item of result">
+  <div class="col-12 m-3">
+    <p>Department Name:<strong class="ml-1">
+      {{item.DepartmentName}}
+
+      </strong></p>
+  </div>
+  <div class="col-12">
+
+
+
+    <ul class="list-group mb-2" *ngFor="let items of item.Report">
+      <li class="list-group-item d-flex " style="background-color:black;color:white;">
+      Question:<p class="ml-2">{{items.Question}}</p>
+
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Agree
+        <mdb-badge pill="true" primary="true">{{items.Agree | number : '1.2-2'}} %</mdb-badge>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Strongly Agree
+        <mdb-badge pill="true" primary="true">{{items.StronglyAgree| number : '1.2-2'}} %</mdb-badge>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Neutral
+        <mdb-badge pill="true" primary="true">{{items.Neutral| number : '1.2-2'}} %</mdb-badge>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Disagree
+        <mdb-badge pill="true" primary="true">{{items.Disagree| number : '1.2-2'}} %</mdb-badge>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Strongly Disagree
+        <mdb-badge pill="true" primary="true">{{items.StronglyDisagree| number : '1.2-2'}} %</mdb-badge>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Total Responses
+        <mdb-badge pill="true" primary="true">{{items.Totalresponses}} </mdb-badge>
+      </li>
+    </ul>
+    <!-- <div class="table-responsive">
+
+    <table style="width:100%">
+      <thead class="black white-text">
+      <tr>
+        <th>Question</th>
+        <th>Agree</th>
+        <th>StronglyAgree</th>
+        <th>Neutral</th>
+        <th>Disagree</th>
+        <th>StronglyDisagree</th>
+        <th>Totalresponses</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let items of item.Report" >
+          <td>{{items.Question}}</td>
+
+          <td>{{items.Agree | number : '1.2-2'}} %</td>
+          <td>{{items.StronglyAgree}}</td>
+
+
+
+          <td>{{items.Neutral}}</td>
+
+
+          <td>{{items.Disagree}}</td>
+          <td>{{items.StronglyDisagree}}</td>
+          <td>{{items.Totalresponses}}</td>
+        </tr>
+      </tbody>
+
+    </table>
+    </div> -->
+
+    <!-- <eni-table *ngIf="items" [records]="items" [caption]="''" [settings]="projectSettings"
+    [routePage]="routePage" [searchText]="searchText" [loading]="loading" [api]="apis" [tableShow]="false" >
+      <div class="table-responsive">
+Totalresponses
+        <table class="table table-striped">
+
+          <thead class="black white-text">
+            <tr>
+
+  </eni-table> -->
+  </div>
+
+</div>
+
+<!-- 0: {ID: "1", PostedUser: "IT UNIT TEST ACCOUNT", DepartmentID: "DPT1900001",…}
+DateCreated: "2020-03-05 07:49:00"
+DepartmentHead: "EMP1900001"
+DepartmentID: "DPT1900001"
+DepartmentName: "Technologyp"
+ID: "1"
+PostedUser: "IT UNIT TEST ACCOUNT"
+Report: [{Question: "Do You Like Ngozi In Technology?", StronglyAgree: "0.0000", Agree: "0.0000",…}]
+0: {Question: "Do You Like Ngozi In Technology?", StronglyAgree: "0.0000", Agree: "0.0000",…}
+Agree: "0.0000"
+Disagree: "33.3333"
+Neutral: "33.3333"
+Question: "Do You Like Ngozi In Technology?"
+StronglyAgree: "0.0000"
+StronglyDisagree: "33.3333"
+Totalresponses: "3"
+
+
+Agree: "0.0000"
+Disagree: "33.3333"
+Neutral: "33.3333"
+Question: "Do You Like Ngozi In Technology?"
+StronglyAgree: "0.0000"
+StronglyDisagree: "33.3333"
+Totalresponses: "3"
+-->
