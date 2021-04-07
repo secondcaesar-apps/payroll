@@ -75,6 +75,17 @@
         </app-sscorebyperiod>
       </div>
     </div>
+
+    <div class="row mt-5 mb-3">
+      <div class="col-12 card z-depth-1 py-5 px-5">
+
+
+        <app-sdepartment [dateValue]="passDate">
+
+        </app-sdepartment>
+      </div>
+    </div>
+
     <div class="row mt-3 mb-3">
       <div class="col-12 card z-depth-1">
         <eni-table *ngIf="baseItems" [records]="baseItems" [caption]="'Employee'" [settings]="projectSettings"
@@ -99,4 +110,4 @@
 
 </div>
 
-<!-- app-sscorebyperiod -->
+<!-- app-sscorebyperiod   app-sdepartment-->

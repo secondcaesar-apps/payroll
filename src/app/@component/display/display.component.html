@@ -17,7 +17,7 @@
 
         </div>
       </div>
-      <div class="form-row mt-2 mb-5">
+      <div *ngIf=" this.apis=='loan'"  lass="form-row mt-2 mb-5">
         <a (click)="timelinepage()" style="display: block; color: red;">View Loan Timeline</a>
       </div>
 
