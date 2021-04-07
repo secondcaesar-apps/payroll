@@ -5,6 +5,7 @@ export enum APIENUM {
   ASS = 'asset',
   SVP='survey/feedbackbyperiod.php',
   SDASH='survey/dashboard.php',
+  SDEPART='survey/readreportquestionbyperiod.php',
   SSCORE='survey/scorebyperiod.php',
   CON = 'contact',
   COM = 'company',

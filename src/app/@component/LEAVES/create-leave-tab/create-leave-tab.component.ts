@@ -83,7 +83,7 @@ export class CreateLeaveTabComponent extends BaseComponent implements OnInit {
   title: 'Leave Calculator',
 
   html:
-    `Total Leave Day Available:<strong>${this.availabledays}</strong> <br/>` +
+    `Total Leave Day Available:<strong>${ Number(this.availabledays) * -1}</strong> <br/>` +
     `Total Leave Day Requested:<strong>${this.bdays}</strong> <br/>`  ,
 
     showCancelButton: true,
@@ -92,14 +92,12 @@ export class CreateLeaveTabComponent extends BaseComponent implements OnInit {
     confirmButtonText: 'Request Leave'
 }).then((res:any)=>{
   if (res.isConfirmed){
-    if(this.availabledays>=this.bdays && this.bdays!=0 ){
-      this.createLeave()
-    }else{
-      swal.fire('Sorry you don\'t have enough leave days');
-    }
 
+
+    this.createLeave();
 
   }else{
+
     return false;
   }
 })
@@ -226,7 +224,7 @@ checkWeekends(value,paramter){
 }
 
 else if(this.checkSevendays(value,paramter)){
-  swal.fire('Leave can\'t be fixed for next seven days');
+  swal.fire('Give seven days notice');
 }
 
 else{
@@ -316,7 +314,7 @@ calcBusinessDays(start, end) {
       current.setDate(current.getDate() + 1);
       holidayFound=false;
   }
-  return totalBusinessDays;
+  return totalBusinessDays ;
 }
 dateToMySQL (x){
   var MySQL_day = x.getDate();
