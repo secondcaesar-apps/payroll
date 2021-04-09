@@ -92,7 +92,9 @@ export class CreateLeaveTabComponent extends BaseComponent implements OnInit {
     confirmButtonText: 'Request Leave'
 }).then((res:any)=>{
 
-  if (res.isConfirmed==true){
+  console.log(res);
+
+  if (res.isConfirmed===true){
 
 
     this.createLeave();
