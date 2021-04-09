@@ -39,7 +39,7 @@
     "ionicons": "^5.5.1",
     "jquery": "^3.4.1",
     "jspdf": "^1.5.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "moment": "^2.24.0",
     "ng-connection-service": "^1.0.4",
     "ng-uikit-pro-standard": "file:ng-uikit-pro-standard-8.7.0.tgz",
