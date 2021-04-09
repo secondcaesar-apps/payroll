@@ -91,6 +91,7 @@ export class CreateLeaveTabComponent extends BaseComponent implements OnInit {
     cancelButtonColor: '#d33',
     confirmButtonText: 'Request Leave'
 }).then((res:any)=>{
+
   if (res.isConfirmed==true){
 
 
@@ -98,7 +99,7 @@ export class CreateLeaveTabComponent extends BaseComponent implements OnInit {
 
   }else{
 
-    this.createLeave();
+    return false;
   }
 })
 
