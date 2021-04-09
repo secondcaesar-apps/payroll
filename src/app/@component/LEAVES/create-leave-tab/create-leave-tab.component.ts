@@ -94,7 +94,7 @@ export class CreateLeaveTabComponent extends BaseComponent implements OnInit {
 
   console.log(res);
 
-  if (res.isConfirmed===true){
+  if (res.value==true){
 
 
     this.createLeave();
