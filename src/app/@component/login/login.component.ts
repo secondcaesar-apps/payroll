@@ -17,7 +17,7 @@ Login: FormGroup;
   error:any;
   success:any;
   loading=false;
-  img=environment.url+'assets/bo.svg'
+  img=environment.url2+'assets/bo.svg'
   constructor(  private _fb:FormBuilder,    private Api:ApiserviceService,private router:Router ) { }
 
   ngOnInit() {
