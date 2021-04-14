@@ -1,5 +1,5 @@
 <div class="form-group" id='demo'>
-      
+
   <button mdbBtn (click)="frame.show()" type="button" color="default" mdbWavesEffect>
     <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>Loan WorkFlow
   </button>
@@ -34,7 +34,7 @@
           </td>
           <td data-title="Status">Completed</td>
         </tr> -->
-       
+
       </tbody>
     </table>
     <div *ngIf="message" style="padding-left: 40%;"><p>{{messages}}</p></div>
@@ -44,7 +44,7 @@
   <div class="modal-dialog modal-lg" role="document">
    <div class="modal-content">
      <div class="modal-header light-blue darken-3 text-center text-white">
-       
+
        <h4 class="modal-title w-100 font-weight-bold">Loan WorkFlow</h4>
        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
          <span aria-hidden="true">&times;</span>
@@ -70,25 +70,25 @@
             <th>Level</th>
             <th>Status</th>
           </tr>
-          
+
         </thead>
         <tbody formArrayName="Item">
           <tr mdbTableCol *ngFor="let item of WorkFlow.get('Item')['controls']; let i = index;"
             [formGroupName]="i">
             <th> <input formControlName="PWFName" nbInput name="quantity" type="text" class=""></th>
-            <th> 
+            <th>
               <select  formControlName="EmployeeID" class="mdb-select md-form colorful-select dropdown-primary">
-            
+
                 <option *ngFor="let item of emp" [ngValue]="item.EmployeeID">{{item.FirstName}} {{item.LastName}}</option>
-              
+
               </select>
             </th>
             <th> <input formControlName="level" nbInput name="quantity" type="number" min="3" max="9" class=""></th>
-            <th> 
+            <th>
               <select  formControlName="Status" class="mdb-select md-form colorful-select dropdown-primary">
-            
+
                 <option *ngFor="let item of  status" [ngValue]="item">{{item}}</option>
-              
+
               </select>
             </th>
             <th>
@@ -97,22 +97,23 @@
           </tr>
         </tbody>
       </table>
-  
-  
-  
-  
-  
-      
-  
-  
-  
+
+
+
+
+
+
+
+
+
      </div>
      <div class="modal-footer d-flex justify-content-right">
           <div class="btn-group" role="group" aria-label="Basic example">
-                  
+
 
   <button mdbBtn type="button" [disabled]="WorkFlow.invalid" color="info" (click)="createWorkflow()" class="waves-light mr-2" mdbWavesEffect>Create</button>
-                  <button mdbBtn type="button" color="danger"  (click)="frame.hide()" class="waves-light" mdbWavesEffect>Cancel</button>
+
+  <button mdbBtn type="button" color="danger"  (click)="frame.hide()" class="waves-light" mdbWavesEffect>Cancel</button>
               </div>
      </div>
    </div>

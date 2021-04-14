@@ -5,7 +5,7 @@
 
 export const environment = {
   production: true,
-  url:'http://payroll.pagefinancials.com/payrollserver/',
+  url:'https://payroll.pagefinancials.com/payrollserver/',
  //url:'http://66.70.202.147/Payroll_server/',
   token:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9leGFtcGxlLm9yZyIsImF1ZCI6Imh0dHA6XC9cL2V4YW1wbGUuY29tIiwiaWF0IjoxNTc5MTY0MjM1LCJuYmYiOjE1NzkxNjQyMzUsImV4cCI6MTU3OTI1MDYzNSwiZGF0YSI6eyJVc2VybmFtZSI6Ik9sdXllbWkgQmFtaXJvIiwiUm9sZUlEIjoiMTgiLCJFbXBsb3llZUlEIjoiRU1QMTkwMDAwMSIsIkVtYWlsIjoib2JhbWlyb0BwYWdlZmluYW5jaWFscy5jb20ifX0.a7L57joDSGvztG0-3N2GMj7eohydJMbfCsuup1Mvn90',
   countryList :[
