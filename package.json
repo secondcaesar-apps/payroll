@@ -29,7 +29,7 @@
     "angular2-jwt": "^0.2.3",
     "animate.css": "^3.7.2",
     "bootstrap": "4.1.1",
-    "chart.js": "^2.5.0",
+    "chart.js": "^2.9.4",
     "date-fns": "^2.9.0",
     "easy-pie-chart": "2.1.x",
     "file-saver": "^2.0.2",
