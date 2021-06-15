@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ApiserviceService } from 'src/app/@shared/apiservice.service';
 import { APIENUM } from 'src/app/@shared/enum';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -16,6 +17,7 @@ Login: FormGroup;
   error:any;
   success:any;
   loading=false;
+  img=environment.url2+'assets/bo.svg'
   constructor(  private _fb:FormBuilder,    private Api:ApiserviceService,private router:Router ) { }
 
   ngOnInit() {

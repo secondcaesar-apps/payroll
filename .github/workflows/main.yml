@@ -1,4 +1,4 @@
-name: Payroll Development server
+name: Payroll Development servers
 
 on:
   push:
