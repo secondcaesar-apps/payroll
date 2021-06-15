@@ -10,7 +10,7 @@ import { APIENUM } from 'src/app/@shared/enum';
 })
 export class SurveyComponent implements OnInit {
 
-  show=false;
+  show=true;
   admin: FormGroup;
   loading:any;
   submitted: boolean;
