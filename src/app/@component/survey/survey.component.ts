@@ -9,7 +9,7 @@ import { APIENUM } from 'src/app/@shared/enum';
   styleUrls: ['./survey.component.scss']
 })
 export class SurveyComponent implements OnInit {
-
+//chnaged
   show=true;
   admin: FormGroup;
   loading:any;
