@@ -29,7 +29,7 @@ export class SurveyComponent implements OnInit {
  month = new Date().getMonth();
 quarters = ['Q1', 'Q2', 'Q3', 'Q4'].map((_, i, a) => a[Math.floor(this.month / 3 + 1 + i) % 4])[3];
 quarter='Q2';
-//  QT;
+  QT;
 
   year: any= this.dates;
   constructor(private _fb: FormBuilder, private api: ApiserviceService) {
