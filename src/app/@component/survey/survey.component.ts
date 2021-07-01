@@ -27,8 +27,8 @@ export class SurveyComponent implements OnInit {
   q = ['Q1','Q2','Q3','Q4'];
   D= [];
  month = new Date().getMonth();
-quarters = ['Q1', 'Q2', 'Q3', 'Q4'].map((_, i, a) => a[Math.floor(this.month / 3 + 1 + i) % 4])[3];
-quarter='Q2';
+quarter = ['Q1', 'Q2', 'Q3', 'Q4'].map((_, i, a) => a[Math.floor(this.month / 3 + 1 + i) % 4])[3];
+quarters='Q2';
   QT;
 
   year: any= this.dates;
@@ -191,7 +191,7 @@ saverange(event){
 
   getDepartment(){
     this.dept=[];
-    this.api.Special(APIENUM.SD,{'Period':this.quarter+"-"+this.year}).subscribe((res:any)=>{
+    this.api.Special(APIENUM.SD,{'Period':this.quarters+"-"+this.year}).subscribe((res:any)=>{
 
 
 
