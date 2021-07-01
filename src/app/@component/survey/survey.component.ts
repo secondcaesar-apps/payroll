@@ -28,8 +28,8 @@ export class SurveyComponent implements OnInit {
   D= [];
  month = new Date().getMonth();
 quarters = ['Q1', 'Q2', 'Q3', 'Q4'].map((_, i, a) => a[Math.floor(this.month / 3 + 1 + i) % 4])[3];
-quarter='Q1';
-  QT;
+quarter='Q2';
+//  QT;
 
   year: any= this.dates;
   constructor(private _fb: FormBuilder, private api: ApiserviceService) {
@@ -191,7 +191,7 @@ saverange(event){
 
   getDepartment(){
     this.dept=[];
-    this.api.Special(APIENUM.SD,{'Period':this.quarters+"-"+this.year}).subscribe((res:any)=>{
+    this.api.Special(APIENUM.SD,{'Period':this.quarter+"-"+this.year}).subscribe((res:any)=>{
 
 
 
