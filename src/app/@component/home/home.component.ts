@@ -149,7 +149,7 @@ export class HomeComponent implements OnInit {
 
 
 
-if( e['MenuName']=='Dashboard'){
+if( e['MenuName']=='Settings'){
 this.settAound= true;
 }
   })
