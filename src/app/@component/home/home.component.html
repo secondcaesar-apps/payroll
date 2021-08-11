@@ -71,7 +71,7 @@
 
   </div>
 
-  <ul *ngIf="settAound">
+  <ul *ngIf="!settAound">
     <li *ngFor="let item of list"><a  [routerLink]="item.route" routerLinkActive="active">
       <span [class]="item.icon">
 
