@@ -27,8 +27,8 @@ export class SurveyComponent implements OnInit {
   q = ['Q1','Q2','Q3','Q4'];
   D= [];
  month = new Date().getMonth();
-quarter = ['Q1', 'Q2', 'Q3', 'Q4'].map((_, i, a) => a[Math.floor(this.month / 3 + 1 + i) % 4])[3];
-quarters='Q2';
+quarters = ['Q1', 'Q2', 'Q3', 'Q4'].map((_, i, a) => a[Math.floor(this.month / 3 + 1 + i) % 4])[3];
+quarter='Q3';
   QT;
 
   year: any= this.dates;
