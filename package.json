@@ -40,7 +40,7 @@
     "jquery": "^3.4.1",
     "jspdf": "^1.5.3",
     "lodash": "^4.17.15",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "ng-connection-service": "^1.0.4",
     "ng-uikit-pro-standard": "file:ng-uikit-pro-standard-8.7.0.tgz",
     "ngx-bootstrap": "^6.2.0",
